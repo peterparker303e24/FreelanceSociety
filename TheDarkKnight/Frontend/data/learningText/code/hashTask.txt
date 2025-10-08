@@ -1,0 +1,38 @@
+HashTask.sol
+
+Summary
+
+Managers can create hash tasks that are solved by finding a hash key and nonce that satisfies the submission difficulty. Solving this task requires no validator. Once the hash key is found, the hash key, a nonce, and the worker address are hashed together to protect front-running once the hash key is revealed to the network. Users can add hash tasks, fund hash tasks, and submit solutions to hash tasks. If the deadline to a hash task has passed, then the manager and funders can withdraw their contributions to the hash task. If the task key reveal flag is set to true, the manager must reveal the hash key to withdraw their funds.
+
+Variables
+
+tasksCount - uint64: The number of hash tasks created in the contract.
+
+lastInteractionBlockIndex - uint64: Keeps track of the block index of the last interaction of any function in the contract. This allows for more efficient search through a sparse distribution of contract calls to the blockchain.
+
+tasks - mapping (uint => Task): All the hash tasks in the contract.
+
+usersContract - Users: The dependent contract that contains all users.
+
+Structs
+
+Task
+    hashValue - bytes32: keccak256 hash of the 32 bytes hash key.
+    taskHash - bytes32: keccak256 hash of the Task.zip to obtain the hash key.
+    managerAddress - address: Address of the manager that added and initially funded the hash task.
+    contributorsWeiAmounts - mapping (address => uint): The amount of Wei funded to the hash task by each user address.
+    contributionTotalWei - uint: The total amount of Wei funded to the hash task.
+    deadline - uint64: The block timestamp when the hash task will no longer accept new submissions.
+    difficulty - uint8: The difficulty for finding a nonce that satisfies the submission. Each increment in the difficulty results in a search twice as difficult. A difficulty of 0 means any nonce satisfies the submission.
+    taskComplete - bool: Whether the hash task has been completed by a worker.
+    keyReveal - bool: Whether the manager must reveal the hash key to withdraw their funds on an incomplete hash task.
+
+Functions
+
+addHashTask: Adds the hash task to be openly completed by other users.
+
+fundHashTask: Adds funds to the potential solver of the hash task.
+
+submitHashTask: If the keccak256 hash of the input hash key matches the expected hash value and the hash of the worker address, nonce, and hash key satisfy the hash task difficulty, then the task reward is transferred to the worker.
+
+withdrawHashTask: If the hash task deadline has passed, then the manager and funders can withdraw their funds. If the hash task key reveal is set to true, then the manager must reveal the hash key to withdraw their funds.

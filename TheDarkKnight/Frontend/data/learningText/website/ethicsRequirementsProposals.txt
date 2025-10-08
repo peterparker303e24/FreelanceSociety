@@ -1,0 +1,38 @@
+Ethics Requirements Proposal
+
+General
+- The "Ethics Requirements Version" is determined by a threshold of votes for a proposal. Once the number of votes for some ethics requirements proposal equals a power of two, then that ethics requirements proposal becomes the next iteration in the versions.
+- The "Ethics Requirements Proposals" is the number of ethics requirements proposals that have been created.
+- The "Ethics Requirements Proposal ID" is the unique identifier for the ethics requirements proposal. It is preceded by the "#" character to indicate that it is an ethics requirements proposal.
+- The "Proposal Hash" is the keccak256 hash value of the ethics requirements array of string data of the proposal.
+- The "Proposal Validator Address" is the address of the user that submitted the ethics requirements proposal.
+- The "Proposal Votes For" is the number of user votes for the current ethics requirements proposal. Each activated user can only make one vote for any given ethics requirements proposal, but a user can vote for multiple ethics requirements proposal. The only barrier of entry for a user to vote is for them to submit transactions to the blockchain to activate a user with an address and vote for an ethics requirements proposal.
+- The ethics requirements are a list of strings. Each string should be a requirement that upholds some ethical standard that must be followed by all user content. The democratically voted ethics requirements are necessary to incentivize ethical users to participate Freelance Society to create a more competitive and efficient platform. Since users are anonymous, "democratic" does not mean each individual gets a vote, but that each user gets a vote. Since an individual can control multiple users, where the only barrier of entry are the blockchain transaction costs, then an individual's vote is proportional to the amount of capital they are willing to input into the ethics requirements. The ethics requirements voting system is fundamentally a "capitalocracy". But, on a platform that is competitive where labor drives efficiency, each individual can also "vote" with where they put their labor. If the capitalocracy ethics requirements does not agree with a significant population of the work force, then each individual has the freedom to choose a different set of ethics requirements to uphold. This then incentivizes the capitalocratic ethics requirements to closer align with the democratic ethics requirements in order to be most efficient by having a greater population of individuals for a more competitive workforce.
+
+Add Ethics Requirements Proposal
+- The "Ethics Requirements Version" is determined by a threshold of votes for a proposal. Once the number of votes for some ethics requirements proposal equals a power of two, then that ethics requirements proposal becomes the next iteration in the versions.
+- The "Ethics Requirements Proposals" is the number of ethics requirements proposals that have been created.
+- Click "Add Ethics Requirements" to add the transaction to the blockchain of the ethics requirements in the text area below if it is  properly formatted as a JSON array of strings.
+- Input the ethics requirements formatted as a JSON array of strings.
+
+View Ethics Requirements Proposal
+- The "Ethics Requirements Proposal ID" is the unique identifier for the ethics requirements proposal. It is preceded by the "#" character to indicate that it is an ethics requirements proposal.
+- The "Proposal Hash" is the keccak256 hash value of the ethics requirements array of string data of the proposal.
+- The "Proposal Validator Address" is the address of the user that submitted the ethics requirements proposal.
+- The "Proposal Votes For" is the number of user votes for the current ethics requirements proposal. Each activated user can only make one vote for any given ethics requirements proposal, but a user can vote for multiple ethics requirements proposal. The only barrier of entry for a user to vote is for them to submit transactions to the blockchain to activate a user with an address and vote for an ethics requirements proposal.
+- Click "Vote For Ethics Proposal" to submit a transaction to the blockchain to vote for the current ethics requirements proposal, if the current user has not already voted for this ethics requirements proposal.
+- The ethics requirements are a list of strings. Each string should be a requirement that upholds some ethical standard that must be followed by all user content. The democratically voted ethics requirements are necessary to incentivize ethical users to participate Freelance Society to create a more competitive and efficient platform. Since users are anonymous, "democratic" does not mean each individual gets a vote, but that each user gets a vote. Since an individual can control multiple users, where the only barrier of entry are the blockchain transaction costs, then an individual's vote is proportional to the amount of capital they are willing to input into the ethics requirements. The ethics requirements voting system is fundamentally a "capitalocracy". But, on a platform that is competitive where labor drives efficiency, each individual can also "vote" with where they put their labor. If the capitalocracy ethics requirements does not agree with a significant population of the work force, then each individual has the freedom to choose a different set of ethics requirements to uphold. This then incentivizes the capitalocratic ethics requirements to closer align with the democratic ethics requirements in order to be most efficient by having a greater population of individuals for a more competitive workforce.
+- Click "Save Locally" to save the ethics requirements proposal as a json file locally to your computer.
+- Click "View Ethics Requirements Proposals" to redirect to the ethics requirements proposal search page.
+- Click "View Ethics Requirements" to redirect to the most recent version of the ethics requirements page.
+- Click "Add Ethics Requirements Proposal" to redirect to the add ethics requirements proposal page.
+
+View Ethics Requirements Proposals
+- Click "Add Ethics Requirements Proposal" to redirect to the add ethics requirements proposal page.
+- The "Ethics Requirements Version" is determined by a threshold of votes for a proposal. Once the number of votes for some ethics requirements proposal equals a power of two, then that ethics requirements proposal becomes the next iteration in the versions.
+- The "Ethics Requirements Proposals" is the number of ethics requirements proposals that have been created.
+- Click "Search" to search using the data in the search bar input. If the search bar input is empty, then the recent data will be searched. Search for ethics requirements proposals through a validator address, search for an ethics requirements proposal by its index, or search for ethics requirements proposals by hash value through hex data.
+- Click "Previous" to go to the previous search page.
+- Click "Next" to go to the next search page.
+- The list of ethics requirements proposals is sorted by most recent proposals first. And there are at most 10 items on a search page.
+- The ethics requirements proposal has the ethics requirements proposal ID in the left column, the ethics requirements proposal data in the center column, and a button to redirect to the ethics requirements proposal page. The "Hash" is the keccak256 hash of the ethics requirements array of strings data. The "Validator" is the address of the user that created the ethics requirements proposal. The "Votes For" is the number of users that have voted for the ethics requirements proposal.

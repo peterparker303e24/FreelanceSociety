@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Double Hash Task</title>
+    <base href="../../">
+    <link rel="icon" href="favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicons/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="favicons/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" href="favicons/android-chrome-512x512.png" sizes="512x512">
+    <link rel="apple-touch-icon" href="favicons/apple-touch-icon.png">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="css/viewPageCommon.css">
+    <script src="js/applyDarkModePreference.js" type="module"></script>
+    <script src="js/components/headerSection.js" type="module"></script>
+    <script src="js/doubleHashTask/submitDoubleHashTask.js" type="module" defer></script>
+</head>
+
+<body>
+    <div id="scroll-area">
+
+        <!-- Header section -->
+        <div id="header-container">
+            <header-section headerText="Submit Double Hash Task"></header-section>
+        </div>
+
+        <!-- Task data -->
+        <div class="two-column-rows">
+            <div id="task-id-text" class="left-align no-wrap">Double Hash Task ID: </div>
+            <div id="task-id" class="left-align no-wrap">dh-X: </div>
+            <div id="hash-key-input-text" class="left-align no-wrap">Hash Key Input: </div>
+            <input type="text" id="hash-key-input" class="input-line medium-text"
+                placeholder="0x1234567812345678123456781234567812345678123456781234567812345678">
+            <div id="first-hash-input-text" class="xx-large-width left left-align">First Hash Result:</div>
+            <input type="text" id="first-hash-input" class="input-line medium-text"
+                placeholder="0x1234567812345678123456781234567812345678123456781234567812345678">
+            <div id="second-hash-text" class="xx-large-width left left-align">Second Hash Result:</div>
+            <div id="second-hash" class="xx-large-width left left-align">-</div>
+            <div id="expected-hash-text" class="xx-large-width left left-align">Expected Hash Value:</div>
+            <div id="expected-hash" class="xx-large-width left left-align">-</div>
+            <div id="second-response-window-text" class="xx-large-width left left-align">Second Response Window
+                (Seconds):</div>
+            <div id="second-response-window" class="xx-large-width left left-align">-</div>
+            <div id="delay-text" class="xx-large-width left left-align">Second Response Delay (Seconds):</div>
+            <div id="delay" class="xx-large-width left left-align">-</div>
+            <div id="task-complete-text" class="xx-large-width left left-align">Task Already Complete:</div>
+            <div id="task-complete" class="xx-large-width left left-align">-</div>
+            <div id="deadline-text" class="xx-large-width left left-align">Task Deadline (UTC):</div>
+            <div id="deadline" class="xx-large-width left left-align">-</div>
+            <div id="reward-text" class="xx-large-width left left-align">Reward (Wei):</div>
+            <div id="reward" class="xx-large-width left left-align">-</div>
+            <div id="response-count-text" class="xx-large-width left left-align">Response Count:</div>
+            <div id="response-count" class="xx-large-width left left-align">-</div>
+            <div id="submit-window-start-text" class="xx-large-width left left-align">Submit Window Start:</div>
+            <div id="submit-window-start" class="xx-large-width left left-align">-</div>
+            <div id="current-time-text" class="xx-large-width left left-align">Current Time (UTC):</div>
+            <div id="current-time" class="xx-large-width left left-align">-</div>
+            <div id="submit-window-end-text" class="xx-large-width left left-align">Submit Window End:</div>
+            <div id="submit-window-end" class="xx-large-width left left-align">-</div>
+        </div>
+        <div href="./viewDoubleHashTaskSubmissions.html" id="view-submissions-button"
+            class="border-button x-large-width small-padding redirectable margin">View Submissions</div>
+
+        <!-- Submit task first hash and hash key -->
+        <div class="row spaced-row">
+            <div class="vertically-center-row display-flex column-flex-direction">
+                <div id="submit-first-button"
+                    class="inactive-payable-button xx-large-width medium-text medium-margin padding">
+                    Submit First Hash
+                </div>
+                <div id="first-error-text" class="xxx-large-width"></div>
+            </div>
+            <div class="vertically-center-row display-flex column-flex-direction">
+                <div id="submit-second-button"
+                    class="inactive-payable-button medium-text xx-large-width medium-margin padding">
+                    Submit Hash Key
+                </div>
+                <div id="second-error-text" class="xxx-large-width"></div>
+            </div>
+        </div>
+        <div id="error" class="row padding"></div>
+
+        <!-- Footer space -->
+        <div id="footer-space"></div>
+    </div>
+
+</body>
+
+</html>

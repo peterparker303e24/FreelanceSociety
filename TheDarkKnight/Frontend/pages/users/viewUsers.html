@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Users</title>
+    <base href="../../">
+    <link rel="icon" href="favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicons/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="favicons/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" href="favicons/android-chrome-512x512.png" sizes="512x512">
+    <link rel="apple-touch-icon" href="favicons/apple-touch-icon.png">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="css/viewSearchCommon.css">
+    <script src="js/applyDarkModePreference.js" type="module"></script>
+    <script src="js/users/viewUsers.js" type="module" defer></script>
+    <script src="js/components/headerSection.js" type="module"></script>
+</head>
+
+<body>
+    <div id="scroll-area">
+
+        <!-- Header section -->
+        <div id="header-container">
+            <header-section headerText="View Users"></header-section>
+        </div>
+
+        <!-- Redirect button and requirements data -->
+        <div id="users-button-number-row" class="items-button-number-row">
+            <div id="activate-user-button" class="border-button redirectable padding">
+                Activate User
+            </div>
+        </div>
+
+        <!-- Search requirements input -->
+        <div id="search-row">
+            <div id="search-button" class="border-button padding">
+                Search
+            </div>
+            <input id="search-input" type="text" class="input-line medium-text left-align full-width small-padding"
+                placeholder="validator address, hex, links, user data, lockout code">
+        </div>
+
+        <!-- Users results header and navigation -->
+        <div id="users-pages" class="row items-pages">
+            <div id="previous-button" class="border-button padding">
+                Previous
+            </div>
+            <div id="search-header" class="large-text"></div>
+            <div id="next-button" class="border-button padding">
+                Next
+            </div>
+        </div>
+
+        <!-- Users search results column -->
+        <div id="users-rows-container"></div>
+
+        <!-- Footer space -->
+        <div id="footer-space"></div>
+
+        <!-- User item template -->
+        <template id="user-item-template">
+            <div class="bordered-box margin padding">
+                <div class="row item-row center-vertically">
+
+                    <!-- User address, links, name, activation status, and lockout codes -->
+                    <div class="flex-item left-align margin">
+                        <div id="user-address" class="medium-text elipses"></div>
+                        <div id="user-links" class="medium-text elipses"></div>
+                        <div id="user-name" class="medium-text elipses"></div>
+                        <div id="user-activation-status" class="medium-text elipses"></div>
+                        <div id="user-lockout-code" class="medium-text elipses"></div>
+                    </div>
+                    <div id="view-button" class="border-button redirectable padding">
+                        View User
+                    </div>
+                </div>
+
+            </div>
+        </template>
+    </div>
+</body>
+
+</html>

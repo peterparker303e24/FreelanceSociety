@@ -1,0 +1,101 @@
+.items-button-number-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 16px;
+}
+
+#search-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-template-columns: 128px 1fr;
+    gap: 16px;
+    padding: 8px;
+    margin: 8px;
+}
+
+.item-row {
+    display: flex;
+    width: 100%;
+}
+
+.items-pages {
+    justify-content: space-around;
+}
+
+#scroll-area {
+    overflow: scroll;
+}
+
+.left-align {
+    text-align: left;
+}
+
+.right-align {
+    text-align: right;
+}
+
+.padding {
+    padding: 16px;
+}
+
+.margin {
+    margin: 16px;
+}
+
+.elipses {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.center-vertically {
+    align-items: center;
+    text-align: center;
+}
+
+.flex-item {
+    flex: 1;
+    overflow: hidden;
+}
+
+#task-fold {
+    margin: 16px;
+}
+
+#task-fold-row {
+    margin: 8px;
+    align-items: center;
+    justify-content: left;
+}
+
+#tasks-panel {
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 256px 1fr;
+    grid-template-rows: 48px 48px 48px;
+    gap: 16px;
+    margin: 16px;
+}
+
+#fold-tasks-button {
+    width: 32px;
+    height: 32px;
+    font-size: 32px;
+    user-select: none;
+    padding: 0px;
+    cursor: pointer;
+}
+
+#checkbox {
+    width: 16px;
+    height: 16px;
+    margin-left: 16px;
+}
+
+#hide-completed-tasks-text {
+    margin-right: auto;
+}

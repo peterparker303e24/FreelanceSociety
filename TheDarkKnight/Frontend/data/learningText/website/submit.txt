@@ -1,0 +1,58 @@
+Submit
+
+General
+- The "Task ID" is the unique identifier for the task.
+- The "Task Completed" tells whether the task has been completed by a user.
+- The "Deadline" is the time, in UTC, when the task no longer accepts submissions. This time is checked in the contract code in reference to the block timestamp where a transaction is made.
+- The "Reward" is the reward value, in Wei, the worker gets for completing the task.
+- Click "Submit Task" to submit a transaction to the blockchain to complete the task.
+- Click "View Submissions" to redirect to the view task submissions page for the current task.
+
+Submit Double Hash Task
+- The "Double Hash Task ID" is the unique identifier for the current double hash task.
+- Input "Hash Key Input" with the 32 bytes hex value that when hashed with keccak256 and then hashed with keccak256 again results in the hash key for the task. The resulting first hash will be set in the next input line.
+- Input "First Hash Result" with the keccak256 hash of the 32 bytes task hash key. This value will be automatically set if the input to the hash key input above is set.
+- The "Second Hash Result" is the keccak256 hash of the keccak256 hash of the hash key. This will automatically be set if either the first hash or the hash key input is set in the inputs above. This value should match the expected hash value for the first hash to be submitted and for the second response confirmation to be made.
+- The "Second Response Window" is the timespan in seconds that the worker is allocated to submit their second response confirmation. In order for the worker to successfully complete the task, they must submit the second response confirmation transaction within the second response window based on the blockchain transaction timestamp. If the worker misses their confirmation response window timespan, then they must submit another first hash response to get a new second response window.
+- The "Second Response Delay" is the time in seconds between the time the worker submits their first hash to the start of their timespan window. This parameter in the double hash task allows for blocks to confirm and increase the security of their first hash submission and corresponding second response window timespan.
+- The "Task Already Complete" tells whether the double hash task has been completed by a user.
+- The "Deadline" is the UTC time when the task no longer accepts first hash submissions. This time is checked in the contract code in reference to the block timestamp where a transaction is made. Users can submit the confirmation hash past this deadline during their second response time window.
+- The "Reward" is the reward value, in Wei, the worker gets for completing the task by successfully being the first worker to submit the key value during their time window.
+- The "Response Count" is the number of first hash submission responses and second hash confirmation responses. There is at most one second hash confirmation response because the task is complete after this response and no longer accepts responses.
+- The "Submit Window Start" is the start time, in UTC, of the currently available, or next available second response window timespan of the current user.
+- The "Current Time" is the current time, in UTC, refreshed every second.
+- The "Submit Window End" is the end time, in UTC, of the currently available, or next available second response window timespan of the current user.
+- Click "View Submissions" redirect to a page to see the first hash submission responses and second hash confirmation responses.
+- Click "Submit First Hash" with the first hash value to obtain a second response window. This is only allowed if the keccak256 hash of the first hash result is the expected hash value and the task has not already been completed.
+- Click "Submit Hash Key" with the hash key value during the second response window of the current user in order to complete the task and receive the task reward. This is only allowed if the second hash result matches the expected hash value and the task has not already been completed.
+
+Submit Hash Task
+- The "Hash Task ID" is the unique identifier for the hash task.
+- Input "Hash Key Input" is the 32 byte data that when hashed with keccak256 results in the hash value. A user that obtains this secret task key is able to complete the task when the appropriate corresponding nonce is found.
+- The "Hash Result" is the keccak256 hash of the user hash key input. This must be equal to the expected hash value in order for the submission to be accepted.
+- The "Expected Hash Value" is the keccak256 hash of the 32 byte key value. The key value is what is obtained by the worker as the completion of the task.
+- Input "Nonce" is the variable value that changes the resulting difficulty value which is dependent on the hash key input, user address, and nonce value. The resulting difficulty value needs to be less than the expected difficulty value in order for the submission to be accepted. The smaller the expected difficulty value, the more difficult it will be to find a nonce. The nonce is necessary to resist automated programs from front running transactions when the hash key is revealed to the network through the transaction.
+- The "Address" is the address of the current user.
+- The "Difficulty Value" is a random 32 byte hex data seeded by a calculation of user and task data. It is calculated as the keccak256 hash of the concatenation of the hash key and user address, which is then concatenated with the nonce value and hashed again with keccak256.
+- The "Expected Difficulty Value" is the value that the calculated difficulty value needs to be less than in order for the submission to be accepted. The smaller the expected difficulty value, the more difficult it will be to find a nonce. This value is set by the task manager in the hash task parameters.
+- The "Task Already Complete" displays whether the task has already been completed.
+- The "Task Deadline" is the time, in UTC, for which submissions will no longer be accepted for the task.
+- The "Task Reward" is the reward, in Wei, that the worker that completes the task will receive when the task has been completed before the deadline. The time for this data is determined by the timestamp of the block timestamp that the transaction is put in.
+- Click "Submit Hash Task" to complete the task and receive the task reward if the hash key is correct, the nonce results in an acceptable difficulty value, the task is not already complete, and the deadline has not yet passed.
+
+
+Submit Validator Task
+- The "Task ID" is the unique identifier for the task.
+- The "Deadline" is the time, in UTC, when the validator task no longer accepts submissions and funds. Tasks can still be completed after the deadline if the task is evaluated as accepted during the task evaluation timespan. Funds can not be withdrawn from the task until all submission evaluation timespans have passed.
+- The "Next Slot Time" is the time, in UTC, of the end of the currently last submission. If the validator task uses block schedule validation, then this is the minimum time that any new submission time window will start.
+- The "Submissions Count" is the number of submissions for the current validator task.
+- The "Evaluated Submissions Count" is the number of submissions that have been evaluated by validators.
+- The "Completed" is whether the task has been marked complete by a contract call as a result of an accepted submission by a validator or a withdraw task submission by default. The task can be completed in actuality even with the field shown as "FALSE" if the task has been defaulted.
+- The "Task Defaulted" is whether the task has been defaulted as a result of the task submission evaluation time window being passed without any validator rejecting or accepting the submission.
+- The "Validator Commission" is the amount, in Wei, that a worker must input to the contract to be able to have their submission evaluated by a validator.
+- The "Reward" is the amount, in Wei, that a worker receives upon completion of the validator task.
+- Click "View Submissions" to redirect to the view task submissions page for the current task.
+- Toggle ethics requirements checkbox to accept the ethics requirements for the provided task and submission. The submission may be rejected if the task or submission violate any of these ethics requirements.
+- Press "Shift" while the ethics requirements checkbox has been accepted to show the task submission hash override input. Input the 32 byte keccak256 hash value of the task submission to skip the validation checking. This can be useful to the worker by not allowing other competing workers to access the task submission data until it reaches the worker evaluation timespan.
+- Click "Add Validator Task Submission" to redirect to the add validator task submission page for the current validator task.
+- Click the "Upload Zip File" button to upload the task submission ZIP file from your computer. After uploading the file, the name of the file and the keccak256 hash of the file will be listed below. This file should also be under a directory hosted by the user, which can be found and updated in the user profile page. The file should be in the directory "<BasePath>/Submissions/ValidatorSubmissions/<SubmissionHash>/Submission.zip". Your <BasePath> must be present in your comma separated list of links found in the profile page. The <SubmissionHash> should not be prefixed with "0x".
