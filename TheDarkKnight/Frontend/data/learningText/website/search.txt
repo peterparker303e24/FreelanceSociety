@@ -1,0 +1,70 @@
+Search
+
+General
+- General item data and redirect pages are shown at the top of the search page. 
+- Click "Search" to search using the data in the search bar input. If the search bar input is empty, then the recent data will be searched. Search by ID, hex data, address, and text data.
+- Click "Previous" to go to the previous search page.
+- Click "Next" to go to the next search page.
+- The list of items is sorted by most recent tasks first. And there are at most 10 items on a search page.
+
+View Tasks
+- Click the dropdown triangle to see the hash task, double hash task, and validator task rows. Each row has a button to redirect to the respective page to add the task and a count for the number of each tasks.
+- The "Total Tasks Count" shows the total number of tasks for hash tasks, double hash tasks, and validator tasks combined.
+- Toggle the "Hide completed and past tasks" checkbox to change the search functionality and refresh the search. When this box is checked, then tasks that have the "Task Complete" field marked as "TRUE" will not be shown in the search. Also tasks that have a deadline that has passed will not be shown in the search.
+- Click "Search" to search using the data in the search bar input. If the search bar input is empty, then the recent data will be searched. Search by a task type with its short name, "h" for hash task, "dh" for double hash task, and "v" for validator task. Each task type can also have a specified task index that is formatted with the task short name on the left separated by a dash "-" with the index on the right (for example, "h-4", "dh-2", v-"0"). Search by task hash or manager address by inputting hex data.
+- Click "Previous" to go to the previous search page.
+- Click "Next" to go to the next search page.
+- The list of tasks is sorted by most recent tasks first. And there are at most 10 items on a search page.
+- The task hash the task ID and task data in the left column and a button to redirect to the task page in the right column. The task ID is the task short name on the left with a dash "-" separating the task index on the right. The short names are "h" for hash task, "dh" for double hash task, and "v" for validator task. The "Hash" is the keccak256 hash of the task ZIP file. The "Manager Address" is the address of the user that created the task. The "Reward" is the amount, in Wei, the worker that completes the task will receive upon completing the task. The "Deadline" is the time, in UTC, until the task will no longer accept new submissions, and will no longer accept new task funding. The "Task Complete" is whether the task has been marked as complete by a contract transaction on the blockchain, and if this value is "FALSE" it does not necessarily mean it is able to be completed because, for example, the task defaulting could make the task complete but it will not appear to be "TRUE".
+
+View Requirements
+- Click "Add Requirement" to redirect to the add requirement page.
+- The "Requirements Count" is the total number of requirements created on The List.
+- Click "Search" to search using the data in the search bar input. If the search bar input is empty, then the recent data will be searched. Search for requirements through a validator address, search for a requirement by its requirement ID formatted with a dash "-" separating the requirement index on the left from the version on the right, or search for requirements by hash value through hex data.
+- Click "Previous" to go to the previous search page.
+- Click "Next" to go to the next search page.
+- The List of requirements is sorted by most recent proposals first. And there are at most 10 items on a search page.
+- The requirement has the requirement ID in the left column, the requirement data in the center column, and a button to redirect to the requirement page. The "Hash" is the keccak256 hash of the requirement ZIP file data. The "Manager" is the address of the user that created the requirement version.
+
+View Requirement Proposals
+- Click "Add Proposal" to redirect to the add requirement proposal page.
+- The "Requirements Count" is the total number of requirements created on The List.
+- The "Requirement Index" is the requirement index for the currently selected requirement proposal update.
+- The "Requirement Versions" is the version of the currently selected requirement index. Once the number of votes for some requirement proposal equals a power of two, then that requirement proposal becomes the next iteration in the versions.
+- The "Requirement Proposals" is the number of requirement proposals for the currently selected requirement index.
+- Click "Search" to search using the data in the search bar input. If the search bar input is empty, then the recent data will be searched. Search for requirement proposals through a validator address, search for a requirement proposal by its requirement ID formatted with an underscore "_" separating the requirement index on the left from the proposal index on the right, or search for requirement proposals by hash value through hex data.
+- Click "Previous" to go to the previous search page.
+- Click "Next" to go to the next search page.
+- The list of requirement proposals is sorted by most recent proposals first. And there are at most 10 items on a search page.
+- The requirement proposal has the requirement proposal ID in the left column, the requirement proposal data in the center column, and a button to redirect to the requirement proposal page. The "Hash" is the keccak256 hash of the requirement proposal ZIP file data. The "Validator" is the address of the user that created the requirement proposal. The "Votes For" is the number of users that have voted for the requirement proposal.
+
+View Ethics Requirements Proposals
+- Click "Add Ethics Requirements Proposal" to redirect to the add ethics requirements proposal page.
+- The "Ethics Requirements Version" is determined by a threshold of votes for a proposal. Once the number of votes for some ethics requirements proposal equals a power of two, then that ethics requirements proposal becomes the next iteration in the versions.
+- The "Ethics Requirements Proposals" is the number of ethics requirements proposals that have been created.
+- Click "Search" to search using the data in the search bar input. If the search bar input is empty, then the recent data will be searched. Search for ethics requirements proposals through a validator address, search for an ethics requirements proposal by its index, or search for ethics requirements proposals by hash value through hex data.
+- Click "Previous" to go to the previous search page.
+- Click "Next" to go to the next search page.
+- The list of ethics requirements proposals is sorted by most recent proposals first. And there are at most 10 items on a search page.
+- The ethics requirements proposal has the ethics requirements proposal ID in the left column, the ethics requirements proposal data in the center column, and a button to redirect to the ethics requirements proposal page. The "Hash" is the keccak256 hash of the ethics requirements array of strings data. The "Validator" is the address of the user that created the ethics requirements proposal. The "Votes For" is the number of users that have voted for the ethics requirements proposal.
+
+View Users
+- Click "Activate User" to redirect to the profile page.
+- Click "Search" to search using the data in the search bar input. If the search bar input is empty, then the recently activated users will be searched. Search for a user by address, search for users by hex or string data for user address, user name, user data, user links, or lockout code.
+- Click "Previous" to go to the previous search page.
+- Click "Next" to go to the next search page.
+- The list of users is sorted by most recent activated users first. And there are at most 10 items on a search page.
+- The user item has the user data in the left column and a button to redirect to the user page in the right column. The "User Address" is the address of the user, the "Links" is the comma separated list of links to the user and user data, the "User Data" is data presented by the user such as a (not necessarily unique) name, the "Activation Status" tells the activation status of the user address, and the "Lockout Code" tells the 32 byte lockout code of the user to deactivate the address.
+
+View User
+- The "User Address" is the address of the user.
+- The "User Name" is data presented by the user such as a (not necessarily unique) name.
+- The "User Links" is the comma separated list of links to the user and user data.
+- The "Lockout Code" is the 32 byte lockout code of the user to deactivate the address.
+- The "Activation Status" is the activation status of the user address which is "Unactivated", "Activated", or "Deactivated".
+- Toggle "Show only user initiated contract calls" to set whether or not to hide contract events that include the user address, but are not called by the user.
+- Click "Search" to search using the data in the search bar input. If the search bar input is empty, then the recent user interactions will be searched. Filter the search by user address, hex data, string data, parameter names, or parameter values.
+- Click "Previous" to go to the previous search page.
+- Click "Next" to go to the next search page.
+- The list of user interactions is sorted by most recent interactions first. And there are at most 10 items on a search page.
+- The user interaction item has the contract name in the left column, the user interaction data in the center column, and possibly a button to redirect to the corresponding item on the right column. The "Contract Initiator Address" is the address of the user that initiated the contract call that emitted the event. The "Block Index" is the block index of the contract call and event. The "Block Timestamp" is the block timestamp time, in UTC, of the contract call and event. The event name is shown with the event parameter names and corresponding values.

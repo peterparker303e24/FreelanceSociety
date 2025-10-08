@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validator Task Submission</title>
+    <base href="../../">
+    <link rel="icon" href="favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicons/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="favicons/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" href="favicons/android-chrome-512x512.png" sizes="512x512">
+    <link rel="apple-touch-icon" href="favicons/apple-touch-icon.png">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="css/viewPageCommon.css">
+    <script src="js/applyDarkModePreference.js" type="module"></script>
+    <script src="js/validatorTask/validatorTaskSubmission.js" type="module" defer></script>
+    <script src="js/components/headerSection.js" type="module"></script>
+</head>
+
+<body>
+    <div id="scroll-area">
+
+        <!-- Header section -->
+        <div id="header-container">
+            <header-section headerText="Validator Task Submission"></header-section>
+        </div>
+
+        <div id="columns-container">
+
+            <!-- Left column area -->
+            <div id="left-column">
+
+                <!-- Task data -->
+                <div id="task-id" class="left-align padding">Task ID: v-X</div>
+                <div id="submission-id" class="left-align padding">Submission ID: v-X-X</div>
+                <div id="worker-address" class="left-align padding text-content-return">Worker Address:<br>-</div>
+                <div id="submission-hash" class="left-align padding text-content-return">Submission Hash:<br>-</div>
+                <div id="validation-start-time" class="left-align padding">Validation Start Time (UTC): -</div>
+                <div id="current-time" class="left-align padding">Current Time (UTC): -</div>
+                <div id="validation-end-time" class="left-align padding">Validation End Time (UTC): -</div>
+                <div id="submission-status" class="left-align padding">Submission Status: -</div>
+                <div id="submission-withdrawn" class="left-align padding">Submission Withdrawn: -</div>
+                <div id="submissions-count" class="left-align padding">Submissions Count: -</div>
+                <div id="evaluated-submissions-count" class="left-align padding">Submission Evaluations Count: -</div>
+                <div id="requirements-count" class="left-align padding">Requirements Count: -</div>
+                <div id="validators" class="left-align padding text-content-return">Validators:<br>-</div>
+                <div id="task-completed" class="left-align padding">Task Completed: -</div>
+                <div id="task-defaulted" class="left-align padding">Task Defaulted: -</div>
+                <div id="validator-comission" class="left-align padding">Validator Comission: -</div>
+                <div id="task-reward" class="left-align padding">Task Reward: -</div>
+
+                <!-- Submission withdrawl -->
+                <div id="withdrawls-row" class="row space-around padding hide">
+                    <div>
+                        <div id="withdraw-submission-completion-button"
+                            class="inactive-payable-button xx-large-width padding">Withdraw
+                            Submission Completion</div>
+                        <div id="withdraw-submission-completion-error" class="padding xx-large-width"></div>
+                    </div>
+                    <div>
+                        <div id="withdraw-submission-unevaluated-button"
+                            class="inactive-payable-button xx-large-width padding">Withdraw
+                            Submission Unevaluated</div>
+                        <div id="withdraw-submission-unevaluated-error" class="padding xx-large-width"></div>
+                    </div>
+                </div>
+
+                <!-- Submission evaluation -->
+                <div id="evaluation-section" class="padding hide">
+                    <h2 id="validator-evaluation-header" class="padding">Validator Evaluation</h2>
+                    <div id="download-from-worker-button" class="border-button xx-large-width padding">Try
+                        download submission zip file
+                        from worker
+                    </div>
+                    <a id="download-submission-anchor"></a>
+                    <div id="download-from-worker-error" class="left-align margin"></div>
+                    <div id="ethics-requirements-check-row" class="row vertically-center-row">
+                        <div id="ethics-requirements-checkbox" class="border-button large-text checkbox small-padding">
+                        </div>
+                        <div id="ethics-requirements-text" class="medium-text left-align full-height padding">Submission
+                            does not violate any of the
+                            ethics requirements.</div>
+                    </div>
+                    <div id="requirements-container">
+                        <template id="requirement-template">
+                            <div class="row vertically-center-row">
+                                <div id="checkbox" class="border-button large-text checkbox small-padding"></div>
+                                <div id="requirement-text" class="medium-text left-align full-height padding">
+                                    Requirement -</div>
+                            </div>
+                        </template>
+                    </div>
+                    <div id="submit-evaluation-row" class="row padding">
+                        <div id="submit-submission-evaluation-button"
+                            class="inactive-payable-button xx-large-width padding">Submit Evaluation</div>
+                    </div>
+                    <div id="submit-evaluation-error"></div>
+                </div>
+
+                <div id="discover-section">
+
+                    <!-- Discover type section -->
+                    <div id="discover-row" class="row spaced-row padding">
+                        <div id="auto-discover-button" class="border-button xx-large-width padding">Auto Discover Task
+                        </div>
+                        <div id="manual-discover-button" class="border-button xx-large-width padding">Manually Discover
+                            Task</div>
+                    </div>
+
+                    <!-- Manual discover section -->
+                    <div id="manual-section" class="hide">
+                        <div class="row vertically-center-row">
+
+                            <!-- User search input section -->
+                            <div id="search-text" class="medium-text padding">Download From User: </div>
+                            <input id="user-search-box" type="text" class="input-line medium-text left-align margin"
+                                placeholder="Search User Address">
+                            <div id="manual-search-error"></div>
+                        </div>
+                    </div>
+
+                    <!-- Auto discover section -->
+                    <div id="auto-section" class="hide">
+
+                        <!-- Try download from user link button -->
+                        <div id="try-download-button" class="border-button padding margin wrap-text padding">Try
+                            Download From:
+                            -
+                        </div>
+                        <div id="auto-download-error"></div>
+
+                        <!-- Skip user/link buttons -->
+                        <div id="skip-section" class="row">
+                            <div id="skip-address-button" class="inactive-border-button margin padding">Skip Address
+                            </div>
+                            <div id="skip-link-button" class="inactive-border-button margin padding">Skip Link</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Task -->
+                <div id="task-json" class="left-align margin">No Task Data - Discover Task Or
+                    Upload Locally</div>
+
+                <!-- Task requirements -->
+                <div id="task-requirements-container"></div>
+            </div>
+
+            <!-- Right column area -->
+            <div id="right-column">
+
+                <!-- Save and upload requirement buttons -->
+                <div id="save-locally-button" class="inactive-border-button padding margin">Save locally</div>
+                <a id="download-requirement-anchor"></a>
+                <div id="save-locally-error"></div>
+                <div id="upload-locally-button" class="border-button padding margin">Upload locally</div>
+                <input type="file" id="file-input" accept=".zip" class="hide" />
+                <div id="upload-locally-error"></div>
+
+                <!-- Redirect buttons -->
+                <div id="view-validator-task-button" class="border-button redirectable padding margin">View Task</div>
+                <div id="view-task-submissions-button" class="border-button redirectable padding margin">View Task
+                    Submissions</div>
+                <div id="view-validator-tasks-button" class="border-button redirectable padding margin">View Validator
+                    Tasks
+                </div>
+                <div id="add-validator-task-button" class="border-button redirectable padding margin">Add Validator Task
+                </div>
+
+                <!-- Requirement zip file tree -->
+                <textarea disabled id="task-file-tree"
+                    class="file-tree">No Requirement Data - Discover Requirement Or Upload Locally</textarea>
+            </div>
+
+            <!-- Footer space -->
+            <div id="footer-space"></div>
+        </div>
+    </div>
+</body>
+
+</html>

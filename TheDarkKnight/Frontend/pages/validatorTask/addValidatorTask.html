@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Validator Task</title>
+    <base href="../../">
+    <link rel="icon" href="favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicons/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="favicons/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" href="favicons/android-chrome-512x512.png" sizes="512x512">
+    <link rel="apple-touch-icon" href="favicons/apple-touch-icon.png">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="css/addCommon.css">
+    <script src="js/applyDarkModePreference.js" type="module"></script>
+    <script src="js/validatorTask/addValidatorTask.js" type="module" defer></script>
+    <script src="js/components/headerSection.js" type="module"></script>
+</head>
+
+<body>
+    <div id="scroll-area">
+
+        <!-- Header section -->
+        <div id="header-container">
+            <header-section headerText="Add Validator Task"></header-section>
+        </div>
+
+        <!-- Hash task parameters -->
+        <div class="row">
+            <div id="validator-task-parameters">
+                <div id="task-hash" class="right-align">Task Hash: </div>
+                <input type="text" id="task-hash-input" class="input-line medium-text left-align parameters-input-size"
+                    placeholder="0x01234567890123456789012345678901234567890123456789012345678901">
+                <div id="specifications-count" class="right-align">Specifications Count: </div>
+                <input type="text" id="specifications-count-input"
+                    class="input-line medium-text left-align parameters-input-size" placeholder="10">
+                <div id="seconds-to-deadline" class="right-align">Seconds Until Deadline: </div>
+                <input type="text" id="deadline-input" class="input-line medium-text left-align parameters-input-size"
+                    placeholder="8 640 000">
+                <div id="block-schedule" class="right-align">Block Schedule: </div>
+                <div id="block-schedule-button" class="border-button medium-text toggle-button">ON</div>
+                <div id="validation-time" class="right-align">Validation Time (Seconds): </div>
+                <input type="text" id="validation-time-input"
+                    class="input-line medium-text left-align parameters-input-size" placeholder="86 400">
+                <div id="delay" class="right-align">Validation Delay (Seconds): </div>
+                <input type="text" id="delay-input" class="input-line medium-text left-align parameters-input-size"
+                    placeholder="1 800">
+                <div id="validator-addresses" class="right-align">Validator Addresses (Comma separated): </div>
+                <textarea type="text" id="validator-addresses-input"
+                    class="input-line medium-text left-align parameters-input-size vertical-extend"
+                    placeholder="0x0123456789012345678901234567890123456789,&#10;0x0123456789012345678901234567890123456789"></textarea>
+                <div id="comission" class="right-align">Validator Comission (Wei): </div>
+                <input type="text" id="comission-input" class="input-line medium-text left-align parameters-input-size"
+                    placeholder="100 000 000 000">
+                <div id="reward" class="right-align">Reward (Wei): </div>
+                <input type="text" id="reward-input" class="input-line medium-text left-align parameters-input-size"
+                    placeholder="100 000 000 000 000">
+                <div id="checkbox" class="checkbox border-button large-text small-padding right"></div>
+                <div class="medium-text parameters-input-size left-align">I have have read the ethics requirements and
+                    my submission does not violate any of the ethics requirements.</div>
+            </div>
+        </div>
+
+        <!-- Payable add requirement button and error display -->
+        <div class="row padding">
+            <div id="add-task-button" class="inactive-payable-button medium-text padding">
+                Add Validator Task
+            </div>
+        </div>
+        <div id="error" class="row padding"></div>
+
+        <!-- Upload requirement section -->
+        <div class="row padding">
+            <input type="file" id="file-input" accept=".zip" class="hide" />
+            <div id="upload-file-button" class="border-button medium-text padding">
+                Upload Zip File
+            </div>
+        </div>
+        <div id="file-error" class="row padding"></div>
+
+        <!-- File tree instructions -->
+        <div id="structure-instructions" class="row">
+            <div class="left-align">
+                File tree should be of the form:<br><br>
+                Task<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;specifications.json<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Requirements<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Requirement1-1.zip<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;otherFiles.txt<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;...
+            </div>
+        </div>
+
+        <!-- File name and hash retrieved -->
+        <div id="file-name" class="row padding"></div>
+
+        <!-- Task -->
+        <div id="task-json" class="left-align margin">No Task Data - Upload Task Locally</div>
+
+        <!-- Task requirements display -->
+        <div id="task-requirements-container"></div>
+
+        <!-- Footer space -->
+        <div id="footer-space"></div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+#columns-container {
+    display: grid;
+    grid-template-columns: 256px 1fr;
+}
+
+#scroll-area {
+    overflow-y: scroll;
+}
+
+.learning-navigation-link {
+    color: var(--foreground-color);
+    text-decoration: none;
+    padding-left: 32px;
+    display: block;
+}
+
+.learning-navigation-link:hover {
+    color: var(--foreground-color);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#panel {
+    border: 2px solid var(--foreground-color);
+    text-align: left;
+    padding: 16px;
+}

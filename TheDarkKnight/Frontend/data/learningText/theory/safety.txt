@@ -1,0 +1,86 @@
+There are a variety of safety precautions to consider while participating in Freelance Society. Here are a list of some, but not all, safety measures with analysis and recommendations.
+
+- Ethereum
+- Public, Open, Immutable
+- Locking Up Currency
+- Volatility
+- Seed
+- Hot/Cold Wallet
+- Hacking
+- Unethical Content
+- Downloading From Anonymous Internet Users
+- Privacy/Anonymity
+- Laws
+- Quantum Computers
+
+Ethereum
+
+The smart contracts and transactions that are used in Freelance Society depend entirely on the security, privacy, and decentralization of Ethereum. There may be bugs in the code, flaws in the protocol, or features that put your cryptocurrency at risk.
+
+Ethereum is currently used for the Freelance Society platform because it is the most widely used protocol that supports smart contracts. Having a large user base allows for more eyes to detect bugs, greater price stability, and a wider range software to integrate with.
+
+Ethereum uses proof of stake rather than proof of work. This incentive mechanism is very different than a cryptocurrency like Bitcoin. Each cryptocurrency is a technology with its own pros and cons. In the long run, the free market price of a technology should decide its utility, and its asset value will remain relatively constant, unless replaced by a better technology. As of right now Ethereum is the second most valuable cryptocurrency in terms of market cap, behind Bitcoin, so this indicates the market believes it is a relatively safe and secure cryptocurrency.
+
+Ethereum is a blockchain, so once a transaction has been submitted into a block, the deeper that block extends in the chain, the more secure it is (but also the longer the wait time). The balance between security and transaction speed should be assessed by the user.
+
+Public, Open, Immutable
+
+Decentralized cryptocurrency blockchains are public, open, and immutable. Anyone with an internet connection can view all data on a blockchain, so they are public. Anyone with an internet connection can transact with a blockchain, so they are open. Nobody is able to change, delete, or hide information within a blockchain, and so they are immutable.
+
+Any information that you submit to a decentralized cryptocurrency blockchain cannot be taken back. For this reason it is important to not reveal any sensitive data to a blockchain. A blockchain is fully auditable by nodes of its network. If a user has normally functioning software, then any valid transaction cannot be denied of existing and any invalid transaction cannot be convinced of existing.
+
+Locking Up Currency
+
+Smart contracts used in Freelance Society have a mechanism to lock up your ETH within the contracts. Your ability to withdraw any locked up ETH relies entirely on the algorithm in the smart contract, so you should understand exactly the risks and expectations of any smart contract you interact with.
+
+Volatility
+
+The value of the ETH cryptocurrency asset is volatile. If you lock up a certain value of ETH in a smart contract to incentivize a task and the value of ETH increases, then you are not necessarily able to withdraw the ETH to maintain the original value you put in. If the value of ETH decreases, then you may be able to add more ETH into the smart contract to maintain the incentive value for a task, but once again you are not necessarily able to take that action back.
+
+Seed
+
+Do not tell anyone your cryptocurrency seed. Do not tell any software your cryptocurrency seed. Do not enter your cryptocurrency seed into any computer or device. The only exception to these rules is when you understand the protocol, know the risks, and trust the integrity of whatever you are revealing your cryptocurrency seed to.
+
+Hot/Cold Wallet
+
+A "hot" wallet is any device that stores the data of your cryptocurrency seed and has access to the internet or some outside network connection. This is typically a wallet on your smartphone, tablet, or computer. A "cold" wallet is an analog or digital device that stores the data of your cryptocurrency seed that can only be read with real life access to your physical data store. This is typically a written piece of paper, an inscribed metal plate, or a specially made device from a trusted producer.
+
+A cold wallet is the best place to store your seed (with any large amount of cryptocurrency) because it protects against the vast ocean of anonymous hackers and scammers surfing the internet looking to steal cryptocurrency. But, to be continuously transacting with cryptocurrency blockchains it is inevitable to sacrifice some security with convenience by using a hot wallet. A hot wallet should not store any significant amount of value since it will be at a much higher risk to hacking or malware.
+
+Hacking
+
+There are thousands, maybe millions, of anonymous hackers that have access to the internet. If there is an incentive to corrupt or break into computer systems, then it would draw much attention by these hackers, and there is a lot of financial incentives to do so with cryptocurrency.
+
+There are layers of precautions that can be made by learning about computer systems, networking, security, and more to improve one's safety online. You can never have perfect security, so the degree of computer safety relies upon your own needs.
+
+Unethical Content
+
+This platform exists in the digital realm. There are no transactions of physical illicit material. It is possible for users to send digital illicit materials in the form of data. Since the transactions are entirely digital, there is a smaller domain of what can be harmful to transact. Any digital content that promotes harm to society, promotes harm to members of society, or incentives harmful acts should not be posted, kept, or distributed.
+
+When downloading data on the internet, you do not always know exactly what you are downloading. This can result in unethical content being downloaded unintentionally. Since you may be downloading data from an anonymous environment where unethical content may be more concentrated, you should follow ethical guidelines in the event you find unethical content. You should not keep the data of the unethical content on your device, and promptly delete it. You should anonymously report the incident and the user you downloaded it from to the authorities. All transactions on the blockchain are immutable and public, so you should report the users associated with posting, distributing, and hosting the unethical content.
+
+Downloading From Anonymous Internet Users
+
+Writing data to a cryptocurrency blockchain is costly, so there are protocols in place to reduce the reliance on writing data on the blockchain. One of these mechanisms is to instead download data from anonymous internet users. Hashing allows you to verify the downloaded data matches the expected value written on the blockchain, so you can trust the authenticity of the data is the exact same as what was transacted on the blockchain. However, this does not necessarily mean that this data is safe.
+
+Any downloads could have malware within the data, so you should always implement computer safety protocols to reduce the probability of being hacked. Using a virtual machine to contain the access of any potential malware can reduce the probability of being hacked. For greater privacy, virtual machines like Tails, Qubes, or Whonix can be used. You should also be aware that you can never have perfect security. For example, a zero day vulnerability, although extremely rare, can make any device connected to a compromised network insecure.
+
+Privacy/Anonymity
+
+Privacy in the context of the internet is the ability to control one's own data and interactions. Blockchains are not private. Any transaction on a blockchain that you or anyone else that has ever been made at any point in time can be publicly seen. 
+    
+Internet anonymity is the ability to conceal one's interactions on the internet from their real life identity. Blockchains are anonymous only as long as you are able to separate your transactions from your real life identity.
+
+Protocols such as AES, RSA, ECDSA, and PGP allow internet users to control one's data between computers/users, as well as control authentication/authorization of one's actions on the internet. Protocols such as VPNs, TOR, Bitcoin tumblers, Monero, and Tornado Cash help internet users to protect their identities from interactions made on the internet from hackers, strangers, and governments.
+
+Laws
+
+There exist ethical laws that are a net benefit to everyone in society. However, what is ethical is not always clear and simple, so there are laws of any government that are imperfect. Some laws may even lead to greater harm to society.
+
+Regardless, there could be consequences, sometimes drastic consequences, that could happen as a result of breaking the law of your government. So, the risk of breaking any of these laws should be considered by Freelance Society users. Internet privacy and anonymity are a great power to protect against unethical government actions. It is important to uphold and spread the ethical laws of society against the powers of unethical governments and unethical laws.
+
+The code and contracts are open source, so clones or forks may be utilized in order to partially allow for the benefits of Freelance Society while following government laws. Governments as well as it citizens may choose to participate in this variation because it could still allow for greater market efficiency while still regulating ethical standards.
+
+Quantum Computers
+
+Large quantum computers have the ability to break existing encryption algorithms, rendering current encryption and cryptocurrency systems useless. These large quantum computers do not currently exist. There is no logical reason to deny they will ever exist, so eventually a transition will have to be made to embed quantum resistant algorithms into existing encryption and cryptocurrency systems. This transition could be led by a soft/hard fork of a cryptocurrency blockchain, an existing cryptocurrency blockchain, or a better cryptocurrency blockchain that has yet to exist. There is no reason to think quantum computers break cryptocurrencies entirely. But, cryptocurrency blockchains today are not permanently safe forever in the state they exist.

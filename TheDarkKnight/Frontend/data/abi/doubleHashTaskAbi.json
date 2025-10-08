@@ -1,0 +1,748 @@
+{
+    "_format": "hh-sol-artifact-1",
+    "contractName": "DoubleHashTask",
+    "sourceName": "contracts/DoubleHashTask.sol",
+    "abi": [
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_usersContractAddress",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "taskIndex",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "responseIndex",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "bytes32",
+                    "name": "secondHashValueKey",
+                    "type": "bytes32"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "completionWorker",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "totalReward",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint64",
+                    "name": "lastInteractionBlockIndex",
+                    "type": "uint64"
+                }
+            ],
+            "name": "DoubleTaskComplete",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "taskIndex",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "funderAddress",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "reward",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "totalReward",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint64",
+                    "name": "lastInteractionBlockIndex",
+                    "type": "uint64"
+                }
+            ],
+            "name": "DoubleTaskFunded",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "taskIndex",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "responseIndex",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "bytes32",
+                    "name": "firstHashValueKey",
+                    "type": "bytes32"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "submissionWorker",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint64",
+                    "name": "responseStartTime",
+                    "type": "uint64"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint64",
+                    "name": "responseEndTime",
+                    "type": "uint64"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint64",
+                    "name": "lastInteractionBlockIndex",
+                    "type": "uint64"
+                }
+            ],
+            "name": "DoubleTaskSubmit",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "taskIndex",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "bytes32",
+                    "name": "keyReveal",
+                    "type": "bytes32"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "weiAmount",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "withdrawAddress",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint64",
+                    "name": "lastInteractionBlockIndex",
+                    "type": "uint64"
+                }
+            ],
+            "name": "DoubleTaskWithdrawn",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "taskIndex",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "bytes32",
+                    "name": "hashValue",
+                    "type": "bytes32"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "bytes32",
+                    "name": "taskHash",
+                    "type": "bytes32"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "managerAddress",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "reward",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "deadline",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "bool",
+                    "name": "keyReveal",
+                    "type": "bool"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint32",
+                    "name": "secondResponseWindow",
+                    "type": "uint32"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint64",
+                    "name": "lastInteractionBlockIndex",
+                    "type": "uint64"
+                }
+            ],
+            "name": "NewDoubleTask",
+            "type": "event"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "bytes32",
+                    "name": "_hashValue",
+                    "type": "bytes32"
+                },
+                {
+                    "internalType": "bytes32",
+                    "name": "_taskHash",
+                    "type": "bytes32"
+                },
+                {
+                    "internalType": "uint64",
+                    "name": "_secondsToDeadline",
+                    "type": "uint64"
+                },
+                {
+                    "internalType": "bool",
+                    "name": "_keyReveal",
+                    "type": "bool"
+                },
+                {
+                    "internalType": "uint32",
+                    "name": "_responseWindow",
+                    "type": "uint32"
+                },
+                {
+                    "internalType": "uint16",
+                    "name": "_responseDelay",
+                    "type": "uint16"
+                }
+            ],
+            "name": "addDoubleHashTask",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_taskIndex",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_responseIndex",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "bytes32",
+                    "name": "_secondHashValue",
+                    "type": "bytes32"
+                }
+            ],
+            "name": "confirmDoubleHashTask",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_taskIndex",
+                    "type": "uint256"
+                }
+            ],
+            "name": "fundDoubleHashTask",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_taskIndex",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getDoubleHashTaskComplete",
+            "outputs": [
+                {
+                    "internalType": "bool",
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_taskIndex",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getDoubleHashTaskDeadline",
+            "outputs": [
+                {
+                    "internalType": "uint64",
+                    "name": "",
+                    "type": "uint64"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_taskIndex",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getDoubleHashTaskDelay",
+            "outputs": [
+                {
+                    "internalType": "uint64",
+                    "name": "",
+                    "type": "uint64"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_taskIndex",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getDoubleHashTaskHash",
+            "outputs": [
+                {
+                    "internalType": "bytes32",
+                    "name": "",
+                    "type": "bytes32"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_taskIndex",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getDoubleHashTaskKeyReveal",
+            "outputs": [
+                {
+                    "internalType": "bool",
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_taskIndex",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getDoubleHashTaskManagerAddress",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_taskIndex",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getDoubleHashTaskNextSlotTime",
+            "outputs": [
+                {
+                    "internalType": "uint64",
+                    "name": "",
+                    "type": "uint64"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_taskIndex",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getDoubleHashTaskResponseCount",
+            "outputs": [
+                {
+                    "internalType": "uint64",
+                    "name": "",
+                    "type": "uint64"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_taskIndex",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_responseIndex",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getDoubleHashTaskResponseWindowStart",
+            "outputs": [
+                {
+                    "internalType": "uint64",
+                    "name": "",
+                    "type": "uint64"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_taskIndex",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_responseIndex",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getDoubleHashTaskResponseWorkerAddress",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_taskIndex",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getDoubleHashTaskSecondResponseWindow",
+            "outputs": [
+                {
+                    "internalType": "uint32",
+                    "name": "",
+                    "type": "uint32"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_taskIndex",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getDoubleHashTaskTaskHash",
+            "outputs": [
+                {
+                    "internalType": "bytes32",
+                    "name": "",
+                    "type": "bytes32"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_taskIndex",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getDoubleHashTaskTotalWei",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_taskIndex",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "address",
+                    "name": "_contributorAddress",
+                    "type": "address"
+                }
+            ],
+            "name": "getDoubleHashTaskWeiContribution",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "lastInteractionBlockIndex",
+            "outputs": [
+                {
+                    "internalType": "uint64",
+                    "name": "",
+                    "type": "uint64"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_taskIndex",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "bytes32",
+                    "name": "_firstHashValue",
+                    "type": "bytes32"
+                }
+            ],
+            "name": "submitDoubleHashTask",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "tasks",
+            "outputs": [
+                {
+                    "internalType": "bytes32",
+                    "name": "hashValue",
+                    "type": "bytes32"
+                },
+                {
+                    "internalType": "bytes32",
+                    "name": "taskHash",
+                    "type": "bytes32"
+                },
+                {
+                    "internalType": "address",
+                    "name": "managerAddress",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "contributionTotalWei",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint64",
+                    "name": "deadline",
+                    "type": "uint64"
+                },
+                {
+                    "internalType": "bool",
+                    "name": "taskComplete",
+                    "type": "bool"
+                },
+                {
+                    "internalType": "bool",
+                    "name": "keyReveal",
+                    "type": "bool"
+                },
+                {
+                    "internalType": "uint32",
+                    "name": "secondResponseWindow",
+                    "type": "uint32"
+                },
+                {
+                    "internalType": "uint16",
+                    "name": "secondResponseDelay",
+                    "type": "uint16"
+                },
+                {
+                    "internalType": "uint64",
+                    "name": "responseCount",
+                    "type": "uint64"
+                },
+                {
+                    "internalType": "uint64",
+                    "name": "nextSlotTime",
+                    "type": "uint64"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "tasksCount",
+            "outputs": [
+                {
+                    "internalType": "uint64",
+                    "name": "",
+                    "type": "uint64"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "usersContract",
+            "outputs": [
+                {
+                    "internalType": "contract Users",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_taskIndex",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "bytes32",
+                    "name": "_keyReveal",
+                    "type": "bytes32"
+                }
+            ],
+            "name": "withdrawDoubleHashTask",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        }
+    ],
+    "bytecode": "0x60803461007457601f6113a838819003918201601f19168301916001600160401b038311848410176100795780849260209460405283398101031261007457516001600160a01b0381169081900361007457600280546001600160a01b03191691909117905560405161131890816100908239f35b600080fd5b634e487b7160e01b600052604160045260246000fdfe6080604081815260048036101561001557600080fd5b600092833560e01c908163142ebf3c146111035750806316479df714610d9e57806316873fa514610d765780631d1dbb1014610c94578063231ab2e314610c61578063438eb59214610c2657806360e802a214610bda57806368bbf48d14610bb45780636ab2f53b14610b8b5780636d58b56a14610b585780636f85057a14610b275780637389ae40146108ea5780637a27e844146108b05780638d977672146107fb5780639e52ff85146104fa578063a15658ca146104c4578063a29532811461049d578063a451017714610214578063ab0b65ea146101e7578063b6220dc0146101b6578063b9105c2114610184578063bb6a0f07146101585763cceb5f8b1461012057600080fd5b346101545760203660031901126101545735825260016020908152918190206002015490516001600160a01b039091168152f35b8280fd5b5050346101805781600319360112610180576001600160401b0360209254821c169051908152f35b5080fd5b50346101545760203660031901126101545760058260209460ff933581526001865220015460481c1690519015158152f35b50346101545760203660031901126101545760058260209460ff9335815260018652200154821c1690519015158152f35b503461015457602036600319011261015457816020936005923581526001855220015460c01c9051908152f35b509061021f36611128565b926001600160401b0392610239848754831c168410611143565b8286526020946001865261025860ff6005848a200154841c161561118a565b83875260018652818720600581015486811642111561045a578060c01c42111561040d5760481c60ff161580156103f6575b80156103be575b1561036a5760030133885280875282882054938880808088335af16102b4611221565b501561031d57509160a093917f93807b8145c2088d095a2974f5ac4105fbdf34b6c65909772c173d6da63619199593338a528852888281205588549782519485528401528201523360608201528385166080820152a14316906001600160401b03191617815580f35b835162461bcd60e51b8152908101889052602160248201527f4572726f72207769746864726177696e672066756e64732066726f6d207461736044820152606b60f81b6064820152608490fd5b825162461bcd60e51b8152808501889052602860248201527f4d616e676572206d7573742072657665616c206b657920746f2077697468647260448201526761772066756e647360c01b6064820152608490fd5b508251878101908382528881526103d4816111cf565b51902083518881019182528881526103eb816111cf565b519020815414610291565b5060028101546001600160a01b031633141561028a565b835162461bcd60e51b8152808601899052602160248201527f4d757374207761697420666f722070656e64696e67207375626d697373696f6e6044820152607360f81b6064820152608490fd5b835162461bcd60e51b8152808601899052601b60248201527f4d757374207761697420666f72207461736b20646561646c696e6500000000006044820152606490fd5b50346101545760203660031901126101545760209282913581526001845220549051908152f35b5034610154576020366003190112610154576005826020946001600160401b03933581526001865220015460801c169051908152f35b509060c036600319011261015457813591602435604435906001600160401b03928383168093036107f7576064358015158091036107f3576084359263ffffffff93848116958682036107ef5760a4359461ffff861686036107eb576002548a5163eb0eb8ab60e01b81523383820152602099918e91908b90829060249082906001600160a01b03165afa9182156107e057916107a6575b501561077057821561072d57156106ec579261012096949260058a61062a8f958f96988f998e9c9a7fe7d6184af67f5e4c18bff3a6beedf99af28605a1f79c8818307fa762a25dbcfa9f600190878454841c16845252808220998a558860018b015560028a013360018060a01b03198254161790553382528d60038b0190523491205587016106223482546112a7565b9055426112a7565b1693019485548460ff60481b8760481b169363ffffffff60501b9060501b16916fffffffffffffff00ffffffffffffffff191617179061ffff60701b9060701b1617178094558b549a8a51968a8d8d1c1688528701528986015233606086015234608086015260a085015260c084015260501c1660e0820152838616610100820152a14381169167ffffffffffffffff60401b916106d89067ffffffffffffffff1986168517831c166112ca565b901b169160018060801b0319161717815580f35b60649088808c519262461bcd60e51b845283015260248201527f526573706f6e73652077696e646f77206d75737420626520706f7369746976656044820152fd5b8a5162461bcd60e51b81528083018a9052601e60248201527f446561646c696e65206d75737420626520696e207468652066757475726500006044820152606490fd5b8a5162461bcd60e51b81528083018a9052601060248201526f125b9858dd1a5d99481858d8dbdd5b9d60821b6044820152606490fd5b90508981813d83116107d9575b6107bd8183611200565b810103126107d5575180151581036107d55738610592565b8d80fd5b503d6107b3565b8d51903d90823e3d90fd5b8b80fd5b8a80fd5b8780fd5b8680fd5b509034610154576020366003190112610154578061016093833581526001602052209060ff825493600184015492600560018060a01b03600287015416928601549501549485926001600160401b03958351988952602089015282880152606087015283821660808701521c16151560a084015260ff8260481c16151560c084015263ffffffff8260501c1660e084015261ffff8260701c166101008401528160801c1661012083015260c01c610140820152f35b505034610180576020916108c336611128565b9082526001845282822090825260060183528190205490516001600160a01b039091168152f35b5034610154576108f936611128565b92906001600160401b0392610914848754851c168310611143565b8186526020906001825261093360ff6005868a200154861c161561118a565b82875260018252838720956005870196875492610954888516421115611260565b865185810190848252868152610969816111cf565b519020825403610ad357508260e0949260068993847f2513e29e654b099e1727fe1367582f58ef7083ba277bd05dd461ca3764dcf65c999760801c168d52018452878b20916109bf61ffff8260701c16426112a7565b9060c01c81811015610acb5750975b82546001600160401b0360a01b8a60a01b16906001600160401b0360a01b191617835583610a508c549a8d63ffffffff9c8d610a1a6001600160401b0360c01b918360501c16856112a7565b6001600160c01b0390921660c09290921b1617905585546001600160a01b0319163317958690558d549b60508d901c16906112a7565b1694848d549a835198895260801c169087015285015233606085015260a01c16608083015260a082015284841660c0820152a167ffffffffffffffff191643821617835581549067ffffffffffffffff60801b90610ab390608084901c166112ca565b60801b16906001600160401b0360801b191617905580f35b9050976109ce565b865162461bcd60e51b8152908101859052602860248201527f466972737420686173682076616c756520646f6573206e6f74206d6174636820604482015267195e1c1958dd195960c21b6064820152608490fd5b50346101545760203660031901126101545760058260209461ffff933581526001865220015460701c169051908152f35b50346101545760203660031901126101545760058260209463ffffffff933581526001865220015460501c169051908152f35b503461015457602036600319011261015457816020936001923581528285522001549051908152f35b5050346101805781600319360112610180576001600160401b0360209254169051908152f35b50346101545781600319360112610154576024356001600160a01b0381169190829003610c225792829160209435825260018552600383832001908252845220549051908152f35b8380fd5b505034610180576001600160401b0381602093610c4236611128565b908252600186526006838320019082528552205460a01c169051908152f35b5034610154576020366003190112610154576005826020946001600160401b039335815260018652200154169051908152f35b506020366003190112610154577f0844a81682e6bb74203ca1c45bf1e91e20d907e8efc647d2ac02ccad4a1011fa60a082356001600160401b0393610cdf858854881c168310611143565b8187526001602052610cfc60ff6005888a200154881c161561118a565b8187526001602052858720610d1986600583015416421115611260565b33885260038101602052868820610d313482546112a7565b905501610d3f3482546112a7565b8091558654958051928352336020840152349083015260608201528385166080820152a14316906001600160401b03191617815580f35b5034610154576020366003190112610154578160209382358152600185522001549051908152f35b5090606036600319011261015457813560249283356044938435906001600160401b0396610dd2888a54841c168710611143565b85895260209460018652610df160ff6005858d200154851c161561118a565b868a5260018652828a2097600589019889548b8160801c168810156110b857878d52600682018952858d208651908188018e8111838210176110a5578852546001600160a01b03811680835260a09190911c8e16918b019182523303611064578c905116428111159182611034575b505015610fe057845188810190878252898152610e7c816111cf565b5190208551898101918252898152610e93816111cf565b519020815403610f8e578201928b8080808754335af1610eb1611221565b5015610f2e57505090548954835197885295870194909452508401523360608401526080830152831660a08201527f87cdec5badaed18b03cc518ac7cd678dbea4db12641adc1050dcc177189e96819060c090a1805460ff60401b1916600160401b179055815467ffffffffffffffff1916439190911617815580f35b845162461bcd60e51b81529283018890526036908301527f4572726f72207472616e7366657272696e672066756e6473206f662073756363908201527532b9b9b33ab6103a30b9b59031b7b6b83632ba34b7b760511b6064820152608490fd5b5060297f5365636f6e6420686173682076616c756520646f6573206e6f74206d61746368929388608496519562461bcd60e51b87528601528401528201526808195e1c1958dd195960ba1b6064820152fd5b50602b7f5375626d697373696f6e206e6f7420636f6d706c657465642077697468696e20929388608496519562461bcd60e51b87528601528401528201526a74696d652077696e646f7760a81b6064820152fd5b60501c63ffffffff160190508b8111611052578b1642103880610e60565b634e487b7160e01b8d5260118452848dfd5b865162461bcd60e51b81528086018b9052601d818801527f53656e646572206164647265737320646f6573206e6f74206d6174636800000081860152606490fd5b50634e487b7160e01b8f5260418652868ffd5b855162461bcd60e51b81528085018a90526021818701527f5461736b20726573706f6e736520696e646578206f7574206f6620626f756e6481850152607360f81b6064820152608490fd5b8490346101805781600319360112610180576002546001600160a01b03168152602090f35b604090600319011261113e576004359060243590565b600080fd5b1561114a57565b60405162461bcd60e51b81526020600482015260186024820152775461736b20696e646578206f7574206f6620626f756e647360401b6044820152606490fd5b1561119157565b60405162461bcd60e51b815260206004820152601660248201527515185cdac8185b1c9958591e4818dbdb5c1b195d195960521b6044820152606490fd5b604081019081106001600160401b038211176111ea57604052565b634e487b7160e01b600052604160045260246000fd5b90601f801991011681019081106001600160401b038211176111ea57604052565b3d1561125b573d906001600160401b0382116111ea576040519161124f601f8201601f191660200184611200565b82523d6000602084013e565b606090565b1561126757565b60405162461bcd60e51b815260206004820152601860248201527715185cdac8191958591b1a5b99481a185cc81c185cdcd95960421b6044820152606490fd5b919082018092116112b457565b634e487b7160e01b600052601160045260246000fd5b6001600160401b038091169081146112b4576001019056fea264697066735822122095c5c8c8d2af6c4d1fa66da2e38af0ab38d84174fbf0ab87fb663679595fdfff64736f6c63430008180033",
+    "deployedBytecode": "0x6080604081815260048036101561001557600080fd5b600092833560e01c908163142ebf3c146111035750806316479df714610d9e57806316873fa514610d765780631d1dbb1014610c94578063231ab2e314610c61578063438eb59214610c2657806360e802a214610bda57806368bbf48d14610bb45780636ab2f53b14610b8b5780636d58b56a14610b585780636f85057a14610b275780637389ae40146108ea5780637a27e844146108b05780638d977672146107fb5780639e52ff85146104fa578063a15658ca146104c4578063a29532811461049d578063a451017714610214578063ab0b65ea146101e7578063b6220dc0146101b6578063b9105c2114610184578063bb6a0f07146101585763cceb5f8b1461012057600080fd5b346101545760203660031901126101545735825260016020908152918190206002015490516001600160a01b039091168152f35b8280fd5b5050346101805781600319360112610180576001600160401b0360209254821c169051908152f35b5080fd5b50346101545760203660031901126101545760058260209460ff933581526001865220015460481c1690519015158152f35b50346101545760203660031901126101545760058260209460ff9335815260018652200154821c1690519015158152f35b503461015457602036600319011261015457816020936005923581526001855220015460c01c9051908152f35b509061021f36611128565b926001600160401b0392610239848754831c168410611143565b8286526020946001865261025860ff6005848a200154841c161561118a565b83875260018652818720600581015486811642111561045a578060c01c42111561040d5760481c60ff161580156103f6575b80156103be575b1561036a5760030133885280875282882054938880808088335af16102b4611221565b501561031d57509160a093917f93807b8145c2088d095a2974f5ac4105fbdf34b6c65909772c173d6da63619199593338a528852888281205588549782519485528401528201523360608201528385166080820152a14316906001600160401b03191617815580f35b835162461bcd60e51b8152908101889052602160248201527f4572726f72207769746864726177696e672066756e64732066726f6d207461736044820152606b60f81b6064820152608490fd5b825162461bcd60e51b8152808501889052602860248201527f4d616e676572206d7573742072657665616c206b657920746f2077697468647260448201526761772066756e647360c01b6064820152608490fd5b508251878101908382528881526103d4816111cf565b51902083518881019182528881526103eb816111cf565b519020815414610291565b5060028101546001600160a01b031633141561028a565b835162461bcd60e51b8152808601899052602160248201527f4d757374207761697420666f722070656e64696e67207375626d697373696f6e6044820152607360f81b6064820152608490fd5b835162461bcd60e51b8152808601899052601b60248201527f4d757374207761697420666f72207461736b20646561646c696e6500000000006044820152606490fd5b50346101545760203660031901126101545760209282913581526001845220549051908152f35b5034610154576020366003190112610154576005826020946001600160401b03933581526001865220015460801c169051908152f35b509060c036600319011261015457813591602435604435906001600160401b03928383168093036107f7576064358015158091036107f3576084359263ffffffff93848116958682036107ef5760a4359461ffff861686036107eb576002548a5163eb0eb8ab60e01b81523383820152602099918e91908b90829060249082906001600160a01b03165afa9182156107e057916107a6575b501561077057821561072d57156106ec579261012096949260058a61062a8f958f96988f998e9c9a7fe7d6184af67f5e4c18bff3a6beedf99af28605a1f79c8818307fa762a25dbcfa9f600190878454841c16845252808220998a558860018b015560028a013360018060a01b03198254161790553382528d60038b0190523491205587016106223482546112a7565b9055426112a7565b1693019485548460ff60481b8760481b169363ffffffff60501b9060501b16916fffffffffffffff00ffffffffffffffff191617179061ffff60701b9060701b1617178094558b549a8a51968a8d8d1c1688528701528986015233606086015234608086015260a085015260c084015260501c1660e0820152838616610100820152a14381169167ffffffffffffffff60401b916106d89067ffffffffffffffff1986168517831c166112ca565b901b169160018060801b0319161717815580f35b60649088808c519262461bcd60e51b845283015260248201527f526573706f6e73652077696e646f77206d75737420626520706f7369746976656044820152fd5b8a5162461bcd60e51b81528083018a9052601e60248201527f446561646c696e65206d75737420626520696e207468652066757475726500006044820152606490fd5b8a5162461bcd60e51b81528083018a9052601060248201526f125b9858dd1a5d99481858d8dbdd5b9d60821b6044820152606490fd5b90508981813d83116107d9575b6107bd8183611200565b810103126107d5575180151581036107d55738610592565b8d80fd5b503d6107b3565b8d51903d90823e3d90fd5b8b80fd5b8a80fd5b8780fd5b8680fd5b509034610154576020366003190112610154578061016093833581526001602052209060ff825493600184015492600560018060a01b03600287015416928601549501549485926001600160401b03958351988952602089015282880152606087015283821660808701521c16151560a084015260ff8260481c16151560c084015263ffffffff8260501c1660e084015261ffff8260701c166101008401528160801c1661012083015260c01c610140820152f35b505034610180576020916108c336611128565b9082526001845282822090825260060183528190205490516001600160a01b039091168152f35b5034610154576108f936611128565b92906001600160401b0392610914848754851c168310611143565b8186526020906001825261093360ff6005868a200154861c161561118a565b82875260018252838720956005870196875492610954888516421115611260565b865185810190848252868152610969816111cf565b519020825403610ad357508260e0949260068993847f2513e29e654b099e1727fe1367582f58ef7083ba277bd05dd461ca3764dcf65c999760801c168d52018452878b20916109bf61ffff8260701c16426112a7565b9060c01c81811015610acb5750975b82546001600160401b0360a01b8a60a01b16906001600160401b0360a01b191617835583610a508c549a8d63ffffffff9c8d610a1a6001600160401b0360c01b918360501c16856112a7565b6001600160c01b0390921660c09290921b1617905585546001600160a01b0319163317958690558d549b60508d901c16906112a7565b1694848d549a835198895260801c169087015285015233606085015260a01c16608083015260a082015284841660c0820152a167ffffffffffffffff191643821617835581549067ffffffffffffffff60801b90610ab390608084901c166112ca565b60801b16906001600160401b0360801b191617905580f35b9050976109ce565b865162461bcd60e51b8152908101859052602860248201527f466972737420686173682076616c756520646f6573206e6f74206d6174636820604482015267195e1c1958dd195960c21b6064820152608490fd5b50346101545760203660031901126101545760058260209461ffff933581526001865220015460701c169051908152f35b50346101545760203660031901126101545760058260209463ffffffff933581526001865220015460501c169051908152f35b503461015457602036600319011261015457816020936001923581528285522001549051908152f35b5050346101805781600319360112610180576001600160401b0360209254169051908152f35b50346101545781600319360112610154576024356001600160a01b0381169190829003610c225792829160209435825260018552600383832001908252845220549051908152f35b8380fd5b505034610180576001600160401b0381602093610c4236611128565b908252600186526006838320019082528552205460a01c169051908152f35b5034610154576020366003190112610154576005826020946001600160401b039335815260018652200154169051908152f35b506020366003190112610154577f0844a81682e6bb74203ca1c45bf1e91e20d907e8efc647d2ac02ccad4a1011fa60a082356001600160401b0393610cdf858854881c168310611143565b8187526001602052610cfc60ff6005888a200154881c161561118a565b8187526001602052858720610d1986600583015416421115611260565b33885260038101602052868820610d313482546112a7565b905501610d3f3482546112a7565b8091558654958051928352336020840152349083015260608201528385166080820152a14316906001600160401b03191617815580f35b5034610154576020366003190112610154578160209382358152600185522001549051908152f35b5090606036600319011261015457813560249283356044938435906001600160401b0396610dd2888a54841c168710611143565b85895260209460018652610df160ff6005858d200154851c161561118a565b868a5260018652828a2097600589019889548b8160801c168810156110b857878d52600682018952858d208651908188018e8111838210176110a5578852546001600160a01b03811680835260a09190911c8e16918b019182523303611064578c905116428111159182611034575b505015610fe057845188810190878252898152610e7c816111cf565b5190208551898101918252898152610e93816111cf565b519020815403610f8e578201928b8080808754335af1610eb1611221565b5015610f2e57505090548954835197885295870194909452508401523360608401526080830152831660a08201527f87cdec5badaed18b03cc518ac7cd678dbea4db12641adc1050dcc177189e96819060c090a1805460ff60401b1916600160401b179055815467ffffffffffffffff1916439190911617815580f35b845162461bcd60e51b81529283018890526036908301527f4572726f72207472616e7366657272696e672066756e6473206f662073756363908201527532b9b9b33ab6103a30b9b59031b7b6b83632ba34b7b760511b6064820152608490fd5b5060297f5365636f6e6420686173682076616c756520646f6573206e6f74206d61746368929388608496519562461bcd60e51b87528601528401528201526808195e1c1958dd195960ba1b6064820152fd5b50602b7f5375626d697373696f6e206e6f7420636f6d706c657465642077697468696e20929388608496519562461bcd60e51b87528601528401528201526a74696d652077696e646f7760a81b6064820152fd5b60501c63ffffffff160190508b8111611052578b1642103880610e60565b634e487b7160e01b8d5260118452848dfd5b865162461bcd60e51b81528086018b9052601d818801527f53656e646572206164647265737320646f6573206e6f74206d6174636800000081860152606490fd5b50634e487b7160e01b8f5260418652868ffd5b855162461bcd60e51b81528085018a90526021818701527f5461736b20726573706f6e736520696e646578206f7574206f6620626f756e6481850152607360f81b6064820152608490fd5b8490346101805781600319360112610180576002546001600160a01b03168152602090f35b604090600319011261113e576004359060243590565b600080fd5b1561114a57565b60405162461bcd60e51b81526020600482015260186024820152775461736b20696e646578206f7574206f6620626f756e647360401b6044820152606490fd5b1561119157565b60405162461bcd60e51b815260206004820152601660248201527515185cdac8185b1c9958591e4818dbdb5c1b195d195960521b6044820152606490fd5b604081019081106001600160401b038211176111ea57604052565b634e487b7160e01b600052604160045260246000fd5b90601f801991011681019081106001600160401b038211176111ea57604052565b3d1561125b573d906001600160401b0382116111ea576040519161124f601f8201601f191660200184611200565b82523d6000602084013e565b606090565b1561126757565b60405162461bcd60e51b815260206004820152601860248201527715185cdac8191958591b1a5b99481a185cc81c185cdcd95960421b6044820152606490fd5b919082018092116112b457565b634e487b7160e01b600052601160045260246000fd5b6001600160401b038091169081146112b4576001019056fea264697066735822122095c5c8c8d2af6c4d1fa66da2e38af0ab38d84174fbf0ab87fb663679595fdfff64736f6c63430008180033",
+    "linkReferences": {},
+    "deployedLinkReferences": {}
+}

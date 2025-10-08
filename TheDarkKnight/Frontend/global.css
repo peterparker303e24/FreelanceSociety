@@ -1,0 +1,344 @@
+@font-face {
+    font-family: 'SourceCodePro';
+    src: url('./assets/fonts/SourceCodePro-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'SourceCodePro';
+    font-weight: bold;
+    src: url('./assets/fonts/SourceCodePro-Bold.ttf') format('truetype');
+}
+
+:root {
+    --background-color: #ffffff;
+    --foreground-color: #000000;
+    --invert-filter: 0;
+}
+
+body,
+html {
+    font-family: 'SourceCodePro';
+    text-align: center;
+    overflow: hidden;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    color: var(--foreground-color);
+    background-color: var(--background-color);
+}
+
+img {
+    filter: invert(var(--invert-filter));
+}
+
+.dark-mode {
+    --background-color: #000000;
+    --foreground-color: #ffffff;
+    --invert-filter: 1;
+}
+
+.icon-button {
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    width: fit-content;
+}
+
+.icon {
+    width: 64px;
+    height: 64px;
+}
+
+.icon-large {
+    width: 128px;
+    height: 128px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.row-left {
+    display: flex;
+    justify-content: left;
+}
+
+.left {
+    margin-right: auto;
+}
+
+.right {
+    margin-left: auto;
+}
+
+.scrollable-container {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    position: relative;
+}
+
+.scrollable-area {
+    position: relative;
+    width: 768px;
+    height: 512px;
+    margin: 0 auto;
+}
+
+.scroll-icon-button {
+    position: absolute;
+    width: 128px;
+    height: 128px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.border-button {
+    border: 2px solid var(--foreground-color);
+    cursor: pointer;
+    user-select: none;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.large-text {
+    font-size: 32px;
+}
+
+.medium-text {
+    font-size: 16px;
+}
+
+.small-text {
+    font-size: 8px;
+}
+
+.wrap-text {
+    word-break: break-all;
+}
+
+.input-line {
+    font-family: 'SourceCodePro';
+    border: 2px solid var(--foreground-color);
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+    height: 32px;
+}
+
+.payable-button {
+    border: 2px solid var(--foreground-color);
+    outline: 2px solid var(--foreground-color);
+    background-color: var(--foreground-color);
+    color: var(--background-color);
+    cursor: pointer;
+    user-select: none;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.hide {
+    display: none;
+}
+
+.inactive-border-button {
+    border: 2px dashed var(--foreground-color);
+    cursor: default;
+    user-select: none;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.inactive-payable-button {
+    border: 2px dashed var(--background-color);
+    outline: 2px solid var(--foreground-color);
+    background-color: var(--foreground-color);
+    color: var(--background-color);
+    cursor: default;
+    user-select: none;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.vertically-center-row {
+    align-items: center;
+}
+
+.vertically-center-text {
+    text-align: center;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.small-padding {
+    padding: 8px;
+}
+
+.medium-padding {
+    padding: 16px;
+}
+
+.large-padding {
+    padding: 32px;
+}
+
+.small-margin {
+    margin: 8px;
+}
+
+.medium-margin {
+    margin: 16px;
+}
+
+.large-margin {
+    margin: 32px;
+}
+
+#footer-space {
+    height: 256px;
+}
+
+.tiny-width {
+    width: 8px;
+}
+
+.small-width {
+    width: 16px;
+}
+
+.medium-width {
+    width: 32px;
+}
+
+.large-width {
+    width: 64px;
+}
+
+.x-large-width {
+    width: 128px;
+}
+
+.xx-large-width {
+    width: 256px;
+}
+
+.xxx-large-width {
+    width: 512px;
+}
+
+.tiny-height {
+    height: 8px;
+}
+
+.small-height {
+    height: 16px;
+}
+
+.medium-height {
+    height: 32px;
+}
+
+.large-height {
+    height: 64px;
+}
+
+.x-large-height {
+    height: 128px;
+}
+
+.xx-large-height {
+    height: 256px;
+}
+
+.xxx-large-height {
+    height: 512px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.full-height {
+    width: 100%;
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+.validator-task-submission-ethics-row {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 64px 1fr;
+    grid-template-rows: 64px;
+    gap: 16px;
+    padding: 16px;
+}
+
+.bordered-box {
+    border: 2px solid var(--foreground-color);
+}
+
+.item-row {
+    display: flex;
+    width: 100%;
+}
+
+.display-flex {
+    display: flex;
+}
+
+.column-flex-direction {
+    flex-direction: column;
+}
+
+.flex-item {
+    flex: 1;
+    overflow: hidden;
+}
+
+.left-align {
+    text-align: left;
+}
+
+.hash-input-width {
+    width: 725px;
+}
+
+.address-input-width {
+    width: 405px;
+}
+
+.label-space-right {
+    margin-right: 8px;
+}
+
+#header-container {
+    height: 121px;
+}
+
+.checkbox {
+    width: 16px;
+    height: 16px;
+}
+
+.redirectable:hover {
+    text-decoration-line: underline;
+}
+
+.text-content-return {
+    white-space: pre;
+}

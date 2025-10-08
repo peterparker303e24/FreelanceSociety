@@ -1,0 +1,149 @@
+Validator Task
+
+General
+- The "Task Hash" with the keccak256 hash of the task ZIP file. If the task is uploaded through the "Upload Zip File" button, then this field will be filled in automatically.
+- The "Specifications Count" is the number of specifications defined in the task specifications.
+- The "Seconds Until Deadline" to define the number of seconds from the task transaction timestamp until the time when the task will no longer accept new submissions.
+- Toggle "Block Schedule" to switch between the type of evaluation time window. If the "Block Schedule" toggle is set to "ON", then the evaluation time windows between different submissions will not overlap, so each new submission start time will at least be after the end of the previous submission evaluation time window. If the "Block Schedule" toggle is set to "OFF", then the evaluation timespan windows between different submissions may overlap, so each new submission evaluation timespan window start time will be "Validation Delay" seconds after the timestamp of the submission transaction. The block schedule helps prevent validators to not be spammed by a flood of submissions that overload their ability to sufficiently evaluate them, but it can slow the evaluation of submissions. Setting the "Block Schedule" to "OFF" is vulnerable to validators being spammed by a flood of submissions that overload their ability to sufficiently evaluate them, but it can allow the timespan of submission evaluations to be shortened.
+- The "Validation Time" is the timespan, in seconds, that a validator is allocated to evaluate a task submission. This is the timespan from the evaluation start time to the evaluation end time regardless of whether or not the block schedule is being used.
+- The "Validation Delay" is the time in seconds from the timestamp of the task submission to the minimum time of the evaluation start time of the corresponding submission.
+- The "Validator Addresses" is the array of addresses that are allowed to evaluate submissions. Only one of these validators can evaluate the task and receive the submission commission fee, and whichever user submits the task evaluation first will receive the commission fee.
+- The "Validator Commission" is the fee amount, in Wei, that is required for a worker to submit with their task submission for the validator evaluation process.
+- The "Reward" is the amount, in Wei, that the worker receives for completing the task after a validator evaluates their submission with an acceptance or the task is defaulted because no validator submitted an evaluation within the submission timespan window.
+- The ethics requirements checkbox can be toggled to acknowledge that the task and task submission both follow all ethics requirements.
+- The "Task ID" is the unique identifier for the task.
+- The "Deadline" is the time, in UTC, when the validator task no longer accepts submissions and funds. Tasks can still be completed after the deadline if the task is evaluated as accepted during the task evaluation timespan. Funds can not be withdrawn from the task until all submission evaluation timespans have passed.
+- The "Next Slot Time" is the time, in UTC, of the end of the currently last submission. If the validator task uses block schedule validation, then this is the minimum time that any new submission time window will start.
+- The "Submissions Count" is the number of submissions for the current validator task.
+- The "Evaluated Submissions Count" is the number of submissions that have been evaluated by validators.
+- The "Completed" is whether the task has been marked complete by a contract call as a result of an accepted submission by a validator or a withdraw task submission by default. The task can be completed in actuality even with the field shown as "FALSE" if the task has been defaulted.
+- The "Task Defaulted" is whether the task has been defaulted as a result of the task submission evaluation time window being passed without any validator rejecting or accepting the submission.
+- The "Manager Address" is the address of the user that created the task.
+- The "Completion Index" is the submission index that completed the task within the list of submissions for the task. If the task has not yet been completed, then it will be displayed as "X".
+- The "Completion Address" is the address of the worker that completed the task. If the task has not yet been completed, then it will be displayed as "X".
+- The "Submission ID" is the unique identifier for the task submission. It is the validator task short name "v" on the left separated by a dash "-" with the task index in the center separated by a dash "-" with the submission index on the right.
+- The "Worker Address" is the address of the worker that created the task submission.
+- The "Submission Hash" is the keccak256 hash of the submission file for the task submission. 
+- The "Validation Start Time" is the time, in UTC, of the start time of the submission evaluation timespan window.
+- The "Validation End Time" is the time, in UTC, of the end time of the submission evaluation timespan window.
+- The "Submission Status" is a description of the status of the submission. The possible states are "Completed", "Completed Defaulted", "Rejected", "Incomplete Unevaluated", "Waiting Evaluation", "Waiting For Evaluation Timespan", "Waiting For Previous Submission Evaluation", and "Unexpected Data".
+- The "Submission Withdrawn" is whether the worker has withdrawn their submission completion or submission unevaluated Wei amount.
+
+Add Validator Task
+- Input "Task Hash" with the keccak256 hash of the task ZIP file. If the task is uploaded through the "Upload Zip File" button, then this field will be filled in automatically.
+- Input "Specifications Count" is the number of specifications defined in the task specifications.
+- Input "Seconds Until Deadline" to define the number of seconds from the task transaction timestamp until the time when the task will no longer accept new submissions.
+- Toggle "Block Schedule" to switch between the type of evaluation time window. If the "Block Schedule" toggle is set to "ON", then the evaluation time windows between different submissions will not overlap, so each new submission start time will at least be after the end of the previous submission evaluation time window. If the "Block Schedule" toggle is set to "OFF", then the evaluation timespan windows between different submissions may overlap, so each new submission evaluation timespan window start time will be "Validation Delay" seconds after the timestamp of the submission transaction. The block schedule helps prevent validators to not be spammed by a flood of submissions that overload their ability to sufficiently evaluate them, but it can slow the evaluation of submissions. Setting the "Block Schedule" to "OFF" is vulnerable to validators being spammed by a flood of submissions that overload their ability to sufficiently evaluate them, but it can allow the timespan of submission evaluations to be shortened.
+- Input "Validation Time" is the timespan, in seconds, that a validator is allocated to evaluate a task submission. This is the timespan from the evaluation start time to the evaluation end time regardless of whether or not the block schedule is being used.
+- Input "Validation Delay" is the time in seconds from the timestamp of the task submission to the minimum time of the evaluation start time of the corresponding submission.
+- Input "Validator Addresses" is the array of addresses that are allowed to evaluate submissions. Only one of these validators can evaluate the task and receive the submission commission fee, and whichever user submits the task evaluation first will receive the commission fee.
+- Input "Validator Commission" is the fee amount, in Wei, that is required for a worker to submit with their task submission for the validator evaluation process.
+- Input "Reward" is the amount, in Wei, that the worker receives for completing the task after a validator evaluates their submission with an acceptance or the task is defaulted because no validator submitted an evaluation within the submission timespan window.
+- Toggle ethics requirements checkbox to acknowledge that the task and task submission both follow all ethics requirements.
+- Click "Add Validator Task" adds the task with the inputted information to the blockchain through a transaction.
+- Click "Upload Zip File" to upload the task zip file to the webpage. This will automatically process the file data, hash it with the keccak256 function, display that value in the task hash input, and verify that the same file is hosted at the corresponding user host endpoint. The file should be in the directory "<BasePath>/Tasks/ValidatorTasks/<TaskHash>/Task". Your <BasePath> must be present in your comma separated list of links found in the profile page. The <TaskHash> should not be prefixed with "0x".
+- View task requirements after the task ZIP file has been uploaded. The task requirements are a list of requirement specifications each with an arrow that allows the user to toggle whether or not to show the requirement specification. Each requirement specification also displays the requirement version at the header. Each requirement specification also has the requirement specification condition with labelled variables in bold and intermediate variables in italics.
+
+Submit Validator Task
+- The "Task ID" is the unique identifier for the task.
+- The "Deadline" is the time, in UTC, when the validator task no longer accepts submissions and funds. Tasks can still be completed after the deadline if the task is evaluated as accepted during the task evaluation timespan. Funds can not be withdrawn from the task until all submission evaluation timespans have passed.
+- The "Next Slot Time" is the time, in UTC, of the end of the currently last submission. If the validator task uses block schedule validation, then this is the minimum time that any new submission time window will start.
+- The "Submissions Count" is the number of submissions for the current validator task.
+- The "Evaluated Submissions Count" is the number of submissions that have been evaluated by validators.
+- The "Completed" is whether the task has been marked complete by a contract call as a result of an accepted submission by a validator or a withdraw task submission by default. The task can be completed in actuality even with the field shown as "FALSE" if the task has been defaulted.
+- The "Task Defaulted" is whether the task has been defaulted as a result of the task submission evaluation time window being passed without any validator rejecting or accepting the submission.
+- The "Validator Commission" is the amount, in Wei, that a worker must input to the contract to be able to have their submission evaluated by a validator.
+- The "Reward" is the amount, in Wei, that a worker receives upon completion of the validator task.
+- Click "View Submissions" to redirect to the view task submissions page for the current task.
+- Toggle ethics requirements checkbox to accept the ethics requirements for the provided task and submission. The submission may be rejected if the task or submission violate any of these ethics requirements.
+- Press "Shift" while the ethics requirements checkbox has been accepted to show the task submission hash override input. Input the 32 byte keccak256 hash value of the task submission to skip the validation checking. This can be useful to the worker by not allowing other competing workers to access the task submission data until it reaches the worker evaluation timespan.
+- Click "Add Validator Task Submission" to redirect to the add validator task submission page for the current validator task.
+- Click the "Upload Zip File" button to upload the task submission ZIP file from your computer. After uploading the file, the name of the file and the keccak256 hash of the file will be listed below. This file should also be under a directory hosted by the user, which can be found and updated in the user profile page. The file should be in the directory "<BasePath>/Submissions/ValidatorSubmissions/<SubmissionHash>/Submission.zip". Your <BasePath> must be present in your comma separated list of links found in the profile page. The <SubmissionHash> should not be prefixed with "0x".
+
+View Validator Task
+- The "Task ID" is the unique identifier for the task.
+- The "Task Hash" is the keccak256 hash of the task ZIP file.
+- The "Specifications Count" is the number of specifications defined in the task specifications.
+- The "Validation Time" is the timespan, in seconds, that a validator is allocated to evaluate a task submission. This is the timespan from the evaluation start time to the evaluation end time regardless of whether or not the block schedule is being used.
+- The "Deadline" is the time, in UTC, when the validator task no longer accepts submissions and funds. Tasks can still be completed after the deadline if the task is evaluated as accepted during the task evaluation timespan. Funds can not be withdrawn from the task until all submission evaluation timespans have passed.
+- The "Next Slot Time" is the time, in UTC, of the end of the currently last submission. If the validator task uses block schedule validation, then this is the minimum time that any new submission time window will start.
+- The "Submissions Count" is the number of submissions for the current validator task.
+- The "Evaluated Submissions Count" is the number of submissions that have been evaluated by validators.
+- The "Block Validation" is whether there is a block schedule followed by the evaluation timespan window. If the "Block Schedule" is "TRUE", then the evaluation timespan windows between different submissions will not overlap, so each new submission start time will at least be after the end of the previous submission evaluation timespan window. If the "Block Schedule" is "FALSE", then the evaluation timespan windows between different submissions may overlap, so each new submission evaluation timespan window start time will be "Validation Delay" seconds after the timestamp of the submission transaction. The block schedule helps prevent validators to not be spammed by a flood of submissions that overload their ability to sufficiently evaluate them, but it can slow the evaluation of submissions. If the "Block Schedule" is "FALSE", this the task is vulnerable to validators being spammed by a flood of submissions that overload their ability to sufficiently evaluate them, but it can allow the timespan of submission evaluations to be shortened.
+- The "Validation Delay" is the time in seconds from the timestamp of the task submission to the minimum time of the evaluation start time of the corresponding submission.
+- The "Completed" is whether the task has been marked complete by a contract call as a result of an accepted submission by a validator or a withdraw task submission by default. The task can be completed in actuality even with the field shown as "FALSE" if the task has been defaulted.
+- The "Task Defaulted" is whether the task has been defaulted as a result of the task submission evaluation time window being passed without any validator rejecting or accepting the submission.
+- The "Manager Address" is the address of the user that created the task.
+- The "Completion Index" is the submission index that completed the task within the list of submissions for the task. If the task has not yet been completed, then it will be displayed as "X".
+- The "Completion Address" is the address of the worker that completed the task. If the task has not yet been completed, then it will be displayed as "X".
+- The "Validators" is the list of validators that are able to evaluate any submission within the task, but only one validator may evaluate a single submission.
+- The "Validator Commission" is the amount, in Wei, that a worker must input to the contract to be able to have their submission evaluated by a validator.
+- The "Reward" is the amount, in Wei, that a worker receives upon completion of the validator task.
+- Input "Fund Task Amount" with the amount, in Wei, that you would like to contribute to the task reward. You are always able to input more funds into the task reward as long as the deadline has not passed and the task has not been completed. If the task deadline and all submission timespan windows pass with the task still being incomplete, then you are able to withdraw all your funds.
+- Click "Fund Task" to submit a transaction to the blockchain that will fund the current task with the amount in the "Fund Task Amount" field.
+- Click "Withdraw Task Funds" for the user to withdraw all their funds to the task. The user can only withdraw the funds if the task deadline has passed and all task evaluation timespans have passed.
+- Click "Auto Discover Task" to automatically search for a task sequentially through users and their corresponding links in order of their user activation time. Click "Skip Address" to view the links from another user, and click "Skip Link" to view other links from the same user.
+- Click "Manually Discover Task" to search for the task through a specific user by their address.
+- View the "Task Requirements" of the list of requirements that must be met in order to complete the hash task. The requirement ID, condition, and other data are described in each requirement section. The file tree of the task can be seen to the right. Click the toggle to open/close the task description.
+- Click "Save Locally" to download the task ZIP locally to your computer if the task data has been discovered.
+- Click "Upload Locally" to upload the task data to view.
+- Click "Submit Task" to redirect to the hash task submission page.
+- Click "View Task Submissions" to redirect to the view task submissions page for the current task.
+- Click "View Validator Tasks" to redirect to the tasks search page with search parameter "v" to search for recent validator tasks.
+- Click "Add Validator Task Submission" to redirect to the add validator task submission page for the current validator task.
+- View the task file tree when the hash task has been discovered.
+
+View Validator Task Submission
+- The "Task ID" is the unique identifier for the task.
+- The "Submission ID" is the unique identifier for the task submission. It is the validator task short name "v" on the left separated by a dash "-" with the task index in the center separated by a dash "-" with the submission index on the right.
+- The "Worker Address" is the address of the worker that created the task submission.
+- The "Submission Hash" is the keccak256 hash of the submission file for the task submission. 
+- The "Validation Start Time" is the time, in UTC, of the start time of the submission evaluation timespan window.
+- The "Current Time" is the current time, in UTC. It is updated every second.
+- The "Validation End Time" is the time, in UTC, of the end time of the submission evaluation timespan window.
+- The "Submission Status" is a description of the status of the submission. The possible states are "Completed", "Completed Defaulted", "Rejected", "Incomplete Unevaluated", "Waiting Evaluation", "Waiting For Evaluation Timespan", "Waiting For Previous Submission Evaluation", and "Unexpected Data".
+- The "Submission Withdrawn" is whether the worker has withdrawn their submission completion or submission unevaluated Wei amount.
+- The "Submissions Count" is the number of submissions for the current validator task.
+- The "Evaluated Submissions Count" is the number of submissions that have been evaluated by validators.
+- The "Requirements Count" is the number of requirement specifications for the task.
+- The "Validators" is the list of validators that are able to evaluate any submission within the task, but only one validator may evaluate a single submission.
+- The "Completed" is whether the task has been marked complete by a contract call as a result of an accepted submission by a validator or a withdraw task submission by default. The task can be completed in actuality even with the field shown as "FALSE" if the task has been defaulted.
+- The "Task Defaulted" is whether the task has been defaulted as a result of the task submission evaluation time window being passed without any validator rejecting or accepting the submission.
+- The "Validator Commission" is the amount, in Wei, that a worker must input to the contract to be able to have their submission evaluated by a validator.
+- The "Reward" is the amount, in Wei, that a worker receives upon completion of the validator task.
+- Click "Withdraw Submission Completion" to withdraw the task reward if the current submission is complete or complete defaulted. This can only be done if the current user matches the corresponding task submission worker address.
+- Click "Withdraw Submission Unevaluated" to withdraw the task submission validator commission if the submission has not been rejected, and a preceding task submission has already completed the task. The worker can recover their commission fee for their submission if it has not and will not be evaluated.
+- Click "Try download submission zip from worker" to try to access the submission ZIP file from one of the user endpoints in their comma separated list of links.
+- Toggle ethics requirements checkbox to acknowledge that the task and task submission both follow all ethics requirements.
+- Toggle "Requirement <index>" to switch between an acceptance "✓" of the requirement specification and a rejection of the requirement specification. The corresponding index of the requirement specification is listed in the row. All specifications must be accepted for the submission to be accepted as complete.
+- Click "Submit Evaluation: REJECTED" to reject the current task submission. Click "Submit Evaluation: ACCEPTED" to accept the task submission as complete.
+- Click "Auto Discover Task" to automatically search for the task sequentially through users and their corresponding links in order of their user activation time. Click "Skip Address" to view the links from another user, and click "Skip Link" to view other links from the same user.
+- Click "Manually Discover Task" to search for the task through a specific user by their address.
+- View task requirements after the task ZIP file has been uploaded. The task requirements are a list of requirement specifications each with an arrow that allows the user to toggle whether or not to show the requirement specification. Each requirement specification also displays the requirement version at the header. Each requirement specification also has the requirement specification condition with labelled variables in bold and intermediate variables in italics.
+- Click "Save Locally" to download the task ZIP locally to your computer if the task data has been discovered.
+- Click "Upload Locally" to upload the task data to view.
+- Click "View Task" to redirect to the corresponding task for the current submission.
+- Click "View Task Submissions" to redirect to the view task submissions page for the current task.
+- Click "View Validator Tasks" to redirect to the tasks search page with search parameter "v" to search for recent validator tasks.
+- Click "Add Validator Task Submission" to redirect to the add validator task submission page for the current validator task.
+- View the task file tree when the hash task has been discovered.
+
+View Validator Task Submissions
+- The "Task ID" is the unique identifier for the task.
+- The "Submissions Count" is the number of submissions for the current validator task.
+- The "Evaluated Submissions Count" is the number of submissions that have been evaluated by validators.
+- The "Task Complete" is whether the task has been marked complete by a contract call as a result of an accepted submission by a validator or a withdraw task submission by default. The task can be completed in actuality even with the field shown as "FALSE" if the task has been defaulted.
+- The "Task Defaulted" is whether the task has been defaulted as a result of the task submission evaluation time window being passed without any validator rejecting or accepting the submission.
+- Click "View Task" to redirect to the corresponding task for the current submission.
+- Click "Add Validator Task Submission" to redirect to the add validator task submission page for the current validator task.
+- View the list of task submissions. In the left column is the unique task submission ID, in the center column is a collection of some basic submission data, and on the right column is a button to redirect to the corresponding task submission page. The "Worker Address" is the address of the worker that created the task submission. The "Submission Hash" is the keccak256 hash of the submission file for the task submission. The "Validation Start Time" is the time, in UTC, of the start time of the submission evaluation timespan window. The "Validation End Time" is the time, in UTC, of the end time of the submission evaluation timespan window. The "Submission Status" is a description of the status of the submission. The possible states are "Completed", "Completed Defaulted", "Rejected", "Incomplete Unevaluated", "Waiting Evaluation", "Waiting For Evaluation Timespan", "Waiting For Previous Submission Evaluation", and "Unexpected Data".
+
+View Tasks
+- Click the dropdown triangle to see the hash task, double hash task, and validator task rows. Each row has a button to redirect to the respective page to add the task and a count for the number of each tasks.
+- The "Total Tasks Count" shows the total number of tasks for hash tasks, double hash tasks, and validator tasks combined.
+- Toggle the "Hide completed and past tasks" checkbox to change the search functionality and refresh the search. When this box is checked, then tasks that have the "Task Complete" field marked as "TRUE" will not be shown in the search. Also tasks that have a deadline that has passed will not be shown in the search.
+- Click "Search" to search using the data in the search bar input. If the search bar input is empty, then the recent data will be searched. Search by a task type with its short name, "h" for hash task, "dh" for double hash task, and "v" for validator task. Each task type can also have a specified task index that is formatted with the task short name on the left separated by a dash "-" with the index on the right (for example, "h-4", "dh-2", v-"0"). Search by task hash or manager address by inputting hex data.
+- Click "Previous" to go to the previous search page.
+- Click "Next" to go to the next search page.
+- The list of tasks is sorted by most recent tasks first. And there are at most 10 items on a search page.
+- The task hash the task ID and task data in the left column and a button to redirect to the task page in the right column. The task ID is the task short name on the left with a dash "-" separating the task index on the right. The short names are "h" for hash task, "dh" for double hash task, and "v" for validator task. The "Hash" is the keccak256 hash of the task ZIP file. The "Manager Address" is the address of the user that created the task. The "Reward" is the amount, in Wei, the worker that completes the task will receive upon completing the task. The "Deadline" is the time, in UTC, until the task will no longer accept new submissions, and will no longer accept new task funding. The "Task Complete" is whether the task has been marked as complete by a contract transaction on the blockchain, and if this value is "FALSE" it does not necessarily mean it is able to be completed because, for example, the task defaulting could make the task complete but it will not appear to be "TRUE".

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Requirement Proposals</title>
+    <base href="../../">
+    <link rel="icon" href="favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicons/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="favicons/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" href="favicons/android-chrome-512x512.png" sizes="512x512">
+    <link rel="apple-touch-icon" href="favicons/apple-touch-icon.png">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="css/viewSearchCommon.css">
+    <script src="js/applyDarkModePreference.js" type="module"></script>
+    <script src="js/requirements/viewProposals.js" type="module" defer></script>
+    <script src="js/components/headerSection.js" type="module"></script>
+</head>
+
+<body>
+    <div id="scroll-area">
+
+        <!-- Header section -->
+        <div id="header-container">
+            <header-section headerText="View Requirement Proposals"></header-section>
+        </div>
+
+        <!-- Fixed requirement section -->
+        <div id="proposals-button-number-row-fixed" class="items-button-number-row">
+            <div id="add-proposal-button-fixed" class="border-button redirectable padding hide">
+                Add Proposal
+            </div>
+            <div id="requirement-index" class="hide">Requirement Index: -</div>
+            <div id="versions-number" class="hide">Requirement Versions: -</div>
+            <div id="proposals-number" class="hide">Requirement Proposals: -</div>
+        </div>
+
+        <!-- Dynamic requirement section -->
+        <div id="proposals-button-number-row-dynamic" class="items-button-number-row">
+            <div id="add-proposal-button-dynamic" class="border-button redirectable padding hide">
+                Add Proposal
+            </div>
+            <div id="requirements-number" class="hide">Requirements Count: -</div>
+        </div>
+
+        <!-- Search requirement proposals input -->
+        <div id="search-row">
+            <div id="search-button" class="border-button padding">
+                Search
+            </div>
+            <input id="search-input" type="text" class="input-line medium-text left-align full-width small-padding"
+                placeholder="proposal index, hash, or validator address">
+        </div>
+
+        <!-- Requirement proposals results header and navigation -->
+        <div id="proposals-pages" class="row items-pages">
+            <div id="previous-button" class="border-button padding">
+                Previous
+            </div>
+            <div id="search-header" class="large-text"></div>
+            <div id="next-button" class="border-button padding">
+                Next
+            </div>
+        </div>
+
+        <!-- Requirement proposals search results column -->
+        <div id="proposals-rows-container"></div>
+
+        <!-- Footer space -->
+        <div id="footer-space"></div>
+
+        <!-- Requirement proposal item template -->
+        <template id="proposal-item-template">
+            <div class="bordered-box margin padding">
+                <div class="row center-vertically item-row">
+
+                    <!-- Requirement proposal ID, requirement proposal data, and view button -->
+                    <div id="index-version" class="medium-text margin"></div>
+                    <div class="flex-item left-align margin">
+                        <div id="item-hash" class="medium-text elipses"></div>
+                        <div id="validator-hex" class="medium-text elipses"></div>
+                        <div id="votes-for" class="medium-text elipses"></div>
+                    </div>
+                    <div id="view-button" class="border-button redirectable padding">
+                        View Requirement Proposal
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+</body>
+
+</html>

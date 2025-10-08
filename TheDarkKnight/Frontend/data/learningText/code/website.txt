@@ -1,0 +1,59 @@
+Frontend
+
+Summary
+
+The Freelance Society frontend website is the interface to interact with the Ethereum blockchain and the connected smart contracts that build the incentive structures for the platform. All interactions with the Ethereum blockchain must be processed with the website through a browser wallet such as MetaMask. All function transactions in the Freelance Society smart contracts can be initiated in the website. All relevant transaction history with Freelance Society smart contracts can also be viewed in the website. Additional features to help users transact safely with smart contracts are integrated in the website. The website is open source, so to mitigate the risk of malicious modifications to the end user website a user can download and host the website on their own.
+
+Directory Setup
+
+assets
+|   fonts // Fonts used in the website
+|   icons // SVG icons used in the website
+css // CSS styling for the website
+data // ABI .json files and learningText .txt files
+|   abi // Ethereum Application Binary Interface for the smart contracts
+|   learningText // Text files to describe Freelance Society platform code, theory, and website features 
+|   |   code // Descriptions for the smart contracts code and website code
+|   |   theory // Descriptions for the Freelance Society related theory
+|   |   website // Descriptions for the features of each website page
+favicons // Browser favicons
+js // JavaScript files for dynamic website functions
+|   components // Custom HTML components used across web pages
+|   doubleHashTask // Double hash task web page scripts grouping
+|   ethicsRequirements // Ethics requirements web page scripts grouping
+|   hashTask // Hash task web page scripts grouping
+|   libs // Dependency scripts
+|   requirements // Requirements web page scripts grouping
+|   users // Users web page scripts grouping
+|   validatorTask // Validator task web page scripts grouping
+pages // HTML web pages
+|   doubleHashTask // Double hash task web pages grouping
+|   ethicsRequirements // Ethics requirements web pages grouping
+|   hashTask // Hash task web pages grouping
+|   learning // Freelance Society documentation
+|   |   code // Smart contract code and website frontend code documentation
+|   |   theory // Freelance Society incentives and ideology
+|   |   website // Website functionality documentation
+|   requirements // Requirements web pages grouping
+|   users // Users web pages grouping
+|   validatorTask // Validator task web pages grouping
+utils // Common utils functions used across the website
+|   commonFunctions.js // Abstraction of common functions
+|   constants.js // Source of common constants
+frontendServer.js // File to create a local node server
+global.css // Common CSS styling used across the website
+index.html // Basic entry point to the Freelance Society website
+package.json // Website dependencies
+README.txt // Website introduction document
+robots.txt // Website crawler instructions file
+sitemap.xml // Website structure
+
+Dependencies
+
+ethers.js // 6.13.1
+
+Used to bridge the smart contract interaction through the user wallet to the Ethereum blockchains.
+
+jszip.js // 3.10.1
+
+Used to zip files and folders.

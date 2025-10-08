@@ -1,0 +1,48 @@
+DoubleHashTask.sol
+
+Summary
+
+Managers can create double hash tasks that are solved by finding a hash key and the hash value preimage. Solving this task requires no validator. Once the hash value preimage is found and submitted, the user is queued for an indepenent second response timespan window to submit the confirmation hash key to protect front-running since the hash key will be revealed to the network at this point. Users can add double hash tasks, fund double hash tasks, submit solutions to double hash tasks, and confirm their solution to double hash tasks. If the deadline to a task has passed, then the manager and funders can withdraw their contributions to the double hash task once all second response timespan windows have passed. If the task key reveal flag is set to true, the manager must reveal the hash key to withdraw their funds.
+
+Variables
+
+tasksCount - uint64: The number of double hash tasks created in the contract.
+
+lastInteractionBlockIndex - uint64: Keeps track of the block index of the last interaction of any function in the contract. This allows for more efficient search through a sparse distribution of contract calls to the blockchain.
+
+tasks - mapping (uint => Task): All the double hash tasks in the contract.
+
+usersContract - Users: The dependent contract that contains all users.
+
+Structs
+
+Task
+    hashValue - bytes32: keccak256 hash of the keccak256 hash of the 32 bytes hash key.
+    taskHash - bytes32: keccak256 hash of the Task.zip to obtain the hash key.
+    managerAddress - address: Address of the manager that added and initially funded the double hash task.
+    contributorsWeiAmounts - mapping (address => uint): The amount of Wei funded to the double hash task by each user address.
+    contributionTotalWei - uint: The total amount of Wei funded to the double hash task.
+    deadline - uint64: The block timestamp when the double hash task will no longer accept new submissions.
+    taskComplete - bool: Whether the double hash task has been completed by a worker.
+    keyReveal - bool: Whether the manager must reveal the hash key to withdraw their funds on an incomplete double hash task.
+    secondResponseWindow - uint32: Timespan, in seconds, that the worker is allocated in order to submit their second response.
+    secondResponseDelay - uint16: Time, in seconds, that is delayed between the first response timestamp and the minimum start time of the second response timespan window.
+    responseCount - uint64: Total number of first responses of the double hash task.
+    nexSlotTime - uint64: Timestamp of the end of the second response timespan window of the current last second response.
+    responses - mapping(uint => TaskResponse): All the double hash task responses.
+
+TaskResponse
+    workerAddress - address: Address of the user that created the double hash task response.
+    responseWindowStart - uint64: Timestamp of the start of the second response window for the double hash task response.
+
+Functions
+
+addDoubleHashTask: Adds the double hash task to be openly completed by other users.
+
+fundDoubleHashTask: Adds funds to the potential solver of the double hash task.
+
+submitDoubleHashTask: If the keccak256 hash of the input hash value preimage matches the expected hash value, then the user is queued for an independent second response timespan window to confirm their solution.
+
+confirmDoubleHashTask: If the keccak256 hash of the keccak256 hash of the input hash key matches the expected hash value during their confirmation timespan window, then the task reward is transferred to the worker.
+
+withdrawDoubleHashTask: If the double hash task deadline has passed and all second response timespan windows have passed without the double hash task being solved, then the manager and funders can withdraw their funds. If the double hash task key reveal is set to true, then the manager must reveal the hash key to withdraw their funds.

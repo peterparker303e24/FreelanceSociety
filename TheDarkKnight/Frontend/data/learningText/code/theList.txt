@@ -1,0 +1,56 @@
+TheList.sol
+
+Summary
+
+This contract is the central location where task requirements and ethics requirements are created and modified. The ethics requirements data is stored on-chain since it is limited to only one version for the contract. New task requirements can always be added to The List. Both task requirements and ethics requirements can have proposed updates, and given enough votes, can replace older requirements. Updates to requirements are made at exponential intervals to maintain some persistence in versioning and to focus the options for updates.
+
+Variables
+
+ethicsRequirements - string[]: The current, unique set of ethics requirements for the contract.
+
+ethicsVersion - uint64: The version of ethics requirements where each iteration grows at a geometric rate by number of votes.
+
+ethicsProposalsCount - uint64: The total number of ethics requirements that have been proposed.
+
+requirementCount - uint64: The total number of task requirements that have been added.
+
+lastInteractionBlockIndex - uint64: Keeps track of the block index of the last interaction of any function in the contract. This allows for more efficient search through a sparse distribution of contract calls to the blockchain.
+
+ethicsUpdateProposals - mapping (uint64 => EthicsRequirementsUpdateProposal): All proposed ethics requirements
+
+requirements - mapping (uint => Requirement): All proposed task requirements.
+
+usersContract - Users: The dependent contract that contains all users.
+
+Structs
+
+Requirement
+    requirementHash - bytes32: keccak256 hash of the Requirement.zip file.
+    validatorAddress - address: Address of the validator that created the requirement proposal.
+    version - uint64: Version of the requirement. The requirement gets updated once a proposal for the requirement gets 2^n votes where n is the current version. The requirement is initialized with version 1.
+    proposalsCount - uint64: The total number of requirement proposals for this requirement.
+    mapping (uint64 => RequirementUpdateProposal) - bytes32: All requirement proposals for this requirement.
+
+RequirementUpdateProposal
+    proposalAddress - address: Address of the user that created the requirement proposal.
+    proposalHash - bytes32: keccak256 hash of the Requirement.zip proposal file.
+    didVote - mapping (address => bool): Whether a user has already voted for the requirement proposal.
+    votesFor - uint64: How many users voted for this requirement proposal.
+
+EthicsRequirementsUpdateProposal
+    ethicsRequirements - string[]: Array of independent requirements necessary for all data submissions.
+    ethicsProposalAddress - address: Address of the user that created the ethics requirements proposal.
+    didVote - mapping (address => bool): Whether a user has already voted for the ethics requirements proposal.
+    votesFor - uint64: How many users voted for this ethics requirements proposal.
+
+Functions
+
+updateEthicsRequirements: Proposes a new set of ethics requirements.
+
+voteEthicsRequirementsUpdate: A user votes for a set of ethics requirements if that user has not already voted for it before. If the next geometric vote threshold is reached, then the next ethics requirements version iteration is updated.
+
+addRequirement: Adds a new task requirement to The List.
+
+updateRequirement: Proposes a new task requirement update for an already existing requirement.
+
+voteRequirementUpdate: A user votes for a requirement update of an already existing requirement if that user has not already voted for it before. If the next geometric vote threshold is reached, then the next task requirement version iteration is also updated.

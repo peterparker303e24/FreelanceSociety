@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <base href="../../">
+    <link rel="icon" href="favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicons/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="favicons/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" href="favicons/android-chrome-512x512.png" sizes="512x512">
+    <link rel="apple-touch-icon" href="favicons/apple-touch-icon.png">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="css/viewSearchCommon.css">
+    <script src="js/applyDarkModePreference.js" type="module"></script>
+    <script src="js/users/user.js" type="module" defer></script>
+    <script src="js/components/headerSection.js" type="module"></script>
+</head>
+
+<body>
+    <div id="scroll-area">
+
+        <!-- Header section -->
+        <div id="header-container">
+            <header-section headerText="User"></header-section>
+        </div>
+
+        <!-- User data -->
+        <div id="user-data-section" class="small-padding">
+            <div id="user-address" class="left-align small-padding text-content-return">User Address:<br>-</div>
+            <div id="user-name" class="left-align small-padding">User Name: -</div>
+            <div id="user-links" class="left-align small-padding">User Links: -</div>
+            <div id="user-lockout-code" class="left-align small-padding">Lockout Code: -</div>
+            <div id="user-activation-status" class="left-align small-padding">Activation Status: -</div>
+        </div>
+
+        <!-- User defined data sourced from user link endpoint -->
+        <div id="user-defined-data-section" class="small-padding">
+            <div id="user-defined-data-header" class="left-align large-text small-padding">User Defined Data</div>
+            <div id="no-user-defined-data-found" class="left-align small-padding hide">Loading user defined data from
+                user link endpoints...</div>
+            <div id="minimum-commission" class="left-align small-padding text-content-return hide"></div>
+            <div id="ethics-requirements-standards" class="left-align small-padding text-content-return hide"></div>
+            <div id="worker-tasks" class="left-align small-padding text-content-return hide"></div>
+            <div id="manager-tasks" class="left-align small-padding text-content-return hide"></div>
+            <div id="validator-tasks" class="left-align small-padding text-content-return hide"></div>
+            <div id="validation-requirement-whitelist" class="left-align small-padding text-content-return hide"></div>
+            <div id="available-validation-time" class="left-align small-padding text-content-return hide"></div>
+            <div id="user-defined-data-error" class="left-align small-padding text-content-return hide"></div>
+        </div>
+
+        <!-- Show only user initiated events -->
+        <div id="show-only-user-events-section" class="row-left vertically-center-row">
+            <div id="checkbox" class="border-button checkbox large-text small-padding margin"></div>
+            <div id="show-only-user-events-text" class="medium-text parameters-input-size">Show only user initiated
+                contract calls
+            </div>
+        </div>
+
+        <!-- Search user interactions input -->
+        <div id="search-row">
+            <div id="search-button" class="border-button padding">
+                Search
+            </div>
+            <input id="search-input" type="text" class="input-line medium-text left-align full-width small-padding"
+                placeholder="contract, hash, or data">
+        </div>
+
+        <!-- User interaction results header and navigation -->
+        <div id="requirements-pages" class="row space-around">
+            <div id="previous-button" class="border-button padding">
+                Previous
+            </div>
+            <div id="search-header" class="large-text"></div>
+            <div id="next-button" class="border-button padding">
+                Next
+            </div>
+        </div>
+
+        <!-- User interactions search results column -->
+        <div id="user-interactions-rows-container"></div>
+
+        <!-- Footer space -->
+        <div id="footer-space"></div>
+
+        <template id="user-interaction-item-template">
+            <div class="row vertically-center-row bordered-box padding margin">
+
+                <!-- User interaction event contract origin, event data, and view button -->
+                <div id="contract-type" class="medium-text x-large-width padding">Contract: -</div>
+                <div id="event-data" class="flex-item left-align padding text-content-return"></div>
+                <div id="view-button" class="border-button redirectable padding hide">
+                    View Item
+                </div>
+            </div>
+        </template>
+    </div>
+</body>
+
+</html>

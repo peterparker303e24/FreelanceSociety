@@ -1,0 +1,49 @@
+#connect-wallet {
+    width: 256px;
+    height: 64px;
+    padding: 10px;
+}
+
+#create-profile-grid {
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 192px 1fr;
+    grid-template-rows: 64px 64px 64px;
+    gap: 16px;
+    padding: 16px;
+}
+
+#update-profile-grid {
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 64px 192px 1fr;
+    grid-template-rows: auto;
+    gap: 16px;
+    padding: 16px;
+}
+
+#delete-profile-grid {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 192px 1fr;
+    grid-template-rows: auto;
+    gap: 16px;
+    padding: 16px;
+}
+
+.edit-button {
+    padding: 8px;
+}
+
+#profile-scroll-area {
+    overflow: scroll;
+}
+
+.left-align {
+    text-align: left;
+}
+
+.right-align {
+    text-align: right;
+}

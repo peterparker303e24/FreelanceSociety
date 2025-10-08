@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Ethics Requirements Proposal</title>
+    <base href="../../">
+    <link rel="icon" href="favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicons/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="favicons/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" href="favicons/android-chrome-512x512.png" sizes="512x512">
+    <link rel="apple-touch-icon" href="favicons/apple-touch-icon.png">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="css/addCommon.css">
+    <script src="js/applyDarkModePreference.js" type="module"></script>
+    <script src="js/ethicsRequirements/addEthicsRequirementsProposal.js" type="module" defer></script>
+    <script src="js/components/headerSection.js" type="module"></script>
+</head>
+
+<body>
+    <div id="scroll-area">
+
+        <!-- Header section -->
+        <div id="header-container">
+            <header-section headerText="Add Ethics Requirements Proposal"></header-section>
+        </div>
+
+        <!-- Ethics requirements data -->
+        <div class="row space-around padding">
+            <div id="ethics-requirements-versions">
+                Ethics Requirements Version: -
+            </div>
+            <div id="ethics-requirements-proposals">
+                Ethics Requirements Proposals: -
+            </div>
+        </div>
+
+        <!-- Payable add ethics requirements button and error display -->
+        <div class="row padding">
+            <div id="add-button" class="inactive-payable-button medium-text padding">
+                Add Ethics Requirements
+            </div>
+        </div>
+        <div id="error" class="row padding hide"></div>
+
+        <!-- Ethics requirements write in section -->
+        <div class="row padding">
+            <div>Write requirement here:</div>
+        </div>
+        <div id="write-error" class="margin">(!) Invalid input</div>
+        <textarea id="write-condition"></textarea>
+        <!-- Footer space -->
+        <div id="footer-space"></div>
+    </div>
+</body>
+
+</html>

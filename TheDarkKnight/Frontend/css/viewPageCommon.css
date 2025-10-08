@@ -1,0 +1,68 @@
+#scroll-area {
+    overflow: scroll;
+}
+
+#columns-container {
+    display: grid;
+    grid-template-columns: 1fr 256px;
+}
+
+#skip-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.file-tree {
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+    width: 224px;
+    height: 512px;
+    resize: none;
+}
+
+.spaced-row {
+    justify-content: space-around;
+}
+
+.padding {
+    padding: 16px;
+}
+
+.margin {
+    margin: 16px;
+}
+
+.left-align {
+    text-align: left;
+}
+
+.right-align {
+    text-align: right;
+}
+
+#search-text {
+    text-wrap: nowrap;
+}
+
+#vote-for-button {
+    width: 256px;
+    height: 32px;
+}
+
+.square {
+    width: 16px;
+    height: 16px;
+}
+
+.border {
+    border: 2px solid var(--foreground-color);
+}
+
+.two-column-rows {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 256px 1fr;
+    gap: 16px;
+    padding: 16px;
+}

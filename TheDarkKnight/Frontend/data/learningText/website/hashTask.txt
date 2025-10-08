@@ -1,0 +1,73 @@
+Double Hash Task
+
+General
+- The "Hash Task ID" is the unique identifier for the hash task.
+- The "Hash Value" is the keccak256 hash of the 32 byte key value. The key value is what is obtained by the worker as the completion of the task.
+- The "Hash Key Input" is the 32 byte data that when hashed with keccak256 results in the hash value. A user that obtains this secret task key is able to complete the task when the appropriate corresponding nonce is found.
+- The "Task Hash" is the keccak256 hash of the zip file that task manager should host. The data should be hosted by the manager at the endpoint "<BasePath>/Tasks/DoubleHashTasks/<TaskHash>/Task.zip". The <BasePath> must be present in the manager's comma separated list of links in the Users contract. The <TaskHash> should not be prefixed with "0x".
+- The "Manager Address" is the address of the user that created the hash task.
+- The "Reward" the reward value, in Wei, the worker gets for completing the task by successfully being the first worker to submit the key value before the task deadline.
+- The "Deadline" is time, in UTC, when the task no longer accepts submissions. This time is checked in the contract code in reference to the block timestamp where a transaction is made. Users can no longer fund the task past the deadline time. Users who fund a task must wait until the deadline has passed to be able to withdraw their funds from the task, and only when the task has not been completed.
+- The "Difficulty" is a number between 0 and 255. If the difficulty is 0, then any nonce value is acceptable in the hash task submission. If the difficulty value is greater, then the submission hash value concatenated with the user address when hashed with keccak256 should have a binary value with the number of preceding zeros that is at least as many as the difficulty value. The nonce is necessary to resist automated programs from front running transactions when the hash key is revealed to the network through the transaction.
+- The "Difficulty Value" is the value that the calculated difficulty value needs to be less than in order for the submission to be accepted. The smaller the expected difficulty value, the more difficult it will be to find a nonce. This value is set by the task manager in the hash task parameters. The nonce is necessary to resist automated programs from front running transactions when the hash key is revealed to the network through the transaction.
+- The "Completed" tells whether the hash task has been completed by a user.
+- The "Key Reveal" tells whether the manager of the task must reveal the 32 bytes key in order to withdraw their funds of the task. This allows workers to know that the manager is incentivized to reveal the solution of the task so they know whether or not the task would be able to be reasonably completable.
+
+Add Hash Task
+- Input "Hash Value" with the keccak256 hash of your 32 byte key value. The key value is what is obtained by the worker as the completion of the task.
+- Input "Task Hash" with the keccak256 hash of the zip file that you host. You need to host the data at the endpoint "<BasePath>/Tasks/DoubleHashTasks/<TaskHash>/Task.zip". Your <BasePath> must be present in your comma separated list of links in the Users contract. The <TaskHash> should not be prefixed with "0x".
+- Input "Seconds Until Deadline" with the number of seconds until the task expires. Workers cannot submit attempts past this point. You can withdraw your initial funds after this deadline, but it also must be after all second response windows have passed.
+- Input "Key Reveal" to "ON" to require you, the manager, to reveal the 32 byte key value in order to withdraw funds after the task and second response windows have expired. This allows workers to know that the solution of the task will eventually be revealed by incentive.
+- Input "Difficulty" with the exponential difficulty in finding the nonce value when submitting the key value. 0 indicates that any nonce is acceptable, 1 indicates that the resulting hash binary should be preceded by a single 0, 2 indicates that the resulting hash binary should be preceded by a two 0s, and so on. A basic python program that can calculate the nonce value is available in the project.
+- Input "Reward" with the reward value, in Wei, the worker gets for completing the task by successfully being the first worker to submit the key value before the task deadline.
+- Check the ethics requirements checkbox to indicate that you, the manager, uphold the ethics requirements in the contract with the data you are hosting and the incentives you are implying.
+- Click the "Add Hash Task" button to submit the task creation to the blockchain with your inputted data.
+- The file tree text shows how the task folder and its contents should be formatted.
+
+View Hash Task
+- The "Task ID" is the unique identifier for the hash task.
+- The "Hash Value" is the keccak256 hash of the 32 byte key value. The key value is what is obtained by the worker as the completion of the task.
+- The "Task Hash" is the keccak256 hash of the zip file that you host. The data should be hosted by the manager at the endpoint "<BasePath>/Tasks/DoubleHashTasks/<TaskHash>/Task.zip". The <BasePath> must be present in the manager's comma separated list of links in the Users contract. The <TaskHash> should not be prefixed with "0x".
+- The "Manager Address" is the address of the user that created the hash task.
+- The "Reward" the reward value, in Wei, the worker gets for completing the task by successfully being the first worker to submit the key value before the task deadline.
+- The "Deadline" is time, in UTC, when the task no longer accepts submissions. This time is checked in the contract code in reference to the block timestamp where a transaction is made. Users can no longer fund the task past the deadline time. Users who fund a task must wait until the deadline has passed to be able to withdraw their funds from the task, and only when the task has not been completed.
+- The "Difficulty" is a number between 0 and 255. If the difficulty is 0, then any nonce value is acceptable in the hash task submission. If the difficulty value is greater, then the submission hash value concatenated with the user address when hashed with keccak256 should have a binary value with the number of preceding zeros that is at least as many as the difficulty value.
+- The "Completed" tells whether the hash task has been completed by a user.
+- The "Key Reveal" tells whether the manager of the task must reveal the 32 bytes key in order to withdraw their funds of the task. This allows workers to know that the manager is incentivized to reveal the solution of the task so they know whether or not the task would be able to be reasonably completable.
+- Input "Fund Task Amount" is the amount, in Wei, that the user will be funding to the task.
+- Input "Manager Key Reveal" is the field that displays to the manager of the task if the key reveal for the task is true. This input when taken the keccak256 must result in the task hash value for the manager to be able to withdraw their funds for the task.
+- Click "Fund Task" to submit a transaction to the blockchain that will fund the current hash task with the amount in the "Fund Task Amount" field.
+- Click "Withdraw Task Funds" for the user to withdraw all their funds to the task. The user can only withdraw the funds if the task deadline has passed. If the key reveal value for the task is true, then the manager must reveal the key to the task to be able to withdraw their funds to the task.
+- Click "Auto Discover Task" to automatically search for a task sequentially through users and their corresponding links in order of their user activation time. Click "Skip Address" to view the links from another user, and click "Skip Link" to view other links from the same user.
+- Click "Manually Discover Task" to search for the task through a specific user by their address.
+- View the "Task Requirements" of the list of requirements that must be met in order to complete the hash task. The requirement ID, condition, and other data are described in each requirement section. The file tree of the task can be seen to the right. Click the toggle to open/close the task description.
+- Click "Save Locally" to download the task ZIP locally to your computer if the task data has been discovered.
+- Click "Upload Locally" to upload the task data to view.
+- Click "Submit Task" to redirect to the hash task submission page.
+- Click "View Hash Tasks" to redirect to the task search page, with the hash task search parameter input.
+- Click "Add Hash Task" to redirect to the add hash task page.
+- View the task file tree when the hash task has been discovered.
+
+Submit Hash Task
+- The "Hash Task ID" is the unique identifier for the hash task.
+- Input "Hash Key Input" is the 32 byte data that when hashed with keccak256 results in the hash value. A user that obtains this secret task key is able to complete the task when the appropriate corresponding nonce is found.
+- The "Hash Result" is the keccak256 hash of the user hash key input. This must be equal to the expected hash value in order for the submission to be accepted.
+- The "Expected Hash Value" is the keccak256 hash of the 32 byte key value. The key value is what is obtained by the worker as the completion of the task.
+- Input "Nonce" is the variable value that changes the resulting difficulty value which is dependent on the hash key input, user address, and nonce value. The resulting difficulty value needs to be less than the expected difficulty value in order for the submission to be accepted. The smaller the expected difficulty value, the more difficult it will be to find a nonce. The nonce is necessary to resist automated programs from front running transactions when the hash key is revealed to the network through the transaction.
+- The "Address" is the address of the current user.
+- The "Difficulty Value" is a random 32 byte hex data seeded by a calculation of user and task data. It is calculated as the keccak256 hash of the concatenation of the hash key and user address, which is then concatenated with the nonce value and hashed again with keccak256.
+- The "Expected Difficulty Value" is the value that the calculated difficulty value needs to be less than in order for the submission to be accepted. The smaller the expected difficulty value, the more difficult it will be to find a nonce. This value is set by the task manager in the hash task parameters.
+- The "Task Already Complete" displays whether the task has already been completed.
+- The "Task Deadline" is the time, in UTC, for which submissions will no longer be accepted for the task.
+- The "Task Reward" is the reward, in Wei, that the worker that completes the task will receive when the task has been completed before the deadline. The time for this data is determined by the timestamp of the block timestamp that the transaction is put in.
+- Click "Submit Hash Task" to complete the task and receive the task reward if the hash key is correct, the nonce results in an acceptable difficulty value, the task is not already complete, and the deadline has not yet passed.
+
+View Tasks
+- Click the dropdown triangle to see the hash task, double hash task, and validator task rows. Each row has a button to redirect to the respective page to add the task and a count for the number of each tasks.
+- The "Total Tasks Count" shows the total number of tasks for hash tasks, double hash tasks, and validator tasks combined.
+- Toggle the "Hide completed and past tasks" checkbox to change the search functionality and refresh the search. When this box is checked, then tasks that have the "Task Complete" field marked as "TRUE" will not be shown in the search. Also tasks that have a deadline that has passed will not be shown in the search.
+- Click "Search" to search using the data in the search bar input. If the search bar input is empty, then the recent data will be searched. Search by a task type with its short name, "h" for hash task, "dh" for double hash task, and "v" for validator task. Each task type can also have a specified task index that is formatted with the task short name on the left separated by a dash "-" with the index on the right (for example, "h-4", "dh-2", v-"0"). Search by task hash or manager address by inputting hex data.
+- Click "Previous" to go to the previous search page.
+- Click "Next" to go to the next search page.
+- The list of tasks is sorted by most recent tasks first. And there are at most 10 items on a search page.
+- The task hash the task ID and task data in the left column and a button to redirect to the task page in the right column. The task ID is the task short name on the left with a dash "-" separating the task index on the right. The short names are "h" for hash task, "dh" for double hash task, and "v" for validator task. The "Hash" is the keccak256 hash of the task ZIP file. The "Manager Address" is the address of the user that created the task. The "Reward" is the amount, in Wei, the worker that completes the task will receive upon completing the task. The "Deadline" is the time, in UTC, until the task will no longer accept new submissions, and will no longer accept new task funding. The "Task Complete" is whether the task has been marked as complete by a contract transaction on the blockchain, and if this value is "FALSE" it does not necessarily mean it is able to be completed because, for example, the task defaulting could make the task complete but it will not appear to be "TRUE".

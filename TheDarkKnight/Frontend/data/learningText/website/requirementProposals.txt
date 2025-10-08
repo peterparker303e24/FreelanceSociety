@@ -1,0 +1,51 @@
+Requirement Proposals
+
+General
+- The "Requirements Count" is the total number of requirements created on The List.
+- The "Requirement Versions" is the version of the currently selected requirement index. Once the number of votes for some requirement proposal equals a power of two, then that requirement proposal becomes the next iteration in the versions.
+- The "Requirement Proposals" is the number of requirement proposals for the currently selected requirement index.
+- Input requirement JSON with a simple requirement proposal. The JSON should be an object with keys "condition" and "labeledVariables". The condition is an array of strings where each string alternates between part of a description and a "labeledVariable"/"intermediateVariable" name. The "labeledVariable" is an array of strings that represent parameters of the requirement that will have input in the requirement specifications in the task. The "intermediateVariables" is an array of strings that represent data that help describe instructions in the requirement. Optionally input the key "exampleTask" with an object of key value pairs where the keys are the "labeledVariables" and the values are the task input values for the example task requirement specification. Optionally input the key "exampleAnswer" with a string of a solution to the example requirement "exampleTask".
+- The requirement proposal file should be uploaded to the user hosted endpoint in one of the user links. It should be hosted at "<userLink>/TheList/<requirementHash>/Requirement.zip", where the "userLink" is a link in the user comma separated links list and the "requirementHash" is the keccak256 hash of the ZIP file without the "0x" prefix.
+- The "Requirement Proposal ID" is the unique requirement proposal ID with the requirement index on the left with an underscore "_" separating the proposal index on the right.
+- The "Proposal Hash" is the keccak256 hash of the requirement proposal ZIP file.
+- The "Proposal Manager Address" is the address of the user that created the requirement proposal.
+- The "Proposal Votes For" is the number of users that have voted in favor of the requirement proposal.
+
+Add Requirement Proposal
+- The "Requirements Count" is the total number of requirements created on The List.
+- Input "Requirement Index" is a number from 0 to the requirements number - 1 for the requirement index to update.
+- The "Requirement Index" is the requirement index for the currently selected requirement proposal update.
+- The "Requirement Versions" is the version of the currently selected requirement index. Once the number of votes for some requirement proposal equals a power of two, then that requirement proposal becomes the next iteration in the versions.
+- The "Requirement Proposals" is the number of requirement proposals for the currently selected requirement index.
+- Click "Add Requirement Proposal" to send the requirement proposal update transaction to the blockchain. This can only be selected when the requirement ZIP file has been uploaded and the data is hosted at an endpoint hosted by the user in their links with the matching keccak256 hash value of the file.
+- Click the "Upload Zip File" button to upload the requirement proposal zip file from your computer. After uploading the file, the name of the file and the keccak256 hash of the file will be listed below. This file should also be under a directory hosted by the user, which can be found and updated in the user profile page. The file should be in the directory "<BasePath>/TheList/<RequirementHash>/Requirement.zip". Your <BasePath> must be present in your comma separated list of links found in the profile page. The <RequirementHash> should not be prefixed with "0x".
+- Input requirement JSON with a simple requirement proposal. The JSON should be an object with keys "condition" and "labeledVariables". The "condition" is an array of strings where each string alternates between part of a description and a "labeledVariable"/"intermediateVariable" name. The "labeledVariable" is an array of strings that represent parameters of the requirement that will have input in the requirement specifications in the task. The "intermediateVariables" is an array of strings that represent data that help describe instructions in the requirement. Optionally input the key "exampleTask" with an object of key value pairs where the keys are the "labeledVariables" and the values are the task input values for the example task requirement specification. Optionally input the key "exampleAnswer" with a string of a solution to the example requirement "exampleTask".
+- Click "Download Requirement" to download the requirement proposal provided in the JSON text area input as a ZIP file. This file should be uploaded to the user hosted endpoint in one of the user links. It should be hosted at "<userLink>/TheList/<requirementHash>/Requirement.zip", where the "userLink" is a link in the user comma separated links list and the "requirementHash" is the keccak256 hash of the ZIP file without the "0x" prefix.
+
+View Requirement Proposal
+- The "Requirement Proposal ID" is the unique requirement proposal ID with the requirement index on the left with an underscore "_" separating the proposal index on the right.
+- The "Proposal Hash" is the keccak256 hash of the requirement proposal ZIP file.
+- The "Proposal Manager Address" is the address of the user that created the requirement proposal.
+- The "Proposal Votes For" is the number of users that have voted in favor of the requirement proposal.
+- Click "Vote For Proposal" to submit a vote transaction for the current requirement proposal to the blockchain. A user can vote at most one time for a requirement proposal, but they can vote for multiple requirement proposals even for the same requirement index.
+- Click "Auto Discover Requirement Proposal" to automatically search for the requirement proposal sequentially through users and their corresponding links in order of their user activation time. Click "Skip Address" to view the links from another user, and click "Skip Link" to view other links from the same user.
+- Click "Manually Discover Requirement Proposal" to search for the requirement proposal through a specific user by their address.
+- View the requirement proposal data which can include requirement condition, labelled variables, intermediate variables, example specifications, and example answer sections. The file tree of the task can be seen to the right.
+- Click "Save Locally" to download the requirement proposal ZIP locally to your computer if the proposal data has been discovered.
+- Click "Upload Locally" to upload the requirement proposal data to view.
+- Click "View Proposals" to redirect to the view requirement proposals page, with the current requirement index search parameter input.
+- Click "View Versions" to redirect to the view requirements page, with the current requirement index search parameter input.
+- Click "Add Requirement Proposal" to redirect to the add requirement proposal page.
+- View the task file tree when the requirement proposal has been discovered.
+
+View Requirement Proposals
+- Click "Add Proposal" to redirect to the add requirement proposal page.
+- The "Requirements Count" is the total number of requirements created on The List.
+- The "Requirement Index" is the requirement index for the currently selected requirement proposal update.
+- The "Requirement Versions" is the version of the currently selected requirement index. Once the number of votes for some requirement proposal equals a power of two, then that requirement proposal becomes the next iteration in the versions.
+- The "Requirement Proposals" is the number of requirement proposals for the currently selected requirement index.
+- Click "Search" to search using the data in the search bar input. If the search bar input is empty, then the recent data will be searched. Search for requirement proposals through a validator address, search for a requirement proposal by its requirement ID formatted with an underscore "_" separating the requirement index on the left from the proposal index on the right, or search for requirement proposals by hash value through hex data.
+- Click "Previous" to go to the previous search page.
+- Click "Next" to go to the next search page.
+- The list of requirement proposals is sorted by most recent proposals first. And there are at most 10 items on a search page.
+- The requirement proposal has the requirement proposal ID in the left column, the requirement proposal data in the center column, and a button to redirect to the requirement proposal page. The "Hash" is the keccak256 hash of the requirement proposal ZIP file data. The "Validator" is the address of the user that created the requirement proposal. The "Votes For" is the number of users that have voted for the requirement proposal.

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hash Task</title>
+    <base href="../../">
+    <link rel="icon" href="favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicons/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="favicons/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" href="favicons/android-chrome-512x512.png" sizes="512x512">
+    <link rel="apple-touch-icon" href="favicons/apple-touch-icon.png">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="css/viewPageCommon.css">
+    <script src="js/applyDarkModePreference.js" type="module"></script>
+    <script src="js/hashTask/hashTask.js" type="module" defer></script>
+    <script src="js/components/headerSection.js" type="module"></script>
+</head>
+
+<body>
+    <div id="scroll-area">
+
+        <!-- Header section -->
+        <div id="header-container">
+            <header-section headerText="Hash Task"></header-section>
+        </div>
+
+        <div id="columns-container">
+
+            <!-- Left column area -->
+            <div id="left-column">
+
+                <!-- Task data -->
+                <div id="task-id" class="left-align padding">Task ID: h-X</div>
+                <div id="hash-value" class="left-align padding text-content-return">Hash Value:<br>-</div>
+                <div id="task-hash" class="left-align padding text-content-return">Task Hash:<br>-</div>
+                <div id="manager-address" class="left-align padding text-content-return">Manager Address:<br>-</div>
+                <div id="reward" class="left-align padding">Reward (Wei): -</div>
+                <div id="deadline" class="left-align padding">Deadline (UTC): -</div>
+                <div id="difficulty" class="left-align padding">Difficulty: -</div>
+                <div id="completed" class="left-align padding">Completed: -</div>
+                <div id="key-reveal" class="left-align padding">Key Reveal: -</div>
+
+                <!-- Fund task section -->
+                <div class="row vertically-center-row margin">
+                    <div class="left-align label-space-right">Fund Task Amount (Wei): </div>
+                    <input type="text" id="fund-input" class="input-line medium-text xx-large-width left"
+                        placeholder="10 000 000 000 000 000">
+                </div>
+                <div id="manager-key-reveal-section" class="row vertically-center-row hide">
+                    <div class="left-align label-space-right">Manager Key Reveal: </div>
+                    <input type="text" id="key-reveal-input" class="input-line medium-text hash-input-width left"
+                        placeholder="0x1234567812345678123456781234567812345678123456781234567812345678">
+                </div>
+                <div class="row spaced-row medium-padding">
+                    <div id="fund-button" class="inactive-payable-button xx-large-width medium-padding">Fund Task</div>
+                    <div id="withdraw-funds-button" class="inactive-payable-button xx-large-width medium-padding">
+                        Withdraw Task
+                        Funds</div>
+                </div>
+                <div class="row">
+                    <div id="fund-error"></div>
+                </div>
+
+                <div id="discover-section">
+
+                    <!-- Discover type section -->
+                    <div id="discover-row" class="row spaced-row padding">
+                        <div id="auto-discover-button" class="border-button xx-large-width medium-padding">Auto Discover
+                            Task</div>
+                        <div id="manual-discover-button" class="border-button xx-large-width medium-padding">Manually
+                            Discover Task
+                        </div>
+                    </div>
+
+                    <!-- Manual discover section -->
+                    <div id="manual-section" class="hide">
+                        <div class="row vertically-center-row">
+
+                            <!-- User search input section -->
+                            <div id="search-text" class="medium-text padding">Download From User: </div>
+                            <input id="user-search-box" type="text"
+                                class="input-line address-input-width medium-text left-align margin"
+                                placeholder="Search User Address">
+                        </div>
+                        <div id="manual-search-error"></div>
+                    </div>
+
+                    <!-- Auto discover section -->
+                    <div id="auto-section" class="hide">
+
+                        <!-- Try download from user link button -->
+                        <div id="try-download-button" class="border-button padding margin wrap-text">Try Download From:
+                            -
+                        </div>
+                        <div id="auto-download-error"></div>
+
+                        <!-- Skip user/link buttons -->
+                        <div id="skip-section" class="row">
+                            <div id="skip-address-button" class="inactive-border-button padding margin">Skip Address
+                            </div>
+                            <div id="skip-link-button" class="inactive-border-button padding margin">Skip Link</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Task -->
+                <div id="task-json" class="left-align margin">No Task Data - Discover Task Or
+                    Upload Locally</div>
+
+                <!-- Task requirements -->
+                <div id="task-requirements-container"></div>
+            </div>
+
+            <!-- Right column area -->
+            <div id="right-column">
+
+                <!-- Save and upload task buttons -->
+                <div id="save-locally-button" class="inactive-border-button padding margin">Save locally</div>
+                <a id="download-task-anchor"></a>
+                <div id="save-locally-error"></div>
+                <div id="upload-locally-button" class="border-button padding margin">Upload locally</div>
+                <input type="file" id="file-input" accept=".zip" class="hide" />
+                <div id="upload-locally-error"></div>
+
+                <!-- Redirect buttons -->
+                <div id="submit-task-button" class="border-button redirectable padding margin">Submit Task</div>
+                <div id="view-hash-tasks-button" class="border-button redirectable padding margin">View Hash Tasks</div>
+                <div id="add-hash-task-button" class="border-button redirectable padding margin">Add Hash Task</div>
+
+                <!-- Task zip file tree -->
+                <textarea disabled id="task-file-tree"
+                    class="file-tree">No Task Data - Discover Task Or Upload Locally</textarea>
+            </div>
+
+            <!-- Footer space -->
+            <div id="footer-space"></div>
+        </div>
+    </div>
+</body>
+
+</html>

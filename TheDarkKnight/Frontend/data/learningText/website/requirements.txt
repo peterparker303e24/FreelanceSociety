@@ -1,0 +1,36 @@
+Requirement
+
+General
+- Input requirement JSON with a simple requirement. The JSON should be an object with keys "condition" and "labeledVariables". The condition is an array of strings where each string alternates between part of a description and a "labeledVariable"/"intermediateVariable" name. The "labeledVariable" is an array of strings that represent parameters of the requirement that will have input in the requirement specifications in the task. The "intermediateVariables" is an array of strings that represent data that help describe instructions in the requirement. Optionally input the key "exampleTask" with an object of key value pairs where the keys are the "labeledVariables" and the values are the task input values for the example task requirement specification. Optionally input the key "exampleAnswer" with a string of a solution to the example requirement "exampleTask".
+- The "Requirement ID" is the unique requirement and version ID with the requirement index on the left with a dash "-" separating the version on the right.
+- The "Requirement Hash" is the keccak256 hash of the requirement ZIP file.
+- The "Requirement Manager Address" is the address of the user that created the requirement version.
+
+Add Requirement
+- Click the "Add Requirement" button to submit the requirement creation to the blockchain with the uploaded data hash.
+- Click the "Upload Zip File" button to upload the requirement zip file from your computer. After uploading the file, the name of the file and the keccak256 hash of the file will be listed below. This file should also be under a directory hosted by the user, which can be found and updated in the user profile page. The file should be in the directory "<BasePath>/TheList/<RequirementHash>/Requirement.zip". Your <BasePath> must be present in your comma separated list of links found in the profile page. The <RequirementHash> should not be prefixed with "0x".
+- Input requirement JSON with a simple requirement. The JSON should be an object with keys "condition" and "labeledVariables". The "condition" is an array of strings where each string alternates between part of a description and a "labeledVariable"/"intermediateVariable" name. The "labeledVariable" is an array of strings that represent parameters of the requirement that will have input in the requirement specifications in the task. The "intermediateVariables" is an array of strings that represent data that help describe instructions in the requirement. Optionally input the key "exampleTask" with an object of key value pairs where the keys are the "labeledVariables" and the values are the task input values for the example task requirement specification. Optionally input the key "exampleAnswer" with a string of a solution to the example requirement "exampleTask".
+- Click the "Download Requirement" button to download the requirement in the text area to your computer. This is the ZIP file that you should host at "<BasePath>/TheList/<RequirementHash>/Requirement.zip".
+
+View Requirement
+- The "Requirement ID" is the unique requirement and version ID with the requirement index on the left with a dash "-" separating the version on the right.
+- The "Requirement Hash" is the keccak256 hash of the requirement ZIP file.
+- The "Requirement Manager Address" is the address of the user that created the requirement version.
+- Click "Auto Discover Requirement" to automatically search for the requirement sequentially through users and their corresponding links in order of their user activation time. Click "Skip Address" to view the links from another user, and click "Skip Link" to view other links from the same user.
+- Click "Manually Discover Requirement" to search for the requirement proposal through a specific user by their address.
+- View the requirement proposal data which can include requirement condition, labelled variables, intermediate variables, example specifications, and example answer sections. The file tree of the task can be seen to the right.
+- Click "Save Locally" to download the requirement ZIP locally to your computer if the proposal data has been discovered.
+- Click "Upload Locally" to upload the requirement data to view.
+- Click "View Proposals" to redirect to the view requirement proposals page, with the current requirement index search parameter input.
+- Click "View Versions" to redirect to the view requirements page, with the current requirement index search parameter input.
+- Click "Add Requirement Proposal" to redirect to the add requirement proposal page.
+- View the task file tree when the requirement proposal has been discovered.
+
+View Requirements
+- Click "Add Requirement" to redirect to the add requirement page.
+- The "Requirements Count" is the total number of requirements created on The List.
+- Click "Search" to search using the data in the search bar input. If the search bar input is empty, then the recent data will be searched. Search for requirements through a validator address, search for a requirement by its requirement ID formatted with a dash "-" separating the requirement index on the left from the version on the right, or search for requirements by hash value through hex data.
+- Click "Previous" to go to the previous search page.
+- Click "Next" to go to the next search page.
+- The List of requirements is sorted by most recent proposals first. And there are at most 10 items on a search page.
+- The requirement has the requirement ID in the left column, the requirement data in the center column, and a button to redirect to the requirement page. The "Hash" is the keccak256 hash of the requirement ZIP file data. The "Manager" is the address of the user that created the requirement version.

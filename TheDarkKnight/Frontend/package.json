@@ -1,0 +1,28 @@
+{
+  "name": "freelance-society",
+  "version": "1.0.0",
+  "author": "Peter Parker",
+  "description": "TheDarkKnight",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build-dependencies": "npm install && node buildDependencies.js",
+    "bd": "npm install && node buildDependencies.js",
+    "build-dependencies-cached": "node buildDependencies.js",
+    "bdc": "node buildDependencies.js",
+    "start": "node frontendServer.js",
+    "s": "node frontendServer.js",
+    "start-local": "node frontendServer.js --local-blockchain",
+    "sl": "node frontendServer.js --local-blockchain"
+  },
+  "dependencies": {
+    "ethers": "6.13.1",
+    "jszip": "3.10.1"
+  },
+  "devDependencies": {
+    "cookie-parser": "1.4.7",
+    "express": "5.1.0",
+    "webpack": "5.102.0",
+    "webpack-cli": "6.0.1"
+  }
+}

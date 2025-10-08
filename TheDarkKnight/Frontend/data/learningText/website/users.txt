@@ -1,0 +1,38 @@
+Users
+
+General
+- The "User Address" is the address of the user.
+- The "User Name" is data presented by the user such as a (not necessarily unique) name.
+- The "User Links" is the comma separated list of links to the user and user data.
+- The "Lockout Code" is the 32 byte lockout code of the user to deactivate the address.
+- The "Activation Status" is the activation status of the user address which is "Unactivated", "Activated", or "Deactivated".
+
+View User
+- The "User Address" is the address of the user.
+- The "User Name" is data presented by the user such as a (not necessarily unique) name.
+- The "User Links" is the comma separated list of links to the user and user data.
+- The "Lockout Code" is the 32 byte lockout code of the user to deactivate the address.
+- The "Activation Status" is the activation status of the user address which is "Unactivated", "Activated", or "Deactivated".
+- The "User Defined Data" contains data presented by the user at their hosted endpoint of one of their user links. This data is not recorded on the blockchain and are subject to change.
+    - The "Minimum Commission" is the minimum commission value the user is willing to accept to validate a task.
+    - The "Ethics Requirements Standards" are the ethics requirements that the user is willing to work, manage, or validate for a task.
+    - The "Worker Tasks" are the list of tasks that the user claims to have completed as a worker.
+    - The "Manager Tasks" are the list of tasks that the user claims to have created as a manager.
+    - The "Validator Tasks" are the list of tasks that the user claims to have validated as a validator.
+    - The "Validation Requirements Whitelist" are the requirements that the user is willing to validate. A null data type of this field means that the user is willing to validate for any requirement.
+    - The "Available Validation Time" are the time constraints that the user is willing to validate.
+- Toggle "Show only user initiated contract calls" to set whether or not to hide contract events that include the user address, but are not called by the user.
+- Click "Search" to search using the data in the search bar input. If the search bar input is empty, then the recent user interactions will be searched. Filter the search by user address, hex data, string data, parameter names, or parameter values. Use "OverrideCurrentUserFilter" as the first keyword to search user interactions for all users.
+- Click "Previous" to go to the previous search page.
+- Click "Next" to go to the next search page.
+- The list of user interactions is sorted by most recent interactions first. And there are at most 10 items on a search page.
+- The user interaction item has the contract name in the left column, the user interaction data in the center column, and possibly a button to redirect to the corresponding item on the right column. The "Contract Initiator Address" is the address of the user that initiated the contract call that emitted the event. The "Block Index" is the block index of the contract call and event. The "Block Timestamp" is the block timestamp time, in UTC, of the contract call and event. The event name is shown with the event parameter names and corresponding values.
+
+
+View Users
+- Click "Activate User" to redirect to the profile page.
+- Click "Search" to search using the data in the search bar input. If the search bar input is empty, then the recently activated users will be searched. Search for a user by address, search for users by hex or string data for user address, user name, user data, user links, or lockout code.
+- Click "Previous" to go to the previous search page.
+- Click "Next" to go to the next search page.
+- The list of users is sorted by most recent activated users first. And there are at most 10 items on a search page.
+- The user item has the user data in the left column and a button to redirect to the user page in the right column. The "User Address" is the address of the user, the "Links" is the comma separated list of links to the user and user data, the "User Data" is data presented by the user such as a (not necessarily unique) name, the "Activation Status" tells the activation status of the user address, and the "Lockout Code" tells the 32 byte lockout code of the user to deactivate the address.
