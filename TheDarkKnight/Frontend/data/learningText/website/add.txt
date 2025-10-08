@@ -1,0 +1,66 @@
+Add Page
+
+General
+- Check the ethics requirements checkbox to indicate that you, the manager, uphold the ethics requirements in the contract with the data you are hosting and the incentives you are implying.
+- Click the "Upload Zip File" button to upload the task zip file from your computer. After uploading the file, the name of the file and the keccak256 hash of the file will be listed below. The task hash will also be updated in the task input section. This file should also be under a directory hosted by the user, which can be found and updated in the user profile page. The file should be in the directory "<BasePath>/Tasks/<TaskType>/<TaskHash>/Task.zip". Your <BasePath> must be present in your comma separated list of links found in the profile page. <TaskType> is the type of task being uploaded such as "HashTasks", "DoubleHashTasks", or "ValidatorTasks". The <TaskHash> should not be prefixed with "0x".
+- The file tree text shows how the task folder and its contents should be formatted.
+
+Add Hash Task
+- Input "Hash Value" with the keccak256 hash of your 32 byte key value. The key value is what is obtained by the worker as the completion of the task.
+- Input "Task Hash" with the keccak256 hash of the zip file that you host. You need to host the data at the endpoint "<BasePath>/Tasks/DoubleHashTasks/<TaskHash>/Task.zip". Your <BasePath> must be present in your comma separated list of links in the Users contract. The <TaskHash> should not be prefixed with "0x".
+- Input "Seconds Until Deadline" with the number of seconds until the task expires. Workers cannot submit attempts past this point. You can withdraw your initial funds after this deadline, but it also must be after all second response windows have passed.
+- Input "Key Reveal" to "ON" to require you, the manager, to reveal the 32 byte key value in order to withdraw funds after the task and second response windows have expired. This allows workers to know that the solution of the task will eventually be revealed by incentive.
+- Input "Difficulty" with the exponential difficulty in finding the nonce value when submitting the key value. 0 indicates that any nonce is acceptable, 1 indicates that the resulting hash binary should be preceded by a single 0, 2 indicates that the resulting hash binary should be preceded by a two 0s, and so on. A basic python program that can calculate the nonce value is available in the project.
+- Input "Reward" with the reward value, in Wei, the worker gets for completing the task by successfully being the first worker to submit the key value during their time window.
+- Check the ethics requirements checkbox to indicate that you, the manager, uphold the ethics requirements in the contract with the data you are hosting and the incentives you are implying.
+- Click the "Add Hash Task" button to submit the task creation to the blockchain with your inputted data.
+- The file tree text shows how the task folder and its contents should be formatted.
+
+Add Double Hash Task
+- Input "Hash Value" with the keccak256 hash of the keccak256 hash of your 32 byte key value. The key value is what is obtained by the worker as the completion of the task.
+- Input "Task Hash" with the keccak256 hash of the zip file that you host. You need to host the data at the endpoint "<BasePath>" + "/Tasks/DoubleHashTasks/<TaskHash>/Task.zip". Your <BasePath> must be present in your comma separated list of links in the Users contract. The <TaskHash> should not be prefixed with "0x".
+- Input "Seconds Until Deadline" with the number of seconds until the task expires. Workers cannot submit attempts past this point. You can withdraw your initial funds after this deadline, but it also must be after all second response windows have passed.
+- Input "Key Reveal" to "ON" to require you, the manager, to reveal the 32 byte key value in order to withdraw funds after the task and second response windows have expired. This allows workers to know that the solution of the task will eventually be revealed by incentive.
+- Input "Second Response Window" with the timespan, in seconds, for how long a worker has to input the key value during their second response window.
+- Input "Second Response Delay" with the time delay in seconds that a worker's second response window begins, following their first response hash value.
+- Input "Reward" with the reward value, in Wei, the worker gets for completing the task by successfully being the first worker to submit the key value during their time window.
+- Check the ethics requirements checkbox to indicate that you, the manager, uphold the ethics requirements in the contract with the data you are hosting and the incentives you are implying.
+- Click the "Add Double Hash Task" button to submit the task creation to the blockchain with your inputted data.
+- The file tree text shows how the task folder and its contents should be formatted.
+
+Add Validator Task
+- Input "Task Hash" with the keccak256 hash of the zip file that you host. You need to host the data at the endpoint "<BasePath>" + "/Tasks/DoubleHashTasks/<TaskHash>/Task.zip". Your <BasePath> must be present in your comma separated list of links in the Users contract. The <TaskHash> should not be prefixed with "0x".
+- Input "Specifications"
+- Input "Seconds Until Deadline" with the number of seconds until the task expires. Workers cannot submit attempts past this point. You can withdraw your initial funds after this deadline, but it also must be after all second response windows have passed.
+- Input "Block Schedule" to "ON" to make validator evaluation time blocks not overlap. This can prevent a spam of submissions from overwhelming the validator, but also lengthens the timespan between evaluations. Set to "OFF" to make validator evaluation time blocks overlap. This can make evaluations more time efficient, but may be vulnerable to a spam of submissions.
+- Input "Validation Time" to the timespan in seconds to allow a validator to evaluate a task submission.
+- Input "Validation Delay" to set the minimum delay between the time a task submission is created on the blockchain, and the time when the evaluation timespan begins.
+- Input "Validator Addresses" to the user addresses that allow any validator to determine the evaluation of a task submission.
+- Input "Validator Comission" to the amount in Wei that a worker must give to the validator who evaluates the submission.
+- Input "Reward" with the reward value, in Wei, the worker gets for completing the task by successfully being the first worker to submit the key value during their time window.
+- Check the ethics requirements checkbox to indicate that you, the manager, uphold the ethics requirements in the contract with the data you are hosting and the incentives you are implying.
+- Click the "Add Validator Task" button to submit the task creation to the blockchain with your inputted data.
+- The file tree text shows how the task folder and its contents should be formatted.
+
+Add Requirement
+- Click the "Add Requirement" button to submit the requirement creation to the blockchain with the uploaded data hash.
+- Click the "Upload Zip File" button to upload the requirement zip file from your computer. After uploading the file, the name of the file and the keccak256 hash of the file will be listed below. This file should also be under a directory hosted by the user, which can be found and updated in the user profile page. The file should be in the directory "<BasePath>/TheList/<RequirementHash>/Requirement.zip". Your <BasePath> must be present in your comma separated list of links found in the profile page. The <RequirementHash> should not be prefixed with "0x".
+- Input requirement JSON with a simple requirement. The JSON should be an object with keys "condition" and "labeledVariables". The "condition" is an array of strings where each string alternates between part of a description and a "labeledVariable"/"intermediateVariable" name. The "labeledVariable" is an array of strings that represent parameters of the requirement that will have input in the requirement specifications in the task. The "intermediateVariables" is an array of strings that represent data that help describe instructions in the requirement. Optionally input the key "exampleTask" with an object of key value pairs where the keys are the "labeledVariables" and the values are the task input values for the example task requirement specification. Optionally input the key "exampleAnswer" with a string of a solution to the example requirement "exampleTask".
+- Click the "Download Requirement" button to download the requirement in the text area to your computer. This is the ZIP file that you should host at "<BasePath>/TheList/<RequirementHash>/Requirement.zip".
+
+Add Requirement Proposal
+- The "Requirements Count" is the total number of requirements created on The List.
+- Input "Requirement Index" is a number from 0 to the requirements number - 1 for the requirement index to update.
+- The "Requirement Index" is the requirement index for the currently selected requirement proposal update.
+- The "Requirement Versions" is the version of the currently selected requirement index. Once the number of votes for some requirement proposal equals a power of two, then that requirement proposal becomes the next iteration in the versions.
+- The "Requirement Proposals" is the number of requirement proposals for the currently selected requirement index.
+- Click "Add Requirement Proposal" to send the requirement proposal update transaction to the blockchain. This can only be selected when the requirement ZIP file has been uploaded and the data is hosted at an endpoint hosted by the user in their links with the matching keccak256 hash value of the file.
+- Click the "Upload Zip File" button to upload the requirement proposal zip file from your computer. After uploading the file, the name of the file and the keccak256 hash of the file will be listed below. This file should also be under a directory hosted by the user, which can be found and updated in the user profile page. The file should be in the directory "<BasePath>/TheList/<RequirementHash>/Requirement.zip". Your <BasePath> must be present in your comma separated list of links found in the profile page. The <RequirementHash> should not be prefixed with "0x".
+- Input requirement JSON with a simple requirement proposal. The JSON should be an object with keys "condition" and "labeledVariables". The "condition" is an array of strings where each string alternates between part of a description and a "labeledVariable"/"intermediateVariable" name. The "labeledVariable" is an array of strings that represent parameters of the requirement that will have input in the requirement specifications in the task. The "intermediateVariables" is an array of strings that represent data that help describe instructions in the requirement. Optionally input the key "exampleTask" with an object of key value pairs where the keys are the "labeledVariables" and the values are the task input values for the example task requirement specification. Optionally input the key "exampleAnswer" with a string of a solution to the example requirement "exampleTask".
+- Click "Download Requirement" to download the requirement proposal provided in the JSON text area input as a ZIP file. This file should be uploaded to the user hosted endpoint in one of the user links. It should be hosted at "<userLink>/TheList/<requirementHash>/Requirement.zip", where the "userLink" is a link in the user comma separated links list and the "requirementHash" is the keccak256 hash of the ZIP file without the "0x" prefix.
+
+Add Ethics Requirements Proposal
+- The "Ethics Requirements Version" shows the version index for the ethics requirements.
+- The "Ethics Requirements Proposals" shows the total number of ethics requirements proposals that have been submitted.
+- Click the "Add Ethics Requirements" button to submit the ethics requirements proposal creation to the blockchain with the inputted data.
+- You can write the ethics requirements proposal in the text area. The requirement is written in json array formatting. It should be an array of strings, where each string is a description of an ethical requirement for all user data interactions and incentives in the platform.

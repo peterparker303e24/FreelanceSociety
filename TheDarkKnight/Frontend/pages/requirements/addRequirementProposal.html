@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Requirement Proposal</title>
+    <base href="../../">
+    <link rel="icon" href="favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicons/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="favicons/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" href="favicons/android-chrome-512x512.png" sizes="512x512">
+    <link rel="apple-touch-icon" href="favicons/apple-touch-icon.png">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="css/addCommon.css">
+    <script src="js/applyDarkModePreference.js" type="module"></script>
+    <script src="js/requirements/addRequirementProposal.js" type="module" defer></script>
+    <script src="js/components/headerSection.js" type="module"></script>
+</head>
+
+<body>
+    <div id="scroll-area">
+
+        <!-- Header section -->
+        <div id="header-container">
+            <header-section headerText="Add Requirement Proposal"></header-section>
+        </div>
+
+        <!-- Data displayed when the requirement index is given in the URL -->
+        <div class="row space-around margin">
+            <div id="requirement-id" class="hide">Requirement Index: -</div>
+            <div id="requirement-versions-fixed" class="vertically-center-text hide">Requirement Versions: -</div>
+            <div id="requirement-proposals-fixed" class="vertically-center-text hide">Requirement Proposals: -</div>
+        </div>
+
+        <!-- Data displayed when the requirement index is not given in the URL -->
+        <div class="row space-around vertically-center-row margin">
+            <div id="requirements-number" class="vertically-center-text hide">Requirements Count: -</div>
+            <div id="requirement-input-row" class="row vertically-center-row">
+                <div id="requirement-index-text" class="vertically-center-text hide">Requirement Index: </div>
+                <input id="requirement-index-input" class="vertically-center-text margin hide" />
+            </div>
+            <div id="requirement-versions-dynamic" class="vertically-center-text hide">Requirement Versions: -</div>
+            <div id="requirement-proposals-dynamic" class="vertically-center-text hide">Requirement Proposals: -</div>
+        </div>
+
+        <!-- Payable add requirement proposal button and error display -->
+        <div class="row padding">
+            <div id="add-button" class="inactive-payable-button medium-text padding">
+                Add Requirement Proposal
+            </div>
+        </div>
+        <div id="error" class="row padding"></div>
+
+        <!-- Upload requirement proposal section -->
+        <div class="row padding">
+            <input type="file" id="file-input" accept=".zip" class="hide" />
+            <div id="upload-file-button" class="border-button medium-text padding">
+                Upload Zip File
+            </div>
+        </div>
+        <div id="file-name" class="row padding"></div>
+
+        <!-- Write in requirement proposal section -->
+        <div class="row padding">
+            <div>or write requirement here:</div>
+        </div>
+        <textarea id="write-condition"></textarea>
+        <div id="write-error" class="margin"></div>
+
+        <!-- Download requirement proposal section -->
+        <div class="row">
+            <div id="download-written-button" class="inactive-border-button margin">Download Requirement</div>
+        </div>
+        <a id="download-anchor"></a>
+        <!-- Footer space -->
+        <div id="footer-space"></div>
+    </div>
+</body>
+
+</html>

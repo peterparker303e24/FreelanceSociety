@@ -1,0 +1,13 @@
+The List is a structure of items that can have both item additions and item updates. Each item is a requirement that consists of:
+
+- An outcome based on a condition.
+- Labeled variables that allow for parameter inputs to the requirement.
+- Intermediate variables that allow for clear and concise interpretation of steps in a requirement.
+- An example specification of the requirement to provide clearer interpretations of the use of the requirement.
+- An example answer corresponding to the example specification to provide clearer expectations of the requirement work condition.
+- Possible corresponding files that assist the requirement description and interpretation.
+- Other data not listed that allow the requirement to be more useful.
+
+Items can be added to the list to allow for new incentive structures for tasks, to provide a common standard for a task, or to narrow down the precise purpose of a task. Items can also be updated, though past iterations are not completely deleted, allowing for backwards compatibility. Requirements should be updated to better align task incentives with what is intended for the work of the task.
+
+The List is a public collection of items that is common among all managers, validators, and workers. This allows all users to agree on the source of requirements for a given task. All users can audit any other user in the creation, work, and evaluation of a task with full confidence in the exactness of the task requirements.

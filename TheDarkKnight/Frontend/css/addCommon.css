@@ -1,0 +1,106 @@
+.add-button {
+    width: 256px;
+}
+
+#upload-file-button {
+    width: 256px;
+}
+
+#file-name {
+    white-space: pre-line;
+}
+
+textarea {
+    width: 80%;
+    height: 512px;
+    resize: none;
+    color: var(--foreground-color);
+    background-color: var(--background-color);
+}
+
+#scroll-area {
+    overflow: scroll;
+}
+
+.left-align {
+    text-align: left;
+}
+
+.right-align {
+    text-align: right;
+}
+
+.padding {
+    padding: 16px;
+}
+
+.margin {
+    margin: 16px;
+}
+
+#download-written-button {
+    width: 256px;
+    height: 64px;
+}
+
+#requirement-index-input {
+    height: 16px;
+    width: 64px;
+    font-family: 'SourceCodePro';
+    border: 2px solid var(--foreground-color);
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+}
+
+#hash-task-parameters {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 192px 1fr;
+    grid-template-rows: 32px 32px 32px 32px 32px 32px 32px;
+    gap: 16px;
+    padding: 16px;
+}
+
+#validator-task-parameters {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 192px 1fr;
+    grid-template-rows: 32px 32px 32px 32px 32px 32px auto 32px 32px 32px;
+    gap: 16px;
+    padding: 16px;
+}
+
+#validator-task-submission-ethics-row {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 32px 1fr;
+    gap: 16px;
+    padding: 16px;
+}
+
+.parameters-input-size {
+    width: 640px;
+    height: 32px;
+}
+
+.square {
+    width: 16px;
+    height: 16px;
+}
+
+.border {
+    border: 2px solid var(--foreground-color);
+}
+
+.toggle-button {
+    width: 64px;
+    height: 32px;
+}
+
+.vertical-extend {
+    resize: vertical;
+    min-height: 64px;
+}

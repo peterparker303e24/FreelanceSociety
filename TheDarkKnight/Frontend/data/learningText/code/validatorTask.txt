@@ -1,0 +1,59 @@
+ValidatorTask.sol
+
+Summary
+
+Managers can create validator tasks which present a set of requirements that must be met and a list of validators that evaluate the submissions. A worker can submit a solution to a task before its deadline that meets all task requirements and the ethics requirements with a commission fee for the validator. If a task validator finds the solution meets the task requirements and ethics requirements, then the task reward is transferred to the worker, and the task is complete. If the validator finds the submission does not meet the requirements and ethics requirements, then the submission is rejected and the task remains open for other submissions. Multiple workers can submit task submissions at the same time where they will follow a queue structure. If the blockValidationSchedule is set to true, then the evaluation timespans will not overlap and later submission evaluation timespan windows will be pushed back to the end of the previous submission window. If the blockValidationSchedule is set to false, then the evaluation timespan windows are allowed to overlap. All task requirement data and task submission data is stored off the blockchain, so users submit hashes of the data and present a link to the data through their userLinks string. Any user can submit funds to a task to further incentivize its completion. Managers and funders can withdraw their funds when all submission evaluation timespan windows have passed and there is no completion. If no validator evaluates a task submission within the submission evaluation timeframe, then the task defaults to complete and the reward is given to the worker regardless of its requirements completion.
+
+Variables
+
+tasksCount - uint64: Total number of validator tasks in the contract.
+
+lastInteractionBlockIndex - uint64: Keeps track of the block index of the last interaction of any function in the contract. This allows for more efficient search through a sparse distribution of contract calls to the blockchain.
+
+tasks - mapping (uint => Task): All the validator tasks in the contract.
+
+usersContract - Users: The dependent contract that contains all users.
+
+Structs
+
+Task
+    taskHash - bytes32: keccak256 hash of the Task.zip file.
+    requirementsCount - uint64: Number of requirements for the task completion. This does not include ethics requirements.
+    evaluationTime - uint64: Time, in seconds, allocated for a validator to evaluate the worker submission.
+    deadline - uint64: Timestamp of the task deadline, no worker submissions can be added after this deadline.
+    nextSlotTime - uint64: Timestamp of the end of the last submission evaluation timespan.
+    submissionsCount - uint64: Total number of submissions for this task.
+    evaluatedSubmissionsCount - uint64: Total numnber of submissions that have been evaluated for this task.
+    blockValidationSchedule - bool: Whether a block validation schedule is followed. If the blockValidationSchedule is set to true, then the evaluation timespans will not overlap and later submission evaluation timespan windows will be pushed back to the end of the previous submission window. If the blockValidationSchedule is set to false, then the evaluation timespan windows are allowed to overlap.
+    evaluationDelay - uint16: Minimum seconds of delay until the start of the evaluation timespan. This allows for confirmation time of a submission transaction on the blockchain.
+    taskComplete - bool: Whether this task has been completed. This task may be defaulted complete with this variable incorrectly set as false, but once the submission completion defaulted is withdrawn, then this variable will update to true.
+    managerAddress - address: Address of the manager that created and initially funded the task.
+    submissionCompletionIndex - uint: Index of the submission that completed the task among all submissions for this task.
+    validators - address[]: Addresses of the validators, any of which can evaluate worker submissions.
+    validatorComission - uint: Commission fee, in Wei, given to the validator that evaluates a submission within its evaluation timespan window.
+    contributorsWeiAmounts - mapping (address => uint): All the funders of task and the amounts, in Wei, each have funded.
+    contributionTotalWei - uint: Total amount of Wei funded to task which is rewarded to the worker of a submission completion or a submission completion defaulted.
+    submissions - mapping (uint => Submission): All the submissions for this task.
+
+Submission
+    workerAddress - address: Address of the worker that added the submission.
+    submissionHash - bytes32: keccak256 hash of the Submission.zip file.
+    validationStart - uint64: Timestamp of the start of the evaluation timespan window of this submission.
+    rejected - bool: Whether a validator has evaluated this submission as rejected.
+    withdrawn - bool: Whether the submission completion reward, submission completion defaulted reward and commission, or submission unevaluated commission have been withdrawn for this submission.
+
+Functions
+
+addTask: Adds the validator task for workers to submit solutions.
+
+fundTask: Adds funds to the worker that completes the task.
+
+submitTask: A worker adds a submission to the task with a commission fee to be evaluated by a validator.
+
+evaluateTask: A validator evaluates the completion of a task submission. If the submission meets all task requirements and ethics requirements, then the reward is available to be accepted by the worker. If the submission does not meet all requirements and ethics requirements, then the submission is rejected and the task remains open to other submissions.
+
+withdrawTask: A manager or funder withdraws their contributions to the task after the deadline has completed and all submissions have been rejected.
+
+withdrawSubmissionCompletion: A Worker withdraws the task reward from either a submission defaulted or submission accepted as complete by a validator.
+
+withdrawSubmissionUnevaluated: Workers who have submissions after an already accepted submission can withdraw their validator commission fees.

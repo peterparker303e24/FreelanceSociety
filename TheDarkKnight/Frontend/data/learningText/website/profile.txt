@@ -1,0 +1,23 @@
+Profile
+
+General
+- Your blockchain address is shown for the currently active user.
+
+Connect Wallet
+- Click "Connect Wallet" to connect to a browser wallet extension.
+
+Create User
+- You can input your links data along with an optional name and lockout code and write it to the blockchain by clicking the "Create User" button. Your links should be a comma separated list of points of contact. Examples of the contact information can include emails, social media handles, among other things. Most importantly, to host data for requirements, tasks, and submissions you must include a base link to a website that allows anyone to retrieve data from the endpoints. As an example, you can host files on your GitHub page with the base link "https://raw.githubusercontent.com/<yourGitHubUsername>/<yourRepository>/<yourBranch>". Then, under certain directories you can put files so other users can verify the data matches the hashes of expected data on the blockchain. The specific endpoints will be shown in the messages when you input the file into a page which requires endpoint data hosting. Also, all hosted data must not violate any of the ethics requirements.
+- You can optionally input your name data along with links data and optional lockout code and write it to the blockchain by clicking the "Create User" button. Your name is not necessarily unique among all users.
+- You can input your lockout code data along with an optional name and mandatory links data and write it to the blockchain by clicking the "Create User" button. You cannot change your lockout code once you have created your user. This code is the keccak256 hash of the 32 byte preimage key. The preimage key is a 32 byte piece of data that can be saved in some cold storage location, so that in the event your address is hacked you can delete your account and maintain some trust.
+- Click "Create User" to write to the blockchain with your user data and active address.
+
+Edit User
+- Your links data is shown. You can click the edit button to change the data of your links, but you must save changes with a write to the blockchain by clicking "Save User Data" to make those changes go into effect.
+- Your name data is shown. You can click the edit button to change the data of your name, but you must save changes with a write to the blockchain by clicking "Save User Data" to make those changes go into effect.
+- Your lockout code data is shown. You cannot edit the lockout code value once your user has been created.
+
+Delete User
+- Input the user address in the "User Address" field.
+- Input the preimage key, a 32 byte piece of data that when hashed with keccak256 results in the lockout code for the corresponding user address.
+- Click the "Delete User" button to permanently delete the user with the input address.

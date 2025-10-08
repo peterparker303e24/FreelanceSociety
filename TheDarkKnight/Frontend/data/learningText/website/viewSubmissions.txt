@@ -1,0 +1,38 @@
+View Submissions
+
+General
+- View the task ID.
+- View the submissions count for the task.
+- Navigate to the task page for this task.
+- Navigate to the submit task page for this task.
+- Data for all task submissions.
+
+View Double Hash Task Submissions
+- View the task ID for the double hash task.
+- View the submissions count for the double hash task. This includes all first hash submissions and possibly one hash key submission.
+- Navigate to the submit double hash task page for this task.
+- Data for all double hash task submissions. The first item will be the hash key submission if it has been made. All other submissions will be the first hash submissions. The submissions are ordered by the most recent ones at the top.
+- The index shows the index order that the first hash submissions have been made, and if the hash key submission is shown it will display the index of the corresponding first hash submission.
+- The "Hash Key" is the solution key to the double hash task, and is only shown in the task key submission. In all other submissions it is hidden/unknown as "X".
+- The "First Hash" is the keccak256 hash of the solution key value.
+- The "Worker Address" is the user address that made the submission.
+- The "Window Start Time" is the unique, dedicated start time window for the corresponding user submission.
+- The "Window Start Time" is the unique, dedicated end time window for the corresponding user submission.
+- The "Submission Time" is the block timestamp when the submission was included in the blockchain.
+- The "Submission Status" describes the state of the submission and is one of:
+    - "Completed": This submission index and corresponding worker have completed the double hash task.
+    - "Waiting For Response Window": The hash key submission is not yet able to be submitted by the user.
+    - "Waiting For Response": The user is able to submit the hash key to complete the task.
+    - "Response Window Passed": The user is not able to complete the task with the current submission index. A new first hash submission must be made to try again.
+    - "Task Already Complete": The task has been complete by a different submission index.
+
+View Validator Task Submissions
+- The "Task ID" for the unique identifier for the validator task.
+- The "Submissions Count" is the number of worker submissions for the validator task.
+- The "Submission Evaluations Count" is the number of submission evaluations made by the task validators for the validator task.
+- The "Task Complete" shows whether this task has been completed. This may still show as "FALSE" even if the task has defaulted, in which case submissions will no longer be accepted and only the defaulted submission may withdraw the task reward.
+- The "Task Defaulted" shows whether this task has been defaulted by a submission not having been evaluated during its evaluation time window. In this case submissions will no longer be accepted and only the defaulted submission may withdraw the task reward.
+- Click "View Task" to navigate to the validator task page for the current validator task.
+- Click "Add Validator Task Submission" to navigate to the submit validator task page for the current validator task.
+- The list of worker submissions and their data is shown in order of most recent first.
+    - The left column shows the unique identifier for the validator task submission. The center column shows the submission data. The right column displays a button that redirect to the validator task submission page. The "Worker Address" is the address of the worker that created the submission. The "Submission Hash" is the keccak256 hash of the submission ZIP file. The "Validation Start Time" is the time, in UTC, when the validator evaluation timespan of the task begins. The "Validation End Time" is the time, in UTC, when the validator evaluation timespan of the task ends. The "Submission Status" describes the state of the submission: Completed, Completed Defaulted, Rejected, Incomplete Unevaluated, Waiting Evaluation, Waiting For Evaluation Timespan, Waiting For Previous Submission Evaluation, or Unexpected Data.

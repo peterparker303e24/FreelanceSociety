@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethics Requirements Proposal</title>
+    <base href="../../">
+    <link rel="icon" href="favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicons/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="favicons/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" href="favicons/android-chrome-512x512.png" sizes="512x512">
+    <link rel="apple-touch-icon" href="favicons/apple-touch-icon.png">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="css/viewPageCommon.css">
+    <script src="js/applyDarkModePreference.js" type="module"></script>
+    <script src="js/ethicsRequirements/ethicsRequirementsProposal.js" type="module" defer></script>
+    <script src="js/components/headerSection.js" type="module"></script>
+</head>
+
+<body>
+    <div id="scroll-area">
+
+        <!-- Header section -->
+        <div id="header-container">
+            <header-section headerText="Ethics Requirements Proposal"></header-section>
+        </div>
+
+        <div id="columns-container">
+
+            <!-- Left column area -->
+            <div id="left-column">
+
+                <!-- Ethics requirements proposal data -->
+                <div id="requirement-proposal-id" class="left-align padding">Ethics Requirements Proposal Id: -</div>
+                <div id="proposal-hash" class="left-align padding text-content-return">Proposal Hash:<br>-</div>
+                <div id="proposal-validator" class="left-align padding text-content-return">Proposal Validator Address:<br>-</div>
+                <div id="proposal-votes-for" class="left-align padding">Proposal Votes For: -</div>
+
+                <!-- Payable vote ethics requirements button and error display -->
+                <div class="row">
+                    <div id="vote-for-button" class="inactive-payable-button padding">Vote For Ethics Proposal</div>
+                </div>
+                <div class="row">
+                    <div id="vote-for-error"></div>
+                </div>
+
+                <!-- Ethics requirements proposal -->
+                <h2>Ethics Requirments Proposal</h2>
+                <div id="ethics-requirements" class="left-align large-padding text-content-return x-large-width"></div>
+            </div>
+
+            <!-- Right column area -->
+            <div id="right-column">
+
+                <!-- Save ethics requirements proposal locally button section -->
+                <div id="save-locally-button" class="border-button padding margin">Save locally</div>
+                <a id="download-requirement-anchor"></a>
+                <input type="file" id="file-input" accept=".zip" class="hide" />
+                <div id="upload-locally-error"></div>
+
+                <!-- Redirect buttons -->
+                <div id="view-proposals-button" class="border-button redirectable padding margin">View Ethics
+                    Requirements Proposals
+                </div>
+                <div id="view-ethics-button" class="border-button redirectable padding margin">View Ethics Requirements
+                </div>
+                <div id="propose-update-button" class="border-button redirectable padding margin">Add Ethics
+                    Requirements Proposal
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer space -->
+        <div id="footer-space"></div>
+    </div>
+</body>
+
+</html>

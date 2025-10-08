@@ -1,0 +1,128 @@
+Navigation
+
+General
+- Home
+- Settings
+
+Home
+- Profile
+- Learning
+- View Tasks
+- View Requirements
+- View Requirement Proposals
+- View Ethics Requirements
+- View Users
+
+Add Double Hash Task
+
+View Double Hash Task
+- Submit Double Hash Task
+- View Double Hash Task Submissions
+- View Tasks
+- Add Double Hash Task
+
+Submit Double Hash Task
+- View Double Hash Task Submissions
+
+View Double Hash Task Submissions
+- View Double Hash Task
+- Submit Double Hash Task
+
+Add Ethics Requirements Proposal
+
+View Ethics Requirements
+- View Ethics Requirements Proposals
+- Add Ethics Requirements Proposal
+
+View Ethics Requirements Proposal
+- View Ethics Requirements Proposals
+- View Ethics Requirements
+- Add Ethics Requirements
+
+View Ethics Requirements Proposals
+- Add Ethics Requirements Proposal
+- View Ethics Requirement
+
+Add Hash Task
+
+View Hash Task
+- Submit Hash Task
+- View Tasks
+- Add Hash Task
+
+Submit Hash Task
+
+Learning
+
+Add Requirement
+
+Add Requirement Proposal
+
+View Requirement
+- View Requirement Proposals
+- View Requirements
+- Add Requirement
+
+View Requirement Proposal
+- View Requirement Proposals
+- View Requirements
+- Add Requirement Proposal
+
+View Requirement Proposals
+- Add Requirement Proposal
+- View Requirement Proposal
+
+View Requirements
+- Add Requirement
+- View Requirement
+
+View User
+- View Ethics Requirements Proposal
+- View Hash Task
+- View Double Hash Task
+- View Double Has Task Submissions
+- View Validator Task
+- View Validator Task Submission
+- View Requirement
+- View Requirement Proposal
+
+View Users
+- Profile
+- View User
+
+Add Validator Task
+
+Submit Validator Task
+- View Validator Task Submissions
+
+View Validator Task
+- Submit Validator Task
+- View Validator Task Submissions
+- View Tasks
+- Add Validator Task
+
+View Validator Task Submission
+- View Validator Task
+- View Validator Task Submissions
+- View Tasks
+- Add Validator Task
+
+View Validator Task Submissions
+- View Validator Task
+- Add Validator Task Submission
+- View Validator Task Submission
+
+404
+- Home
+
+Profile
+
+Settings
+
+View Tasks
+- Add Hash Task
+- Add Double Hash Task
+- Add Validator Task
+- View Hash Task
+- View Double Hash Task
+- View Validator Task

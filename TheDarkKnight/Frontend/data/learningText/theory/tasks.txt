@@ -1,0 +1,7 @@
+A task is a set of requirements that must be completed before some deadline. If a submission to a task has all requirements fulfilled before the deadline, then the task has been completed and a cryptocurrency reward should be given to the worker as incentive for completing the task.
+
+A task is created by a manager and completed by a worker. For some tasks, a validator is used to objectively judge the outcome of a task submission. Given that the validator is incentivized to be objective, both a rational manager and a rational worker would be inclined to participate in this transaction of labor and capital because of the principle of division of labor.
+
+Tasks can have variations in incentive structure so they can optimize the work for different purposes, for example, choosing quality over timeliness.
+
+A task is the fundamental structure than connects capital managers and workers to exchange labor and capital.

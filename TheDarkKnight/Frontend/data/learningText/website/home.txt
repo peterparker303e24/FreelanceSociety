@@ -1,0 +1,13 @@
+Home
+
+- Entry point to Freelance Society
+- Navigate to different sections of the website:
+    - Home: Same page
+    - Settings: Adjust website settings and user preferences
+    - Profile: View, create, update, and delete the active user
+    - Learn: Learn about Freelance Society theory, code, and website knowledge
+    - Tasks: View and search tasks
+    - Requirements: View and search requirements
+    - Requirement Proposals: View and search requirement proposals
+    - Ethics Requirements: View current ethics requirements
+    - Users: View and search users

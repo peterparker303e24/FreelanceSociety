@@ -1,0 +1,29 @@
+Users.sol
+
+Summary
+
+This contract is the central location where users——managers, validators, and workers——initialize their activation status, modify their presented user data, and lockout their user address. Users must activate with links to be able to create some link to interact with other users. Users can optionally also be activated with user data, such as a username, and a lockout code. A lockout code is the resulting hash of some bytes32 data that can be stored in a cold wallet. This allows users to lockout their user address from any other address. If a user has an hot wallet that is hacked, then they can use the lockout to terminate control of the hacker as well as prove any new address is the same user as the old user address. This can allow a user, and their corresponding trust and reputation, to be transferred to another user address. A user can also use the lockout to announce the deletion of themselves as a user. This contract also allows a user to modify their user links and user data.
+
+Variables
+
+links - mapping (address => string): Each user address has links that must be set as a link to interact with other users. Links can include a root directory where data off the blockchain is stored, emails, websites, or other information that a user can use to link with other users.
+
+usersData - mapping (address => bytes): Optional data a user can set to present to their account such as a username.
+
+activationStatus - mapping (address => Mode): Indicator to tell whether an address has an unactivated user, active user, or deactivated user.
+
+lockoutCodes - mapping (address => bytes32): Each user has a lockout code that is the result of some bytes32 being hashed. This bytes32 key can be stored in a cold wallet. This key allows any user to lockout a user with the corresponding code. If no lockout code is not set on the user initialization, then the default lockout code is set to a null key encryption.
+
+lastInteractionBlockIndex - uint64: Keeps track of the block index of the last interaction of any function in the contract. This allows for more efficient search through a sparse distribution of contract calls to the blockchain.
+
+Functions
+
+activateUser: Activates a user at the caller's address with user links, and optional user lockout code and user data.
+
+updateUserLinks: Updates the user links of the caller's address.
+
+updateData: Updates the user data of the caller's address.
+
+updateUserLinksData: Updates the user links and user data of the caller's address.
+
+lockoutUser: Given a user address and lockout key, if the lockout key hash results in the lockout code of the given user's address, then that user is locked out.

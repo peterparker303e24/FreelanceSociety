@@ -1,0 +1,10 @@
+Common
+
+- Click "Home" to redirect back to the home page.
+- Click "Settings" to redirect to the website settings page.
+- Rectangles that have a curved corner radius are buttons
+- Solid colored buttons are actions that interact with a write function in a smart contract that require ETH to execute.
+- Buttons that have a dashed border are not interactive
+- Buttons with a triangle within them are dropdown buttons that toggles the display of a section
+- "[X] ERROR" is an error, and displays a message to indicate what caused the error
+- "(!)" is a warning, and displays a message to indicate what should come to the attention of the user

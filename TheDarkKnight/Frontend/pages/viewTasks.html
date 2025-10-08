@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Tasks</title>
+    <base href="../">
+    <link rel="icon" href="favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicons/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="favicons/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" href="favicons/android-chrome-512x512.png" sizes="512x512">
+    <link rel="apple-touch-icon" href="favicons/apple-touch-icon.png">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="css/viewSearchCommon.css">
+    <script src="js/applyDarkModePreference.js" type="module"></script>
+    <script src="js/viewTasks.js" type="module" defer></script>
+    <script src="js/components/headerSection.js" type="module"></script>
+</head>
+
+<body>
+    <div id="scroll-area">
+
+        <!-- Header section -->
+        <div id="header-container">
+            <header-section headerText="View Tasks"></header-section>
+        </div>
+
+        <!-- Task types section -->
+        <div id="task-fold" class="bordered-box">
+
+            <!-- Tasks fold header -->
+            <div id="task-fold-row" class="row">
+                <div id="fold-tasks-button" class="border-button padding medium-margin">
+                    ▶
+                </div>
+                <div id="total-tasks-count" class="left-align">Total Tasks Count: -</div>
+            </div>
+
+            <!-- Rows of the task types -->
+            <div id="tasks-panel" class="hide">
+                <div id="add-hash-task-button" class="border-button redirectable padding">
+                    Add Hash Task
+                </div>
+                <div id="hash-task-count" class="left-align">Hash Tasks Count: -</div>
+                <div id="add-double-hash-task-button" class="border-button redirectable padding">
+                    Add Double Hash Task
+                </div>
+                <div id="double-hash-task-count" class="left-align">Double Hash Tasks Count: -</div>
+                <div id="add-validator-task-button" class="border-button redirectable padding">
+                    Add Validator Task
+                </div>
+                <div id="validator-task-count" class="left-align">Validator Tasks Count: -</div>
+            </div>
+        </div>
+
+        <!-- Hide completed tasks toggle row -->
+        <div id="hide-completed-tasks-section" class="row vertically-center-row">
+            <div id="checkbox" class="border-button large-text small-padding margin"></div>
+            <div id="hide-completed-tasks-text" class="medium-text parameters-input-size">Hide completed and past tasks
+            </div>
+        </div>
+
+        <!-- Search requirements input -->
+        <div id="search-row">
+            <div id="search-button" class="border-button padding">
+                Search
+            </div>
+            <input id="search-input" type="text" class="input-line medium-text left-align full-width small-padding"
+                placeholder="task short name, task ID, hash, or manager address">
+        </div>
+
+        <!-- Requirements results header and navigation -->
+        <div id="requirements-pages" class="row items-pages">
+            <div id="previous-button" class="border-button padding">
+                Previous
+            </div>
+            <div id="search-header" class="large-text"></div>
+            <div id="next-button" class="border-button padding">
+                Next
+            </div>
+        </div>
+
+        <!-- Requirements search results column -->
+        <div id="requirements-rows-container"></div>
+
+        <!-- Footer space -->
+        <div id="footer-space"></div>
+
+        <!-- Task item template -->
+        <template id="item-template">
+            <div id="task-item-container" class="bordered-box margin padding">
+
+                <!-- Task header ID and view button -->
+                <div id='task-header-row' class="row item-row center-vertically">
+                    <div id="task-id" class="medium-text">dh-1</div>
+                    <div id="row-space" class="flex-item"></div>
+                    <div id="view-button" class="border-button redirectable padding">
+                        View Task
+                    </div>
+                </div>
+
+                <!-- Task data section -->
+                <div id="data-section" class="flex-item left-align">
+                    <div id="item-hash" class="medium-text elipses">
+                        Task Hash: 0x1e84a4b9cbdb7af415f0f3f94189bc971e69ea100ee19e87e5429ba52eb360ed</div>
+                    <div id="manager-hex" class="elipses">Manager Address:
+                        0x1e84a4b9cbdb7af415f0f3f94189bc971e69ea10</div>
+                    <div id="reward" class="medium-text elipses">
+                        Reward: 0.000001324 ETH</div>
+                    <div id="deadline" class="elipses">Deadline: 2021-10-01 12:00:00 (UTC)
+                    </div>
+                    <div id="completed" class="elipses">Task Completed: FALSE</div>
+                </div>
+            </div>
+        </template>
+    </div>
+</body>
+
+</html>

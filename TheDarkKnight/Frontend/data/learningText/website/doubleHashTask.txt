@@ -1,0 +1,95 @@
+Double Hash Task
+
+General
+- The "Hash Value" with the keccak256 hash of the keccak256 hash of your 32 byte key value. The key value is what is obtained by the worker as the completion of the task.
+- The "Task Hash" with the keccak256 hash of the zip file that you host. You need to host the data at the endpoint "<BasePath>" + "/Tasks/DoubleHashTasks/<TaskHash>/Task.zip". Your <BasePath> must be present in your comma separated list of links in the Users contract. The <TaskHash> should not be prefixed with "0x".
+- The "Seconds Until Deadline" with the number of seconds until the task expires. Workers cannot submit attempts past this point. You can withdraw your initial funds after this deadline, but it also must be after all second response windows have passed.
+- The "Key Reveal" to "ON" to require you, the manager, to reveal the 32 byte key value in order to withdraw funds after the task and second response windows have expired. This allows workers to know that the solution of the task will eventually be revealed by incentive.
+- The "Second Response Window" is the timespan in seconds that the worker is allocated to submit their second response confirmation. In order for the worker to successfully complete the task, they must submit the second response confirmation transaction within the second response window based on the blockchain transaction timestamp. If the worker misses their confirmation response window timespan, then they must submit another first hash response to get a new second response window.
+- The "Second Response Delay" is the time in seconds between the time the worker submits their first hash to the start of their timespan window. This parameter in the double hash task allows for blocks to confirm and increase the security of their first hash submission and corresponding second response window timespan.
+- The "Reward" with the reward value, in Wei, the worker gets for completing the task by successfully being the first worker to submit the key value during their time window.
+- The "Manager Address" is the address of the user that created the double hash task.
+- The "Deadline" is the UTC time when the task no longer accepts first hash submissions. This time is checked in the contract code in reference to the block timestamp where a transaction is made. Users can submit the confirmation hash past this deadline during their second response time window. Users can no longer fund the task past the deadline time. Users who fund a task must wait until all second response windows have passed to be able to withdraw their funds from the task, and only when the task has not been completed.
+- The double hash task "Completed" tells whether the double hash task has been completed by a user.
+- The "Task ID" is the unique identifier for the current double hash task.
+- The "Hash Key Input" is the 32 bytes hex value that when hashed with keccak256 and then hashed with keccak256 again results in the hash key for the task.
+- The "First Hash Result" is the keccak256 hash of the 32 bytes task hash key.
+- The "Second Hash Result" is the keccak256 hash of the keccak256 hash of the hash key. This value should match the expected hash value for the double hash task.
+
+Add Double Hash Task
+- Input "Hash Value" with the keccak256 hash of the keccak256 hash of your 32 byte key value. The key value is what is obtained by the worker as the completion of the task.
+- Input "Task Hash" with the keccak256 hash of the zip file that you host. You need to host the data at the endpoint "<BasePath>" + "/Tasks/DoubleHashTasks/<TaskHash>/Task.zip". Your <BasePath> must be present in your comma separated list of links in the Users contract. The <TaskHash> should not be prefixed with "0x".
+- Input "Seconds Until Deadline" with the number of seconds until the task expires. Workers cannot submit attempts past this point. You can withdraw your initial funds after this deadline, but it also must be after all second response windows have passed.
+- Input "Key Reveal" to "ON" to require you, the manager, to reveal the 32 byte key value in order to withdraw funds after the task and second response windows have expired. This allows workers to know that the solution of the task will eventually be revealed by incentive.
+- Input "Second Response Window" is the timespan in seconds that the worker is allocated to submit their second response confirmation. In order for the worker to successfully complete the task, they must submit the second response confirmation transaction within the second response window based on the blockchain transaction timestamp. If the worker misses their confirmation response window timespan, then they must submit another first hash response to get a new second response window.
+- Input "Second Response Delay" is the time in seconds between the time the worker submits their first hash to the start of their timespan window. This parameter in the double hash task allows for blocks to confirm and increase the security of their first hash submission and corresponding second response window timespan.
+- Input "Reward" with the reward value, in Wei, the worker gets for completing the task by successfully being the first worker to submit the key value during their time window.
+- Check the ethics requirements checkbox to indicate that you, the manager, uphold the ethics requirements in the contract with the data you are hosting and the incentives you are implying.
+- Click the "Add Double Hash Task" button to submit the task creation to the blockchain with your inputted data.
+- The file tree text shows how the task folder and its contents should be formatted.
+
+View Double Hash Task
+- The Task ID shows the unique shortened task identifier for the selected task. "dh" is shortened for double hash task
+- The "Hash Value" is the keccak256 hash of the keccak256 hash of the 32 bytes task key. Obtaining this key will allow the user to complete the task.
+- The "Task Hash" is the keccak256 hash of the zip file that contains the instructions for the double hash task.
+- The "Manager Address" is the address of the user that created the double hash task.
+- The "Reward" is the amount, in Wei, that is rewarded to the user that completes the double hash task.
+- The "Deadline" is the UTC time when the task no longer accepts first hash submissions. This time is checked in the contract code in reference to the block timestamp where a transaction is made. Users can submit the confirmation hash past this deadline during their second response time window. Users can no longer fund the task past the deadline time. Users who fund a task must wait until all second response windows have passed to be able to withdraw their funds from the task, and only when the task has not been completed.
+- The "Completed" tells whether the double hash task has been completed by a user.
+- The "Key Reveal" tells whether the manager of the task must reveal the 32 bytes key in order to withdraw their funds of the task. This allows workers to know that the manager is incentivized to reveal the solution of the task so they know whether or not the task would be able to be reasonably completable.
+- The "Second Response Window" is the timespan in seconds that the worker is allocated to submit their second response confirmation. In order for the worker to successfully complete the task, they must submit the second response confirmation transaction within the second response window based on the blockchain transaction timestamp. If the worker misses their confirmation response window timespan, then they must submit another first hash response to get a new second response window.
+- The "Second Response Delay" is the time in seconds between the time the worker submits their first hash to the start of their timespan window. This parameter in the double hash task allows for blocks to confirm and increase the security of their first hash submission and corresponding second response window timespan.
+- The "Response Count" is the number of first hash submissions and second response hash confirmations. There is either 0 or 1 second response hash confirmations since once a second response is confirmed, the task is complete.
+- The "Next Slot Time" is the time in UTC that the end of the last second response window timespan is. Any new first hash submission will have a second response window at least after this time, possibly more if the second response window delay pushes it to a further time.
+- Input "Fund Task Amount" is the amount, in Wei, that the user will be funding to the task.
+- Input "Manager Key Reveal" is the field that displays to the manager of the task if the key reveal for the task is true. This input when taken the keccak256 of the keccak256 hash must result in the task hash value for the manager to be able to withdraw their funds for the task.
+- Click "Fund Task" to submit a transaction to the blockchain that will fund the current double hash task with the amount in the "Fund Task Amount" field.
+- Click "Withdraw Task Funds" for the user to withdraw all their funds to the task. The user can only withdraw the funds if the task is incomplete and all second response window timespans have passed. If the key reveal value for the task is true, then the manager must reveal the key to the task to be able to withdraw their funds to the task.
+- Click "Auto Discover Task" to automatically search for a task sequentially through users and their corresponding links in order of their user activation time. Click "Skip Address" to view the links from another user, and click "Skip Link" to view other links from the same user.
+- Click "Manually Discover Task" to search for the task through a specific user by their address.
+- View the "Task Requirements" of the list of requirements that must be met in order to complete the double hash task. The requirement ID, condition, and other data are described in each requirement section. The file tree of the task can be seen to the right. Click the toggle to open/close the task description.
+- Click "Save Locally" to download the task zip locally to your computer if the task data has been discovered.
+- Click "Upload Locally" to upload the task data to view.
+- Click "Submit Task" to redirect to the double hash task submission page.
+- Click "View Task Submissions" to redirect to the view double hash task submissions page.
+- Click "View Double Hash Tasks" to redirect to the task search page, with the double hash task search parameter input.
+- Click "Add Double Hash Task" to redirect to the add double hash task page.
+- View the task file tree when the double hash task has been discovered.
+
+Submit Double Hash Task
+- The "Double Hash Task ID" is the unique identifier for the current double hash task.
+- Input "Hash Key Input" with the 32 bytes hex value that when hashed with keccak256 and then hashed with keccak256 again results in the hash key for the task. The resulting first hash will be set in the next input line.
+- Input "First Hash Result" with the keccak256 hash of the 32 bytes task hash key. This value will be automatically set if the input to the hash key input above is set.
+- The "Second Hash Result" is the keccak256 hash of the keccak256 hash of the hash key. This will automatically be set if either the first hash or the hash key input is set in the inputs above. This value should match the expected hash value for the first hash to be submitted and for the second response confirmation to be made.
+- The "Second Response Window" is the timespan in seconds that the worker is allocated to submit their second response confirmation. In order for the worker to successfully complete the task, they must submit the second response confirmation transaction within the second response window based on the blockchain transaction timestamp. If the worker misses their confirmation response window timespan, then they must submit another first hash response to get a new second response window.
+- The "Second Response Delay" is the time in seconds between the time the worker submits their first hash to the start of their timespan window. This parameter in the double hash task allows for blocks to confirm and increase the security of their first hash submission and corresponding second response window timespan.
+- The "Task Already Complete" tells whether the double hash task has been completed by a user.
+- The "Deadline" is the UTC time when the task no longer accepts first hash submissions. This time is checked in the contract code in reference to the block timestamp where a transaction is made. Users can submit the confirmation hash past this deadline during their second response time window.
+- The "Reward" is the reward value, in Wei, the worker gets for completing the task by successfully being the first worker to submit the key value during their time window.
+- The "Response Count" is the number of first hash submission responses and second hash confirmation responses. There is at most one second hash confirmation response because the task is complete after this response and no longer accepts responses.
+- The "Submit Window Start" is the start time, in UTC, of the currently available, or next available second response window timespan of the current user.
+- The "Current Time" is the current time, in UTC, refreshed every second.
+- The "Submit Window End" is the end time, in UTC, of the currently available, or next available second response window timespan of the current user.
+- Click "View Submissions" redirect to a page to see the first hash submission responses and second hash confirmation responses.
+- Click "Submit First Hash" with the first hash value to obtain a second response window. This is only allowed if the keccak256 hash of the first hash result is the expected hash value and the task has not already been completed.
+- Click "Submit Hash Key" with the hash key value during the second response window of the current user in order to complete the task and receive the task reward. This is only allowed if the second hash result matches the expected hash value and the task has not already been completed.
+
+View Double Hash Task Submissions
+- The "Task ID" is the unique identifier for the current double hash task.
+- The "Submissions Count" is the number of first hash submission responses and second hash confirmation responses. There is at most one second hash confirmation response because the task is complete after this response and no longer accepts responses.
+- Click "View Double Hash Task" to redirect to the current double hash task page.
+- Click "Submit Double Hash Task" to redirect to the current double hash task submission page.
+- The list of double hash task responses is shown in order of recency.
+    - If the task has been completed, then the second confirmation response is shown at the top of the list. The hash key is the solution to the task. The first hash is the keccak256 hash of the hash key. The Worker address is the address of the user that submitted the second response confirmation. The window start time is the time, in UTC, of the start of the second response window. The submission time is the time, in UTC, of the second response confirmation transaction. The window end time is the time, in UTC, of the end of the second response window. The submission status is shown as completed since this second response is the unique submission that completed the double hash task.
+    - The number in the left column is the index of the response. In the case of the second response confirmation, the number is the index of the original first hash response.
+    - All responses, besides the second response confirmation, are first hash submissions, and they are shown after the second response confirmation if it exists. The hash key is "X" since the hash key solution is not revealed in the first hash response. The first hash is the keccak256 hash of the hash key. The Worker address is the address of the user that submitted the first response submission. The window start time is the time, in UTC, of the start of the second response window. The submission time is the time, in UTC, of the first response submission transaction. The window end time is the time, in UTC, of the end of the second response window. The first hash submission status is described as "Completed", "Waiting For Response Window", "Waiting For Response", "Response Window Passed", or "Task Already Complete".
+
+View Tasks
+- Click the dropdown triangle to see the hash task, double hash task, and validator task rows. Each row has a button to redirect to the respective page to add the task and a count for the number of each tasks.
+- The "Total Tasks Count" shows the total number of tasks for hash tasks, double hash tasks, and validator tasks combined.
+- Toggle the "Hide completed and past tasks" checkbox to change the search functionality and refresh the search. When this box is checked, then tasks that have the "Task Complete" field marked as "TRUE" will not be shown in the search. Also tasks that have a deadline that has passed will not be shown in the search.
+- Click "Search" to search using the data in the search bar input. If the search bar input is empty, then the recent data will be searched. Search by a task type with its short name, "h" for hash task, "dh" for double hash task, and "v" for validator task. Each task type can also have a specified task index that is formatted with the task short name on the left separated by a dash "-" with the index on the right (for example, "h-4", "dh-2", v-"0"). Search by task hash or manager address by inputting hex data.
+- Click "Previous" to go to the previous search page.
+- Click "Next" to go to the next search page.
+- The list of tasks is sorted by most recent tasks first. And there are at most 10 items on a search page.
+- The task hash the task ID and task data in the left column and a button to redirect to the task page in the right column. The task ID is the task short name on the left with a dash "-" separating the task index on the right. The short names are "h" for hash task, "dh" for double hash task, and "v" for validator task. The "Hash" is the keccak256 hash of the task ZIP file. The "Manager Address" is the address of the user that created the task. The "Reward" is the amount, in Wei, the worker that completes the task will receive upon completing the task. The "Deadline" is the time, in UTC, until the task will no longer accept new submissions, and will no longer accept new task funding. The "Task Complete" is whether the task has been marked as complete by a contract transaction on the blockchain, and if this value is "FALSE" it does not necessarily mean it is able to be completed because, for example, the task defaulting could make the task complete but it will not appear to be "TRUE".
