@@ -504,14 +504,14 @@ async function dataHashMatchFound(zipFile) {
         jsonObject = JSON.parse(content);
     } catch (error) {
         requirementJsonArea.textContent
-            = `[X] ERROR: Problem parsing requirement.json`;
+            = `[X] ERROR: Problem parsing requirement.json - ${error}`;
         return;
     }
     try {
-        requirementJsonArea.textContent = formatRequirementJson(jsonObject);
+        formatRequirementJson(jsonObject, requirementJsonArea);
     } catch (error) {
         requirementJsonArea.textContent
-            = `[X] ERROR: Problem reading requirement.json`;
+            = `[X] ERROR: Problem reading requirement.json - ${error}`;
         return;
     }
 }

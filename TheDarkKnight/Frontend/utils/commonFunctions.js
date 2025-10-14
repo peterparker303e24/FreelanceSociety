@@ -329,16 +329,21 @@ export function formatFileStructure(paths) {
 /**
  * Formats the requirement display text using requirements.json data
  * @param {JSON} requirementsJson Requirement JSON data to display
+ * @param {Element} rootElement Element to place the requirement JSON
  * @returns {String} JSON file formatted into display page string
  */
-export function formatRequirementJson(requirementsJson) {
+export function formatRequirementJson(requirementsJson, rootElement) {
 
-    // Initialize json variables and final text string
-    let labeledVariables = [];
-    let intermediateVariables = [];
-    let jsonInnerHtml = '<h1>requirement.json</h1>';
+    // Clear the existing content
+    rootElement.textContent = "";
+
+    // Append the header
+    const requirementHeader = document.createElement("h1");
+    requirementHeader.textContent = "requirement.json";
+    rootElement.append(requirementHeader);
 
     // Gets any list of labeled variables
+    let labeledVariables = [];
     if ("labeledVariables" in requirementsJson
         && Array.isArray(requirementsJson.labeledVariables)
     ) {
@@ -346,6 +351,7 @@ export function formatRequirementJson(requirementsJson) {
     }
 
     // Gets any list of intermediate variables
+    let intermediateVariables = [];
     if ("intermediateVariables" in requirementsJson
         && Array.isArray(requirementsJson.intermediateVariables)
     ) {
@@ -359,65 +365,103 @@ export function formatRequirementJson(requirementsJson) {
 
         // Appends each string element as normal text, bold for labeled
         // variables, and italicized for intermediate variables
-        jsonInnerHtml += '<h2>Condition</h2>';
+        const conditionHeader = document.createElement("h2");
+        conditionHeader.textContent = "Condition";
+        rootElement.appendChild(conditionHeader);
         const conditionStrings = requirementsJson.condition;
         for (let i = 0; i < conditionStrings.length; i++) {
+            let textSection;
             if (labeledVariables.includes(conditionStrings[i])) {
-                jsonInnerHtml += "<b>" + conditionStrings[i] + "</b>";
+                textSection = document.createElement("b");
             } else if (intermediateVariables.includes(conditionStrings[i])) {
-                jsonInnerHtml += "<i>" + conditionStrings[i] + "</i>";
+                textSection = document.createElement("i");
             } else {
-                jsonInnerHtml += conditionStrings[i];
+                textSection = document.createTextNode("");
             }
+            textSection.textContent = conditionStrings[i];
+            rootElement.appendChild(textSection);
         }
     }
 
     // Displays any labeled variables data
     if (labeledVariables.length > 0) {
-        jsonInnerHtml += '<h2>Labeled Variables</h2>';
+        const labeledVariablesHeader = document.createElement("h2");
+        labeledVariablesHeader.textContent = "Labeled Variables";
+        rootElement.appendChild(labeledVariablesHeader);
         for (let i = 0; i < labeledVariables.length; i++) {
-            jsonInnerHtml += labeledVariables[i] + "<br>";
+            const labeledVariable = document.createElement("div");
+            labeledVariable.textContent = labeledVariables[i];
+            const breakElement = document.createElement("br");
+            rootElement.appendChild(labeledVariable);
+            rootElement.appendChild(breakElement);
         }
     }
 
     // Displays any intermediate variables
     if (intermediateVariables.length > 0) {
-        jsonInnerHtml += '<h2>Intermediate Variables</h2>';
+        const intermediateVariablesHeader = document.createElement("h2");
+        intermediateVariablesHeader.textContent = "Intermediate Variables";
+        rootElement.appendChild(intermediateVariablesHeader);
         for (let i = 0; i < intermediateVariables.length; i++) {
-            jsonInnerHtml += intermediateVariables[i] + "<br>";
+            const intermediateVariable = document.createElement("div");
+            intermediateVariable.textContent = intermediateVariables[i];
+            const breakElement = document.createElement("br");
+            rootElement.appendChild(intermediateVariable);
+            rootElement.appendChild(breakElement);
         }
     }
 
     // Displays any example task
     if ("exampleSpecification" in requirementsJson) {
-
-        // Characters for tab and new line for JSON display
-        let jsonString
-            = JSON.stringify(requirementsJson.exampleSpecification, null, "\t");
-        jsonString = jsonString.replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
-        jsonString = jsonString.replace(/\n/g, '<br>');
-
+        
         // Appends section to display
-        jsonInnerHtml += "<h2>Example Specification</h2>";
-        jsonInnerHtml += jsonString
+        const exampleHeader = document.createElement("h2");
+        exampleHeader.textContent = "Example Specification";
+        rootElement.appendChild(exampleHeader);
+        
+        // Characters for tab and new line for JSON display
+        const jsonString
+            = JSON.stringify(requirementsJson.exampleSpecification, null, "\t");
+        const jsonStringArray = jsonString.split(/(\t|\n)/).filter(Boolean);
+        for (let i = 0; i < jsonStringArray.length; i++) {
+            let jsonSection;
+            if (jsonStringArray[i] == "\n") {
+                jsonSection = document.createElement("br");
+            } else if (jsonStringArray[i] == "\t") {
+                jsonSection
+                    = document.createTextNode("\u00A0\u00A0\u00A0\u00A0");
+            } else {
+                jsonSection = document.createTextNode(jsonStringArray[i]);
+            }
+            rootElement.appendChild(jsonSection);
+        }
     }
 
     // Display any example answer
     if ("exampleAnswer" in requirementsJson) {
 
-        // Characters for tab and new line for JSON display
-        let jsonString
-            = JSON.stringify(requirementsJson.exampleAnswer, null, "\t");
-        jsonString = jsonString.replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
-        jsonString = jsonString.replace(/\n/g, '<br>');
-
         // Appends section to display
-        jsonInnerHtml += "<h2>Example Answer</h2>";
-        jsonInnerHtml += jsonString
+        const exampleHeader = document.createElement("h2");
+        exampleHeader.textContent = "Example Answer";
+        rootElement.appendChild(exampleHeader);
+        
+        // Characters for tab and new line for JSON display
+        const jsonString
+            = JSON.stringify(requirementsJson.exampleAnswer, null, "\t");
+        const jsonStringArray = jsonString.split(/(\t|\n)/).filter(Boolean);
+        for (let i = 0; i < jsonStringArray.length; i++) {
+            let jsonSection;
+            if (jsonStringArray[i] == "\n") {
+                jsonSection = document.createElement("br");
+            } else if (jsonStringArray[i] == "\t") {
+                jsonSection
+                    = document.createTextNode("\u00A0\u00A0\u00A0\u00A0");
+            } else {
+                jsonSection = document.createTextNode(jsonStringArray[i]);
+            }
+            rootElement.appendChild(jsonSection);
+        }
     }
-
-    // Return accumulated display string
-    return jsonInnerHtml;
 }
 
 /**
