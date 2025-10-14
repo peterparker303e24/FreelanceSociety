@@ -432,7 +432,8 @@ async function validateTaskFile(arrayBuffer) {
                 = requirementData.hash;
         }
     } catch (error) {
-        fileError.textContent = `Error parsing specifications.json file`;
+        fileError.textContent
+            = `Error parsing specifications.json file - ${error}`;
         return false;
     }
 
@@ -481,12 +482,15 @@ async function validateTaskFile(arrayBuffer) {
         jsonObject = JSON.parse(content);
     } catch (error) {
         taskJsonArea.textContent
-            = `[X] ERROR: Problem parsing specifications.json`;
+            = `[X] ERROR: Problem parsing specifications.json - ${error}`;
         return;
     }
 
     // Task content header
-    taskJsonArea.textContent = "<h1>Task Requirements</h1>";
+    taskJsonArea.textContent = "";
+    const taskRequirementsHeader = document.createElement("h1");
+    taskRequirementsHeader.textContent = "Task Requirements";
+    taskJsonArea.appendChild(taskRequirementsHeader);
 
     // Iterate over each requirement listed in the specifications, and for each
     // one parse the corresponding requirement in the requirements folder to

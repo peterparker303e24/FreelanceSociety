@@ -772,7 +772,7 @@ async function dataHashMatchFound(zipFile) {
             }
         });
     } catch (error) {
-        taskFileTreeArea.textContent = `Error parsing .zip file`;
+        taskFileTreeArea.textContent = `Error parsing .zip file - ${error}`;
         return;
     }
 
@@ -793,12 +793,15 @@ async function dataHashMatchFound(zipFile) {
         jsonObject = JSON.parse(content);
     } catch (error) {
         taskJsonArea.textContent
-            = `[X] ERROR: Problem parsing specifications.json`;
+            = `[X] ERROR: Problem parsing specifications.json - ${error}`;
         return;
     }
 
     // Task content header
-    taskJsonArea.textContent = "<h1>Task Requirements</h1>";
+    taskJsonArea.textContent = "";
+    const taskRequirementsHeader = document.createElement("h1");
+    taskRequirementsHeader.textContent = "Task Requirements";
+    taskJsonArea.appendChild(taskRequirementsHeader);   
 
     // Iterate over each requirement listed in the specifications, and for each
     // one parse the corresponding requirement in the requirements folder to

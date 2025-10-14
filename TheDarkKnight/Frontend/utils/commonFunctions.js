@@ -467,16 +467,18 @@ export function formatRequirementJson(requirementsJson, rootElement) {
 /**
  * Formats the display of the task specification fold using the given
  * specification and requirement data
- * @param {JSON} specificationJson Single task specification
+ * @param {JSON} specificationJson Single task specification. If the value is
+ * null, then a warning for the specification condition is displayed.
  * @param {JSON} requirementJson Corresponding requirement to task
- * specification
+ * specification. If the value is null, then a warning for the specification is
+ * displayed.
  */
 export function formatTaskJson(
     specificationJson,
     requirementJson
 ) {
 
-    // Initialize json variables and final text string
+    // Initialize json variables
     let labeledVariables = [];
     let intermediateVariables = [];
 
@@ -510,7 +512,7 @@ export function formatTaskJson(
             requirementToggle.textContent = "▶";
         }
     });
-    const requirementHeader = document.createElement("div");
+    const requirementHeader = document.createElement("h1");
     requirementHeader.id = "requirement-id";
     requirementHeader.classList.add("left-align", "padding", "left");
     templateRequirement.appendChild(headerRow);
@@ -531,12 +533,9 @@ export function formatTaskJson(
     }
 
     // Display the requirement ID in the requirement fold header
-    requirementHeader.textContent = `<h1>Requirement `
+    requirementHeader.textContent = `Requirement `
         + `${specificationJson.requirementIndex}-`
-        + `${specificationJson.requirementVersionIndex}</h1>`;
-
-    // Build the task requirement html
-    let jsonInnerHtml = "";
+        + `${specificationJson.requirementVersionIndex}`;
 
     // Gets any list of labeled variables
     if ("labeledVariables" in requirementJson
@@ -560,24 +559,29 @@ export function formatTaskJson(
         // Appends each string element as normal text, bold for labeled
         // variables, and italicized for intermediate variables, and inserts the
         // specification in the labelled variable condition
-        jsonInnerHtml += '<h2>Condition</h2>';
+        const conditionHeader = document.createElement("h2");
+        conditionHeader.textContent = "Condition";
+        content.appendChild(conditionHeader);
         const conditionStrings = requirementJson.condition;
         for (let i = 0; i < conditionStrings.length; i++) {
+            let conditionTextSection;
             if (labeledVariables.includes(conditionStrings[i])) {
                 const labeledVariableText = specificationJson
                     .specifications[conditionStrings[i]];
-                jsonInnerHtml += "<b>" + labeledVariableText + "</b>";
+                conditionTextSection = document.createElement("b");
+                conditionTextSection.textContent = labeledVariableText;
             } else if (intermediateVariables.includes(conditionStrings[i])) {
-                jsonInnerHtml += "<i>" + conditionStrings[i] + "</i>";
+                conditionTextSection = document.createElement("i");
+                conditionTextSection.textContent = conditionStrings[i];
             } else {
-                jsonInnerHtml += conditionStrings[i];
+                conditionTextSection
+                    = document.createTextNode(conditionStrings[i]);
             }
+            content.appendChild(conditionTextSection);
         }
     }
 
-    // The html is inserted in the requirement fold and the fold is appended to
-    // the task requirements section
-    content.textContent = jsonInnerHtml;
+    // The fold is appended to the task requirements section
     container.appendChild(templateRequirement);
 }
 
