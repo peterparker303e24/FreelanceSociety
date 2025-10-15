@@ -222,7 +222,7 @@ export const requirementPlaceholder = ""
     + `    "intermediateVariables": [\n`
     + `        "_intermediateVariable"\n`
     + `    ],\n`
-    + `    "exampleTask": {\n`
+    + `    "exampleSpecification": {\n`
     + `        "labeledVariable": "Only labeled variables are necessary for `
     + `the task description while intermediate variables are for requirement `
     + `descriptions."\n`
