@@ -28,7 +28,7 @@ async function main() {
         "0x1e84a4b9cbdb7af415f0f3f94189bc971e69ea100ee19e87e5429ba52eb360ed"
     );
     await usersContract.connect(user1)["activateUser(string, bytes, bytes32)"](
-        "https://raw.githubusercontent.com/peterparker303e24/Base/main,http://raw.githubusercontent.com/peterparker303e24/FreelanceSociety/main",
+        "https://raw.githubusercontent.com/peterparker303e24/Base/main",
         "0x00416c696365",
         "0x1e84a4b9cbdb7af415f0f3f94189bc971e69ea100ee19e87e5429ba52eb360ed"
     );
