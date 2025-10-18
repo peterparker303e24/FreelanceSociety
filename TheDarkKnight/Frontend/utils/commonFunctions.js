@@ -925,8 +925,8 @@ export function continueSearch(
 
         // Display retrieved user link
         tryDownloadButton.textContent = `Try download from: `
-            + `${parseUserData(autoUserData).data}<br>Address: `
-            + `${autoUserAddress}<br>Link: ${link(autoUserLinks)}`;
+            + `${parseUserData(autoUserData).data}\r\nAddress: `
+            + `${autoUserAddress}\r\nLink: ${link(autoUserLinks)}`;
 
         // Return updated skip and user data
         return {
