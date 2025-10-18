@@ -340,5 +340,5 @@ img {
 }
 
 .text-content-return {
-    white-space: pre;
+    white-space: pre-wrap;
 }
