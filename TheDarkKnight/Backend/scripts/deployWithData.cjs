@@ -40,8 +40,8 @@ async function main() {
 
     // Create two requirements, the second with a new version
     await theListContract.connect(deployer).addRequirement("0x8e1e294d1ffc2e0eff8e327229247a6029e42dc76f5d12f543230d50625e43dc");
-    await theListContract.connect(deployer).addRequirement("0xfdcc01b08d46c3d858f62cbe95fb32c9ab78d883d4acb39255059c1a4ab7e7db");
-    await theListContract.connect(deployer).addRequirement("0x8e1e294d1ffc2e0eff8e327229247a6029e42dc76f5d12f543230d50625e43dc");
+    await theListContract.connect(deployer).addRequirement("0x584bc4c338df9c2bfd77a440ca0f152b9075eaaac10e7c2174ab6213b3e67b58");
+    await theListContract.connect(deployer).addRequirement("0xca62c4ee229dc52b0a4059ad887e8e059c7d8b87a3e5130463e29ca2294b4c2c");
     await theListContract.connect(user1).voteRequirementUpdate(1, 0);
     await theListContract.connect(user2).voteRequirementUpdate(1, 0);
     await theListContract.connect(user1).updateEthicsRequirements(ETHICS_REQUIREMENTS2);
@@ -49,7 +49,7 @@ async function main() {
     // h-0: Task deadline passed incomplete
     await hashTaskContract.connect(user1).addHashTask(
         "0x1204b3dcd975ba0a68eafbf4d2ca0d13cc7b5e3709749c1dc36e6e74934270b3",
-        "0x5347d46ee824f7d4c3d191cda72bcee55f05613c02ef4aeaf023d29f97894669",
+        "0xe8503ca1bacc9a2addc1ba6e13a7c22daee9b3956821a5609ba44c1e87752562",
         1,
         10,
         true,
@@ -59,7 +59,7 @@ async function main() {
     // h-1: Task passed complete
     await hashTaskContract.connect(user1).addHashTask(
         "0x1204b3dcd975ba0a68eafbf4d2ca0d13cc7b5e3709749c1dc36e6e74934270b3",
-        "0x5347d46ee824f7d4c3d191cda72bcee55f05613c02ef4aeaf023d29f97894669",
+        "0xe8503ca1bacc9a2addc1ba6e13a7c22daee9b3956821a5609ba44c1e87752562",
         60,
         10,
         true,
@@ -69,7 +69,7 @@ async function main() {
     // h-2: Task passed incomplete
     await hashTaskContract.connect(user2).addHashTask(
         "0x1204b3dcd975ba0a68eafbf4d2ca0d13cc7b5e3709749c1dc36e6e74934270b3",
-        "0x5347d46ee824f7d4c3d191cda72bcee55f05613c02ef4aeaf023d29f97894669",
+        "0xe8503ca1bacc9a2addc1ba6e13a7c22daee9b3956821a5609ba44c1e87752562",
         100,
         10,
         true,
@@ -79,7 +79,7 @@ async function main() {
     // h-3: Task with no difficulty
     await hashTaskContract.connect(user1).addHashTask(
         "0x1204b3dcd975ba0a68eafbf4d2ca0d13cc7b5e3709749c1dc36e6e74934270b3",
-        "0x5347d46ee824f7d4c3d191cda72bcee55f05613c02ef4aeaf023d29f97894669",
+        "0xe8503ca1bacc9a2addc1ba6e13a7c22daee9b3956821a5609ba44c1e87752562",
         100,
         0,
         true,
@@ -89,7 +89,7 @@ async function main() {
     // dh-0: Long and instand submission window
     await doubleHashTaskContract.connect(user1).addDoubleHashTask(
         "0x1c45d96fec31449eec463a618003378fb419a566a7c56ce7e6053c5aaa01e466",
-        "0x374ade3263564fe559b28e4156d73af37d57bea2ae63883c9d0ac9842b2cc38d",
+        "0x22e5594e977f215c69be7c0bd8254a0fe8a61e21014e11ebceb97ed17695952b",
         30_000_000,
         true,
         10_000,
@@ -100,7 +100,7 @@ async function main() {
     // dh-1: medium length submission window
     await doubleHashTaskContract.connect(user1).addDoubleHashTask(
         "0x1c45d96fec31449eec463a618003378fb419a566a7c56ce7e6053c5aaa01e466",
-        "0x374ade3263564fe559b28e4156d73af37d57bea2ae63883c9d0ac9842b2cc38d",
+        "0x22e5594e977f215c69be7c0bd8254a0fe8a61e21014e11ebceb97ed17695952b",
         30_000_000,
         true,
         100,
@@ -112,7 +112,7 @@ async function main() {
     for (let i = 0; i < 3; i++) {
         await hashTaskContract.connect(user1).addHashTask(
             "0x1e84a4b9cbdb7af415f0f3f94189bc971e69ea100ee19e87e5429ba52eb360ed",
-            "0x5347d46ee824f7d4c3d191cda72bcee55f05613c02ef4aeaf023d29f97894669",
+            "0xe8503ca1bacc9a2addc1ba6e13a7c22daee9b3956821a5609ba44c1e87752562",
             30_000_000,
             10,
             true,
@@ -120,7 +120,7 @@ async function main() {
         );
         await doubleHashTaskContract.connect(user1).addDoubleHashTask(
             "0x1c45d96fec31449eec463a618003378fb419a566a7c56ce7e6053c5aaa01e466",
-            "0x374ade3263564fe559b28e4156d73af37d57bea2ae63883c9d0ac9842b2cc38d",
+            "0x22e5594e977f215c69be7c0bd8254a0fe8a61e21014e11ebceb97ed17695952b",
             30_000_000,
             true,
             40,
