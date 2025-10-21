@@ -111,7 +111,7 @@ async function main() {
     // h-4 - h-6, dh-2 - dh-4, v-0 - v-2: Add a few tasks
     for (let i = 0; i < 3; i++) {
         await hashTaskContract.connect(user1).addHashTask(
-            "0x1e84a4b9cbdb7af415f0f3f94189bc971e69ea100ee19e87e5429ba52eb360ed",
+            "0x1204b3dcd975ba0a68eafbf4d2ca0d13cc7b5e3709749c1dc36e6e74934270b3",
             "0xe8503ca1bacc9a2addc1ba6e13a7c22daee9b3956821a5609ba44c1e87752562",
             30_000_000,
             10,
