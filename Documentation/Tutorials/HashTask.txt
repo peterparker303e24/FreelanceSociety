@@ -1,0 +1,73 @@
+
+### Before You Start
+
+You should be completing this tutorial through either the online Sepolia testnet blockchain or the local blockchain. In both cases you are using testnet cryptocurrencies that are freely available, so no value will be lost in testing within the tutorial. Be aware that if you interact with the Sepolia network, the transactions and data you submit are immutable and public, which may affect your privacy.
+
+If you are using the Sepolia network, then you can use the online GitHub hosted Freelance Society website in the link below. But, if you are using a Localhost blockchain or prefer to locally self host the Freelance Society website on your local computer, then you should have the frontend server running and use the Localhost link below.
+
+GitHub hosted Freelance Society website: [https://peterparker303e24.github.io/FreelanceSociety/TheDarkKnight/Frontend/index.html](https://peterparker303e24.github.io/FreelanceSociety/TheDarkKnight/Frontend/index.html)
+
+Localhost Freelance Society website: [http://localhost:3000](http://localhost:3000)
+
+For the Localhost blockchain, you can add the account corresponding to the deployWithData.cjs script with the following private key:
+
+###
+    0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d
+
+### Add A Hash Task
+
+In the Home page, select "Tasks" to navigate to the View Tasks page. In the View Tasks page, you can view the recent hash tasks, double hash tasks, and validator tasks. You can also search for specific tasks and navigate to each the Add Hash Task, Add Double Hash Task, and Add Validator Task pages. You will see the "Total Tasks Count" which displays the combined total number of hash tasks, double hash tasks, and validator tasks ever created. Select the dropdown arrow and select the "Add Hash Task" button to navigate to the Add Hash Task page.
+
+The "Hash Value" is the keccak256 hash of some secret 32 bytes. The secret 32 bytes should be obtained by the worker by following the description in the task requirements. For this tutorial, the secret 32 bytes is the keccak256 hash of the UTF-8 encoded value "2" which results in the Hash Key "0xad7c5bef027816a800da1736444fb58a807ef4c9603b7848673f7e3a68eb14a5" which can be used to complete the task as a worker. In the "Hash Value" input:
+
+###
+    0x1204b3dcd975ba0a68eafbf4d2ca0d13cc7b5e3709749c1dc36e6e74934270b3
+
+The "Task Hash" is the keccak256 hash of the Task.zip file data. It is immutably written to the blockchain to authenticate that any manager, worker, or validator users are communicating using the exact same task. In the "Task Hash" input:
+
+###
+    "0xe8503ca1bacc9a2addc1ba6e13a7c22daee9b3956821a5609ba44c1e87752562"
+
+The "Seconds Until Deadline" is the dedicated time in seconds that workers have to complete the task starting from the task creation time. Note that the blockchain may not have accurate timestamping. But, there are protocols in place to reduce inaccuracies in the blockchain timestamps, so the time is not entirely unreliable. In the "Seconds Until Deadline" input 1 weeks worth of seconds:
+
+###
+    604800
+
+The "Key Reveal" determines whether the task manager must reveal the Hash Key to withdraw their funds in the event that no user completes the task before the deadline. When this value is true, it incentivizes the manager that created the task to reveal the solution to the task which can build trust with other users that the manager creates reasonable tasks. Keep this toggle as "ON".
+
+The "Difficulty" is a value that requires a worker to submit their solution with a nonce for some adjustable difficulty target. The difficulty ties the secret Hash Key solution to the user address and a nonce so that it is difficult for other users to frontrun a transaction when a worker reveals the Hash Key in completing the task. The difficulty has exponential difficulty adjustment, so a difficulty of 6 is twice the effort of 5, and a difficulty of 11 is twice the effort of 10. When the Difficulty is 0, the worker does not need to find any nonce. In the "Difficulty" input:
+
+###
+    0
+
+The "Reward" is the amount of cryptocurrency, in Wei, that is sent to the worker that completes the task. The manager inputs an initial reward to incentivize workers to complete the task. Other users can add funds to the task, even repeatedly. The reward to the worker is the sum of all users funding amounts. In the "Reward" input:
+
+###
+    1000000000000000
+
+The checkbox with text "I have have read the ethics requirements and my submission does not violate any of the ethics requirements." checks that the user acknowledges that they have not violated any ethics in the process of creating the task. Select the checkbox so that is displays the checked symbol.
+
+Download the ZIP file [here](https://raw.githubusercontent.com/peterparker303e24/Base/main/Tasks/HashTasks/e8503ca1bacc9a2addc1ba6e13a7c22daee9b3956821a5609ba44c1e87752562/Task.zip), select the "Upload Zip File" button, and select the downloaded file. This upload will automatically set the "Task Hash" input value so it matches the actual Task.zip file keccak256 hash. The ZIP file should be uploaded within your base route with the path "Tasks/HashTasks/e8503ca1bacc9a2addc1ba6e13a7c22daee9b3956821a5609ba44c1e87752562/Task.zip".
+
+With all task data input set, the "Add Hash Task" button will now be enabled. Select this button and confirm the transaction to add the hash task to the blockchain. You will be redirected to the View Tasks page and the recent tasks will shortly populate the page. Select "View Task" with the task that has the matching "Manager Address" of your account. You will be redirected to the Hash Task page where you can view the task blockchain data, add funds to the task reward, withdraw funds of an incomplete task, and view the task data conditions. You can now use this newly created task for completion.
+
+### Complete The Hash Task
+
+In the Home page, select "Tasks" to navigate to the View Tasks page.
+
+The recent tasks will populate the page. You can select the toggle with the text "Hide completed and past tasks" so only tasks that have an available reward will show. Input text into the search box to narrow down your search. You can search only for specific tasks types such as "h" (hash tasks), "dh" (double hash tasks), or "v" (validator tasks). You can search for a specific task using the task ID such as "h-2" or "v-1". You can search only for tasks that are created by a user by inputting that user's address. Navigate to a hash task by selecting the "View Task" button of a task with the "h-" shortname prefix.
+
+View the blockchain task data displayed on the page. The goal in completing the task is to find a 32 byte value that when hashed with keccak256 results in the "Hash Value". The instructions to find this value should be described in the task specifications. Scroll down and discover the task data. You can select the "Manually Discover Task" button and input the Manager Address of the task to get the task data conditions from the user that created the task. You can also select "Save Locally" once the data has been discovered to download the ZIP file to your computer to view all of the contents in the task. Now select "Submit Task" to navigate to the Submit Hash Task page.
+
+Once you have completed the instructions in the task description, you should have found a 32 byte hash key. If you are using the task from the previous section, then use the hash key value:
+
+###
+    "0xad7c5bef027816a800da1736444fb58a807ef4c9603b7848673f7e3a68eb14a5"
+
+Input the hash key in the "Hash Key Input" field. Its keccak256 hash will automatically be checked against its expected hash value. If the hash task has any difficulty value, then you will need to generate a nonce that meets the difficulty requirement. You can select "Generate Nonce" to search for a nonce within the browser, but you can also search for a nonce elsewhere and input it in the "Nonce" field. Once a nonce is found that meets the task difficulty, select the "Submit Hash Task" button and confirm the transaction to complete the hash task.
+
+If the transaction is successful, you will recieve the reward from the task and the task will be marked as complete. 
+
+### What To Do Next
+
+Continue to the next section to add a new double hash task to create a task with the same completion principle, but with an alternate task submission process that does not use a difficulty value: [Double Hash Task Tutorial]("https://github.com/peterparker303e24/FreelanceSociety/tree/main/Documentation/DoubleHashTaskTutorial.md").
