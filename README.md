@@ -20,7 +20,7 @@ This project is currently built on the Ethereum testnet, Sepolia. This testnet d
 
 [How To Connect MetaMask To Freelance Society](#how-to-connect-metamask-to-freelance-society)
 
-[Tutorial](https://github.com/peterparker303e24/FreelanceSociety/blob/main/Documentation/Tutorials/CreateUserProfile/CreateUserProfile.md)
+[Tutorial](https://github.com/peterparker303e24/FreelanceSociety/blob/main/Documentation/Tutorials/CreateUserProfile/CreateUserProfile.md#before-you-start)
 
 [Closing Remarks](#closing-remarks)
 
@@ -158,7 +158,7 @@ To connect the Freelance Society website to your MetaMask wallet through the Sep
 
 ![MetaMask Connect Websites Edit Networks](Documentation/Images/MetaMaskWallet/ConnectWebsiteEditNetworks.png)
 
-4. If the connection is successful, then the profile webpage content will populate. You can verify the network the website is connected to by viewing the network dropdown and by selecting the website icon to see the website domain and connected network. Continue to [Tutorial](#tutorial) to begin your participation in Freelance Society.
+4. If the connection is successful, then the profile webpage content will populate. You can verify the network the website is connected to by viewing the network dropdown and by selecting the website icon to see the website domain and connected network. Continue to [Tutorial](https://github.com/peterparker303e24/FreelanceSociety/blob/main/Documentation/Tutorials/CreateUserProfile/CreateUserProfile.md#before-you-start) to begin your participation in Freelance Society.
 
 ![MetaMask Website Connected](Documentation/Images/MetaMaskWallet/WebsiteConnected.png)
 
@@ -202,13 +202,15 @@ To connect the Freelance Society website to your MetaMask wallet through a local
 
 ![MetaMask Connect Websites Edit Networks](Documentation/Images/MetaMaskWallet/ConnectWebsiteEditNetworks.png)
 
-4. If the connection is successful, then the profile webpage content will populate. You can verify the network the website is connected to by viewing the network dropdown and by selecting the website icon to see the website domain and connected network. Both of these should be connected to the same network for the website to behave normally. Continue to [Tutorial](#tutorial) to begin your participation in Freelance Society.
+4. If the connection is successful, then the profile webpage content will populate. You can verify the network the website is connected to by viewing the network dropdown and by selecting the website icon to see the website domain and connected network. Both of these should be connected to the same network for the website to behave normally. Continue to [Tutorial]([#tutorial](https://github.com/peterparker303e24/FreelanceSociety/blob/main/Documentation/Tutorials/CreateUserProfile/CreateUserProfile.md#before-you-start)) to begin your participation in Freelance Society.
 
 ![MetaMask Website Connected](Documentation/Images/MetaMaskWallet/WebsiteConnected.png)
 
 ![MetaMask Website Connected](Documentation/Images/MetaMaskWallet/ViewConnectedNetworkLocalhost.png)
 
 ## Tutorial
+
+[Begin the tutorial here](https://github.com/peterparker303e24/FreelanceSociety/blob/main/Documentation/Tutorials/CreateUserProfile/CreateUserProfile.md#before-you-start).
 
 ## Closing Remarks
 
