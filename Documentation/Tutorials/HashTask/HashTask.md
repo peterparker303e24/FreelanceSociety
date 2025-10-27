@@ -62,7 +62,7 @@ View the blockchain task data displayed on the page. The goal in completing the 
 Once you have completed the instructions in the task description, you should have found a 32 byte hash key. If you are using the task from the previous section, then use the hash key value:
 
 ###
-    "0xad7c5bef027816a800da1736444fb58a807ef4c9603b7848673f7e3a68eb14a5"
+    0xad7c5bef027816a800da1736444fb58a807ef4c9603b7848673f7e3a68eb14a5
 
 Input the hash key in the "Hash Key Input" field. Its keccak256 hash will automatically be checked against its expected hash value. If the hash task has any difficulty value, then you will need to generate a nonce that meets the difficulty requirement. You can select "Generate Nonce" to search for a nonce within the browser, but you can also search for a nonce elsewhere and input it in the "Nonce" field. Once a nonce is found that meets the task difficulty, select the "Submit Hash Task" button and confirm the transaction to complete the hash task.
 
@@ -70,4 +70,4 @@ If the transaction is successful, you will recieve the reward from the task and 
 
 ### What To Do Next
 
-Continue to the next section to add a new double hash task to create a task with the same completion principle, but with an alternate task submission process that does not use a difficulty value: [Double Hash Task Tutorial]("https://github.com/peterparker303e24/FreelanceSociety/tree/main/Documentation/DoubleHashTaskTutorial.md").
+Continue to the next section to add a new double hash task to create a task with the same completion principle, but with an alternate task submission process that does not use a difficulty value: [Double Hash Task Tutorial](https://github.com/peterparker303e24/FreelanceSociety/blob/main/Documentation/Tutorials/DoubleHashTask/DoubleHashTask.md).
