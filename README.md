@@ -20,7 +20,7 @@ This project is currently built on the Ethereum testnet, Sepolia. This testnet d
 
 [How To Connect MetaMask To Freelance Society](#how-to-connect-metamask-to-freelance-society)
 
-[Tutorial](https://github.com/peterparker303e24/FreelanceSociety/edit/main/Tutorials/CreateUserProfile/CreateUserProfile.md)
+[Tutorial](https://github.com/peterparker303e24/FreelanceSociety/edit/main/Documentation/Tutorials/CreateUserProfile/CreateUserProfile.md)
 
 [Closing Remarks](#closing-remarks)
 
