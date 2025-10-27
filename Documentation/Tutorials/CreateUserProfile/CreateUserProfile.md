@@ -39,4 +39,4 @@ You have now initialized your user profile on the blockchain and can now create 
 
 ### What To Do Next
 
-Continue to the next section to add a new requirement to The List to create incentive structures for workers to complete tasks: [Requirement Tutorial]("https://github.com/peterparker303e24/FreelanceSociety/tree/main/Documentation/RequirementTutorial.md").
+Continue to the next section to add a new requirement to The List to create incentive structures for workers to complete tasks: [Requirement Tutorial](https://github.com/peterparker303e24/FreelanceSociety/blob/main/Documentation/Tutorials/Requirement/Requirement.md#add-a-requirement-to-the-list).
