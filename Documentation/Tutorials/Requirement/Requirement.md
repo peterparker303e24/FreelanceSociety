@@ -50,4 +50,4 @@ You and all users in the blockchain can now view the full requirement data that 
 
 ### What To Do Next
 
-Continue to the next section to add a new hash task to incentivize workers to complete a task you create: [Hash Task Tutorial]("https://github.com/peterparker303e24/FreelanceSociety/tree/main/Documentation/HashTaskTutorial.md").
+Continue to the next section to add a new hash task to incentivize workers to complete a task you create: [Hash Task Tutorial](https://github.com/peterparker303e24/FreelanceSociety/blob/main/Documentation/Tutorials/HashTask/HashTask.md).
