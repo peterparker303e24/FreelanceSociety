@@ -21,7 +21,7 @@ In the Home page, select "Tasks" to navigate to the View Tasks page. In the View
 The "Task Hash" is the keccak256 hash of the Task.zip file data. It is immutably written to the blockchain to authenticate that any manager, worker, or validator users are communicating using the exact same task. In the "Task Hash" input:
 
 ###
-    "0xe8503ca1bacc9a2addc1ba6e13a7c22daee9b3956821a5609ba44c1e87752562"
+    0xe8503ca1bacc9a2addc1ba6e13a7c22daee9b3956821a5609ba44c1e87752562
 
 The "Specifications Count" 
 
