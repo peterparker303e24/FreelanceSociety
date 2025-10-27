@@ -9,7 +9,7 @@ GitHub hosted Freelance Society website: [https://peterparker303e24.github.io/Fr
 
 Localhost Freelance Society website: [http://localhost:3000](http://localhost:3000)
 
-For the Localhost blockchain, you can add the account corresponding to the deployWithData.cjs script with the following private key:
+For the Localhost blockchain it is recommended to use the account 0x70997970C51812dc3A010C7d01b50e0d17dc79C8. You can add this account with the following private key in MetaMask:
 
 ###
     0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d
