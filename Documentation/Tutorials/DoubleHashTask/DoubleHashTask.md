@@ -26,7 +26,7 @@ The "Hash Value" is the keccak256 hash of some 32 bytes that is the keccak256 ha
 The "Task Hash" is the keccak256 hash of the Task.zip file data. It is immutably written to the blockchain to authenticate that any manager, worker, or validator users are communicating using the exact same task. In the "Task Hash" input:
 
 ###
-    "0x22e5594e977f215c69be7c0bd8254a0fe8a61e21014e11ebceb97ed17695952b"
+    0x22e5594e977f215c69be7c0bd8254a0fe8a61e21014e11ebceb97ed17695952b
 
 The "Seconds Until Deadline" is the dedicated time in seconds that workers have to complete the task starting from the task creation time. Note that the blockchain may not have accurate timestamping. But, there are protocols in place to reduce inaccuracies in the blockchain timestamps, so the time is not entirely unreliable. In the "Seconds Until Deadline" input 1 weeks worth of seconds:
 
@@ -67,7 +67,7 @@ View the blockchain task data displayed on the page. The goal in completing the 
 Once you have completed the instructions in the task description, you should have found a 32 byte hash key. If you are using the task from the previous section, then use the hash key value:
 
 ###
-    "0xad7c5bef027816a800da1736444fb58a807ef4c9603b7848673f7e3a68eb14a5"
+    0xad7c5bef027816a800da1736444fb58a807ef4c9603b7848673f7e3a68eb14a5
 
 Input the hash key in the "Hash Key Input" field. Its keccak256 first hash and keccak256 second hash will automatically be checked against its expected hash value. Select the "Submit First Hash" button and confirm the transaction to submit the first hash transaction.
 
@@ -77,4 +77,4 @@ If this second transaction is successful, you will recieve the reward from the t
 
 ### What To Do Next
 
-Continue to the next section to add a new validator task that incentivize workers to create new digital products: [Validator Task Tutorial]("https://github.com/peterparker303e24/FreelanceSociety/tree/main/Documentation/ValidatorTaskTutorial.md").
+Continue to the next section to add a new validator task that incentivize workers to create new digital products: [Validator Task Tutorial](https://github.com/peterparker303e24/FreelanceSociety/blob/main/Documentation/Tutorials/ValidatorTask/ValidatorTask.md).
