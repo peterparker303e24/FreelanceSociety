@@ -70,4 +70,4 @@ If the transaction is successful, you will recieve the reward from the task and 
 
 ### What To Do Next
 
-Continue to the next section to add a new double hash task to create a task with the same completion principle, but with an alternate task submission process that does not use a difficulty value: [Double Hash Task Tutorial](https://github.com/peterparker303e24/FreelanceSociety/blob/main/Documentation/Tutorials/DoubleHashTask/DoubleHashTask.md).
+Continue to the next section to add a new double hash task to create a task with the same completion principle, but with an alternate task submission process that does not use a difficulty value: [Double Hash Task Tutorial](https://github.com/peterparker303e24/FreelanceSociety/blob/main/Documentation/Tutorials/DoubleHashTask/DoubleHashTask.md#add-a-double-hash-task).
