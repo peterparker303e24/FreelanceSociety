@@ -77,4 +77,4 @@ If this second transaction is successful, you will recieve the reward from the t
 
 ### What To Do Next
 
-Continue to the next section to add a new validator task that incentivize workers to create new digital products: [Validator Task Tutorial](https://github.com/peterparker303e24/FreelanceSociety/blob/main/Documentation/Tutorials/ValidatorTask/ValidatorTask.md).
+Continue to the next section to add a new validator task that incentivize workers to create new digital products: [Validator Task Tutorial](https://github.com/peterparker303e24/FreelanceSociety/blob/main/Documentation/Tutorials/ValidatorTask/ValidatorTask.md#add-a-validator-task).
