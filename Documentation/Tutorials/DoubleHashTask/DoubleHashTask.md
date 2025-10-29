@@ -16,7 +16,7 @@ For the Localhost blockchain it is recommended to use the account 0x70997970C518
 
 ### Add A Double Hash Task
 
-In the Home page, select "Tasks" to navigate to the View Tasks page. In the View Tasks page, you can view the recent hash tasks, double hash tasks, and validator tasks. Each item in the search results lists the common attributes of all types of tasks. The "Hash" is the keccak256 hash of the task ZIP file, the "Manager Address" is the address of the user that created the task, the "Reward" is the amount of Wei the worker receives in completing a task, the "Deadline" is the UTC blockchain timestamp when new worker submissions following this time will no longer be accepted, and the "Task Complete" is the identifier that tells if a worker has completed the task and withdrawn the reward. Select the dropdown arrow and select the "Add Double Hash Task" button to navigate to the Add Double Hash Task page.
+In the Home page, select "Tasks" to navigate to the View Tasks page. In the View Tasks page, you can view the recent hash tasks, double hash tasks, and validator tasks. Each item in the search results lists the common attributes of all types of tasks. The "Hash" is the keccak256 hash of the task ZIP file, the "Manager Address" is the address of the user that created the task, the "Reward" is the amount of Wei the worker receives in completing the task, the "Deadline" is the UTC blockchain timestamp when new worker submissions will no longer be accepted, and the "Task Complete" is the identifier that tells whether a worker has already completed the task and withdrawn the reward. Select the dropdown arrow and select the "Add Double Hash Task" button to navigate to the Add Double Hash Task page.
 
 The "Hash Value" is the keccak256 hash of some 32 bytes that is the keccak256 hash of some secret 32 bytes. The secret 32 bytes should be obtained by the worker by following the description in the task requirements. For this tutorial, the secret 32 bytes is the keccak256 hash of the UTF-8 encoded value "2" which results in the Hash Key "0xad7c5bef027816a800da1736444fb58a807ef4c9603b7848673f7e3a68eb14a5" and First Hash "0x1204b3dcd975ba0a68eafbf4d2ca0d13cc7b5e3709749c1dc36e6e74934270b3". In the "Hash Value" input:
 
@@ -35,15 +35,15 @@ The "Seconds Until Deadline" is the dedicated time in seconds that workers have 
 
 The "Key Reveal" determines whether the task manager must reveal the Hash Key to withdraw their funds in the event that no user completes the task before the deadline. When this value is true, it incentivizes the manager that created the task to reveal the solution to the task which can build trust with other users that the manager creates reasonable tasks. Keep this toggle as "ON".
 
-The "Second Response Window" is the unique timespan, in seconds, that a worker has to submit their second response to confirm the task completion. The purpose for the two responses in the double hash task is to allow for a dedicated time window for a worker to submit the First Hash of the secret bytes, so other users cannot frontrun transactions when the new information is revealed. Only the worker that solved the task knows the secret Hash Key, and so they are the only worker that can confirm the task in the second response time window. Any users that frontrun the transaction of the First Hash do not know the Hash Key, and so cannot confirm the task during their dedicated time window. In the "Second Response Window" input:
+The "Second Response Window" is the unique timespan, in seconds, that a worker is given to submit their second response to confirm the task completion. The purpose for the two responses in the double hash task is to allow for a dedicated time window for a worker to submit the First Hash of the secret bytes, so other users cannot frontrun transactions when the new information is revealed. Only the worker that solved the task knows the secret Hash Key, and only the worker can confirm the task in the second response time window. Any users that frontrun the transaction of the First Hash do not know the Hash Key, and so cannot confirm the task during their dedicated time window. In the "Second Response Window" input:
 
 ###
-    180
+    600
 
 The "Second Response Delay" is the minimum time, in seconds, that the start of the second response window may begin from the blockchain timestamp when the user submitted their first response. This delay is useful to allow a greater confirmation time for their first response transaction on the blockchain. In the "Second Response Delay" input:
 
 ###
-    20
+    0
 
 The "Reward" is the amount of cryptocurrency, in Wei, that is sent to the worker that completes the task. The manager inputs an initial reward to incentivize workers to complete the task. Other users can add funds to the task, even repeatedly. The reward to the worker is the sum of all users funding amounts. In the "Reward" input:
 
@@ -52,9 +52,9 @@ The "Reward" is the amount of cryptocurrency, in Wei, that is sent to the worker
 
 The checkbox with text "I have have read the ethics requirements and my submission does not violate any of the ethics requirements." checks that the user acknowledges that they have not violated any ethics in the process of creating the task. Select the checkbox so that is displays the checked symbol.
 
-Download the ZIP file [here](https://raw.githubusercontent.com/peterparker303e24/Base/main/Tasks/HashTasks/22e5594e977f215c69be7c0bd8254a0fe8a61e21014e11ebceb97ed17695952b/Task.zip), select the "Upload Zip File" button, and select the downloaded file. This upload will automatically set the "Task Hash" input value so it matches the actual Task.zip file keccak256 hash. The ZIP file should be uploaded within your base route with the path "Tasks/HashTasks/22e5594e977f215c69be7c0bd8254a0fe8a61e21014e11ebceb97ed17695952b/Task.zip".
+Download the ZIP file [here](https://raw.githubusercontent.com/peterparker303e24/Base/main/Tasks/DoubleHashTasks/22e5594e977f215c69be7c0bd8254a0fe8a61e21014e11ebceb97ed17695952b/Task.zip) (open the link in a new tab), select the "Upload Zip File" button, and select the downloaded file. This upload will automatically set the "Task Hash" input value so it matches the actual Task.zip file keccak256 hash. The ZIP file should be uploaded within your base route with the path "Tasks/HashTasks/22e5594e977f215c69be7c0bd8254a0fe8a61e21014e11ebceb97ed17695952b/Task.zip".
 
-With all task data input set, the "Add Hash Task" button will now be enabled. Select this button and confirm the transaction to add the hash task to the blockchain. You will be redirected to the View Tasks page and the recent tasks will shortly populate the page. Select "View Task" with the task that has the matching "Manager Address" of your account. You will be redirected to the Hash Task page where you can view the task blockchain data, add funds to the task reward, withdraw funds of an incomplete task, and view the task data conditions. You can now use this newly created task for completion.
+With all task data input set, the "Add Hash Task" button will now be enabled. Select this button and confirm the transaction to add the hash task to the blockchain. You will be redirected to the View Tasks page and the recent tasks will shortly populate the page. Select "View Task" with the task that has the matching "Manager Address" of your account. You will be redirected to the Double Hash Task page where you can view the task blockchain data, add funds to the task reward, withdraw funds of an incomplete task, and view the task data conditions. You can now use this newly created task for completion.
 
 ### Complete The Double Hash Task
 
