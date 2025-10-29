@@ -16,7 +16,7 @@ For the Localhost blockchain it is recommended to use the account 0x70997970C518
 
 ### Add A Hash Task
 
-In the Home page, select "Tasks" to navigate to the View Tasks page. In the View Tasks page, you can view the recent hash tasks, double hash tasks, and validator tasks. You can also search for specific tasks and navigate to each the Add Hash Task, Add Double Hash Task, and Add Validator Task pages. You will see the "Total Tasks Count" which displays the combined total number of hash tasks, double hash tasks, and validator tasks ever created. Select the dropdown arrow and select the "Add Hash Task" button to navigate to the Add Hash Task page.
+In the Home page, select "Tasks" to navigate to the View Tasks page. In the View Tasks page, you can view the recent hash tasks, double hash tasks, and validator tasks. You can also search for specific tasks using the search input. You will see the "Total Tasks Count" which displays the combined total number of hash tasks, double hash tasks, and validator tasks ever created. Select the dropdown arrow and select the "Add Hash Task" button to navigate to the Add Hash Task page.
 
 The "Hash Value" is the keccak256 hash of some secret 32 bytes. The secret 32 bytes should be obtained by the worker by following the description in the task requirements. For this tutorial, the secret 32 bytes is the keccak256 hash of the UTF-8 encoded value "2" which results in the Hash Key "0xad7c5bef027816a800da1736444fb58a807ef4c9603b7848673f7e3a68eb14a5" which can be used to complete the task as a worker. In the "Hash Value" input:
 
@@ -26,7 +26,7 @@ The "Hash Value" is the keccak256 hash of some secret 32 bytes. The secret 32 by
 The "Task Hash" is the keccak256 hash of the Task.zip file data. It is immutably written to the blockchain to authenticate that any manager, worker, or validator users are communicating using the exact same task. In the "Task Hash" input:
 
 ###
-    "0xe8503ca1bacc9a2addc1ba6e13a7c22daee9b3956821a5609ba44c1e87752562"
+    0xe8503ca1bacc9a2addc1ba6e13a7c22daee9b3956821a5609ba44c1e87752562
 
 The "Seconds Until Deadline" is the dedicated time in seconds that workers have to complete the task starting from the task creation time. Note that the blockchain may not have accurate timestamping. But, there are protocols in place to reduce inaccuracies in the blockchain timestamps, so the time is not entirely unreliable. In the "Seconds Until Deadline" input 1 weeks worth of seconds:
 
