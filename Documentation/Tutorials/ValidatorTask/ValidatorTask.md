@@ -21,9 +21,12 @@ In the Home page, select "Tasks" to navigate to the View Tasks page. In the View
 The "Task Hash" is the keccak256 hash of the Task.zip file data. It is immutably written to the blockchain to authenticate that any manager, worker, or validator users are communicating using the exact same task. In the "Task Hash" input:
 
 ###
-    0xe8503ca1bacc9a2addc1ba6e13a7c22daee9b3956821a5609ba44c1e87752562
+    0xe493dee3ab0b5e9b97c0659831a0ef3213c82549b33f18fc088a7d4d7e2d503d
 
-The "Specifications Count" 
+The "Specifications Count" is the number of specifications that must be met in the task (not including the ethics requirements). All specifications must be met by the standards of the task validator in order for the worker to complete the task. The specifications are ordered, so if a worker submission gets rejected it is clear to the worker which specification was not met. In the "Specifications Count" input:
+
+###
+    2
 
 The "Seconds Until Deadline" is the dedicated time in seconds that workers have to complete the task starting from the task creation time. Note that the blockchain may not have accurate timestamping. But, there are protocols in place to reduce inaccuracies in the blockchain timestamps, so the time is not entirely unreliable. In the "Seconds Until Deadline" input 1 weeks worth of seconds:
 
@@ -35,14 +38,16 @@ The "Block Schedule" is the toggle that determines whether the validator time wi
 The "Validation Time" is the time, in seconds, allocated for the validator to evaluate the correctness of the task submission conditions. In the "Validation Time" input:
 
 ###
-    1800
+    600
+
+(In reality you would want the Validation Time to be much longer so the validator has time to react to the worker submission within a normal work week.)
 
 The "Validation Delay" is the time delay, in seconds, between the blockchain timestamp of the worker submission transaction and the minimum start time of the validator time window. This gives time to allow the transactions to confirm with a greater block depth. In the "Validation Delay" input:
 
 ###
-    30
+    0
 
-The "Validator Addresses" is the comma separated list of addresses that are allowed to submit evaluations of worker submissions. Only one validator among all listed validators may evaluate any single submission, but different validators may evaluate different submissions within the same task. In the "Validator Addresses" input your own address.
+The "Validator Addresses" is the comma separated list of addresses that are allowed to submit evaluations of worker submissions. Only one validator among all listed validators may evaluate any single submission, but different validators may evaluate different submissions within the same task. In the "Validator Addresses" input your own address (This can be copied within your MetaMask wallet in the header under the account name).
 
 The "Validator Commission" is the amount of cryptocurrency, in Wei, that the worker sends to the validator that evaluates their submission. This incentivizes validators to put in time and effort to evaluate a submission. This also incentivizes workers to not submit low quality or incorrect submissions to the task. In the "Validator Commission" input:
 
@@ -56,7 +61,7 @@ The "Reward" is the amount of cryptocurrency, in Wei, that is sent to the worker
 
 The checkbox with text "I have have read the ethics requirements and my submission does not violate any of the ethics requirements." checks that the user acknowledges that they have not violated any ethics in the process of creating the task. Select the checkbox so it displays the checked symbol.
 
-Download the ZIP file [here](https://raw.githubusercontent.com/peterparker303e24/Base/main/Tasks/ValidatorTasks/e493dee3ab0b5e9b97c0659831a0ef3213c82549b33f18fc088a7d4d7e2d503d/Task.zip), select the "Upload Zip File" button, and select the downloaded file. This upload will automatically set the "Task Hash" input value so it matches the actual Task.zip file keccak256 hash. The ZIP file should be uploaded within your base route with the path "Tasks/ValidatorTasks/e493dee3ab0b5e9b97c0659831a0ef3213c82549b33f18fc088a7d4d7e2d503d/Task.zip".
+Download the ZIP file [here](https://raw.githubusercontent.com/peterparker303e24/Base/main/Tasks/ValidatorTasks/e493dee3ab0b5e9b97c0659831a0ef3213c82549b33f18fc088a7d4d7e2d503d/Task.zip) (open the link in a new tab), select the "Upload Zip File" button, and select the downloaded file. This upload will automatically set the "Task Hash" input value so it matches the actual Task.zip file keccak256 hash. The ZIP file should be uploaded within your base route with the path "Tasks/ValidatorTasks/e493dee3ab0b5e9b97c0659831a0ef3213c82549b33f18fc088a7d4d7e2d503d/Task.zip".
 
 With all task data input set, the "Add Validator Task" button will now be enabled. Select this button and confirm the transaction to add the validator task to the blockchain. You will be redirected to the View Tasks page and the recent tasks will shortly populate the page. Select "View Task" with the task that has the matching "Manager Address" of your account. You will be redirected to the Validator Task page where you can view the task blockchain data, add funds to the task reward, withdraw funds of an incomplete task, and view the task data conditions. You can now use this newly created task for completion.
 
@@ -68,7 +73,7 @@ The recent tasks will populate the page. Navigate to a validator task by selecti
 
 View the blockchain task data displayed on the page. The goal in completing the task is to submit a ZIP file with contents that satisfy all the conditions in the task specifications and satisfy all ethics requirements. The instructions for these specifications should be described in the task specifications. Scroll down and discover the task data. Once the task has been discovered, you can view the task folder contents in the file tree display to the right. You can also select "Save Locally" once the data has been discovered to download the ZIP file to your computer to view all of the contents in the task. Now select "Submit Task" to navigate to the Add Validator Task Submission page.
 
-Once you have completed the instructions in the task description, you should have a ZIP file with the contents that meet all the task specification conditions and all ethics requirements conditions. If you are using the task from the previous section, then you can use the ZIP file [here](https://raw.githubusercontent.com/peterparker303e24/Base/main/Submissions/ValidatorSubmissions/6bfdd52a384ec3147c32962ccf3615526faf7144a7706c3db554aad116be4539/Submission.zip). The ZIP file should be uploaded within your base route with the path "Submissions/ValidatorSubmissions/6bfdd52a384ec3147c32962ccf3615526faf7144a7706c3db554aad116be4539/Submission.zip".
+Once you have completed the instructions in the task description, you should have a ZIP file with the contents that meet all the task specification conditions and all ethics requirements conditions. If you are using the task from the previous section, then you can use the ZIP file [here](https://raw.githubusercontent.com/peterparker303e24/Base/main/Submissions/ValidatorSubmissions/6bfdd52a384ec3147c32962ccf3615526faf7144a7706c3db554aad116be4539/Submission.zip) (open the link in a new tab). The ZIP file should be uploaded within your base route with the path "Submissions/ValidatorSubmissions/6bfdd52a384ec3147c32962ccf3615526faf7144a7706c3db554aad116be4539/Submission.zip".
 
 Select "Upload Zip File" and select the downloaded ZIP file.
 
