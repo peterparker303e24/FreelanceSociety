@@ -144,7 +144,7 @@ To connect the Freelance Society website to your MetaMask wallet through the Sep
 
 ![MetaMask Edit Sepolia Network](Documentation/Images/MetaMaskWallet/EditSepoliaNetwork.png)
 
-3. Navigate to the [Freelance Society](https://peterparker303e24.github.io/FreelanceSociety/TheDarkKnight/Frontend/index.html) website and connect the website to your wallet. Select the "Profile" button to navigate to your user profile. Select "Connect" and your wallet should pop up with a notification to connect your wallet to the website. Select "Edit accounts" to choose which accounts you would like to allow the website to access and transact with, then select "Update" to confirm your account choices. Select "Permissions", then next to "See your enabled networks" select "Edit". Here you can choose which networks you would like to allow the website to access and transact with. Be aware of the mainnet options because this allows the website to transact with valuable cryptocurrency. Select "Update" to confirm your network choices. Select "Connect" to confirm the connection from your wallet to Freelance Society with your choices of accounts and networks. 
+3. Navigate to the [Freelance Society](https://freelancesociety.app/index.html) website and connect the website to your wallet. Select the "Profile" button to navigate to your user profile. Select "Connect" and your wallet should pop up with a notification to connect your wallet to the website. Select "Edit accounts" to choose which accounts you would like to allow the website to access and transact with, then select "Update" to confirm your account choices. Select "Permissions", then next to "See your enabled networks" select "Edit". Here you can choose which networks you would like to allow the website to access and transact with. Be aware of the mainnet options because this allows the website to transact with valuable cryptocurrency. Select "Update" to confirm your network choices. Select "Connect" to confirm the connection from your wallet to Freelance Society with your choices of accounts and networks. 
 
 ![Freelance Society Home Page](Documentation/Images/FreelanceSocietyHomePage.png)
 
@@ -218,4 +218,4 @@ This project is currently in beta testing to allow for participation from anyone
 
 Freelance Society interacts with online cryptocurrencies with freedom of privacy and anonymity. This incentivizes attacks from hackers on this platform, so contributions to this project should be taken slowly and with caution.
 
-For more information on the Freelance Society project, view further documentation here: [Freelance Society Learning](https://peterparker303e24.github.io/FreelanceSociety/TheDarkKnight/Frontend/pages/learning/theory/freelanceSociety.html).
+For more information on the Freelance Society project, view further documentation here: [Freelance Society Learning](https://freelancesociety.app/pages/learning/theory/freelanceSociety.html).
