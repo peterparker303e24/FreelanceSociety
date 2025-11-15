@@ -23,17 +23,17 @@ async function main() {
 
     const [deployer, user1, user2] = await ethers.getSigners();
     await usersContract.connect(deployer)["activateUser(string, bytes, bytes32)"](
-        "https://raw.githubusercontent.com/peterparker303e24/Base/main",
+        "https://base.freelancesociety.app,https://raw.githubusercontent.com/peterparker303e24/Base/main",
         "0x0050657465725061726b6572333033653234",
         "0x5bb1b92c745cb672998fe2b90af8e4dd64be2d51f97989e56b1e7598ad10d53c"
     );
     await usersContract.connect(user1)["activateUser(string, bytes, bytes32)"](
-        "https://raw.githubusercontent.com/peterparker303e24/Base/main",
+        "https://base.freelancesociety.app,https://raw.githubusercontent.com/peterparker303e24/Base/main",
         "0x00416c696365",
         "0x5bb1b92c745cb672998fe2b90af8e4dd64be2d51f97989e56b1e7598ad10d53c"
     );
     await usersContract.connect(user2)["activateUser(string, bytes, bytes32)"](
-        "https://raw.githubusercontent.com/peterparker303e24/Base/main,bob@gmail.com",
+        "https://base.freelancesociety.app,https://raw.githubusercontent.com/peterparker303e24/Base/main,bob@gmail.com",
         "0x00426f62",
         "0x5bb1b92c745cb672998fe2b90af8e4dd64be2d51f97989e56b1e7598ad10d53c"
     );
