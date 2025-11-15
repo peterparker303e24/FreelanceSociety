@@ -5,7 +5,7 @@ You should be completing this tutorial through either the online Sepolia testnet
 
 If you are using the Sepolia network, then you can use the online GitHub hosted Freelance Society website in the link below. But, if you are using a Localhost blockchain or prefer to locally self host the Freelance Society website on your local computer, then you should have the frontend server running and use the Localhost link below.
 
-GitHub hosted Freelance Society website: [https://peterparker303e24.github.io/FreelanceSociety/TheDarkKnight/Frontend/index.html](https://peterparker303e24.github.io/FreelanceSociety/TheDarkKnight/Frontend/index.html)
+Hosted Freelance Society website: [https://freelancesociety.app/index.html](https://freelancesociety.app/index.html)
 
 Localhost Freelance Society website: [http://localhost:3000](http://localhost:3000)
 
@@ -20,10 +20,10 @@ In the Home page, select "Profile" to begin creating the profile associated with
 
 If your wallet is connected to the website and is properly connected to your selected blockchain, then you will see your address, an input for Links, an input for Name, and input for Lockout Code.
 
-In the Links input you should input a base route to a website where you can add files and directories to route Freelance Society to data resources. Currently in GitHub, you can create an account for free and host files with some data and networking limitations. You can then create a repository and upload files for hosting. The link for that corresponding base route would then be "https<span></span>://raw.githubusercontent.com/&lt;YourUsername&gt;/&lt;YourRepository&gt;/&lt;YourBranch&gt;". If you would like to continue the tutorial without going through that process you should be able to use the link below, though you cannot edit the files and the network availability may not be completely persistent.
+In the Links input you should input a base route to a website where you can add files and directories to route Freelance Society to data resources. Currently in GitHub, you can create an account for free and host files with some data and networking limitations. You can then create a repository and upload files for hosting. The link for that corresponding base route would then be "https<span></span>://raw.githubusercontent.com/&lt;YourUsername&gt;/&lt;YourRepository&gt;/&lt;YourBranch&gt;". If you would like to continue the tutorial without going through that process you should be able to use the link below, though you cannot edit the files.
 
 ###
-    https://raw.githubusercontent.com/peterparker303e24/Base/main
+    https://base.freelancesociety.app
 
 You may input any name in the Name input field.
 
