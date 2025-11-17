@@ -67,8 +67,6 @@ const usersContract = new ethers.Contract(
     provider
 );
 
-console.log(usersJson.abi);
-
 // Automatically load user, or show button for user to connect
 if (window.ethereum && window.ethereum.selectedAddress) {
     window.ethereum.on('accountsChanged', () => {
