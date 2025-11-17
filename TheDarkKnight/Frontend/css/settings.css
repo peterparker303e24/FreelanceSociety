@@ -1,0 +1,8 @@
+#blockchain-data-input {
+    width: 1024px;
+    height: 128px;
+    resize: vertical;
+    min-height: 128px;
+    color: var(--foreground-color);
+    background-color: var(--background-color);
+}
