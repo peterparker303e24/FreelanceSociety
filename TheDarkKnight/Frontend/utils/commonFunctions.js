@@ -833,12 +833,26 @@ export function continueSearch(
     let canSkipLink;
     let canSkipAddress;
     let autoUserLinksIndex;
-
     // Discovers the next user, then displays the user link information
     return autoDiscoverUser(
         searchCriteria, usersContract, skipAddressButton
     ).then((user) => {
 
+        // If a user was not found, but there are more blocks to search, then
+        // return data from the next search block using the new search criteria
+        if (!("userAddress" in user)
+            && user.searchCriteria.searchBlock !== 0
+        ) {
+            return continueSearch(
+                user.searchCriteria,
+                usersContract,
+                skipLinkButton,
+                skipAddressButton,
+                tryDownloadButton,
+                link
+            );
+        }
+        
         // If user not found, then display end of user search
         if (!("userAddress" in user)) {
             tryDownloadButton.textContent = `No more users`;
@@ -1062,7 +1076,6 @@ async function autoDiscoverUser(
             searchBlock,
             searchBlock
         );
-
         if (allEvents.length > 0) {
             const firstBlockEventArgs = allEvents[0].args;
             return {
@@ -1072,7 +1085,9 @@ async function autoDiscoverUser(
             };
         } else {
             const lastInteractionBlockIndex
-                = await usersContract.lastInteractionBlockIndex();
+                = await usersContract.lastInteractionBlockIndex({
+                    blockTag: searchBlock
+                });
             return {
                 searchCriteria: {
                     searchBlock: lastInteractionBlockIndex
