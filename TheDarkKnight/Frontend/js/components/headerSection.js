@@ -12,15 +12,15 @@ class HeaderSection extends HTMLElement {
         this.shadowRoot.innerHTML = `
             <link rel="stylesheet" href="global.css">
             <div id="header-container" class="row vertically-center-row">
-                <div id="left-button" class="icon-button redirectable left medium-padding">
+                <a id="left-button" class="icon-button redirectable left medium-padding" href="/index.html">
                     <img src="./assets/icons/Home.svg" class="icon" />
                     <div class="icon-text">Home</div>
-                </div>
+                </a>
                 <h1 id="header-text"></h1>
-                <div id="right-button" class="icon-button redirectable right medium-padding">
+                <a id="right-button" class="icon-button redirectable right medium-padding" href="/pages/settings.html">
                     <img src="./assets/icons/Settings.svg" class="icon" />
                     <div class="icon-text">Settings</div>
-                </div>
+                </a>
             </div>
         `;
 
