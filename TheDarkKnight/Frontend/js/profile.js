@@ -1,6 +1,5 @@
-import { ethers } from "../js/libs/ethers.min.js";
+import { ethers } from "./libs/ethers.min.js";
 import {
-    loadHeader,
     prefixHexBytes,
     parseUserData
 } from "../utils/commonFunctions.js";
@@ -34,9 +33,6 @@ const deleteKeyTextbox = document.getElementById("delete-key-textbox");
 const deleteUser = document.getElementById("delete-user");
 const userLockedOutText = document.getElementById("user-locked");
 
-// Load the header button navigation functionality
-loadHeader();
-
 // Ethereum user variables
 let address;
 let userLinksValue;
@@ -50,11 +46,11 @@ let provider;
 let signer;
 let signerUsersContract;
 
-// Connect to wallet provider if found, otherwise display error
+// Connect to wallet provider if found
 if (window.ethereum) {
     provider = new ethers.BrowserProvider(window.ethereum);
 } else {
-    errorText.textContent = "[X] ERROR: No wallet found";
+    provider = null;
 }
 
 // Get the User contract

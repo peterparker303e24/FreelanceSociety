@@ -1,10 +1,10 @@
 import { ethers, keccak256, toUtf8Bytes, concat } from "../libs/ethers.min.js";
 import "../libs/jszip.min.js";
+import { replaceClass } from "../../utils/commonFunctions.js";
 import {
-    loadHeader,
-    replaceClass
-} from "../../utils/commonFunctions.js";
-import { THE_LIST_CONTRACT_ADDRESS, USERS_CONTRACT_ADDRESS } from "../../utils/constants.js";
+    THE_LIST_CONTRACT_ADDRESS,
+    USERS_CONTRACT_ADDRESS
+} from "../../utils/constants.js";
 
 // Page elements
 const idText = document.getElementById("requirement-proposal-id");
@@ -20,9 +20,6 @@ const ethicsRequirementsText = document.getElementById("ethics-requirements");
 const saveLocallyButton = document.getElementById("save-locally-button");
 const downloadRequirementAnchor
     = document.getElementById("download-requirement-anchor");
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Get users and The List contracts
 const usersContractAddress = USERS_CONTRACT_ADDRESS;

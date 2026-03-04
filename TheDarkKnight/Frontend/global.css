@@ -213,6 +213,30 @@ img {
     margin: 32px;
 }
 
+.small-margin-bottom {
+    margin-bottom: 8px;
+}
+
+.medium-margin-bottom {
+    margin-bottom: 16px;
+}
+
+.large-margin-bottom {
+    margin-bottom: 32px;
+}
+
+.small-margin-right {
+    margin-right: 8px;
+}
+
+.medium-margin-right {
+    margin-right: 16px;
+}
+
+.large-margin-right {
+    margin-right: 32px;
+}
+
 #footer-space {
     height: 256px;
 }
@@ -352,4 +376,33 @@ img {
 
 .text-content-return {
     white-space: pre-wrap;
+}
+
+#wallet-misconfiguration-container {
+    display: inline-block;
+    border: 1px solid black; 
+}
+
+#wallet-network-name,
+#wallet-network-chain-id,
+#website-network-name,
+#website-network-chain-id {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.medium-select {
+    color: var(--foreground-color);
+    background-color: var(--background-color);
+    border-color: var(--foreground-color);
+    border-radius: 4px;
+    font-size: medium;
+}
+
+.text-area {
+    border: 2px solid var(--foreground-color);
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+    font-size: 16px;
+    tab-size: 4;
 }

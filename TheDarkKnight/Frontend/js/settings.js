@@ -1,17 +1,3 @@
-import { loadHeader } from "../utils/commonFunctions.js";
-import {
-    USERS_CONTRACT_ADDRESS,
-    THE_LIST_CONTRACT_ADDRESS,
-    HASH_TASK_CONTRACT_ADDRESS,
-    DOUBLE_HASH_TASK_CONTRACT_ADDRESS,
-    VALIDATOR_TASK_CONTRACT_ADDRESS,
-    USERS_CONTRACT_MINIMUM_BLOCK,
-    THE_LIST_CONTRACT_MINIMUM_BLOCK,
-    HASH_TASK_CONTRACT_MINIMUM_BLOCK,
-    DOUBLE_HASH_TASK_CONTRACT_MINIMUM_BLOCK,
-    VALIDATOR_TASK_CONTRACT_MINIMUM_BLOCK,
-} from "../utils/constants.js";
-
 // Page elements
 const toggleButton = document.getElementById("toggle-button");
 const modeButton = document.getElementById("mode-button");
@@ -21,9 +7,6 @@ const blockchainDataInput = document.getElementById("blockchain-data-input");
 const blockchainDataSaveButton
     = document.getElementById("blockchain-data-save-button");
 const blockchainDataError = document.getElementById("blockchain-data-error");
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Get local storage data
 const darkMode = localStorage.getItem("darkMode");

@@ -18,7 +18,7 @@ app.use(cookieParser());
 
 app.use(express.static(__dirname, {
     setHeaders: function (res, path, stat) {
-        res.set('Set-Cookie', `isLocalBlockchain=${isLocalBlockchain};Path=/;SameSite=Strict`)
+        res.set('Set-Cookie', `isLocalBlockchain=${isLocalBlockchain};Path=/;SameSite=Strict`);
     }
 }));
 

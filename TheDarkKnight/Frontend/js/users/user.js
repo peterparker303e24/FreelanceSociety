@@ -5,11 +5,16 @@ import {
     getButtonRedirectFromEvent,
     isValidRequirement,
     isValidTask,
-    loadHeader,
     parseUserData,
     removeClass
 } from "../../utils/commonFunctions.js";
-import { DOUBLE_HASH_TASK_CONTRACT_ADDRESS, HASH_TASK_CONTRACT_ADDRESS, THE_LIST_CONTRACT_ADDRESS, USERS_CONTRACT_ADDRESS, VALIDATOR_TASK_CONTRACT_ADDRESS } from "../../utils/constants.js";
+import {
+    DOUBLE_HASH_TASK_CONTRACT_ADDRESS,
+    HASH_TASK_CONTRACT_ADDRESS,
+    THE_LIST_CONTRACT_ADDRESS,
+    USERS_CONTRACT_ADDRESS,
+    VALIDATOR_TASK_CONTRACT_ADDRESS
+} from "../../utils/constants.js";
 
 // Page elements
 const userAddress = document.getElementById("user-address");
@@ -36,9 +41,6 @@ const validatorTasksText = document.getElementById("validator-tasks");
 const validationRequirementWhitelistText = document.getElementById("validation-requirement-whitelist");
 const availableValidationTimeText = document.getElementById("available-validation-time");
 const userDataErrorText = document.getElementById("user-defined-data-error");
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Get all contracts
 const usersContractAddress = USERS_CONTRACT_ADDRESS;

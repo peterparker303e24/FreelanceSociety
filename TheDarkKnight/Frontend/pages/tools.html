@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools</title>
+    <base href="../">
+    <link rel="icon" href="./favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./favicons/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="./favicons/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="./favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" href="./favicons/android-chrome-512x512.png" sizes="512x512">
+    <link rel="apple-touch-icon" href="./favicons/apple-touch-icon.png">
+    <link rel="stylesheet" href="./global.css">
+    <script src="./js/applyDarkModePreference.js" type="module"></script>
+    <script src="./js/components/headerSection.js" type="module"></script>
+    <script src="./js/tools.js" type="module"></script>
+</head>
+
+<body>
+    <div id="scroll-area" class="medium-margin">
+
+        <!-- Header section -->
+        <div id="header-container">
+            <header-section headerText="Tools"></header-section>
+        </div>
+
+
+        <div class="medium-margin left-align">
+
+            <!-- Keccak256 Hashing section -->
+            <div class="large-text">Keccak256 Hashing</div>
+            <br>
+
+            <!-- Input type selection -->
+            <div class="row-left small-margin-bottom vertically-center-row">
+                <label for="input-type">Input Type:&nbsp;</label>
+                <select id="input-type" class="medium-select">
+                    <option value="text">Text (UTF-8)</option>
+                    <option value="hex">Hex</option>
+                </select>
+            </div>
+
+            <!-- Input text area to hash -->
+            <div class="row">
+                <textarea type="text" id="text-area-input" class="text-area full-width x-large-height" placeholder="Enter input"></textarea>
+            </div>
+
+            <br>
+
+            <!-- Keccak256 hashes display -->
+            <div id="hash-error" class="hide small-margin-bottom"></div>
+            <div class="row-left">
+                <div>First Hash:&nbsp;&nbsp;</div>
+                <div id="first-hash">-</div>
+            </div>
+            <div class="row-left">
+                <div>Second Hash:&nbsp;</div>
+                <div id="second-hash">-</div>
+            </div>
+            <div class="row-left">
+                <div>Third Hash:&nbsp;&nbsp;</div>
+                <div id="third-hash">-</div>
+            </div>
+
+            <br>
+            <br>
+
+            <!-- ZIP File Hashing section -->
+            <div class="large-text left">ZIP File Hashing</div>
+
+            <br>
+
+            <!-- Upload ZIP file button -->
+            <div class="row-left padding">
+                <input type="file" id="file-input" accept=".zip" class="hide" />
+                <div id="upload-file-button" class="border-button medium-text medium-padding">
+                    Upload Zip File
+                </div>
+            </div>
+
+            <br>
+
+            <!-- Display the uploaded file name and keccak256 hash data -->
+            <div id="file-upload-error" class="hide small-margin-bottom"></div>
+            <div class="row-left">
+                <div>File Name:&nbsp;</div>
+                <div id="file-name">-</div>
+            </div>
+            <div class="row-left">
+                <div>File Hash:&nbsp;</div>
+                <div id="file-hash">-</div>
+            </div>
+            
+            <!-- Footer space -->
+            <div id="footer-space"></div>
+        </div>
+        
+    </div>
+    
+</body>
+
+</html>

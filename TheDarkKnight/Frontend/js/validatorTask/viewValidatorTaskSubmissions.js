@@ -2,8 +2,7 @@ import {
     ethers
 } from "../libs/ethers.min.js";
 import {
-    getValidatorSubmissionStatus,
-    loadHeader
+    getValidatorSubmissionStatus
 } from "../../utils/commonFunctions.js";
 import { VALIDATOR_TASK_CONTRACT_ADDRESS } from "../../utils/constants.js";
 
@@ -20,9 +19,6 @@ const taskDefaulted = document.getElementById("task-defaulted");
 const submitTaskButton = document.getElementById("add-task-submission-button");
 const viewTaskButton = document.getElementById("view-task-button");
 const taskId = document.getElementById("task-id");
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Validator task contract address on the blockchain
 const validatorTaskContractAddress = VALIDATOR_TASK_CONTRACT_ADDRESS;

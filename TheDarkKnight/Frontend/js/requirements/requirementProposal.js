@@ -1,7 +1,6 @@
 import { ethers, keccak256 } from "../libs/ethers.min.js";
 import  "../libs/jszip.min.js";
 import {
-    loadHeader,
     addClass,
     prefixHexBytes,
     formatFileStructure,
@@ -43,9 +42,6 @@ const viewOtherVersionsButton
 const proposeUpdateButton = document.getElementById("propose-update-button");
 const requirementFileTreeArea
     = document.getElementById("requirement-file-tree");
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Get The List and users contracts
 const usersContractAddress = USERS_CONTRACT_ADDRESS;

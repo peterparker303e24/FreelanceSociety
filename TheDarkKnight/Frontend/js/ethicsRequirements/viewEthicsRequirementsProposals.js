@@ -1,6 +1,6 @@
 import { ethers, keccak256, toUtf8Bytes, concat } from "../libs/ethers.min.js";
 import {
-    prefixHexBytes, loadHeader
+    prefixHexBytes
 } from "../../utils/commonFunctions.js";
 import { THE_LIST_CONTRACT_ADDRESS } from "../../utils/constants.js";
 
@@ -17,9 +17,6 @@ const searchButton = document.getElementById("search-button");
 const searchInput = document.getElementById("search-input");
 const proposalsContainer = document.getElementById("proposals-rows-container");
 const proposalItemTemplate = document.getElementById("proposal-item-template");
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Get The List contract
 const theListContractAddress = THE_LIST_CONTRACT_ADDRESS;

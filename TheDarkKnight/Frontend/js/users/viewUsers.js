@@ -1,6 +1,5 @@
 import { ethers, isAddress } from "../libs/ethers.min.js"
 import {
-    loadHeader,
     parseUserData,
     prefixHexBytes
 } from "../../utils/commonFunctions.js";
@@ -17,9 +16,6 @@ const usersContainer
     = document.getElementById("users-rows-container");
 const userItemTemplate
     = document.getElementById("user-item-template");
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Get users contract
 const usersContractAddress = USERS_CONTRACT_ADDRESS;

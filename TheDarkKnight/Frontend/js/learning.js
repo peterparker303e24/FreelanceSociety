@@ -1,12 +1,5 @@
-import {
-    loadHeader
-} from "../utils/commonFunctions.js";
-
 // Page elements
 const textArea = document.getElementById("right-column");
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Get the current html file name and adjecent folder
 const folderSplits = window.location.pathname.split('/');

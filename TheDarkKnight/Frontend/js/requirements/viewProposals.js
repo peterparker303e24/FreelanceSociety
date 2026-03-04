@@ -1,6 +1,5 @@
 import { ethers } from "../libs/ethers.min.js";
 import {
-    loadHeader,
     prefixHexBytes,
     removeClass
 } from "../../utils/commonFunctions.js";
@@ -22,9 +21,6 @@ const searchButton = document.getElementById("search-button");
 const searchInput = document.getElementById("search-input");
 const proposalsContainer = document.getElementById("proposals-rows-container");
 const proposalItemTemplate = document.getElementById("proposal-item-template");
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Get The List contract
 const provider = new ethers.BrowserProvider(window.ethereum);

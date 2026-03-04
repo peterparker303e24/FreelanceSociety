@@ -1,7 +1,6 @@
 import { ethers } from "../libs/ethers.min.js";
 import "../libs/jszip.min.js";
 import {
-    loadHeader,
     debounce,
     convertTab,
     replaceClass
@@ -17,9 +16,6 @@ const errorText = document.getElementById("error");
 const addRequirementButton = document.getElementById("add-button");
 const textArea = document.getElementById("write-condition");
 const writeError = document.getElementById("write-error");
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Update ethics requirements proposal
 let validWrittenEthicsRequirements = false;

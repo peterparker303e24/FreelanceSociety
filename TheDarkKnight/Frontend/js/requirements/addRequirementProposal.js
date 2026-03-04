@@ -1,7 +1,6 @@
 import { ethers, keccak256 } from "../libs/ethers.min.js";
 import "../libs/jszip.min.js";
 import {
-    loadHeader,
     prefixHexBytes,
     removeClass,
     debounce,
@@ -36,9 +35,6 @@ const writeError = document.getElementById("write-error");
 const fileUpload = document.getElementById('upload-file-button');
 const zipInput = document.getElementById('file-input');
 const fileName = document.getElementById('file-name');
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Get requirement index of proposals if fixed requirement
 const url = new URL(window.location.href);

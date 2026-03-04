@@ -1,7 +1,6 @@
 import { ethers, keccak256 } from "../libs/ethers.min.js";
 import "../libs/jszip.min.js";
 import {
-    loadHeader,
     prefixHexBytes,
     removeClass,
     addClass,
@@ -73,9 +72,6 @@ const addValidatorTaskButton
     = document.getElementById("add-validator-task-button");
 const taskFileTreeArea
     = document.getElementById("task-file-tree");
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Users, hash task, and The List contract addresses on the blockchain
 const usersContractAddress = USERS_CONTRACT_ADDRESS;

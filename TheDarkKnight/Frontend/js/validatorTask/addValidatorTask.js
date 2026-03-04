@@ -1,13 +1,11 @@
 import { ethers, keccak256 } from "../libs/ethers.min.js";
 import "../libs/jszip.min.js";
 import {
-    loadHeader,
     prefixHexBytes,
     replaceClass,
     updateInputNumberToGroupedDigits,
     searchByIndexVersion,
     formatTaskJson,
-    formatWei,
     getRequirementVersionData,
     addClass
 } from "../../utils/commonFunctions.js";
@@ -38,9 +36,6 @@ const fileName = document.getElementById('file-name');
 const fileError = document.getElementById('file-error');
 const taskJsonArea = document.getElementById("task-json");
 const structureInstructions = document.getElementById("structure-instructions");
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Hash task addition variables
 let file;

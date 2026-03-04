@@ -1,5 +1,4 @@
 import { ethers } from "../libs/ethers.min.js";
-import { loadHeader } from "../../utils/commonFunctions.js";
 import { THE_LIST_CONTRACT_ADDRESS } from "../../utils/constants.js";
 
 // Page elements
@@ -11,9 +10,6 @@ const addEthicsRequirementsButton
     = document.getElementById("add-ethics-requirements-button");
 const ethicsRequirementsList
     = document.getElementById("ethics-requirements-list");
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Get The List contract
 const theListContractAddress = THE_LIST_CONTRACT_ADDRESS;
