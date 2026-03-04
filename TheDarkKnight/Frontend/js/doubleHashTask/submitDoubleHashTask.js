@@ -2,7 +2,6 @@ import { ethers, keccak256 } from "../libs/ethers.min.js";
 import "../libs/jszip.min.js";
 import {
     formatWei,
-    loadHeader,
     prefixHexBytes,
     replaceClass
 } from "../../utils/commonFunctions.js";
@@ -48,9 +47,6 @@ let submitWindowEndValue;
 let responseCountValue;
 let taskResponses;
 let responseIndex;
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Get The List and users contracts from provider
 const doubleHashTaskContractAddress = DOUBLE_HASH_TASK_CONTRACT_ADDRESS;

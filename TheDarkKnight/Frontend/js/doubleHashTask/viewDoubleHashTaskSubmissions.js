@@ -2,9 +2,6 @@ import {
     ethers,
     keccak256
 } from "../libs/ethers.min.js";
-import {
-    loadHeader,
-} from "../../utils/commonFunctions.js";
 import { DOUBLE_HASH_TASK_CONTRACT_ADDRESS } from "../../utils/constants.js";
 
 // Page elements
@@ -14,9 +11,6 @@ const totalSubmissionsCount = document.getElementById("submissions-count");
 const submitTaskButton = document.getElementById("submit-task-button");
 const viewTaskButton = document.getElementById("view-task-button");
 const taskId = document.getElementById("task-id");
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Get double hash task contract
 const doubleHashTaskContractAddress = DOUBLE_HASH_TASK_CONTRACT_ADDRESS;

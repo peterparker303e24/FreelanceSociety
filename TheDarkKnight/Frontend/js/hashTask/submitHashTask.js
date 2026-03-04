@@ -2,7 +2,6 @@ import { ethers, keccak256 } from "../libs/ethers.min.js";
 import "../libs/jszip.min.js";
 import {
     formatWei,
-    loadHeader,
     prefixHexBytes,
     replaceClass,
     updateInputNumberToGroupedDigits
@@ -45,9 +44,6 @@ let generatedNoncesCount = 0;
 let generationUpdateIntervalId;
 let generationIntervalId;
 let generatedNonce;
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Get The List and users contracts from provider
 const hashTaskContractAddress = HASH_TASK_CONTRACT_ADDRESS;

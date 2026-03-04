@@ -1,6 +1,5 @@
 import { ethers } from "../libs/ethers.min.js"
 import {
-    loadHeader,
     prefixHexBytes,
     binarySearchBlockchainVersions
 } from "../../utils/commonFunctions.js";
@@ -18,9 +17,6 @@ const requirementsContainer
     = document.getElementById("requirements-rows-container");
 const requirementItemTemplate
     = document.getElementById("requirement-item-template");
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Get The List contract
 const theListContractAddress = THE_LIST_CONTRACT_ADDRESS;

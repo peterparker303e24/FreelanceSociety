@@ -1,7 +1,6 @@
 import { ethers, keccak256 } from "../libs/ethers.min.js";
 import "../libs/jszip.min.js";
 import {
-    loadHeader,
     prefixHexBytes,
     replaceClass,
     updateInputNumberToGroupedDigits,
@@ -25,9 +24,6 @@ const fileUpload = document.getElementById('upload-file-button');
 const zipInput = document.getElementById('file-input');
 const fileName = document.getElementById('file-name');
 const fileError = document.getElementById('file-error');
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Hash task addition variables
 let file;

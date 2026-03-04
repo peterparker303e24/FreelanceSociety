@@ -4,7 +4,6 @@ import {
 import {
     formatBlockTimestamp,
     formatWei,
-    loadHeader,
     prefixHexBytes
 } from "../utils/commonFunctions.js";
 import { DOUBLE_HASH_TASK_CONTRACT_ADDRESS, HASH_TASK_CONTRACT_ADDRESS, VALIDATOR_TASK_CONTRACT_ADDRESS } from "../utils/constants.js";
@@ -31,9 +30,6 @@ const addValidatorTaskButton
     = document.getElementById("add-validator-task-button");
 const validatorTasksCount = document.getElementById("validator-task-count");
 const checkbox = document.getElementById("checkbox");
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Get hash task, double hash task, and validator task contracts
 const hashTaskContractAddress = HASH_TASK_CONTRACT_ADDRESS;

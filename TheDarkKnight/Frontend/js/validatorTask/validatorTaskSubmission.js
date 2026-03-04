@@ -1,7 +1,6 @@
 import { ethers, keccak256 } from "../libs/ethers.min.js";
 import "../libs/jszip.min.js";
 import {
-    loadHeader,
     prefixHexBytes,
     removeClass,
     addClass,
@@ -91,9 +90,6 @@ const withdrawSubmissionUnevaluatedError
     = document.getElementById("withdraw-submission-unevaluated-error");
 const submissionWithdrawn
     = document.getElementById("submission-withdrawn");
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Users, hash task, and The List contract addresses on the blockchain
 const usersContractAddress = USERS_CONTRACT_ADDRESS;

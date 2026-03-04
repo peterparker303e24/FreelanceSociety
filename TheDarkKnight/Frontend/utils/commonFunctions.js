@@ -783,24 +783,6 @@ export async function getBlockchainUtcTime(provider) {
 }
 
 /**
- * When the page loads, the home and settings buttons are queried within their
- * shadow DOM and redirect to their respective pages when clicked
- */
-export function loadHeader() {
-    document.addEventListener('DOMContentLoaded', () => {
-        const shadowRoot = document.querySelector('header-section').shadowRoot;
-        shadowRoot.getElementById('left-button')
-            .addEventListener('click', () => {
-                window.location.href = 'index.html';
-            });
-        shadowRoot.getElementById('right-button')
-            .addEventListener('click', () => {
-                window.location.href = 'pages/settings.html';
-            });
-    });
-}
-
-/**
  * Continues a single iteration of the user links search
  * @param {SearchCriteria} searchCriteria Search data for getting users links
  * and data

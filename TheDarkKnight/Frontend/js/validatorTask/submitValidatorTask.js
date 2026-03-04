@@ -1,7 +1,6 @@
 import { ethers, keccak256 } from "../libs/ethers.min.js";
 import "../libs/jszip.min.js";
 import {
-    loadHeader,
     replaceClass,
     formatWei,
     formatBlockTimestamp,
@@ -33,9 +32,6 @@ const addTaskSubmissionButton
 const addTaskError
     = document.getElementById("add-task-error");
 const ethicsRequirementsCheckbox = document.getElementById("checkbox");
-
-// Load the header button navigation functionality
-loadHeader();
 
 // Users, hash task, and The List contract addresses on the blockchain
 const usersContractAddress = USERS_CONTRACT_ADDRESS;
