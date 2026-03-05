@@ -98,7 +98,7 @@ addRequirementButton.addEventListener("click", async () => {
         );
     transactionResponse.wait().then(async () => {
         window.location.pathname
-            = "/pages/ethicsRequirements/viewEthicsRequirementsProposals.html";
+            = "./pages/ethicsRequirements/viewEthicsRequirementsProposals.html";
     });
 });
 

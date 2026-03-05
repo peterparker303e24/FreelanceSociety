@@ -149,7 +149,7 @@ addDoubleHashTaskButton.addEventListener("click", async () => {
 
     // Return to requirements page after transaction addition
     transactionResponse.wait().then(async () => {
-        window.location.pathname = "/pages/viewTasks.html";
+        window.location.pathname = "./pages/viewTasks.html";
     });
 });
 

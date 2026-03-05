@@ -146,7 +146,7 @@ addProposalButton.addEventListener("click", async () => {
     // Return to proposals page after transaction addition
     transactionResponse.wait().then(async () => {
         window.location.href
-            = `/pages/requirements/viewProposals.html?index=${requirementIndex}`;
+            = `./pages/requirements/viewProposals.html?index=${requirementIndex}`;
     });
 });
 

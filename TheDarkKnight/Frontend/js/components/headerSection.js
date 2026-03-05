@@ -17,7 +17,7 @@ class HeaderSection extends HTMLElement {
                     <div class="icon-text">Home</div>
                 </a>
                 <h1 id="header-text"></h1>
-                <a id="right-button" class="icon-button redirectable right medium-padding" href="/pages/settings.html">
+                <a id="right-button" class="icon-button redirectable right medium-padding" href="./pages/settings.html">
                     <img src="./assets/icons/Settings.svg" class="icon" />
                     <div class="icon-text">Settings</div>
                 </a>

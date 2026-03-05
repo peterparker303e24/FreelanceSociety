@@ -73,7 +73,7 @@ addRequirementButton.addEventListener("click", async () => {
 
     // Return to requirements page after transaction addition
     transactionResponse.wait().then(async () => {
-        window.location.pathname = "/pages/requirements/viewRequirements.html";
+        window.location.pathname = "./pages/requirements/viewRequirements.html";
     });
 });
 

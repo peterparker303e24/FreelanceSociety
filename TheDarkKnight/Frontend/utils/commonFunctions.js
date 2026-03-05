@@ -1287,49 +1287,49 @@ const EVENT_REDIRECT_MAPPING = {
     // Users contract events
     "Users:ActivateUserLinks": (eventValues) => {
         return {
-            redirectPath: `/pages/users/user.html?address=${eventValues[0]}`,
+            redirectPath: `./pages/users/user.html?address=${eventValues[0]}`,
             redirectText: "View User"
         }
     },
     "Users:ActivateUserLinksData": (eventValues) => {
         return {
-            redirectPath: `/pages/users/user.html?address=${eventValues[0]}`,
+            redirectPath: `./pages/users/user.html?address=${eventValues[0]}`,
             redirectText: "View User"
         }
     },
     "Users:ActivateUserLinksLockout": (eventValues) => {
         return {
-            redirectPath: `/pages/users/user.html?address=${eventValues[0]}`,
+            redirectPath: `./pages/users/user.html?address=${eventValues[0]}`,
             redirectText: "View User"
         }
     },
     "Users:ActivateUserLinksDataLockout": (eventValues) => {
         return {
-            redirectPath: `/pages/users/user.html?address=${eventValues[0]}`,
+            redirectPath: `./pages/users/user.html?address=${eventValues[0]}`,
             redirectText: "View User"
         }
     },
     "Users:UpdateLinks": (eventValues) => {
         return {
-            redirectPath: `/pages/users/user.html?address=${eventValues[0]}`,
+            redirectPath: `./pages/users/user.html?address=${eventValues[0]}`,
             redirectText: "View User"
         }
     },
     "Users:UpdateData": (eventValues) => {
         return {
-            redirectPath: `/pages/users/user.html?address=${eventValues[0]}`,
+            redirectPath: `./pages/users/user.html?address=${eventValues[0]}`,
             redirectText: "View User"
         }
     },
     "Users:UpdateLinksData": (eventValues) => {
         return {
-            redirectPath: `/pages/users/user.html?address=${eventValues[0]}`,
+            redirectPath: `./pages/users/user.html?address=${eventValues[0]}`,
             redirectText: "View User"
         }
     },
     "Users:LockoutUser": (eventValues) => {
         return {
-            redirectPath: `/pages/users/user.html?address=${eventValues[2]}`,
+            redirectPath: `./pages/users/user.html?address=${eventValues[2]}`,
             redirectText: "View User"
         }
     },
@@ -1337,37 +1337,37 @@ const EVENT_REDIRECT_MAPPING = {
     // TheList contract events
     "TheList:EthicsProposal": (eventValues) => {
         return {
-            redirectPath: `/pages/ethicsRequirements/ethicsRequirementsProposal.html?index=${eventValues[0]}`,
+            redirectPath: `./pages/ethicsRequirements/ethicsRequirementsProposal.html?index=${eventValues[0]}`,
             redirectText: "View Ethics Requirements Proposal"
         }
     },
     "TheList:EthicsVote": (eventValues) => {
         return {
-            redirectPath: `/pages/ethicsRequirements/ethicsRequirementsProposal.html?index=${eventValues[0]}`,
+            redirectPath: `./pages/ethicsRequirements/ethicsRequirementsProposal.html?index=${eventValues[0]}`,
             redirectText: "View Ethics Requirements Proposal"
         }
     },
     "TheList:NewRequirement": (eventValues) => {
         return {
-            redirectPath: `/pages/requirements/requirement.html?id=${eventValues[0]}-1`,
+            redirectPath: `./pages/requirements/requirement.html?id=${eventValues[0]}-1`,
             redirectText: "View Requirement"
         }
     },
     "TheList:Proposal": (eventValues) => {
         return {
-            redirectPath: `/pages/requirements/requirementProposal.html?index=${eventValues[0]}&proposalIndex=${eventValues[1]}`,
+            redirectPath: `./pages/requirements/requirementProposal.html?index=${eventValues[0]}&proposalIndex=${eventValues[1]}`,
             redirectText: "View Requirement Proposal"
         }
     },
     "TheList:Vote": (eventValues) => {
         return {
-            redirectPath: `/pages/requirements/requirementProposal.html?index=${eventValues[0]}&proposalIndex=${eventValues[1]}`,
+            redirectPath: `./pages/requirements/requirementProposal.html?index=${eventValues[0]}&proposalIndex=${eventValues[1]}`,
             redirectText: "View Requirement Proposal"
         }
     },
     "TheList:NewRequirementUpdate": (eventValues) => {
         return {
-            redirectPath: `/pages/requirements/requirement.html?id=${eventValues[0]}-${eventValues[2]}`,
+            redirectPath: `./pages/requirements/requirement.html?id=${eventValues[0]}-${eventValues[2]}`,
             redirectText: "View Requirement"
         }
     },
@@ -1375,25 +1375,25 @@ const EVENT_REDIRECT_MAPPING = {
     // HashTask contract events
     "HashTask:NewTask": (eventValues) => {
         return {
-            redirectPath: `/pages/hashTask/hashTask.html?id=h-${eventValues[0]}`,
+            redirectPath: `./pages/hashTask/hashTask.html?id=h-${eventValues[0]}`,
             redirectText: "View Hash Task"
         }
     },
     "HashTask:TaskFunded": (eventValues) => {
         return {
-            redirectPath: `/pages/hashTask/hashTask.html?id=h-${eventValues[0]}`,
+            redirectPath: `./pages/hashTask/hashTask.html?id=h-${eventValues[0]}`,
             redirectText: "View Hash Task"
         }
     },
     "HashTask:TaskComplete": (eventValues) => {
         return {
-            redirectPath: `/pages/hashTask/hashTask.html?id=h-${eventValues[0]}`,
+            redirectPath: `./pages/hashTask/hashTask.html?id=h-${eventValues[0]}`,
             redirectText: "View Hash Task"
         }
     },
     "HashTask:TaskWithdrawn": (eventValues) => {
         return {
-            redirectPath: `/pages/hashTask/hashTask.html?id=h-${eventValues[0]}`,
+            redirectPath: `./pages/hashTask/hashTask.html?id=h-${eventValues[0]}`,
             redirectText: "View Hash Task"
         }
     },
@@ -1401,31 +1401,31 @@ const EVENT_REDIRECT_MAPPING = {
     // DoubleHashTask contract events
     "DoubleHashTask:NewDoubleTask": (eventValues) => {
         return {
-            redirectPath: `/pages/doubleHashTask/doubleHashTask.html?id=dh-${eventValues[0]}`,
+            redirectPath: `./pages/doubleHashTask/doubleHashTask.html?id=dh-${eventValues[0]}`,
             redirectText: "View Double Hash Task"
         }
     },
     "DoubleHashTask:DoubleTaskFunded": (eventValues) => {
         return {
-            redirectPath: `/pages/doubleHashTask/doubleHashTask.html?id=dh-${eventValues[0]}`,
+            redirectPath: `./pages/doubleHashTask/doubleHashTask.html?id=dh-${eventValues[0]}`,
             redirectText: "View Double Hash Task"
         }
     },
     "DoubleHashTask:DoubleTaskSubmit": (eventValues) => {
         return {
-            redirectPath: `/pages/doubleHashTask/doubleHashTask.html?id=dh-${eventValues[0]}`,
+            redirectPath: `./pages/doubleHashTask/doubleHashTask.html?id=dh-${eventValues[0]}`,
             redirectText: "View Double Hash Task"
         }
     },
     "DoubleHashTask:DoubleTaskComplete": (eventValues) => {
         return {
-            redirectPath: `/pages/doubleHashTask/doubleHashTask.html?id=dh-${eventValues[0]}`,
+            redirectPath: `./pages/doubleHashTask/doubleHashTask.html?id=dh-${eventValues[0]}`,
             redirectText: "View Double Hash Task"
         }
     },
     "DoubleHashTask:DoubleTaskWithdrawn": (eventValues) => {
         return {
-            redirectPath: `/pages/doubleHashTask/doubleHashTask.html?id=dh-${eventValues[0]}`,
+            redirectPath: `./pages/doubleHashTask/doubleHashTask.html?id=dh-${eventValues[0]}`,
             redirectText: "View Double Hash Task"
         }
     },
@@ -1433,43 +1433,43 @@ const EVENT_REDIRECT_MAPPING = {
     // ValidatorTask contract events
     "ValidatorTask:AddTask": (eventValues) => {
         return {
-            redirectPath: `/pages/validatorTask/validatorTask.html?id=v-${eventValues[0]}`,
+            redirectPath: `./pages/validatorTask/validatorTask.html?id=v-${eventValues[0]}`,
             redirectText: "View Validator Task"
         }
     },
     "ValidatorTask:FundTask": (eventValues) => {
         return {
-            redirectPath: `/pages/validatorTask/validatorTask.html?id=v-${eventValues[0]}`,
+            redirectPath: `./pages/validatorTask/validatorTask.html?id=v-${eventValues[0]}`,
             redirectText: "View Validator Task"
         }
     },
     "ValidatorTask:SubmitTask": (eventValues) => {
         return {
-            redirectPath: `/pages/validatorTask/validatorTaskSubmission.html?id=v-${eventValues[0]}-${eventValues[1]}`,
+            redirectPath: `./pages/validatorTask/validatorTaskSubmission.html?id=v-${eventValues[0]}-${eventValues[1]}`,
             redirectText: "View Validator Task Submission"
         }
     },
     "ValidatorTask:EvaluateTask": (eventValues) => {
         return {
-            redirectPath: `/pages/validatorTask/validatorTaskSubmission.html?id=v-${eventValues[0]}-${eventValues[1]}`,
+            redirectPath: `./pages/validatorTask/validatorTaskSubmission.html?id=v-${eventValues[0]}-${eventValues[1]}`,
             redirectText: "View Validator Task Submission"
         }
     },
     "ValidatorTask:WithdrawTask": (eventValues) => {
         return {
-            redirectPath: `/pages/validatorTask/validatorTask.html?id=v-${eventValues[0]}`,
+            redirectPath: `./pages/validatorTask/validatorTask.html?id=v-${eventValues[0]}`,
             redirectText: "View Validator Task"
         }
     },
     "ValidatorTask:WithdrawSubmissionCompletion": (eventValues) => {
         return {
-            redirectPath: `/pages/validatorTask/validatorTask.html?id=v-${eventValues[0]}-${eventValues[1]}`,
+            redirectPath: `./pages/validatorTask/validatorTask.html?id=v-${eventValues[0]}-${eventValues[1]}`,
             redirectText: "View Validator Task Submission"
         }
     },
     "ValidatorTask:WithdrawSubmissionUnevaluated": (eventValues) => {
         return {
-            redirectPath: `/pages/validatorTask/validatorTask.html?id=v-${eventValues[0]}-${eventValues[1]}`,
+            redirectPath: `./pages/validatorTask/validatorTask.html?id=v-${eventValues[0]}-${eventValues[1]}`,
             redirectText: "View Validator Task Submission"
         }
     },
