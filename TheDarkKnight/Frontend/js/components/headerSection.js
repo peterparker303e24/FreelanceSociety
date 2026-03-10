@@ -12,7 +12,7 @@ class HeaderSection extends HTMLElement {
         this.shadowRoot.innerHTML = `
             <link rel="stylesheet" href="global.css">
             <div id="header-container" class="row vertically-center-row">
-                <a id="left-button" class="icon-button redirectable left medium-padding" href="/index.html">
+                <a id="left-button" class="icon-button redirectable left medium-padding" href="./index.html">
                     <img src="./assets/icons/Home.svg" class="icon" />
                     <div class="icon-text">Home</div>
                 </a>
