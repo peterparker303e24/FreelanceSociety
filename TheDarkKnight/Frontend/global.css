@@ -368,6 +368,7 @@ img {
 
 .redirectable {
     text-decoration-line: none;
+    color: var(--foreground-color);
 }
 
 .redirectable:hover {

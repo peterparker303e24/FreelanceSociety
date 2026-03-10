@@ -41,7 +41,7 @@ class WalletMisconfigurationSection extends HTMLElement {
 
         // Define the component html and css
         this.shadowRoot.innerHTML = `
-            <link rel="stylesheet" href="global.css">
+            <link rel="stylesheet" href="./global.css">
             <div id="wallet-misconfiguration-panel" class="bordered-box medium-margin hide">
                 <div class="large-text medium-padding">(!) Wallet And Website Network Misconfiguration</div>
                 <div class="left-align medium-padding">
