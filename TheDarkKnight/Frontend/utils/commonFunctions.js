@@ -557,8 +557,7 @@ export function formatTaskJson(
     ) {
 
         // Appends each string element as normal text, bold for labeled
-        // variables, and italicized for intermediate variables, and inserts the
-        // specification in the labelled variable condition
+        // variables, and italicized for intermediate variables
         const conditionHeader = document.createElement("h2");
         conditionHeader.textContent = "Condition";
         content.appendChild(conditionHeader);
@@ -566,10 +565,8 @@ export function formatTaskJson(
         for (let i = 0; i < conditionStrings.length; i++) {
             let conditionTextSection;
             if (labeledVariables.includes(conditionStrings[i])) {
-                const labeledVariableText = specificationJson
-                    .specifications[conditionStrings[i]];
                 conditionTextSection = document.createElement("b");
-                conditionTextSection.textContent = labeledVariableText;
+                conditionTextSection.textContent = conditionStrings[i];
             } else if (intermediateVariables.includes(conditionStrings[i])) {
                 conditionTextSection = document.createElement("i");
                 conditionTextSection.textContent = conditionStrings[i];
@@ -578,6 +575,26 @@ export function formatTaskJson(
                     = document.createTextNode(conditionStrings[i]);
             }
             content.appendChild(conditionTextSection);
+        }
+
+        // Spacing between condition and labeledVariables
+        content.appendChild(document.createElement("br"));
+        content.appendChild(document.createElement("br"));
+
+        // Iterates through each labeled variable and displays the corresponding
+        // value for that variable provided in the specifications
+        for (let i = 0; i < labeledVariables.length; i++) {
+            const conditionRow = document.createElement("div");
+            conditionRow.classList = "row-left";
+            content.appendChild(conditionRow);
+            const conditionKey = document.createElement("b");
+            conditionKey.textContent = labeledVariables[i] + ": ";
+            conditionKey.classList = "small-margin-right";
+            const labeledVariableText
+                = specificationJson.specifications[labeledVariables[i]];
+            const conditionValue = document.createTextNode(labeledVariableText);
+            conditionRow.appendChild(conditionKey);
+            conditionRow.appendChild(conditionValue);
         }
     }
 
