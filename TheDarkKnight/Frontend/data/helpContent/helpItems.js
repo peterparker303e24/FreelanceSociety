@@ -233,4 +233,34 @@ export const helpItems = {
         "examples": `Task or submission does not produce content of excessive harm of living beings.\nTask or submission does not produce content of weapons of which the prominent purpose is to harm.\nTask or submission does not produce content of any non-consentual nudity or sexual acts.\nTask or submission does not produce content of an individual's information for which there is a reasonable expectation of privacy.`,
         "purpose": `To incentivize users to only contribute ethical work, structures, and tasks to Freelance Society.`
     },
+    "HashTaskNonce": {
+        "name": `Nonce`,
+        "description": `A number configurable by the user for the blockchain transaction. In the hash task, the nonce is used to provide a proof of work to the smart contract to meet the hash task difficulty threshold.`,
+        "examples": `0\n1000\n12345678`,
+        "purpose": `To create a buffer time that prevents other users from copying the worker's solution. Once the hash task is submitted, the hash key is revealed and other users can copy the hash task submission and attempt to frontrun their transaction before the original worker's submission transaction. The difficulty value is dependent on both the hash key and the submission Ethereum address, so the hash key must be known and another user cannot copy the nonce of a task submission with the hash key.`
+    },
+    "GenerateNonce": {
+        "name": `Generate Nonce`,
+        "description": `Clicking this button generates nonces within the browser until it comes across a nonce that satisfies the hash task difficulty value.`,
+        "examples": `N/A`,
+        "purpose": `To find a nonce that satisfies the hash task difficulty value for the task submission.`
+    },
+    "DifficultyValue": {
+        "name": `Difficulty Value`,
+        "description": `The calculated difficulty value that must be less than the expected difficulty value to complete the hash task. The difficulty value is derived from the hash key, nonce, and the Ethereum address of the currently selected account.`,
+        "examples": `001822cce3f13fe5603d4133d69f2c27578807aa70194713e7207d50506fface\n0113b360a40f566beddc01fbf2c31f89cd6fe28220f8cdd3de4f6d6c468d6bf7`,
+        "purpose": `To create a buffer time that prevents other users from copying the worker's solution. Once the hash task is submitted, the hash key is revealed and other users can copy the hash task submission and attempt to frontrun their transaction before the original worker's submission transaction. The difficulty value is dependent on both the hash key and the submission Ethereum address, so the hash key must be known and another user cannot copy the nonce of a task submission with the hash key.`
+    },
+    "ExpectedDifficultyValue": {
+        "name": `Expected Difficulty Value`,
+        "description": `The difficulty value that is necessary to complete the hash task. The smart contract code only allows task submissions that meet the expected difficulty threshold.`,
+        "examples": `0040000000000000000000000000000000000000000000000000000000000000\n0200000000000000000000000000000000000000000000000000000000000000\nN/A`,
+        "purpose": `To create a buffer time that prevents other users from copying the worker's solution. Once the hash task is submitted, the hash key is revealed and other users can copy the hash task submission and attempt to frontrun their transaction before the original worker's submission transaction. The difficulty value is dependent on both the hash key and the submission Ethereum address, so the hash key must be known and another user cannot copy the nonce of a task submission with the hash key.`
+    },
+    "SubmitHashTask": {
+        "name": `Submit Hash Task`,
+        "description": `Blockchain transaction for the worker to reveal the hash key for the hash task. This transaction can only take place if the hash key successfully hashes to the task hash value. When this transaction is made, the worker completes the task and receives the reward. When this transaction is made, the task solution is broadcast to everyone.\nHash Key --- keccak256 ---> Hash Value`,
+        "examples": `N/A`,
+        "purpose": `To allow the worker to reveal the task hash key solution and complete the hash task to earn the task reward.`
+    }
 };

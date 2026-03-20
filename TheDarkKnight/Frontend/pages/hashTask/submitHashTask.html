@@ -18,6 +18,7 @@
     <script src="./js/components/headerSection.js" type="module"></script>
     <script src="./js/components/walletMisconfigurationSection.js" type="module"></script>
     <script src="./js/hashTask/submitHashTask.js" type="module" defer></script>
+    <script src="./js/components/helpSection.js" type="module"></script>
 </head>
 
 <body>
@@ -55,9 +56,9 @@
             <div id="difficulty" class="left-align no-wrap left">-</div>
             <div id="expected-difficulty-text" class="left-align no-wrap left">Expected Difficulty Value: </div>
             <div id="expected-difficulty" class="left-align no-wrap left">-</div>
-            <div id="task-complete-text" class="left-align no-wrap left">Task Already Complete: </div>
+            <div id="task-complete-text" class="left-align no-wrap left">Task Completed: </div>
             <div id="task-complete" class="left-align no-wrap left">-</div>
-            <div id="deadline-text" class="left-align no-wrap left">Task Deadline: </div>
+            <div id="deadline-text" class="left-align no-wrap left">Task Deadline (UTC): </div>
             <div id="deadline" class="left-align no-wrap left">-</div>
             <div id="reward-text" class="left-align no-wrap left">Task Reward (Wei): </div>
             <div id="reward" class="left-align no-wrap left">-</div>
@@ -71,6 +72,11 @@
         </div>
         <div class="row">
             <div id="error" class="row padding"></div>
+        </div>
+
+        <!-- Help -->
+        <div id="help-container">
+            <help-section helpCollection="SubmitHashTask"></help-section>
         </div>
 
         <!-- Footer space -->

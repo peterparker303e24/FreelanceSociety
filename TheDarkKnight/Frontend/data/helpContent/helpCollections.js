@@ -59,6 +59,22 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["AddEthicsRequirementsProposal"],
                 helpItems["EthicsRequirements"]
             ];
+        case "SubmitHashTask":
+            return [
+                helpItems["TaskId"],
+                helpItems["HashKey"],
+                helpItems["FirstHashResult"],
+                helpItems["HashValue"],
+                helpItems["HashTaskNonce"],
+                helpItems["GenerateNonce"],
+                helpItems["EthereumAddress"],
+                helpItems["DifficultyValue"],
+                helpItems["ExpectedDifficultyValue"],
+                helpItems["TaskCompleted"],
+                helpItems["Deadline"],
+                helpItems["Reward"],
+                helpItems["SubmitHashTask"]
+            ];
         default:
             return [];
     }
