@@ -407,3 +407,61 @@ img {
     font-size: 16px;
     tab-size: 4;
 }
+
+.help-button {
+    position: fixed;
+    right: 32px;
+    bottom: 32px;
+    font-size: 32px;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: var(--background-color);
+    border: 2px solid var(--foreground-color);
+    border-radius: 32px;
+    cursor: pointer;
+}
+
+.help-panel {
+    background-color: var(--background-color);
+    border: 2px solid var(--foreground-color);
+    height: 512px;
+    position: absolute;
+    bottom: 128px;
+    left: 32px;
+    right: 32px;
+    overflow: scroll;
+}
+
+.help-panel-tabs {
+    display: flex;
+    justify-content: left;
+    padding-left: 16px;
+    padding-bottom: 16px;
+}
+
+.help-tab {
+    margin-right: 32px;
+    cursor: pointer;
+}
+
+.help-close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 16px;
+    background-color: var(--background-color);
+    cursor: pointer;
+}
+
+.tab-selected {
+    border-bottom: 2px solid var(--foreground-color);
+}
+
+.help-content {
+    margin: 16px;
+    text-align: left;
+}

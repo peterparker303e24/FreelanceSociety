@@ -19,6 +19,7 @@
     <script src="./js/components/walletMisconfigurationSection.js" type="module"></script>
     <script src="./js/components/userNotActivatedSection.js" type="module"></script>
     <script src="./js/validatorTask/submitValidatorTask.js" type="module" defer></script>
+    <script src="./js/components/helpSection.js" type="module"></script>
 </head>
 
 <body>
@@ -122,6 +123,11 @@
             </div>
         </div>
         <div id="add-task-error" class="row padding text-content-return"></div>
+
+        <!-- Help -->
+        <div id="help-container">
+            <help-section helpCollection="SubmitValidatorTask"></help-section>
+        </div>
 
         <!-- Footer space -->
         <div id="footer-space"></div>
