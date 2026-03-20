@@ -18,6 +18,7 @@
     <script src="./js/components/headerSection.js" type="module"></script>
     <script src="./js/components/walletMisconfigurationSection.js" type="module"></script>
     <script src="./js/validatorTask/validatorTask.js" type="module" defer></script>
+    <script src="./js/components/helpSection.js" type="module"></script>
 </head>
 
 <body>
@@ -41,22 +42,22 @@
                 <!-- Task data -->
                 <div id="task-id" class="left-align padding">Task ID: v-X</div>
                 <div id="task-hash" class="left-align padding text-content-return">Task Hash:<br>-</div>
-                <div id="requirements-count" class="left-align padding">Requirements Count: -</div>
-                <div id="validation-time" class="left-align padding">Validation Time (Seconds): -</div>
+                <div id="manager-address" class="left-align padding text-content-return">Manager Address:<br>-</div>
+                <div id="reward" class="left-align padding">Reward (Wei): -</div>
                 <div id="deadline" class="left-align padding">Deadline (UTC): -</div>
+                <div id="completed" class="left-align padding">Task Completed: -</div>
+                <div id="task-defaulted" class="left-align padding">Task Defaulted: -</div>
+                <div id="requirements-count" class="left-align padding">Specifications Count: -</div>
+                <div id="validation-time" class="left-align padding">Validation Time (Seconds): -</div>
                 <div id="next-slot-time" class="left-align padding">Next Slot Time: -</div>
                 <div id="submissions-count" class="left-align padding">Submissions Count: -</div>
                 <div id="evaluated-submissions-count" class="left-align padding">Evaluated Submissions Count: -</div>
                 <div id="block-validation" class="left-align padding">Block Validation: -</div>
                 <div id="validation-delay" class="left-align padding">Validation Delay (Seconds): -</div>
-                <div id="completed" class="left-align padding">Completed: -</div>
-                <div id="task-defaulted" class="left-align padding">Task Defaulted: -</div>
-                <div id="manager-address" class="left-align padding text-content-return">Manager Address:<br>-</div>
                 <div id="completion-index" class="left-align padding">Submission Completion Index: -</div>
                 <div id="completion-address" class="left-align padding text-content-return">Completion Address:<br>-</div>
                 <div id="validators" class="left-align padding text-content-return">Validators:<br>-</div>
                 <div id="validator-comission" class="left-align padding">Validator Comission (Wei): -</div>
-                <div id="reward" class="left-align padding">Reward (Wei): -</div>
 
                 <!-- Fund task section -->
                 <div class="row vertically-center-row margin">
@@ -146,6 +147,11 @@
                 <!-- Task zip file tree -->
                 <textarea disabled id="task-file-tree"
                     class="file-tree">No Task Data - Discover Requirement Or Upload Locally</textarea>
+            </div>
+
+            <!-- Help -->
+            <div id="help-container">
+                <help-section helpCollection="ValidatorTask"></help-section>
             </div>
 
             <!-- Footer space -->

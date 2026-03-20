@@ -437,4 +437,46 @@ export const helpItems = {
         "examples": `0\n10\n15`,
         "purpose": `To create a buffer time that prevents other users from copying the worker's solution. Once the hash task is submitted, the hash key is revealed and other users can copy the hash task submission and attempt to frontrun their transaction before the original worker's submission transaction. The difficulty value is dependent on both the hash key and the submission Ethereum address, so the hash key must be known and another user cannot copy the nonce of a task submission with the hash key.`
     },
+    "SpecificationsCount": {
+        "name": `Specifications Count`,
+        "description": `The number of specifications for the task.`,
+        "examples": `Specifications Count: 1\nSpecifications Count: 5`,
+        "purpose": `To show the number of specifications for the task.`
+    },
+    "ValidationTime": {
+        "name": `Validation Time`,
+        "description": `The amount of time, in seconds, of the validator task submission evaluation window.`,
+        "examples": `Validation Time (Seconds): 600\nValidation Time (Seconds): 1209600`,
+        "purpose": `To allow managers to decide how much time is allocated for validators to perform their task submission evaluations. The amount of time expected to complete the task validation may depend on the specifications, so managers may choose the amount of time accordingly.`
+    },
+    "EvaluatedSubmissionsCount": {
+        "name": `Evauated Submissions Count`,
+        "description": `The number of task submissions that have been evaluated by validators for the current task.`,
+        "examples": `Evauated Submissions Count: 0\nEvauated Submissions Count: 2`,
+        "purpose": `To show users how many task submissions have been evaluated by validators. Users can compare the evaluated submissions count with the submissions count to see how many task submissions are left that are waiting evaluation.`
+    },
+    "BlockValidation": {
+        "name": `Block Validation`,
+        "description": `Whether to use block validation in the evaluation time windows. If block validation is true, then the validator time window blocks do not overlap, so any added task submission has its evaluation start time begin at least at the end of the last task submission. If block validation is false, then the validator time window blocks may overlap, so any added task submission has its evaluation start time begin immediately following the block confirmation delay.`,
+        "examples": `Block Validation: TRUE\nBlock Validation: FALSE`,
+        "purpose": `To allow managers to decide the evaluation schedule for the validators. If block schedule is true, then validators have more time for each task submission evaluation since the time windows are independent, but can be slow for multiple submissions. If block schedule is false, then multiple submissions can be evaluated quickly, but the validators may be overwhelmed by multiple overlapping task submissions.`
+    },
+    "CompletionIndex": {
+        "name": `Completion Index`,
+        "description": `Index of the task submission that was accepted.`,
+        "examples": `Completion Index: X\nCompletion Index: 0\nCompletion Index: 2`,
+        "purpose": `To show users the index of which task submission was accepted.`
+    },
+    "CompletionAddress": {
+        "name": `Completion Address`,
+        "description": `The Ethereum address of the worker that completed the task.`,
+        "examples": `X\n0x70997970C51812dc3A010C7d01b50e0d17dc79C8`,
+        "purpose": `To show users which user completed the current task.`
+    },
+    "Validators": {
+        "name": `Validators`,
+        "description": `Validators for the task. Any validator may evaluate any task submission within the validator evaluation window. Only the first validator that evaluates a submission has full control of the submission outcome and receives the commission.`,
+        "examples": `Validators:\n0x70997970C51812dc3A010C7d01b50e0d17dc79C8\n\nValidators:\n0x70997970C51812dc3A010C7d01b50e0d17dc79C8\n0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266`,
+        "purpose": `To show users which validators have control in determining the outcome of task submission evaluations. The validators are public and their full validation history can be searched, so any user can independently verify the trustworthyness of the validators.`
+    },
 };
