@@ -18,6 +18,7 @@
     <script src="./js/components/headerSection.js" type="module"></script>
     <script src="./js/components/walletMisconfigurationSection.js" type="module"></script>
     <script src="./js/doubleHashTask/submitDoubleHashTask.js" type="module" defer></script>
+    <script src="./js/components/helpSection.js" type="module"></script>
 </head>
 
 <body>
@@ -52,7 +53,7 @@
             <div id="second-response-window" class="xx-large-width left left-align">-</div>
             <div id="delay-text" class="xx-large-width left left-align">Second Response Delay (Seconds):</div>
             <div id="delay" class="xx-large-width left left-align">-</div>
-            <div id="task-complete-text" class="xx-large-width left left-align">Task Already Complete:</div>
+            <div id="task-complete-text" class="xx-large-width left left-align">Task Completed:</div>
             <div id="task-complete" class="xx-large-width left left-align">-</div>
             <div id="deadline-text" class="xx-large-width left left-align">Task Deadline (UTC):</div>
             <div id="deadline" class="xx-large-width left left-align">-</div>
@@ -88,6 +89,11 @@
             </div>
         </div>
         <div id="error" class="row padding"></div>
+
+        <!-- Help -->
+        <div id="help-container">
+            <help-section helpCollection="SubmitDoubleHashTask"></help-section>
+        </div>
 
         <!-- Footer space -->
         <div id="footer-space"></div>

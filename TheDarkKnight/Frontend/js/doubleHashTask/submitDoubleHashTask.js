@@ -87,6 +87,16 @@ doubleHashTaskContract.getDoubleHashTaskHash(doubleHashTaskIndex).then((h) => {
     updateIfLoaded();
 });
 
+// Gets the task second response window, then calculates the window
+// start and end times, and updates the UI
+doubleHashTaskContract
+    .getDoubleHashTaskSecondResponseWindow(doubleHashTaskIndex)
+    .then((s) => {
+        secondResponseWindowValue = Number(s);
+        secondResponseWindow.textContent = secondResponseWindowValue;
+        updateIfLoaded();
+    });
+
 // Gets the task second response window and updates the UI
 doubleHashTaskContract
     .getDoubleHashTaskDelay(doubleHashTaskIndex).then((d) => {
@@ -133,26 +143,41 @@ doubleHashTaskContract
             const responseWindowStart = Number(await doubleHashTaskContract
                 .getDoubleHashTaskResponseWindowStart(doubleHashTaskIndex, i));
 
-            // Gets the task second response window, then calculates the window
-            // start and end times, and updates the UI
-            doubleHashTaskContract
-                .getDoubleHashTaskSecondResponseWindow(doubleHashTaskIndex)
-                .then((s) => {
-                    secondResponseWindowValue = Number(s);
-                    secondResponseWindow.textContent = secondResponseWindowValue;
-                    responses.push({
-                        workerAddress: workerAddress,
-                        responseWindowStart: new Date(
-                            responseWindowStart * 1000
-                        ),
-                        responseWindowEnd: new Date(
-                            (
-                                responseWindowStart + secondResponseWindowValue
-                            ) * 1000
-                        )
-                    });
-                    updateIfLoaded();
+            // Gets the task second response window if not cached, then
+            // calculates the window start and end times, and updates the UI
+            if (secondResponseWindowValue !== undefined) {
+                responses.push({
+                    workerAddress: workerAddress,
+                    responseWindowStart: new Date(
+                        responseWindowStart * 1000
+                    ),
+                    responseWindowEnd: new Date(
+                        (
+                            responseWindowStart + secondResponseWindowValue
+                        ) * 1000
+                    )
                 });
+                updateIfLoaded();
+            } else {
+                doubleHashTaskContract
+                    .getDoubleHashTaskSecondResponseWindow(doubleHashTaskIndex)
+                    .then((s) => {
+                        secondResponseWindowValue = Number(s);
+                        secondResponseWindow.textContent = secondResponseWindowValue;
+                        responses.push({
+                            workerAddress: workerAddress,
+                            responseWindowStart: new Date(
+                                responseWindowStart * 1000
+                            ),
+                            responseWindowEnd: new Date(
+                                (
+                                    responseWindowStart + secondResponseWindowValue
+                                ) * 1000
+                            )
+                        });
+                        updateIfLoaded();
+                    });
+            }
         }
 
         // Update the task responses array with all response data and update the

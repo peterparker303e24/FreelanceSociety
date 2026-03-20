@@ -32,6 +32,26 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["EditUser"],
                 helpItems["LockoutKey"]
             ];
+        case "SubmitDoubleHashTask":
+            return [
+                helpItems["TaskId"],
+                helpItems["HashKey"],
+                helpItems["FirstHashResult"],
+                helpItems["SecondHashResult"],
+                helpItems["HashValue"],
+                helpItems["SecondResponseWindow"],
+                helpItems["Delay"],
+                helpItems["TaskCompleted"],
+                helpItems["Deadline"],
+                helpItems["Reward"],
+                helpItems["ResponseCount"],
+                helpItems["SubmitWindowStart"],
+                helpItems["CurrentTime"],
+                helpItems["SubmitWindowEnd"],
+                helpItems["ViewSubmissions"],
+                helpItems["SubmitFirstHash"],
+                helpItems["SubmitSecondHash"]
+            ];
         default:
             return [];
     }

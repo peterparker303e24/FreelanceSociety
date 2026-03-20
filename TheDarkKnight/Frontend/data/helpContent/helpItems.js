@@ -137,4 +137,76 @@ export const helpItems = {
         "examples": `0x1234567812345678123456781234567812345678123456781234567812345678\n0x0000000000000000000000000000000000000000000000000000000000000000`,
         "purpose": `To give users the opportunity to permanently remove their user from Freelance Society. The lockout code enables the user to lockout the user from Ethereum another account and to keep the lockout key in cold storage. This can be useful such as in the event the hot wallet and account of a user is hacked. The user can switch to another wallet and account, then prove their identity by using the one-time action of revealing the lockout key to maintain some reputation of the previous account.`
     },
+    "HashKey": {
+        "name": `Hash Key`,
+        "description": `32 byte hex data. You must solve the task to obtain this secret value. Once this is obtained, you can follow the submission process to complete the task. If you are the first to complete the submission, then you will earn the task reward. Revealing this hash key will notify everyone who can view the blockchain of the solution.`,
+        "examples": `0x1234567812345678123456781234567812345678123456781234567812345678\n0x0000000000000000000000000000000000000000000000000000000000000000`,
+        "purpose": `To incentive tasks with the incentive structure that uses the hash key for solving puzzles with a specific answer. Only one correct answer will result in a 32 byte data that can solve the task. The manager that created the task must know the hash key, or else may has created a task with no possible solution.`
+    },
+    "FirstHashResult": {
+        "name": `First Hash Result`,
+        "description": `Keccak256 hash of the hash key for the task.`,
+        "examples": `0x3d6b7104c741bf23615b1bb00e067e9ef51c8ba2ab40042ee05086c14870f17c\n0x290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e563`,
+        "purpose": `In the double hash task, the first hash allows the worker to reveal they have the hash key since the first hash can be derived from the hash key. This first hash is used in the smart contract to allocate a time window where only that specific worker may reveal the hash key and complete the double hash task.`
+    },
+    "SecondHashResult": {
+        "name": `Second Hash Result`,
+        "description": `Keccak256 hash of the keccak256 hash of the hash key for the task. If the second hash result matches the task hash value, then the worker has found the correct hash key that can be used to complete the double hash task.`,
+        "examples": `0xefb23dc3fa8934192280d273e635ba2f834d729dab81abe97de286f2fa736067\n0x510e4e770828ddbf7f7b00ab00a9f6adaf81c0dc9cc85f1f8249c256942d61d9`,
+        "purpose": `To show the worker whether their second hash result matches the task hash value to complete the double hash task.`
+    },
+    "HashValue": {
+        "name": `Hash Value`,
+        "description": `Public hash value of the task. Workers can verify they have found the hash key task solution if they can derive the hash value using the keccak256 hashing function.`,
+        "examples": `0xefb23dc3fa8934192280d273e635ba2f834d729dab81abe97de286f2fa736067\n0x510e4e770828ddbf7f7b00ab00a9f6adaf81c0dc9cc85f1f8249c256942d61d9`,
+        "purpose": `To show workers whether they have obtained the correct hash key to complete the task. The hash value can be derived from the hash key and prove within the smart contract that the worker has completed the task.`
+    },
+    "SecondResponseWindow": {
+        "name": `Second Response Window`,
+        "description": `Window of time (in seconds) the worker is allocated to submit their hash key. Only this worker can complete the task within this time window.`,
+        "examples": `Second Response Window (Seconds): 40\nSecond Response Window (Seconds): 1800`,
+        "purpose": `To give workers buffer time to reveal the hash key solution for the task to everyone where only they are allowed to submit the solution and reveive the reward.`
+    },
+    "Delay": {
+        "name": `Delay`,
+        "description": `Minimum time (in seconds) before the submission transaction is confirmed.`,
+        "examples": `Delay (seconds): 20\nDelay (seconds): 600\n`,
+        "purpose": `To allow confirmation blocks process to solidify the transaction in the blockchain.`
+    },
+    "ResponseCount": {
+        "name": `Response Count`,
+        "description": `Number of existing responses for the task made by workers.`,
+        "examples": `Response Count: 0\nResponse Count: 2`,
+        "purpose": `To show the worker how many first hash and/or hash key responses have been made for the task.`
+    },
+    "SubmitWindowStart": {
+        "name": `Submit Window Start`,
+        "description": `Start time for the user to complete their transaction. This time is dependent on the internal timestamp system in the blockchain, and may be different than the exact time.`,
+        "examples": `Submit Window Start: Mon, 01 Mar 2026 12:00:00 GMT\nSubmit Window Start: Thu, 03 Jan 2109 12:00:00 GMT`,
+        "purpose": `To show the worker the start time (in UTC) of the submission window.`
+    },
+    "CurrentTime": {
+        "name": `Current Time`,
+        "description": `Current UTC time provided by the browser.`,
+        "examples": `Current Time (UTC): Mon, 01 Mar 2026 12:00:00 GMT\nCurrent Time (UTC): Thu, 03 Jan 2109 12:00:00 GMT`,
+        "purpose": `To show the user the current UTC time to compare with any transactions dependent on the blockchain timestamp.`
+    },
+    "SubmitWindowEnd": {
+        "name": `Submit Window End`,
+        "description": `End time for the user to complete their transaction. This time is dependent on the internal timestamp system in the blockchain, and may be different than the exact time.`,
+        "examples": `Submit Window End: Mon, 01 Mar 2026 12:00:00 GMT\nSubmit Window End: Thu, 03 Jan 2109 12:00:00 GMT`,
+        "purpose": `To show the worker the end time (in UTC) of the submission window.`
+    },
+    "SubmitFirstHash": {
+        "name": `Submit First Hash`,
+        "description": `Blockchain transaction for the worker to reveal the first hash for the double hash task. This transaction can only take place if the first hash successfully hashes to the task hash value. When this transaction is made, the worker is allocated a time window where only they are allowed to submit the hash key and complete the task.\nHash Key --- keccak256 ---> First Hash --- keccak256 ---> Hash Value`,
+        "examples": `N/A`,
+        "purpose": `To give the worker a unique time window where only they are allowed to complete the task while they reveal the hash key.`
+    },
+    "SubmitSecondHash": {
+        "name": `Submit Second Hash`,
+        "description": `Blockchain transaction for the worker to reveal the hash key for the double hash task. This transaction can only take place if the hash key successfully hashes to the task hash value. When this transaction is made, the worker completes the task and receives the reward. When this transaction is made, the task solution is broadcast to everyone.\nHash Key --- keccak256 ---> First Hash --- keccak256 ---> Hash Value`,
+        "examples": `N/A`,
+        "purpose": `To allow the worker to reveal the task hash key solution and complete the double hash task to earn the task reward.`
+    }
 };
