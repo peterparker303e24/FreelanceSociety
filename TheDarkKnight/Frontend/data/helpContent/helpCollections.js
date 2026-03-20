@@ -75,6 +75,23 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["Reward"],
                 helpItems["SubmitHashTask"]
             ];
+        case "ViewTasks":
+            return [
+                helpItems["TotalTasksCount"],
+                helpItems["AddTask"],
+                helpItems["HideCompletedAndPastTasks"],
+                helpItems["Search"],
+                helpItems["Previous/Next"],
+                helpItems["Results"],
+                helpItems["SearchResult"],
+                helpItems["TaskId"],
+                helpItems["TaskHash"],
+                helpItems["ManagerAddress"],
+                helpItems["Reward"],
+                helpItems["Deadline"],
+                helpItems["TaskCompleted"],
+                helpItems["ViewTask"]
+            ];
         default:
             return [];
     }

@@ -421,7 +421,7 @@ function updatePageResults(results) {
             = `Reward: ${formatWei(searchResult.reward)} (Wei)`;
         searchItem.querySelector('#deadline').textContent
             = `Deadline (UTC): ${formatBlockTimestamp(searchResult.deadline)}`;
-        searchItem.querySelector('#completed').textContent = `Task Complete: `
+        searchItem.querySelector('#completed').textContent = `Task Completed: `
             + `${searchResult.taskComplete.toString().toUpperCase()}`;
         searchItem.querySelector('#view-button').id
             = `view-button-${i}`;

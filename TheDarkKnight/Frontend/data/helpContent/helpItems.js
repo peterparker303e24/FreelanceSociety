@@ -262,5 +262,65 @@ export const helpItems = {
         "description": `Blockchain transaction for the worker to reveal the hash key for the hash task. This transaction can only take place if the hash key successfully hashes to the task hash value. When this transaction is made, the worker completes the task and receives the reward. When this transaction is made, the task solution is broadcast to everyone.\nHash Key --- keccak256 ---> Hash Value`,
         "examples": `N/A`,
         "purpose": `To allow the worker to reveal the task hash key solution and complete the hash task to earn the task reward.`
+    },
+    "TotalTasksCount": {
+        "name": `Total Tasks Count`,
+        "description": `The total number of all types of tasks ever submitted. Or the total number of tasks submitted of a specific task type.`,
+        "examples": `Total Tasks Count: 15\nHash Tasks Count: 7\nDouble Hash Tasks Count: 5\nValidator Tasks Count: 3`,
+        "purpose": `To show the user how many tasks exist in all of Freelance society, and for each task type.`
+    },
+    "AddTask": {
+        "name": `Add Task`,
+        "description": `Redirect the user to the add task page for the specified task type.`,
+        "examples": `Add Hash Task\nAdd Double Hash Task\nAdd Validator Task\n`,
+        "purpose": `To redirect the user to pages where they are able to contribute a new task to Freelance Society.`
+    },
+    "HideCompletedAndPastTasks": {
+        "name": `Hide completed and past tasks`,
+        "description": `When checked, any tasks that the user is definitively unable to complete to receive the reward are not shown in the search results.`,
+        "examples": `'✓'\n' '`,
+        "purpose": `To enable the user to refine their search criteria, especially if searching as a worker that wants to complete tasks to earn ETH rewards.`
+    },
+    "Search": {
+        "name": `Search`,
+        "description": `The search button and input for discovering tasks, requirements, users, transactions, or submissions. `,
+        "examples": `v\ndh-2\n0x70997970C51812dc3A010C7d01b50e0d17dc79C8\n0xe8503ca1bacc9a2addc1ba6e13a7c22daee9b3956821a5609ba44c1e87752562\n0xe850`,
+        "purpose": `To enable the user to narrow their search results, or search for the most recent results.`
+    },
+    "Previous/Next": {
+        "name": `Previous/Next`,
+        "description": `Previous button and next button to navigate between search page results.`,
+        "examples": `N/A`,
+        "purpose": `To allow the user to search in batches and navigate between search pages.`
+    },
+    "Results": {
+        "name": `Results`,
+        "description": `Results text to display the number of results found in the search page.`,
+        "examples": `Results 1 - 10:\nNo results match search criteria`,
+        "purpose": `To show the user how many results were discovered for the current page.`
+    },
+    "SearchResult": {
+        "name": `Search Result`,
+        "description": `A single search result with some identifying information and data.`,
+        "examples": `h-6\nHash: 0xe8503ca1bacc9a2addc1ba6e13a7c22daee9b3956821a5609ba44c1e87752562\nManager Address: 0x70997970C51812dc3A010C7d01b50e0d17dc79C8\nReward: 2 000 000 000 000 000 (Wei)\nDeadline (UTC): Tue, 02 Mar 2027 17:07:04 GMT\nTask Complete: FALSE`,
+        "purpose": `To show the user unique identifying information about a search result, to show some common data attributes of a search result, and possibly a button for the user to redirect to the search result page.`
+    },
+    "ManagerAddress": {
+        "name": `Manager Address`,
+        "description": `Ethereum address of the user that originally added the task. This user should be the user that has access to and distributes the Task.zip file as they are the one that created the task.`,
+        "examples": `Manager Address: 0x70997970C51812dc3A010C7d01b50e0d17dc79C8`,
+        "purpose": `To show users which Ethereum address contributed the task to Freelance Society.`
+    },
+    "ViewTask": {
+        "name": `View Task`,
+        "description": `Redirects the user to the view task page for the task identified in the search result.`,
+        "examples": `N/A`,
+        "purpose": `To redirect the user to the task page for the task identified in the search result.`
+    },
+    "TaskHash": {
+        "name": `Task Hash`,
+        "description": `The keccak256 hash of the Task.zip file data.`,
+        "examples": `0xe8503ca1bacc9a2addc1ba6e13a7c22daee9b3956821a5609ba44c1e87752562\n0x22e5594e977f215c69be7c0bd8254a0fe8a61e21014e11ebceb97ed17695952b\n0x54a7232f0cdbf8f9f18ba940bb65dd4f1694b676aacc42501a4029e5c43bde5b`,
+        "purpose": `To enable users to verify a Task.zip file that they have discovered exactly matches the task described on the blockchain.`
     }
 };
