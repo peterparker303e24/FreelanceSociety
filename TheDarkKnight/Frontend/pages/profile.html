@@ -18,6 +18,7 @@
     <script src="./js/components/headerSection.js" type="module"></script>
     <script src="./js/components/walletMisconfigurationSection.js" type="module"></script>
     <script src="./js/profile.js" type="module"></script>
+    <script src="./js/components/helpSection.js" type="module"></script>
 </head>
 
 <body>
@@ -102,6 +103,11 @@
         <!-- Delete error button -->
         <div class="row">
             <div id="delete-user" class="medium-text payable-button small-padding hide">Delete User</div>
+        </div>
+
+        <!-- Help -->
+        <div id="help-container">
+            <help-section helpCollection="Profile"></help-section>
         </div>
 
         <!-- Footer space -->
