@@ -431,4 +431,10 @@ export const helpItems = {
         "examples": `Task\n\tRequirements\n\t\tRequirement2-1.zip\n\tsolution.enc\n\tspecifications.json`,
         "purpose": `To display the file structure of the discovered data ZIP file and folder contents.`
     },
+    "Difficulty": {
+        "name": `Difficulty`,
+        "description": `The difficulty that is necessary to complete the hash task. The smart contract code only allows task submissions that meet the expected difficulty threshold. Each increment of the difficulty doubles the difficulty in finding the nonce.`,
+        "examples": `0\n10\n15`,
+        "purpose": `To create a buffer time that prevents other users from copying the worker's solution. Once the hash task is submitted, the hash key is revealed and other users can copy the hash task submission and attempt to frontrun their transaction before the original worker's submission transaction. The difficulty value is dependent on both the hash key and the submission Ethereum address, so the hash key must be known and another user cannot copy the nonce of a task submission with the hash key.`
+    },
 };

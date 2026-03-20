@@ -187,7 +187,7 @@ hashTaskContract.getHashTaskDifficulty(hashTaskIndexValue).then(d => {
 });
 hashTaskContract.getHashTaskComplete(hashTaskIndexValue).then(c => {
     isTaskComplete = c;
-    completed.textContent = `Completed: ${isTaskComplete ? "TRUE" : "FALSE"}`;
+    completed.textContent = `Task Completed: ${isTaskComplete ? "TRUE" : "FALSE"}`;
 
     // Allow the user to withdraw funds if available and diplay manager key
     // reveal section if necessary

@@ -18,6 +18,7 @@
     <script src="./js/components/headerSection.js" type="module"></script>
     <script src="./js/components/walletMisconfigurationSection.js" type="module"></script>
     <script src="./js/hashTask/hashTask.js" type="module" defer></script>
+    <script src="./js/components/helpSection.js" type="module"></script>
 </head>
 
 <body>
@@ -45,9 +46,9 @@
                 <div id="manager-address" class="left-align padding text-content-return">Manager Address:<br>-</div>
                 <div id="reward" class="left-align padding">Reward (Wei): -</div>
                 <div id="deadline" class="left-align padding">Deadline (UTC): -</div>
-                <div id="difficulty" class="left-align padding">Difficulty: -</div>
-                <div id="completed" class="left-align padding">Completed: -</div>
+                <div id="completed" class="left-align padding">Task Completed: -</div>
                 <div id="key-reveal" class="left-align padding">Key Reveal: -</div>
+                <div id="difficulty" class="left-align padding">Difficulty: -</div>
 
                 <!-- Fund task section -->
                 <div class="row vertically-center-row margin">
@@ -138,6 +139,12 @@
                 <!-- Task zip file tree -->
                 <textarea disabled id="task-file-tree"
                     class="file-tree">No Task Data - Discover Task Or Upload Locally</textarea>
+            </div>
+
+
+            <!-- Help -->
+            <div id="help-container">
+                <help-section helpCollection="HashTask"></help-section>
             </div>
 
             <!-- Footer space -->

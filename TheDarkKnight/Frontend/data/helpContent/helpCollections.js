@@ -126,6 +126,36 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["AddTask"],
                 helpItems["ZipContents"]
             ];
+        case "HashTask":
+            return [
+                helpItems["TaskId"],
+                helpItems["HashValue"],
+                helpItems["TaskHash"],
+                helpItems["ManagerAddress"],
+                helpItems["Reward"],
+                helpItems["Deadline"],
+                helpItems["TaskCompleted"],
+                helpItems["KeyReveal"],
+                helpItems["Difficulty"],
+                helpItems["FundTaskAmount"],
+                helpItems["FundTask"],
+                helpItems["WithdrawTaskFunds"],
+                helpItems["AutoDiscover"],
+                helpItems["TryDownloadFrom"],
+                helpItems["SkipAddress"],
+                helpItems["SkipLink"],
+                helpItems["ManuallyDiscover"],
+                helpItems["DownloadFromUser"],
+                helpItems["TaskSpecifications"],
+                helpItems["TaskSpecificationHeader"],
+                helpItems["TaskSpecificationCondition"],
+                helpItems["SaveLocally"],
+                helpItems["UploadLocally"],
+                helpItems["SubmitTask"],
+                helpItems["ViewTasks"],
+                helpItems["AddTask"],
+                helpItems["ZipContents"]
+            ];
         default:
             return [];
     }
