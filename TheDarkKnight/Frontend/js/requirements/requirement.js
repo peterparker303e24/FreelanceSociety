@@ -146,19 +146,19 @@ uploadLocallyButton.addEventListener("click", () => {
 
 // Redirects to view proposal page using the requirement index of this page
 viewProposalsButton.addEventListener("click", () => {
-    window.location.href = `pages/requirements/viewProposals.html?index=${requirementId}`;
+    window.location.href = `./pages/requirements/viewProposals.html?index=${requirementId}`;
 });
 
 // Redirects to view requirements page using the requirement index of this page
 viewOtherVersionsButton.addEventListener("click", () => {
-    window.location.href = `pages/requirements/viewRequirements.html?search=`
+    window.location.href = `./pages/requirements/viewRequirements.html?search=`
         + `${requirementId}`;
 });
 
 // Redirects to the add requirement proposal page using the requirement index of
 // this page
 proposeUpdateButton.addEventListener("click", () => {
-    window.location.href = `pages/requirements/addRequirement.html?index=`
+    window.location.href = `./pages/requirements/addRequirement.html?index=`
         + `${requirementId}`;
 });
 

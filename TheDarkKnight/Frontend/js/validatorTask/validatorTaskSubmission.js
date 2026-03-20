@@ -165,10 +165,10 @@ if (typeof (params.id) === "string") {
 }
 if (!validSubmissionId) {
     if (validTaskId) {
-        window.location.href = `pages/validatorTask/`
+        window.location.href = `./pages/validatorTask/`
             + `viewValidatorTaskSubmissions.html?id=v-${validatorTaskIndex}`;
     } else {
-        window.location.href = "pages/viewTasks.html?search=v";
+        window.location.href = "./pages/viewTasks.html?search=v";
     }
 }
 
@@ -423,8 +423,6 @@ withdrawSubmissionUnevaluated.addEventListener("click", async () => {
     getValidatorTaskSigner(withdrawSubmissionUnevaluatedError);
 
     // Create the submission incomplete unevaluated withdraw transaction
-    console.log(validatorTaskIndexValue);
-    console.log(submissionIndexValue);
     let transactionResponse;
     try {
         transactionResponse = await validatorTaskSigner
@@ -643,25 +641,25 @@ uploadLocallyButton.addEventListener("click", () => {
 
 // Redirects to view proposal page using the task index of this page
 viewTaskButton.addEventListener("click", () => {
-    window.location.href = `pages/validatorTask/validatorTask.html?`
+    window.location.href = `./pages/validatorTask/validatorTask.html?`
         + `id=v-${validatorTaskIndex}`;
 });
 
 // Redirects to view task submissions page using the task index of this page
 viewTaskSubmissions.addEventListener("click", () => {
-    window.location.href = `pages/validatorTask/viewValidatorTaskSubmissions`
+    window.location.href = `./pages/validatorTask/viewValidatorTaskSubmissions`
         + `.html?index=${validatorTaskIndex}`;
 });
 
 // Redirects to view tasks page using the task index of this page
 viewValidatorTasksButton.addEventListener("click", () => {
-    window.location.href = `pages/viewTasks.html?search=v`;
+    window.location.href = `./pages/viewTasks.html?search=v`;
 });
 
 // Redirects to the add task proposal page using the task index of
 // this page
 addValidatorTaskButton.addEventListener("click", () => {
-    window.location.href = `pages/validatorTask/addValidatorTask.html?index=`
+    window.location.href = `./pages/validatorTask/addValidatorTask.html?index=`
         + `${validatorTaskIndex}`;
 });
 

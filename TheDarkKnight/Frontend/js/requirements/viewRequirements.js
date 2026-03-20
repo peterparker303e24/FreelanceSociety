@@ -54,7 +54,7 @@ theListContract.requirementCount().then((n) => {
 
 // Redirects to add requirement page
 addRequirementButton.addEventListener("click", () => {
-    window.location.href = 'pages/requirements/addRequirement.html';
+    window.location.href = './pages/requirements/addRequirement.html';
 });
 
 // If the search button is clicked or enter button pressed, then execute the
@@ -283,7 +283,7 @@ function updatePageResults(results) {
             = `view-button-${i}`;
         searchItem.querySelector(`#view-button-${i}`)
             .addEventListener("click", () => {
-                window.location.href = "pages/requirements/requirement.html?id="
+                window.location.href = "./pages/requirements/requirement.html?id="
                     + `${searchResult.index}-${searchResult.version}`;
             });
         requirementsContainer.appendChild(searchItem);

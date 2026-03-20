@@ -124,7 +124,7 @@ if (typeof (params.id) === "string") {
     }
 }
 if (!validValidatorTaskId) {
-    window.location.href = "pages/viewTasks.html?search=v";
+    window.location.href = "./pages/viewTasks.html?search=v";
 }
 
 // Page interaction variables
@@ -455,25 +455,25 @@ uploadLocallyButton.addEventListener("click", () => {
 
 // Redirects to view proposal page using the task index of this page
 submitTaskButton.addEventListener("click", () => {
-    window.location.href = `pages/validatorTask/submitValidatorTask.html?`
+    window.location.href = `./pages/validatorTask/submitValidatorTask.html?`
         + `index=${validatorTaskIndex}`;
 });
 
 // Redirects to view task submissions page using the task index of this page
 viewTaskSubmissions.addEventListener("click", () => {
-    window.location.href = `pages/validatorTask/viewValidatorTaskSubmissions`
+    window.location.href = `./pages/validatorTask/viewValidatorTaskSubmissions`
         + `.html?index=${validatorTaskIndex}`;
 });
 
 // Redirects to view tasks page using the task index of this page
 viewValidatorTasksButton.addEventListener("click", () => {
-    window.location.href = `pages/viewTasks.html?search=v`;
+    window.location.href = `./pages/viewTasks.html?search=v`;
 });
 
 // Redirects to the add task proposal page using the task index of
 // this page
 addValidatorTaskButton.addEventListener("click", () => {
-    window.location.href = `pages/validatorTask/addValidatorTask.html?index=`
+    window.location.href = `./pages/validatorTask/addValidatorTask.html?index=`
         + `${validatorTaskIndex}`;
 });
 

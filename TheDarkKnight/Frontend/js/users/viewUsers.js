@@ -46,7 +46,7 @@ executeSearch();
 
 // Redirects to add requirement page
 activateUserButton.addEventListener("click", () => {
-    window.location.href = 'pages/profile.html';
+    window.location.href = './pages/profile.html';
 });
 
 // If the search button is clicked or enter button pressed, then execute the
@@ -268,7 +268,7 @@ function updatePageResults(results) {
         searchItem.querySelector('#view-button').id = `view-button-${i}`;
         searchItem.querySelector(`#view-button-${i}`)
             .addEventListener("click", () => {
-                window.location.href = `pages/users/user.html?address=`
+                window.location.href = `./pages/users/user.html?address=`
                     + `${searchResult.userAddress}`;
             });
         usersContainer.appendChild(searchItem);

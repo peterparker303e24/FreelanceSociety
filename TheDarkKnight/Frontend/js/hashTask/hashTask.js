@@ -110,7 +110,7 @@ if (typeof (params.id) === "string") {
     }
 }
 if (!validHashTaskId) {
-    window.location.href = "pages/viewTasks.html?search=h";
+    window.location.href = "./pages/viewTasks.html?search=h";
 }
 
 // Page interaction variables
@@ -377,19 +377,19 @@ uploadLocallyButton.addEventListener("click", () => {
 // Redirects to view proposal page using the task index of this page
 submitTaskButton.addEventListener("click", () => {
     window.location.href
-        = `pages/hashTask/submitHashTask.html?index=${hashTaskIndex}`;
+        = `./pages/hashTask/submitHashTask.html?index=${hashTaskIndex}`;
 });
 
 // Redirects to view tasks page using the task index of this page
 viewHashTasksButton.addEventListener("click", () => {
-    window.location.href = `pages/viewTasks.html?search=h`;
+    window.location.href = `./pages/viewTasks.html?search=h`;
 });
 
 // Redirects to the add task proposal page using the task index of
 // this page
 addHashTaskButton.addEventListener("click", () => {
     window.location.href
-        = `pages/hashTask/addHashTask.html?index=${hashTaskIndex}`;
+        = `./pages/hashTask/addHashTask.html?index=${hashTaskIndex}`;
 });
 
 // Prompts user for upload of task zip, and displays task if valid

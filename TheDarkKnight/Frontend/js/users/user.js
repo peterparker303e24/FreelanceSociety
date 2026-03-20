@@ -107,7 +107,7 @@ if (params.search !== undefined) {
     searchInput.value = params.search;
 }
 if (userAddressValue == undefined || !isAddress(userAddressValue)) {
-    window.location.href = 'pages/users/viewUsers.html';
+    window.location.href = './pages/users/viewUsers.html';
 } else {
     userAddress.textContent = `User Address:\r\n${userAddressValue}`;
     executeSearch();
@@ -824,7 +824,7 @@ async function tryLoadUserDefinedData(userLinksValue) {
             const userDefinedDataResponse = await fetch(userDefinedDataUrl);
             userDefinedDataJson = await userDefinedDataResponse.json();
             break;
-        } catch (e) { console.log(e); }
+        } catch { }
     }
     if (userDefinedDataJson !== undefined) {
         updateUserDefinedData(userDefinedDataJson);

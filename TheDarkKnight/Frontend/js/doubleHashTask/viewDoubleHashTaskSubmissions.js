@@ -40,13 +40,13 @@ if (!Number.isNaN(doubleHashTaskIndex)) {
 
 // Redirects to the double hash task page
 viewTaskButton.addEventListener("click", () => {
-    window.location.href = `pages/doubleHashTask/doubleHashTask.html?id=dh-`
+    window.location.href = `./pages/doubleHashTask/doubleHashTask.html?id=dh-`
         + `${doubleHashTaskIndex}`;
 });
 
 // Redirects to add requirement page
 submitTaskButton.addEventListener("click", () => {
-    window.location.href = `pages/doubleHashTask/submitDoubleHashTask.html?`
+    window.location.href = `./pages/doubleHashTask/submitDoubleHashTask.html?`
         + `index=${doubleHashTaskIndex}`;
 });
 

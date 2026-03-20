@@ -557,7 +557,6 @@ async function validateTaskFile(arrayBuffer) {
             );
         } catch (error) {
 
-            console.log(error);
             // If the parsing results in an error, then display a warning for
             // the requirement
             formatTaskJson(

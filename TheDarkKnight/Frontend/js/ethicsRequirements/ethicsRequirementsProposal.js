@@ -99,17 +99,17 @@ getProposalData().then((proposalData) => {
 
 // Redirects to view ethics requirements page
 viewProposalsButton.addEventListener("click", () => {
-    window.location.href = `pages/ethicsRequirements/viewEthicsRequirementsProposals.html`;
+    window.location.href = `./pages/ethicsRequirements/viewEthicsRequirementsProposals.html`;
 });
 
 // Redirects to ethics requirements page
 viewEthicsButton.addEventListener("click", () => {
-    window.location.href = `pages/ethicsRequirements/ethicsRequirements.html`;
+    window.location.href = `./pages/ethicsRequirements/ethicsRequirements.html`;
 });
 
 // Redirects to add ethics requirements proposal page
 proposeUpdateButton.addEventListener("click", () => {
-    window.location.href = `pages/ethicsRequirements/addEthicsRequirementsProposal.html`;
+    window.location.href = `./pages/ethicsRequirements/addEthicsRequirementsProposal.html`;
 });
 
 // Saves the ethics requirements proposal locally

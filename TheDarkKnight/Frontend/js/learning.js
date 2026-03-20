@@ -10,7 +10,7 @@ const fileName = folderSplits[folderSplits.length - 1].split(".")[0];
 let text = "";
 try {
     const response = await fetch(
-        `data/learningText/${folderName}/${fileName}.txt`
+        `./data/learningText/${folderName}/${fileName}.txt`
     );
     text = await response.text();
 } catch (error) {

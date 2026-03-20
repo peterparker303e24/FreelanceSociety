@@ -1553,3 +1553,14 @@ export function getCookie(cookieName) {
     }
     return undefined;
 }
+
+/**
+ * Wait for the given number of milliseconds
+ * @param {Number} ms Wait time in milliseconds
+ */
+export async function wait(ms) {
+    const promiseTimeout = (waitTime) => {
+        return new Promise(resolve => setTimeout(resolve, waitTime))
+    };
+    await promiseTimeout(ms);
+}

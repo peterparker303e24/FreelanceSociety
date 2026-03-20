@@ -39,10 +39,10 @@ theListContract.getEthicsRequirements().then((l) => {
 
 // Redirects to view ethics requirements proposals page
 viewEthicsRequirementsButton.addEventListener("click", () => {
-    window.location.href = 'pages/ethicsRequirements/viewEthicsRequirementsProposals.html';
+    window.location.href = './pages/ethicsRequirements/viewEthicsRequirementsProposals.html';
 });
 
 // Redirects to add ethics requirements proposal page
 addEthicsRequirementsButton.addEventListener("click", () => {
-    window.location.href = 'pages/ethicsRequirements/addEthicsRequirementsProposal.html';
+    window.location.href = './pages/ethicsRequirements/addEthicsRequirementsProposal.html';
 });

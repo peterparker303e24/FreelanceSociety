@@ -91,12 +91,12 @@ if (fixedRequirement) {
 // Redirect to a new proposal for the selected requirement index
 addProposalButtonFixed.addEventListener("click", () => {
     window.location.href
-        = `pages/requirements/addRequirementProposal.html?index=${requirementIndexValue}`;
+        = `./pages/requirements/addRequirementProposal.html?index=${requirementIndexValue}`;
 });
 
 // Redirect to a new proposal for a dynamic requirement index
 addProposalButtonDynamic.addEventListener("click", () => {
-    window.location.href = `pages/requirements/addRequirementProposal.html`;
+    window.location.href = `./pages/requirements/addRequirementProposal.html`;
 });
 
 // If the search button is clicked or enter button pressed, then execute the
@@ -353,7 +353,7 @@ function updatePageResults(results) {
         searchItem.querySelector('#view-button').id = `view-button-${i}`;
         searchItem.querySelector(`#view-button-${i}`)
             .addEventListener("click", () => {
-                window.location.href = `pages/requirements/requirementProposal.html?index=`
+                window.location.href = `./pages/requirements/requirementProposal.html?index=`
                     + `${searchResult.index}&proposalIndex=`
                     + `${searchResult.proposalIndex}`;
             });

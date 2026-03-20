@@ -62,7 +62,7 @@ executeSearch();
 
 // Redirects to add ethics requirements proposal page
 addProposalButton.addEventListener("click", () => {
-    window.location.href = `pages/ethicsRequirements/addEthicsRequirementsProposal.html`;
+    window.location.href = `./pages/ethicsRequirements/addEthicsRequirementsProposal.html`;
 });
 
 // If the search button is clicked or enter button pressed, then execute the
@@ -286,7 +286,8 @@ function updatePageResults(results) {
         searchItem.querySelector('#view-button').id = `view-button-${i}`;
         searchItem.querySelector(`#view-button-${i}`)
             .addEventListener("click", () => {
-                window.location.href = `pages/ethicsRequirements/ethicsRequirementsProposal.html`
+                window.location.href = `./pages/ethicsRequirements/`
+                    + `ethicsRequirementsProposal.html`
                     + `?index=${searchResult.index}`;
             });
         proposalsContainer.appendChild(searchItem);

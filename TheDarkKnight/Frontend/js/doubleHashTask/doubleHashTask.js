@@ -118,7 +118,7 @@ if (typeof (params.id) === "string") {
     }
 }
 if (!validDoubleHashTaskId) {
-    window.location.href = "pages/viewTasks.html?search=dh";
+    window.location.href = "./pages/viewTasks.html?search=dh";
 }
 
 // Page interaction variables
@@ -441,25 +441,25 @@ uploadLocallyButton.addEventListener("click", () => {
 
 // Redirects to view proposal page using the task index of this page
 submitTaskButton.addEventListener("click", () => {
-    window.location.href = `pages/doubleHashTask/submitDoubleHashTask.html?`
+    window.location.href = `./pages/doubleHashTask/submitDoubleHashTask.html?`
         + `index=${doubleHashTaskIndex}`;
 });
 
 // Redirects to view task submissions page using the task index of this page
 viewTaskSubmissions.addEventListener("click", () => {
-    window.location.href = `pages/doubleHashTask/viewDoubleHashTaskSubmissions`
+    window.location.href = `./pages/doubleHashTask/viewDoubleHashTaskSubmissions`
         + `.html?index=${doubleHashTaskIndex}`;
 });
 
 // Redirects to view tasks page using the task index of this page
 viewDoubleHashTasksButton.addEventListener("click", () => {
-    window.location.href = `pages/viewTasks.html?search=dh`;
+    window.location.href = `./pages/viewTasks.html?search=dh`;
 });
 
 // Redirects to the add task proposal page using the task index of
 // this page
 addDoubleHashTaskButton.addEventListener("click", () => {
-    window.location.href = `pages/doubleHashTask/addDoubleHashTask.html?index=`
+    window.location.href = `./pages/doubleHashTask/addDoubleHashTask.html?index=`
         + `${doubleHashTaskIndex}`;
 });
 

@@ -82,17 +82,17 @@ if (pageSearch !== undefined) {
 
 // Redirects to add requirement page
 addHashTaskButton.addEventListener("click", () => {
-    window.location.href = 'pages/hashTask/addHashTask.html';
+    window.location.href = './pages/hashTask/addHashTask.html';
 });
 
 // Redirects to add requirement page
 addDoubleHashTaskButton.addEventListener("click", () => {
-    window.location.href = 'pages/doubleHashTask/addDoubleHashTask.html';
+    window.location.href = './pages/doubleHashTask/addDoubleHashTask.html';
 });
 
 // Redirects to add requirement page
 addValidatorTaskButton.addEventListener("click", () => {
-    window.location.href = 'pages/validatorTask/addValidatorTask.html';
+    window.location.href = './pages/validatorTask/addValidatorTask.html';
 });
 
 // Toggles between revealing and hiding tasks fold
@@ -435,7 +435,7 @@ function updatePageResults(results) {
                 } else if (searchResult.typeId === "v") {
                     taskRedirectPage = "validatorTask/validatorTask";
                 }
-                window.location.href = `pages/${taskRedirectPage}.html?id=`
+                window.location.href = `./pages/${taskRedirectPage}.html?id=`
                     + `${searchResult.typeId}-${searchResult.index}`;
             });
         requirementsContainer.appendChild(searchItem);

@@ -16,12 +16,12 @@ const blockchainDataString = localStorage.getItem("blockchainData");
 let isLightMode = darkMode === "disabled";
 if (isLightMode) {
     document.body.classList.remove("dark-mode");
-    modeButtonSvg.setAttribute("src", "assets/icons/LightMode.svg");
+    modeButtonSvg.setAttribute("src", "./assets/icons/LightMode.svg");
     modeButtonText.textContent = "Light Mode";
     toggleButton.textContent = "Toggle: Light Mode";
 } else {
     document.body.classList.add("dark-mode");
-    modeButtonSvg.setAttribute("src", "assets/icons/DarkMode.svg");
+    modeButtonSvg.setAttribute("src", "./assets/icons/DarkMode.svg");
     modeButtonText.textContent = "Dark Mode";
     toggleButton.textContent = "Toggle: Dark Mode";
 }
@@ -52,14 +52,14 @@ function changeVariableAndIcon() {
         isLightMode = false;
         document.body.classList.add("dark-mode");
         localStorage.setItem("darkMode", "enabled");
-        modeButtonSvg.setAttribute("src", "assets/icons/DarkMode.svg");
+        modeButtonSvg.setAttribute("src", "./assets/icons/DarkMode.svg");
         modeButtonText.textContent = "Dark Mode";
         toggleButton.textContent = "Toggle: Dark Mode";
     } else {
         isLightMode = true;
         document.body.classList.remove("dark-mode");
         localStorage.setItem("darkMode", "disabled");
-        modeButtonSvg.setAttribute("src", "assets/icons/LightMode.svg");
+        modeButtonSvg.setAttribute("src", "./assets/icons/LightMode.svg");
         modeButtonText.textContent = "Light Mode";
         toggleButton.textContent = "Toggle: Light Mode";
     }

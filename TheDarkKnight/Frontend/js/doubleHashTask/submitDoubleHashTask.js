@@ -173,7 +173,7 @@ firstHashInput.addEventListener("input", () => {
 
 // Redirect the user to this double hash task submissions
 viewSubmissionsButton.addEventListener("click", () => {
-    window.location.href = `pages/doubleHashTask/viewDoubleHashTaskSubmissions`
+    window.location.href = `./pages/doubleHashTask/viewDoubleHashTaskSubmissions`
         + `.html?index=${doubleHashTaskIndex}`;
 });
 

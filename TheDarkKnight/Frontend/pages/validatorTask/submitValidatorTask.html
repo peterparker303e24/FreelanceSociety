@@ -12,8 +12,8 @@
     <link rel="icon" href="./favicons/android-chrome-192x192.png" sizes="192x192">
     <link rel="icon" href="./favicons/android-chrome-512x512.png" sizes="512x512">
     <link rel="apple-touch-icon" href="./favicons/apple-touch-icon.png">
-    <link rel="stylesheet" href="global.css">
-    <link rel="stylesheet" href="css/addCommon.css">
+    <link rel="stylesheet" href="./global.css">
+    <link rel="stylesheet" href="./css/addCommon.css">
     <script src="./js/applyDarkModePreference.js" type="module"></script>
     <script src="./js/components/headerSection.js" type="module"></script>
     <script src="./js/components/walletMisconfigurationSection.js" type="module"></script>
@@ -39,45 +39,28 @@
             <user-not-activated-section></user-not-activated-section>
         </div>
 
+        <h2 class="left-align medium-margin">1 Review Task Configurations</h2>
+
         <!-- Task data -->
         <div class="small-margin">
             <div id="task-id" class="left-align small-padding">Task ID: v-X</div>
+            <div id="reward" class="left-align small-padding">Reward (Wei): -</div>
+            <div id="validator-comission" class="left-align small-padding">Validator Comission (Wei): -</div>
+            <div id="completed" class="left-align small-padding">Task Completed: -</div>
+            <div id="task-defaulted" class="left-align small-padding">Task Defaulted: -</div>
             <div id="deadline" class="left-align small-padding">Deadline (UTC): -</div>
             <div id="next-slot-time" class="left-align small-padding">Next Slot Time: -</div>
             <div id="submissions-count" class="left-align small-padding">Submissions Count: -</div>
             <div id="evaluated-submissions-count" class="left-align small-padding">Evaluated Submissions Count: -</div>
-            <div id="completed" class="left-align small-padding">Completed: -</div>
-            <div id="task-defaulted" class="left-align small-padding">Task Defaulted: -</div>
-            <div id="validator-comission" class="left-align small-padding">Validator Comission (Wei): -</div>
-            <div id="reward" class="left-align small-padding">Reward (Wei): -</div>
-            <div id="view-submissions-button" class="border-button x-large-width redirectable small-padding">View
+            <div id="view-submissions-button" class="border-button x-large-width redirectable small-margin small-padding">View
                 Submissions</div>
-            <div class="row margin">
-                <div id="validator-task-submission-ethics-row" class="vertically-center-text">
-                    <div id="checkbox" class="border-button large-text square small-padding"></div>
-                    <div class="medium-text left-align full-height">I have have read the
-                        ethics requirements and
-                        my submission does not violate any of the ethics requirements.</div>
-                </div>
-            </div>
         </div>
+        <br>
 
-        <!-- Initially hide the submission hash section, unless override is activated -->
-        <div id="submission-hash-row" class="row vertically-center-row padding hide">
-            <div class="left-align label-space-right">Submission.zip Hash: </div>
-            <input type="text" id="submission-hash-input" class="input-line medium-text hash-input-width left"
-                placeholder="0x1234567812345678123456781234567812345678123456781234567812345678">
-        </div>
+        <!-- Upload Submission.zip file locally section -->
+        <h2 class="left-align medium-margin">2 Upload Submission Locally</h2>
 
-        <!-- Payable add task submission button and error display -->
-        <div class="row padding">
-            <div id="add-task-submission-button" class="inactive-payable-button medium-text padding">
-                Add Validator Task Submission
-            </div>
-        </div>
-        <div id="add-task-error" class="row padding"></div>
-
-        <!-- Upload task submission section -->
+        <!-- Upload Submission.zip file button -->
         <div class="row padding">
             <input type="file" id="file-input" accept=".zip" class="hide" />
             <div id="upload-file-button" class="border-button medium-text padding">
@@ -86,8 +69,59 @@
         </div>
         <div id="file-error" class="row padding"></div>
 
-        <!-- File name and hash retrieved -->
-        <div id="file-name" class="row padding"></div>
+        <!-- Submission.zip file hash and edit button -->
+        <div class="row-left vertically-center-row">
+            <div id="edit-zip-hash-button" class="border-button small-padding medium-text medium-margin large-width">Edit</div>
+            <div id="zip-hash-text" class="medium-text right-align label-space-right">Submission.zip Hash: -</div>
+            <input type="text" id="zip-hash-input" class="input-line hash-input-width medium-text hide" placeholder="0x1234567812345678123456781234567812345678123456781234567812345678">
+        </div>
+        <div id="zip-hash-error"></div>
+        <br>
+
+        <!-- Upload Submission.zip file to user hosted endpoint -->
+        <h2 class="left-align medium-margin">3 Upload Submission To Hosted Location</h2>
+
+        <div class="left-align medium-padding">
+
+            <!-- Detected URL endpoints from user links data -->
+            <div>Host your Submission.zip file at one of your hosted endpoints.</div>
+            <div>Your user detected URL endpoint links:</div>
+            <div id="user-url-links" class="large-margin text-content-return">-</div>
+            
+            <!-- Display message when user has no valid URL endpoint links -->
+            <div id="no-url-links-text" class="large-margin hide">No URL links detected. Add a publicly available URL base path to the comma separated <b>Links</b> data for your user. This public URL base path should be a folder where you can control the editing of folders and files.</div>
+            <a id="edit-profile-links-button" href="./pages/profile.html" class="border-button redirectable medium-text medium-padding large-margin xx-large-width hide">Edit User Links</a>
+            
+            <!-- Detect Submission.zip file hosting status with user links and file hash -->
+            <div id="host-urls-text">Host the Submission.zip file at one of these URLs:</div>
+            <div id="user-url-hosting-links" class="large-margin text-content-return">-/Submissions/ValidatorSubmissions/-/Submission.zip</div>
+
+            <!-- Refetch Submission.zip file hosting and display success status and any failures -->
+            <div id="hosting-status-text">Submission.zip Hosting Status: -</div>
+            <br>
+            <div id="fetch-zip-hosting-status" class="border-button medium-text medium-padding xx-large-width">Fetch Status</div>
+            <br>
+            <div id="zip-hosting-error" class="text-content-return medium-margin-bottom"></div>
+        </div>
+
+        <!-- Final submission confirmation section -->
+        <h2 class="left-align medium-margin">4 Confirm Submission</h2>
+
+        <!-- Submission ethics requirements check -->
+        <div class="row margin">
+            <div id="validator-task-submission-ethics-row" class="vertically-center-text">
+                <div id="checkbox" class="border-button large-text square small-padding"></div>
+                <div class="medium-text left-align full-height">I have have read the ethics requirements and my submission does not violate any of the ethics requirements.</div>
+            </div>
+        </div>
+
+        <!-- Payable add task submission button and error display -->
+        <div class="row padding">
+            <div id="add-task-submission-button" class="inactive-payable-button medium-text padding">
+                Add Validator Task Submission
+            </div>
+        </div>
+        <div id="add-task-error" class="row padding text-content-return"></div>
 
         <!-- Footer space -->
         <div id="footer-space"></div>

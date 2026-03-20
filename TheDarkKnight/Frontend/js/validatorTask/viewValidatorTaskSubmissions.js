@@ -50,13 +50,13 @@ if (!Number.isNaN(validatorTaskIndex)) {
 
 // Redirects to submit validator task page
 submitTaskButton.addEventListener("click", () => {
-    window.location.href = `pages/validatorTask/submitValidatorTask.html?`
+    window.location.href = `./pages/validatorTask/submitValidatorTask.html?`
         + `index=${validatorTaskIndex}`;
 });
 
 // Redirects to validator task page
 viewTaskButton.addEventListener("click", () => {
-    window.location.href = `pages/validatorTask/validatorTask.html?`
+    window.location.href = `./pages/validatorTask/validatorTask.html?`
         + `id=v-${validatorTaskIndex}`;
 });
 
@@ -205,7 +205,7 @@ function updatePageResults(results) {
             = `Submission Status: ${submissionItem.submissionStatus}`;
         searchItem.querySelector('#view-button')
             .addEventListener("click", () => {
-                window.location.href = `pages/validatorTask/validator`
+                window.location.href = `./pages/validatorTask/validator`
                     + `TaskSubmission.html?id=v-${validatorTaskIndex}-`
                     + `${submissionItem.index}`;
             });
