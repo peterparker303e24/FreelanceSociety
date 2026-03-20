@@ -126,7 +126,7 @@ img {
 }
 
 .wrap-text {
-    word-break: break-all;
+    word-break: normal;
 }
 
 .input-line {

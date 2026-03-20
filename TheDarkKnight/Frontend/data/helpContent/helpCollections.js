@@ -195,6 +195,19 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["AddTask"],
                 helpItems["ZipContents"]
             ];
+        case "EthicsRequirementsProposal":
+            return [
+                helpItems["EthicsRequirementsProposalId"],
+                helpItems["ProposalHash"],
+                helpItems["ProposalValidatorAddress"],
+                helpItems["ProposalVotesFor"],
+                helpItems["VoteForEthicsProposal"],
+                helpItems["EthicsRequirementsProposal"],
+                helpItems["SaveLocally"],
+                helpItems["ViewEthicsRequirementsProposals"],
+                helpItems["ViewEthicsRequirements"],
+                helpItems["AddEthicsRequirementsProposal"]
+            ];
         default:
             return [];
     }

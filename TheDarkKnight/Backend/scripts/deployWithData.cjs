@@ -7,7 +7,7 @@ async function main() {
         "Task or submission does not produce content of an individual's information for which there is a reasonable expectation of privacy."
     ];
     const ETHICS_REQUIREMENTS2 = [
-        "Don't talk about Freelance Society."
+        "You do not talk about Freelance Society."
     ];
     const UsersContractFactory = await hre.ethers.getContractFactory("Users");
     const usersContract = await UsersContractFactory.deploy();

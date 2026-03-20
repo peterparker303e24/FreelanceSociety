@@ -19,6 +19,7 @@
     <script src="./js/components/walletMisconfigurationSection.js" type="module"></script>
     <script src="./js/components/userNotActivatedSection.js" type="module"></script>
     <script src="./js/ethicsRequirements/ethicsRequirementsProposal.js" type="module" defer></script>
+    <script src="./js/components/helpSection.js" type="module"></script>
 </head>
 
 <body>
@@ -60,7 +61,7 @@
 
                 <!-- Ethics requirements proposal -->
                 <h2>Ethics Requirments Proposal</h2>
-                <div id="ethics-requirements" class="left-align large-padding text-content-return x-large-width"></div>
+                <div id="ethics-requirements" class="left-align large-padding text-content-return full-width"></div>
             </div>
 
             <!-- Right column area -->
@@ -82,6 +83,11 @@
                     Requirements Proposal
                 </div>
             </div>
+        </div>
+
+        <!-- Help -->
+        <div id="help-container">
+            <help-section helpCollection="EthicsRequirementsProposal"></help-section>
         </div>
 
         <!-- Footer space -->

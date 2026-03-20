@@ -479,4 +479,46 @@ export const helpItems = {
         "examples": `Validators:\n0x70997970C51812dc3A010C7d01b50e0d17dc79C8\n\nValidators:\n0x70997970C51812dc3A010C7d01b50e0d17dc79C8\n0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266`,
         "purpose": `To show users which validators have control in determining the outcome of task submission evaluations. The validators are public and their full validation history can be searched, so any user can independently verify the trustworthyness of the validators.`
     },
+    "EthicsRequirementsProposalId": {
+        "name": `Ethics Requirements Proposal ID`,
+        "description": `Unique identifier for the ethics requirements proposal.`,
+        "examples": `#0\n#2`,
+        "purpose": `To uniquely identify an ethics requirements proposal.`
+    },
+    "ProposalHash": {
+        "name": `Proposal Hash`,
+        "description": `Keccak256 hash of the ethics requirements proposal text.`,
+        "examples": `0x9a95e26bbaf1adce74aff02e49a7f9aa05391b072d6d3ffa4dd9c9b4e9c76a23\n0xc3b46e96c414ee47213c6d236d06b3a40be8a7cedefafa2c06d7109ed387d626`,
+        "purpose": `To provide a hash that identifies the ethics requirements proposal text data.`
+    },
+    "ProposalValidatorAddress": {
+        "name": `Proposal Validator Address`,
+        "description": `Ethereum address of the user that created the ethics requirements proposal.`,
+        "examples": `0x70997970C51812dc3A010C7d01b50e0d17dc79C8\n0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266`,
+        "purpose": `To show other users which user added the ethics requirements proposal.`
+    },
+    "ProposalVotesFor": {
+        "name": `Proposal Votes For`,
+        "description": `The number of unique Freelance Society users that have voted for the ethics requirements proposal. A user can vote for multiple ethics requirements proposals.`,
+        "examples": `Proposal Votes For: 1 (Not Yet Voted)\nProposal Votes For: 2 (Already Voted)`,
+        "purpose": `To show how many Freelance Society users have voted for the ethics requirements proposal. To also show the user whether they have already voted for the ethics requirements proposal.`
+    },
+    "VoteForEthicsProposal": {
+        "name": `Vote For Ethics Proposal`,
+        "description": `Transaction to vote for the ethics requirements proposal.`,
+        "examples": `N/A`,
+        "purpose": `To enable users to contribute their ethical opinions on the Freelance Society platform.`
+    },
+    "EthicsRequirementsProposal": {
+        "name": `Ethics Requirements Proposal`,
+        "description": `A proposal for the ethics requirements status quo that must be followed by all users in creating and completing tasks.`,
+        "examples": `Ethics Requirments Proposal\nYou do not talk about Freelance Society.\n\nEthics Requirments Proposal\nTask or submission does not produce content of excessive harm of living beings.\nTask or submission does not produce content of weapons of which the prominent purpose is to harm.\nTask or submission does not produce content of any non-consentual nudity or sexual acts.\nTask or submission does not produce content of an individual's information for which there is a reasonable expectation of privacy.`,
+        "purpose": `To show users the ethics requirements proposal that may be used to incentivize users to only contribute ethical work, structures, and tasks to Freelance Society.`
+    },
+    "ViewEthicsRequirements": {
+        "name": `View Ethics Requirements`,
+        "description": `A redirect button to the ethics requirements page.`,
+        "examples": `N/A`,
+        "purpose": `To redirect users to the page for the current status quo of the ethics requirements.`
+    }
 };
