@@ -208,5 +208,29 @@ export const helpItems = {
         "description": `Blockchain transaction for the worker to reveal the hash key for the double hash task. This transaction can only take place if the hash key successfully hashes to the task hash value. When this transaction is made, the worker completes the task and receives the reward. When this transaction is made, the task solution is broadcast to everyone.\nHash Key --- keccak256 ---> First Hash --- keccak256 ---> Hash Value`,
         "examples": `N/A`,
         "purpose": `To allow the worker to reveal the task hash key solution and complete the double hash task to earn the task reward.`
-    }
+    },
+    "EthicsRequirementsVersion": {
+        "name": `Ethics Requirements Version`,
+        "description": `The ethics requirements version. The version is incremented once the first ethics requirements proposal is reached for a certain threshold. This threshold is increased exponentially for each increased ethics requirements version.`,
+        "examples": `1\n5`,
+        "purpose": `To indicate the ethics requirements status quo.`
+    },
+    "ViewEthicsRequirementsProposals": {
+        "name": `View Ethics Requirements Proposals`,
+        "description": `View the search page for all ethics requirements proposals.`,
+        "examples": `N/A`,
+        "purpose": `To redirect the user to a page to search for all ethics requirements proposed by any user.`
+    },
+    "AddEthicsRequirementsProposal": {
+        "name": `Add Ethics Requirements Proposal`,
+        "description": `View the page to proposal a new set of ethics requirements as a user.`,
+        "examples": `N/A`,
+        "purpose": `To redirect the user to a page where they are able to propose a new set of ethics requirements.`
+    },
+    "EthicsRequirements": {
+        "name": `Ethics Requirements`,
+        "description": `The ethics requirements status quo that must be followed by all users in creating and completing tasks.`,
+        "examples": `Task or submission does not produce content of excessive harm of living beings.\nTask or submission does not produce content of weapons of which the prominent purpose is to harm.\nTask or submission does not produce content of any non-consentual nudity or sexual acts.\nTask or submission does not produce content of an individual's information for which there is a reasonable expectation of privacy.`,
+        "purpose": `To incentivize users to only contribute ethical work, structures, and tasks to Freelance Society.`
+    },
 };

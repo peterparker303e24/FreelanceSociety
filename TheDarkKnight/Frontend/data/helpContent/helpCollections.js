@@ -52,6 +52,13 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["SubmitFirstHash"],
                 helpItems["SubmitSecondHash"]
             ];
+        case "EthicsRequirements":
+            return [
+                helpItems["EthicsRequirementsVersion"],
+                helpItems["ViewEthicsRequirementsProposals"],
+                helpItems["AddEthicsRequirementsProposal"],
+                helpItems["EthicsRequirements"]
+            ];
         default:
             return [];
     }
