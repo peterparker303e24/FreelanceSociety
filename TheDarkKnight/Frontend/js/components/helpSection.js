@@ -1,6 +1,10 @@
 import {
+    getHelpCollectionData
+} from "../../data/helpContent/helpCollections.js";
+import {
     addClass,
-    removeClass
+    removeClass,
+    replaceClass
 } from "../../utils/commonFunctions.js";
 
 /**
@@ -34,11 +38,16 @@ class HelpSection extends HTMLElement {
                     <div id="help-examples-tab" class="help-tab large-text">Examples</div>
                     <div id="help-purpose-tab" class="help-tab large-text">Purpose</div>
                 </div>
-                <div id="help-content" class="help-content"></div>
+                <div id="help-content" class="help-content text-content-return"></div>
             </div>
         `;
 
+        // Help section variables
         this.showHelpPanel = false;
+        this.tabSection = "Description";
+        this.collectionIndex = 0;
+
+        // Elements of the help section and any interaction behavior
         this.helpPanel = this.shadowRoot.getElementById("help-panel");
         this.shadowRoot.getElementById("help-button")
             .addEventListener("click", () => {
@@ -50,15 +59,15 @@ class HelpSection extends HTMLElement {
                 this.showHelpPanel = false;
                 this.updateContent();
             });
-        this.tabSection = "Description";
-        this.descriptionTab = this.shadowRoot.getElementById("help-description-tab");
+        this.descriptionTab
+            = this.shadowRoot.getElementById("help-description-tab");
         this.descriptionTab.addEventListener("click", () => {
             this.tabSection = "Description";
             this.updateContent();
         });
         this.examplesTab = this.shadowRoot.getElementById("help-examples-tab");
         this.examplesTab.addEventListener("click", () => {
-            this.tabSection = "Example";
+            this.tabSection = "Examples";
             this.updateContent();
         });
         this.purposeTab = this.shadowRoot.getElementById("help-purpose-tab");
@@ -66,7 +75,19 @@ class HelpSection extends HTMLElement {
             this.tabSection = "Purpose";
             this.updateContent();
         });
-        this.collectionIndex = 0;
+        this.moveLeftButton = this.shadowRoot.getElementById("help-move-left");
+        this.moveLeftButton.addEventListener("click", () => {
+            this.collectionIndex--;
+            this.updateContent();
+        });
+        this.moveRightButton
+            = this.shadowRoot.getElementById("help-move-right");
+        this.moveRightButton.addEventListener("click", () => {
+            this.collectionIndex++;
+            this.updateContent();
+        });
+        this.itemName = this.shadowRoot.getElementById("help-item");
+        this.contentArea = this.shadowRoot.getElementById("help-content");
     }
 
     // Define the observed attributes
@@ -76,12 +97,14 @@ class HelpSection extends HTMLElement {
 
     // Called when the component is added to the DOM
     connectedCallback() {
+        this.collectionData = getHelpCollectionData(this.helpCollection);
         this.updateContent();
     }
 
     // Called when an observed attribute changes
     attributeChangedCallback(name, oldValue, newValue) {
         if (name === 'helpCollection') {
+            this.collectionData = getHelpCollectionData(value);
             this.updateContent();
         }
     }
@@ -98,12 +121,15 @@ class HelpSection extends HTMLElement {
 
     // Update the content of the div based on the property
     updateContent() {
+
+        // Hide the help panel if it should be closed
         if (!this.showHelpPanel) {
             addClass(this.helpPanel, "hide");
             return;
         }
         removeClass(this.helpPanel, "hide");
 
+        // Update the underline to the selected tab section
         removeClass(this.descriptionTab, "tab-selected");
         removeClass(this.examplesTab, "tab-selected");
         removeClass(this.purposeTab, "tab-selected");
@@ -111,16 +137,75 @@ class HelpSection extends HTMLElement {
             case "Description":
                 addClass(this.descriptionTab, "tab-selected");
                 break;
-            case "Example":
+            case "Examples":
                 addClass(this.examplesTab, "tab-selected");
                 break;
             case "Purpose":
                 addClass(this.purposeTab, "tab-selected");
                 break;
         }
-        
+
+        // If there is no data or the data is not yet initialized, then return
+        if (this.collectionData === undefined
+            || this.collectionData.length === 0
+        ) {
+            return;
+        }
+
+        // Clamp the help item index to within the collection range
+        if (this.collectionIndex < 0) {
+            this.collectionIndex = 0;
+        } else if (this.collectionIndex >= this.collectionData.length) {
+            this.collectionIndex = this.collectionData.length - 1;
+        }
+
+        // Update the move button displays
+        if (this.collectionIndex === 0) {
+            replaceClass(
+                this.moveLeftButton,
+                "border-button",
+                "inactive-border-button"
+            );
+        } else {
+            replaceClass(
+                this.moveLeftButton,
+                "inactive-border-button",
+                "border-button"
+            );
+        }
+        if (this.collectionIndex === this.collectionData.length - 1) {
+            replaceClass(
+                this.moveRightButton,
+                "border-button",
+                "inactive-border-button"
+            );
+        } else {
+            replaceClass(
+                this.moveRightButton,
+                "inactive-border-button",
+                "border-button"
+            );
+        }
+
+        // Update the text content based on the selected tab and help item
+        this.itemName.textContent
+            = this.collectionData[this.collectionIndex].name;
+        switch(this.tabSection) {
+            case "Description":
+                this.contentArea.textContent
+                    = this.collectionData[this.collectionIndex].description;
+                break;
+            case "Examples":
+                this.contentArea.textContent
+                    = this.collectionData[this.collectionIndex].examples;
+                break;
+            case "Purpose":
+                this.contentArea.textContent
+                    = this.collectionData[this.collectionIndex].purpose;
+                break;
+        }
     }
 }
 
-// Define the help component
+// Define the help section component
 customElements.define("help-section", HelpSection);
