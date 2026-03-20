@@ -484,7 +484,7 @@ async function validateTaskFile(arrayBuffer) {
     // Task content header
     taskJsonArea.textContent = "";
     const taskRequirementsHeader = document.createElement("h1");
-    taskRequirementsHeader.textContent = "Task Requirements";
+    taskRequirementsHeader.textContent = "Task Specifications";
     taskJsonArea.appendChild(taskRequirementsHeader);
 
     // Iterate over each requirement listed in the specifications, and for each

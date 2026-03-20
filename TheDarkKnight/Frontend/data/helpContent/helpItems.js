@@ -322,5 +322,113 @@ export const helpItems = {
         "description": `The keccak256 hash of the Task.zip file data.`,
         "examples": `0xe8503ca1bacc9a2addc1ba6e13a7c22daee9b3956821a5609ba44c1e87752562\n0x22e5594e977f215c69be7c0bd8254a0fe8a61e21014e11ebceb97ed17695952b\n0x54a7232f0cdbf8f9f18ba940bb65dd4f1694b676aacc42501a4029e5c43bde5b`,
         "purpose": `To enable users to verify a Task.zip file that they have discovered exactly matches the task described on the blockchain.`
-    }
+    },
+    "KeyReveal": {
+        "name": `Key Reveal`,
+        "description": `Key reveal changes the incentive structure of the task for the manager that created the task. If key reveal is set to true and the task deadline passes while no user completed the task, then the manager must reveal the hash key that would have completed the task in order to withdraw their funds from the task. If key reveal is set to false and the task deadline passes while no user completed the task, then the manager can withdraw their funds without revealing the task hash key solution.`,
+        "examples": `Key Reveal: TRUE\nKey Reveal: FALSE`,
+        "purpose": `To enable managers to change the structure of the task incentive structure. If key reveal is set to true and the task deadline passes while no user completed the task, then the manager must reveal the hash key that would have completed the task in order to withdraw their funds from the task. If key reveal is set to false and the task deadline passes while no user completed the task, then the manager can withdraw their funds without revealing the task hash key solution.`
+    },
+    "FundTaskAmount": {
+        "name": `Fund Task Amount`,
+        "description": `The amount of ETH to add to the task reward.`,
+        "examples": `Fund Task Amount (Wei): 10 000 000 000 000 000\nFund Task Amount (ETH): 0.01\n`,
+        "purpose": `To allow the user to decide how much more they would like to increase the task incentive.`
+    },
+    "FundTask": {
+        "name": `Fund Task`,
+        "description": `Add funds to the task reward for any additional ETH value. You can make additional funding transactions any number of times before the task deadline. If you add funds to a task and no task submissions submitted before the deadline complete the task, then you can withdraw the cumulative funds of all fund transactions to the task.`,
+        "examples": `N/A`,
+        "purpose": `To allow the task manager or any user to increase the incentive for an existing task.`
+    },
+    "WithdrawTaskFunds": {
+        "name": `Withdraw Task Funds`,
+        "description": `Withdraw the the cumulative funds of all fund transactions to the task`,
+        "examples": `N/A`,
+        "purpose": `To enable users that funded the task to withdraw their funds since workers failed to complete the task before the deadline.`
+    },
+    "AutoDiscover": {
+        "name": `Auto Discover`,
+        "description": `Search iteratively through all Freelance Society users from most recent to oldest, and try to retrieve data through user endpoints.`,
+        "examples": `N/A`,
+        "purpose": `To enable users to efficiently search through all Freelance Society users for data hosting endpoints.`
+    },
+    "TryDownloadFrom": {
+        "name": `Try download from`,
+        "description": `Actively try to download data from the user shown at the endpoint shown.`,
+        "examples": `Try download from: PeterParker303e24\nAddress: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266\nLink: https://base.freelancesociety.app//Tasks/DoubleHashTasks/22e5594e977f215c69be7c0bd8254a0fe8a61e21014e11ebceb97ed17695952b/Task.zip`,
+        "purpose": `To enable users to actively decide whether to download data from a given user.`
+    },
+    "SkipAddress": {
+        "name": `Skip Address`,
+        "description": `Skip the current user.`,
+        "examples": `N/A`,
+        "purpose": `To enable the user to discover data by searching through a different user.`
+    },
+    "SkipLink": {
+        "name": `Skip Link`,
+        "description": `Skip the current user link. If the user has other links, then the other endpoints will be tried.`,
+        "examples": `N/A`,
+        "purpose": `To enable the user to discover data by searching through alternative endpoint links.`
+    },
+    "ManuallyDiscover": {
+        "name": `Manually Discover`,
+        "description": `Discover data through endpoint links of a specific user by address.`,
+        "examples": `N/A`,
+        "purpose": `To enable the user to try discovering data through a manually selected user address.`
+    },
+    "DownloadFromUser": {
+        "name": `Download From User`,
+        "description": `Ethereum address of the user to try to discover the data through their endpoint links.`,
+        "examples": `0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266\n0x70997970C51812dc3A010C7d01b50e0d17dc79C8`,
+        "purpose": `To enable the user to input the specific user address to try discovering the data.`
+    },
+    "TaskSpecifications": {
+        "name": `Task Specifications`,
+        "description": `The list of all task specifications that must be satisfied to complete the task.`,
+        "examples": `Requirement 2-1\nCondition\nA set of instructions described in instructions lead to a set of bytes _bytes1 that can be hashed using the keccak256 function to produce a set of 32 bytes _bytes2 when hashed again using the keccak256 function produce another set of 32 bytes _bytes3 when hashed once again using the keccak256 function matches the labeled hash value _bytes4 in the contract indicating a successful decryption. The lowercase of the alphanumeric hex characters of the _bytes2 is used as the passphrase in aes-256-cbc encryption to encrypt/decrypt the solution of the task explained in the encrypted file encryptedSolution to be decrypted into decryptedSolution. Submit the bytes _bytes3 to the contract, then wait for the scheduled confirmation time slot shortly after, then submit the bytes _bytes2 to the contract.\n\ninstructions:\n1 + 1 = ?\nencryptedSolution:\nsolution.enc\ndecryptedSolution:\nsolution.txt`,
+        "purpose": `To show users the list of all specifications that must be completed to complete the task.`
+    },
+    "TaskSpecificationHeader": {
+        "name": `Task Specification Header`,
+        "description": `The requirement structure for one of the task specification items.`,
+        "examples": `Requirement 2-1\nRequirement 0-1\nRequirement 3-4`,
+        "purpose": `To show users the exact task specification structure that must be satisfied.`
+    },
+    "TaskSpecificationCondition": {
+        "name": `Task Specification Condition`,
+        "description": `The condition described in the requirement that must be satisfied for the task with the given parameters defined in the requirement.`,
+        "examples": `Condition\nA set of instructions described in instructions lead to a set of bytes _bytes1 that can be hashed using the keccak256 function to produce a set of 32 bytes _bytes2 when hashed again using the keccak256 function produce another set of 32 bytes _bytes3 when hashed once again using the keccak256 function matches the labeled hash value _bytes4 in the contract indicating a successful decryption. The lowercase of the alphanumeric hex characters of the _bytes2 is used as the passphrase in aes-256-cbc encryption to encrypt/decrypt the solution of the task explained in the encrypted file encryptedSolution to be decrypted into decryptedSolution. Submit the bytes _bytes3 to the contract, then wait for the scheduled confirmation time slot shortly after, then submit the bytes _bytes2 to the contract.\n\ninstructions:\n1 + 1 = ?\nencryptedSolution:\nsolution.enc\ndecryptedSolution:\nsolution.txt`,
+        "purpose": `To show users the specification requirement and specification requirement parameters that form the task condition that must be satisfied.`
+    },
+    "SaveLocally": {
+        "name": `Save Locally`,
+        "description": `If the task data has already been discovered, then the button will download the data to the user's local computer.`,
+        "examples": `N/A`,
+        "purpose": `To enable users to download data so they no longer have to rely on other users to view the data.`
+    },
+    "UploadLocally": {
+        "name": `Upload Locally`,
+        "description": `Upload any undiscovered data from their local computer to the webpage to verify its authenticity and view.`,
+        "examples": `N/A`,
+        "purpose": `To enable users to verify and view any data saved locally on their computer.`
+    },
+    "SubmitTask": {
+        "name": `Submit Task`,
+        "description": `Redirect to the task submission page to complete the current task.`,
+        "examples": `N/A`,
+        "purpose": `To redirect users to the task submission page to complete the current task.`
+    },
+    "ViewTasks": {
+        "name": `View Tasks`,
+        "description": `Redirect to the task search page. This may automatically search for any related tasks with the same current task type.`,
+        "examples": `View Tasks\nView Hash Tasks\nView Double Hash Tasks\nView Validator Tasks`,
+        "purpose": `To redirect users to the task search page, possibly while filtering for any related tasks.`
+    },
+    "ZipContents": {
+        "name": `Zip Contents`,
+        "description": `If the task data has been discovered and the ZIP contents are parsed correctly, the ZIP files and folder tree structure will be displayed.`,
+        "examples": `Task\n\tRequirements\n\t\tRequirement2-1.zip\n\tsolution.enc\n\tspecifications.json`,
+        "purpose": `To display the file structure of the discovered data ZIP file and folder contents.`
+    },
 };

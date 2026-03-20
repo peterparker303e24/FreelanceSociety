@@ -482,8 +482,8 @@ export function formatTaskJson(
     let labeledVariables = [];
     let intermediateVariables = [];
 
-    // Container for all task requirements
-    const container = document.getElementById("task-requirements-container");
+    // Container for all task specifications
+    const container = document.getElementById("task-specifications-container");
 
     // Task requirement fold template construction
     const templateRequirement = document.createElement("div");
