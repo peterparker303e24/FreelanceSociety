@@ -17,6 +17,7 @@
     <script src="./js/applyDarkModePreference.js" type="module"></script>
     <script src="./js/settings.js" type="module" defer></script>
     <script src="./js/components/headerSection.js" type="module"></script>
+    <script src="./js/components/helpSection.js" type="module"></script>
 </head>
 
 <body>
@@ -47,6 +48,11 @@
         <div id="blockchain-data-error" class="medium-margin hide"></div>
         <div class="row">
             <div id="blockchain-data-save-button" class="border-button medium-padding medium-text xx-large-width">Save Blockchain Data</div>
+        </div>
+
+        <!-- Help -->
+        <div id="help-container">
+            <help-section helpCollection="Settings"></help-section>
         </div>
         
         <!-- Footer space -->

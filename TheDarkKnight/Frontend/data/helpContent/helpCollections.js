@@ -375,6 +375,12 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["AddTask"],
                 helpItems["ZipContents"]
             ];
+        case "Settings":
+            return [
+                helpItems["DarkMode"],
+                helpItems["BlockchainData"],
+                helpItems["SaveBlockchainData"]
+            ];
         default:
             return [];
     }

@@ -778,5 +778,23 @@ export const helpItems = {
         "description": `A redirect button to the task submissions page.`,
         "examples": `N/A`,
         "purpose": `To redirect the user to the task submissions page.`
+    },
+    "DarkMode": {
+        "name": `Dark Mode`,
+        "description": `Whether to use dark mode or light mode throughout the website.`,
+        "examples": `Toggle: Dark Mode\nToggle: Light Mode`,
+        "purpose": `To allow users to choose their viewing theme preference for the website.`
+    },
+    "BlockchainData": {
+        "name": `Blockchain Data`,
+        "description": `Blockchain configuration data to connect the website to a blockchain. This includes the Freelance Society smart contract addresses, the block indices of the creation of the smart contracts, the blockchain chain ID, and the blockchain chain name.`,
+        "examples": `{\n\t"usersContractAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",\n\t"theListContractAddress": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",\n\t"hashTaskContractAddress": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",\n\t"doubleHashTaskContractAddress": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",\n\t"validatorTaskContractAddress": "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",\n\t"usersContractMinimumBlock": 0,\n\t"theListContractMinimumBlock": 0,\n\t"hashTaskContractMinimumBlock": 0,\n\t"doubleHashTaskContractMinimumBlock": 0,\n\t"validatorTaskContractMinimumBlock": 0,\n\t"contractDataChainId": 1337,\n\t"chainName": "localhost hardhat node"\n}`,
+        "purpose": `To allow the user to edit the configurations .`
+    },
+    "SaveBlockchainData": {
+        "name": `Save Blockchain Data`,
+        "description": `Button to save the blockchain configurations to the local computer.`,
+        "examples": `N/A`,
+        "purpose": `To allow the user to save blockchain configuration data to their local computer..`
     }
 };
