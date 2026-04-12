@@ -718,5 +718,65 @@ export const helpItems = {
         "description": `A redirect button to the selected user page.`,
         "examples": `N/A`,
         "purpose": `To redirect the user to the selected user page.`
+    },
+    "SubmissionId": {
+        "name": `Submission ID`,
+        "description": `The unique identifier for a task submission. It is formed by the task type shortname followed by a dash "-" then the task index for the respective task type followed by another das then the submission index.`,
+        "examples": `Submission ID: v-0-0\nSubmission ID: v-1-2\n`,
+        "purpose": `To uniquely identify a task submission.`
+    },
+    "WorkerAddress": {
+        "name": `Worker Address`,
+        "description": `The address of the worker for the task submission.`,
+        "examples": `Worker Address:\n0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266`,
+        "purpose": `To show the worker Ethereum address.`
+    },
+    "SubmissionHash": {
+        "name": `Submission Hash`,
+        "description": `The keccak256 hash of the Submission.zip file data.`,
+        "examples": `Submission Hash:\n0xb835ed1f4a1db802830c5ce384d3879ea75a4fd5a0e05f40f462bd32c014bda0`,
+        "purpose": `To enable users to verify a Submission.zip file that they have discovered exactly matches the task described on the blockchain.`
+    },
+    "ValidationStartTime": {
+        "name": `Validation Start Time`,
+        "description": `The earliest time when a task submission can be evaluated by a validator.`,
+        "examples": `Validation Start Time (UTC): Mon, 01 Mar 2026 12:00:00 GMT`,
+        "purpose": `To show the earliest time when a task submission can be evaluated by a validator.`
+    },
+    "ValidationEndTime": {
+        "name": `Validation End Time`,
+        "description": `The latest time when a task submission can be evaluated by a validator.`,
+        "examples": `Validation Start Time (UTC): Mon, 01 Mar 2026 13:00:00 GMT`,
+        "purpose": `To show the latest time when a task submission can be evaluated by a validator.`
+    },
+    "SubmissionStatus": {
+        "name": `Submission Status`,
+        "description": `The . Completed means the submission has been evaluated and accepted. Completed Defaulted means the task was never evaluated, but the validation time window passed, so the task is defaulted to complete. Rejected means the task was not accepted by the validators. Incomplete Unevaluated means a previous submission was completed or completed by default, and the submission was never evaluated. Waiting Evaluation means it is time for the submission to be evaluated by the validators. Waiting For Evaluation Timespan means the submission must first wait for the validation time window, then can be evaluated. Waiting For Previous Submission Evaluation means there is a submission before the current submission that must be evaluated first before the current submission can be evaluated. Unexpected Data means there was a problem assessing the status of the submission.`,
+        "examples": `Submission Status: Completed\nSubmission Status: Completed Defaulted\nSubmission Status: Rejected\nSubmission Status: Incomplete Unevaluated\nSubmission Status: Waiting Evaluation\nSubmission Status: Waiting For Evaluation Timespan\nSubmission Status: Waiting For Previous Submission Evaluation\nSubmission Status: Unexpected Data`,
+        "purpose": `To show the state of the task submission.`
+    },
+    "SubmissionWithdrawn": {
+        "name": `Submission Withdrawn`,
+        "description": `Whether the submission and its corresponding task reward have been withdrawn from the task.`,
+        "examples": `Submission Withdrawn: FALSE\nSubmission Withdrawn: TRUE`,
+        "purpose": `To show whether the submission has withdrawn the reward for completing the task.`
+    },
+    "WithdrawSubmissionCompleted": {
+        "name": `Withdraw Submission Completed`,
+        "description": `A transaction to withdraw the task reward for the current submission. If the submission is completed by default, then the user will also withdraw the validator commission since it was not evaluated in the validation time window.`,
+        "examples": `N/A`,
+        "purpose": `To enable the worker to withdraw the task reward and possibly the validator commission.`
+    },
+    "WithdrawSubmissionUnevaluated": {
+        "name": `Withdraw Submission Unevaluated`,
+        "description": `A transaction for a user that withdraws the validator commission for the unevaluated submission.`,
+        "examples": `N/A`,
+        "purpose": `To enable a worker that did not complete the task to withdraw the validator commission for their submission that will not be evaluated.`
+    },
+    "ViewTaskSubmissions": {
+        "name": `View Task Submissions`,
+        "description": `A redirect button to the task submissions page.`,
+        "examples": `N/A`,
+        "purpose": `To redirect the user to the task submissions page.`
     }
 };

@@ -337,6 +337,44 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["LockoutCode"],
                 helpItems["ViewUser"]
             ];
+        case "ValidatorTaskSubmission":
+            return [
+                helpItems["TaskId"],
+                helpItems["SubmissionId"],
+                helpItems["WorkerAddress"],
+                helpItems["SubmissionHash"],
+                helpItems["ValidationStartTime"],
+                helpItems["CurrentTime"],
+                helpItems["ValidationEndTime"],
+                helpItems["SubmissionStatus"],
+                helpItems["SubmissionWithdrawn"],
+                helpItems["SubmissionsCount"],
+                helpItems["EvaluatedSubmissionsCount"],
+                helpItems["RequirementSpecificationsCount"],
+                helpItems["Validators"],
+                helpItems["TaskCompleted"],
+                helpItems["TaskDefaulted"],
+                helpItems["ValidatorCommission"],
+                helpItems["Reward"],
+                helpItems["WithdrawSubmissionCompleted"],
+                helpItems["WithdrawSubmissionUnevaluated"],
+                helpItems["AutoDiscover"],
+                helpItems["TryDownloadFrom"],
+                helpItems["SkipAddress"],
+                helpItems["SkipLink"],
+                helpItems["ManuallyDiscover"],
+                helpItems["DownloadFromUser"],
+                helpItems["TaskSpecifications"],
+                helpItems["TaskSpecificationHeader"],
+                helpItems["TaskSpecificationCondition"],
+                helpItems["SaveLocally"],
+                helpItems["UploadLocally"],
+                helpItems["ViewTask"],
+                helpItems["ViewTaskSubmissions"],
+                helpItems["ViewTasks"],
+                helpItems["AddTask"],
+                helpItems["ZipContents"]
+            ];
         default:
             return [];
     }
