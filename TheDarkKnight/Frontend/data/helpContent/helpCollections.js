@@ -275,6 +275,26 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["AddRequirement"],
                 helpItems["ZipContents"]
             ];
+        case "RequirementProposal":
+            return [
+                helpItems["RequirementProposalId"],
+                helpItems["RequirementHash"],
+                helpItems["ManagerAddress"],
+                helpItems["ProposalVotesFor"],
+                helpItems["AutoDiscover"],
+                helpItems["TryDownloadFrom"],
+                helpItems["SkipAddress"],
+                helpItems["SkipLink"],
+                helpItems["ManuallyDiscover"],
+                helpItems["DownloadFromUser"],
+                helpItems["Requirement"],
+                helpItems["SaveLocally"],
+                helpItems["UploadLocally"],
+                helpItems["ViewProposals"],
+                helpItems["ViewOtherVersions"],
+                helpItems["AddRequirementProposal"],
+                helpItems["ZipContents"]
+            ];
         default:
             return [];
     }

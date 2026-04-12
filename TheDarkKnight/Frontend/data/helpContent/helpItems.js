@@ -499,9 +499,9 @@ export const helpItems = {
     },
     "ProposalVotesFor": {
         "name": `Proposal Votes For`,
-        "description": `The number of unique Freelance Society users that have voted for the ethics requirements proposal. A user can vote for multiple ethics requirements proposals.`,
+        "description": `The number of unique Freelance Society users that have voted for the proposal. A user can vote for multiple proposals.`,
         "examples": `Proposal Votes For: 1 (Not Yet Voted)\nProposal Votes For: 2 (Already Voted)`,
-        "purpose": `To show how many Freelance Society users have voted for the ethics requirements proposal. To also show the user whether they have already voted for the ethics requirements proposal.`
+        "purpose": `To show how many Freelance Society users have voted for the proposal. To also show the user whether they have already voted for the proposal.`
     },
     "VoteForEthicsProposal": {
         "name": `Vote For Ethics Proposal`,
@@ -593,4 +593,16 @@ export const helpItems = {
         "examples": `N/A`,
         "purpose": `To redirect users to a page where they can add their own requirement.`
     },
+    "RequirementProposalId": {
+        "name": `Requirement Proposal ID`,
+        "description": `The unique identifier for a requirement proposal. It is formed by requirement index followed by an underscore "_" then the requirement proposal index.`,
+        "examples": `Requirement Id: 0_0\nRequirement Id: 1_2`,
+        "purpose": `To uniquely identify a requirement proposal.`
+    },
+    "AddRequirementProposal": {
+        "name": `Add Requirement Proposal`,
+        "description": `A redirect button to the add requirement proposal page.`,
+        "examples": `N/A`,
+        "purpose": `To redirect users to a page where they can add their own requirement proposal to update an existing requirement.`
+    }
 };
