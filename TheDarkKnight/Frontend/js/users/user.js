@@ -621,7 +621,7 @@ async function searchByMatch(searchSettings, searchInput) {
             const eventBlockIndex = blockIndices[contractCycleIndex];
             const eventContractName = contractCycle[contractCycleIndex];
             const blockTimestamp
-                = (await provider.getBlock('latest')).timestamp;
+                = (await provider.getBlock(eventBlockIndex)).timestamp;
 
             // Update the block search settings to return for the next search
             // item 
