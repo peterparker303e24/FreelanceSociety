@@ -19,6 +19,7 @@
     <script src="./js/components/walletMisconfigurationSection.js" type="module"></script>
     <script src="./js/components/userNotActivatedSection.js" type="module"></script>
     <script src="./js/validatorTask/addValidatorTask.js" type="module" defer></script>
+    <script src="./js/components/helpSection.js" type="module"></script>
 </head>
 
 <body>
@@ -51,8 +52,8 @@
                 <div id="seconds-to-deadline" class="right-align">Seconds Until Deadline: </div>
                 <input type="text" id="deadline-input" class="input-line medium-text left-align parameters-input-size"
                     placeholder="8 640 000">
-                <div id="block-schedule" class="right-align">Block Schedule: </div>
-                <div id="block-schedule-button" class="border-button medium-text toggle-button">ON</div>
+                <div id="block-schedule" class="right-align">Block Validation: </div>
+                <div id="block-schedule-button" class="border-button medium-text toggle-button">TRUE</div>
                 <div id="validation-time" class="right-align">Validation Time (Seconds): </div>
                 <input type="text" id="validation-time-input"
                     class="input-line medium-text left-align parameters-input-size" placeholder="86 400">
@@ -113,6 +114,11 @@
 
         <!-- Task specifications display -->
         <div id="task-specifications-container"></div>
+
+        <!-- Help -->
+        <div id="help-container">
+            <help-section helpCollection="AddValidatorTask"></help-section>
+        </div>
 
         <!-- Footer space -->
         <div id="footer-space"></div>

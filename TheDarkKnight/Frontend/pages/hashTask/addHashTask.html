@@ -19,6 +19,7 @@
     <script src="./js/components/walletMisconfigurationSection.js" type="module"></script>
     <script src="./js/components/userNotActivatedSection.js" type="module"></script>
     <script src="./js/hashTask/addHashTask.js" type="module" defer></script>
+    <script src="./js/components/helpSection.js" type="module"></script>
 </head>
 
 <body>
@@ -98,6 +99,11 @@
 
         <!-- File name and hash retrieved -->
         <div id="file-name" class="row padding"></div>
+
+        <!-- Help -->
+        <div id="help-container">
+            <help-section helpCollection="AddHashTask"></help-section>
+        </div>
 
         <!-- Footer space -->
         <div id="footer-space"></div>

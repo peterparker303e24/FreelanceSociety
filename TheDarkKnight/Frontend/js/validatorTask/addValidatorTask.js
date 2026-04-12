@@ -104,9 +104,9 @@ deadlineInput.addEventListener("input", () => {
 // Updates checkbox check mark variable and display
 blockScheduleButton.addEventListener("click", () => {
     if (isBlockSchedule) {
-        blockScheduleButton.textContent = "OFF";
+        blockScheduleButton.textContent = "FALSE";
     } else {
-        blockScheduleButton.textContent = "ON";
+        blockScheduleButton.textContent = "TRUE";
     }
     isBlockSchedule = !isBlockSchedule;
 });

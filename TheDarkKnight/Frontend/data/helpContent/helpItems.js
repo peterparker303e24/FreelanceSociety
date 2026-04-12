@@ -32,7 +32,7 @@ export const helpItems = {
     "Deadline": {
         "name": `Deadline`,
         "description": `Timestamp on the blockchain when the smart contract will no longer accept further submissions for the task.`,
-        "examples": `Deadline (UTC): Mon, 01 Mar 2026 12:00:00 GMT\nDeadline (UTC): Thu, 03 Jan 2109 12:00:00 GMT`,
+        "examples": `Deadline (UTC): Mon, 01 Mar 2026 12:00:00 GMT\nDeadline (UTC): Thu, 03 Jan 2109 12:00:00 GMT\nSeconds Until Deadline: 1209600\nSeconds Until Deadline: 31536000`,
         "purpose": `To incentivize workers to complete a task before a certain time. Managers can know that at the deadline they will either shortly after have a submission satisfying their task or be able to take back their task investment.`
     },
     "NextSlotTime": {
@@ -476,7 +476,7 @@ export const helpItems = {
     "Validators": {
         "name": `Validators`,
         "description": `Validators for the task. Any validator may evaluate any task submission within the validator evaluation window. Only the first validator that evaluates a submission has full control of the submission outcome and receives the commission.`,
-        "examples": `Validators:\n0x70997970C51812dc3A010C7d01b50e0d17dc79C8\n\nValidators:\n0x70997970C51812dc3A010C7d01b50e0d17dc79C8\n0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266`,
+        "examples": `Validators:\n0x70997970C51812dc3A010C7d01b50e0d17dc79C8\n\nValidators:\n0x70997970C51812dc3A010C7d01b50e0d17dc79C8\n0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266\n\nValidator Addresses:\n0x70997970C51812dc3A010C7d01b50e0d17dc79C8,\n0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266`,
         "purpose": `To show users which validators have control in determining the outcome of task submission evaluations. The validators are public and their full validation history can be searched, so any user can independently verify the trustworthyness of the validators.`
     },
     "EthicsRequirementsProposalId": {
@@ -520,5 +520,41 @@ export const helpItems = {
         "description": `A redirect button to the ethics requirements page.`,
         "examples": `N/A`,
         "purpose": `To redirect users to the page for the current status quo of the ethics requirements.`
+    },
+    "AddDoubleHashTask": {
+        "name": `Add Double Hash Task`,
+        "description": `A transaction to add a double hash task to the blockchain.`,
+        "examples": `N/A`,
+        "purpose": `To enable managers to create double hash tasks. Double hash tasks are puzzle tasks that have a single 32 byte hash key solution to complete the task. This solution is known to the manager and must be discovered by the worker to complete the task.`
+    },
+    "EthicsRequirementsProposals": {
+        "name": `Ethics Requirements Proposals`,
+        "description": `The number of ethics requirements proposals that have been added.`,
+        "examples": `Ethics Requirements Proposals: 1\nEthics Requirements Proposals: 10`,
+        "purpose": `To show users how many ethics requirements proposals exist.`
+    },
+    "AddEthicsRequirements": {
+        "name": `Add Ethics Requirements`,
+        "description": `A transaction to add the ethics requirements proposal.`,
+        "examples": `N/A`,
+        "purpose": `To enable all users to contribute their ethics requirements opinions.`
+    },
+    "WriteEthicsRequirements": {
+        "name": `Write Ethics Requirements`,
+        "description": `A textbox for the user to input the ethics requirements for their proposal. The ethics requirements should be a comma separated list of strings within an array.`,
+        "examples": `[\n\t"Task or submission does not produce content of excessive harm of living beings.",\n\t"Task or submission does not produce content of weapons of which the prominent purpose is to harm.",\n\t"Task or submission does not produce content of any non-consentual nudity or sexual acts.",\n\t"Task or submission does not produce content of an individuals information for which there is a reasonable expectation of privacy."\n]\n\n["You do not talk about Freelance Society."]`,
+        "purpose": `To enable users to create their ethics requirements descriptions.`
+    },
+    "AddHashTask": {
+        "name": `Add Hash Task`,
+        "description": `A transaction to add a hash task to the blockchain.`,
+        "examples": `N/A`,
+        "purpose": `To enable managers to create hash tasks. Hash tasks are puzzle tasks that have a single 32 byte hash key solution to complete the task. This solution is known to the manager and must be discovered by the worker to complete the task.`
+    },
+    "AddValidatorTask": {
+        "name": `Add Validator Task`,
+        "description": `A transaction to add a validator task to the blockchain.`,
+        "examples": `N/A`,
+        "purpose": `To enable managers to create validator tasks. Validator tasks have solutions that are added by workers, and are evaluated by validators to verify the task submission meets all task specifications.`
     }
 };

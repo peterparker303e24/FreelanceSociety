@@ -19,6 +19,7 @@
     <script src="./js/components/walletMisconfigurationSection.js" type="module"></script>
     <script src="./js/components/userNotActivatedSection.js" type="module"></script>
     <script src="./js/ethicsRequirements/addEthicsRequirementsProposal.js" type="module" defer></script>
+    <script src="./js/components/helpSection.js" type="module"></script>
 </head>
 
 <body>
@@ -63,6 +64,12 @@
         </div>
         <div id="write-error" class="margin">(!) Invalid input</div>
         <textarea id="write-condition"></textarea>
+
+        <!-- Help -->
+        <div id="help-container">
+            <help-section helpCollection="AddEthicsRequirementsProposal"></help-section>
+        </div>
+
         <!-- Footer space -->
         <div id="footer-space"></div>
     </div>

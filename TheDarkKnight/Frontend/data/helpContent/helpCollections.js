@@ -208,6 +208,54 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["ViewEthicsRequirements"],
                 helpItems["AddEthicsRequirementsProposal"]
             ];
+        case "AddDoubleHashTask":
+            return [
+                helpItems["HashValue"],
+                helpItems["TaskHash"],
+                helpItems["Deadline"],
+                helpItems["KeyReveal"],
+                helpItems["SecondResponseWindow"],
+                helpItems["Delay"],
+                helpItems["Reward"],
+                helpItems["EthicsRequirementsCheck"],
+                helpItems["AddDoubleHashTask"],
+                helpItems["UploadZipFile"]
+            ];
+        case "AddEthicsRequirementsProposal":
+            return [
+                helpItems["EthicsRequirementsVersion"],
+                helpItems["EthicsRequirementsProposals"],
+                helpItems["AddEthicsRequirements"],
+                helpItems["WriteEthicsRequirements"]
+            ];
+        case "AddHashTask":
+            return [
+                helpItems["HashValue"],
+                helpItems["TaskHash"],
+                helpItems["Deadline"],
+                helpItems["KeyReveal"],
+                helpItems["Difficulty"],
+                helpItems["Reward"],
+                helpItems["EthicsRequirementsCheck"],
+                helpItems["AddHashTask"],
+                helpItems["UploadZipFile"]
+            ];
+        case "AddValidatorTask":
+            return [
+                helpItems["TaskHash"],
+                helpItems["SpecificationsCount"],
+                helpItems["Deadline"],
+                helpItems["BlockValidation"],
+                helpItems["ValidationTime"],
+                helpItems["Delay"],
+                helpItems["Validators"],
+                helpItems["ValidatorCommission"],
+                helpItems["Reward"],
+                helpItems["EthicsRequirementsCheck"],
+                helpItems["AddValidatorTask"],
+                helpItems["UploadZipFile"],
+                helpItems["TaskSpecifications"],
+            ];
         default:
             return [];
     }
