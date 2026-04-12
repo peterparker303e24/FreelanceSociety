@@ -8,7 +8,8 @@ import {
     replaceClass,
     formatFileStructure,
     formatRequirementJson,
-    parseUserData
+    parseUserData,
+    urlNoTrailingSlash
 } from "../../utils/commonFunctions.js";
 import { THE_LIST_CONTRACT_ADDRESS, USERS_CONTRACT_ADDRESS, THE_LIST_CONTRACT_MINIMUM_BLOCK } from "../../utils/constants.js";
 
@@ -109,7 +110,7 @@ getRequirementVersionData(
             versionHash = versionData.versionHash;
             validatorAddress = versionData.validatorAddress;
             hashText.textContent = `Requirement Hash:\r\n${versionHash}`;
-            userText.textContent = `Requirement Manager Address:\r\n`
+            userText.textContent = `Manager Address:\r\n`
                 + `${validatorAddress}`;
         }
     });
@@ -260,7 +261,7 @@ async function searchUser() {
         // Try to read the link as a URL and upon failure continue to next link
         let userUrl = null;
         try {
-            userUrl = new URL(userLinksArray[i]);
+            userUrl = urlNoTrailingSlash(new URL(userLinksArray[i]));
         } catch (_) {
             continue;
         }
@@ -641,7 +642,7 @@ function continueSearch(searchCriteria) {
         if (userLinks) {
             for (let i = 0; i < userLinks.length; i++) {
                 try {
-                    const url = new URL(userLinks[i]);
+                    const url = urlNoTrailingSlash(new URL(userLinks[i]));
                     autoUserLinks.push(url);
                 } catch (_) { }
             }

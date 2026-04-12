@@ -307,7 +307,7 @@ export const helpItems = {
     },
     "ManagerAddress": {
         "name": `Manager Address`,
-        "description": `Ethereum address of the user that originally added the task. This user should be the user that has access to and distributes the Task.zip file as they are the one that created the task.`,
+        "description": `Ethereum address of the user that originally added the task/requirement. This user should be the user that has access to and distributes the Task.zip/Requirement.zip file as they are the one that created the task/requirement.`,
         "examples": `Manager Address: 0x70997970C51812dc3A010C7d01b50e0d17dc79C8`,
         "purpose": `To show users which Ethereum address contributed the task to Freelance Society.`
     },
@@ -356,7 +356,7 @@ export const helpItems = {
     "TryDownloadFrom": {
         "name": `Try download from`,
         "description": `Actively try to download data from the user shown at the endpoint shown.`,
-        "examples": `Try download from: PeterParker303e24\nAddress: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266\nLink: https://base.freelancesociety.app//Tasks/DoubleHashTasks/22e5594e977f215c69be7c0bd8254a0fe8a61e21014e11ebceb97ed17695952b/Task.zip`,
+        "examples": `Try download from: PeterParker303e24\nAddress: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266\nLink: https://base.freelancesociety.app/Tasks/DoubleHashTasks/22e5594e977f215c69be7c0bd8254a0fe8a61e21014e11ebceb97ed17695952b/Task.zip`,
         "purpose": `To enable users to actively decide whether to download data from a given user.`
     },
     "SkipAddress": {
@@ -556,5 +556,41 @@ export const helpItems = {
         "description": `A transaction to add a validator task to the blockchain.`,
         "examples": `N/A`,
         "purpose": `To enable managers to create validator tasks. Validator tasks have solutions that are added by workers, and are evaluated by validators to verify the task submission meets all task specifications.`
-    }
+    },
+    "RequirementId": {
+        "name": `Requirement ID`,
+        "description": `The unique identifier for a requirement version. It is formed by requirement index followed by a dash "-" then the requirement version. The requirement version begins at index 1.`,
+        "examples": `Requirement Id: 0-1\nRequirement Id: 1-2`,
+        "purpose": `To uniquely identify a requirement and provide versioning information about the requirement.`
+    },
+    "RequirementHash": {
+        "name": `Requirement Hash`,
+        "description": `The keccak256 hash of the Requirement.zip file data.`,
+        "examples": `Requirement Hash:\n0x8e1e294d1ffc2e0eff8e327229247a6029e42dc76f5d12f543230d50625e43dc\n\nRequirement Hash:\n0x584bc4c338df9c2bfd77a440ca0f152b9075eaaac10e7c2174ab6213b3e67b58`,
+        "purpose": `To enable users to verify a Requirement.zip file that they have discovered exactly matches the requirement described on the blockchain.`
+    },
+    "Requirement": {
+        "name": `Requirement`,
+        "description": `The requirement condition and any associated requirement variables and examples. The labeled variables are required in the task specification for the requirement. Intermediate variables are used to help describe the requirement. Example specifications and answer help provide a context for how the requirement can be used.`,
+        "examples": `requirement.json\nCondition\nA set of instructions described in instructions lead to a set of bytes _bytes1 that can be hashed using the keccak256 function to produce a set of 32 bytes _bytes2 when hashed again using the keccak256 function matches the labeled hash value _bytes3 in the contract indicating a successful decryption. The lowercase of the alphanumeric hex characters of the _bytes2 is used as the passphrase in aes-256-cbc encryption to encrypt/decrypt the solution of the task explained in the encrypted file encryptedSolution to be decrypted into decryptedSolution. Submit the bytes _bytes2 to the contract.\nLabeled Variables\ninstructions\n\nencryptedSolution\n\ndecryptedSolution\n\nIntermediate Variables\n_bytes1\n\n_bytes2\n\n_bytes3\n\nExample Specification\n{\n    "instructions": "Answer the following riddle in all lowercase, with no punctionation, with spaces, and encode into bytes using UTF-8. Why was six afraid of seven?",\n    "encryptedSolution": "solution.enc",\n    "decryptedSolution": "solution.txt"\n}\nExample Answer\n"solution.txt"`,
+        "purpose": `To show all users an exact shared task requirement incentive structure so workers, validators, and managers can agree on the task requirement.`
+    },
+    "ViewProposals": {
+        "name": `View Proposals`,
+        "description": `A redirect button to the requirement proposals search page. The search page search text is initially populated with the current requirement index.`,
+        "examples": `N/A`,
+        "purpose": `To redirect users to a page where they can view all proposals for updates to the current requirement.`
+    },
+    "ViewOtherVersions": {
+        "name": `View Other Versions`,
+        "description": `A redirect button to the requirement search page. The search page search text is initially populated with the current requirement index.`,
+        "examples": `N/A`,
+        "purpose": `To redirect users to a page where they can view all requirement versions for the current requirement.`
+    },
+    "AddRequirement": {
+        "name": `Add Requirement`,
+        "description": `A redirect button to the add requirement page.`,
+        "examples": `N/A`,
+        "purpose": `To redirect users to a page where they can add their own requirement.`
+    },
 };

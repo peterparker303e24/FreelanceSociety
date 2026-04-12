@@ -4,7 +4,8 @@ import {
     prefixHexBytes,
     replaceClass,
     updateInputNumberToGroupedDigits,
-    searchByIndexVersion
+    searchByIndexVersion,
+    urlNoTrailingSlash
 } from "../../utils/commonFunctions.js";
 import { HASH_TASK_CONTRACT_ADDRESS, THE_LIST_CONTRACT_ADDRESS, USERS_CONTRACT_ADDRESS } from "../../utils/constants.js";
 
@@ -237,7 +238,7 @@ async function tryMatchFile(zipHash) {
     let downloadUrls = [];
     for (let i = 0; i < linksSplit.length; i++) {
         try {
-            const nextUrl = new URL(linksSplit[i]);
+            const nextUrl = urlNoTrailingSlash(new URL(linksSplit[i]));
             downloadUrls.push(nextUrl);
         } catch (error) {
             continue;

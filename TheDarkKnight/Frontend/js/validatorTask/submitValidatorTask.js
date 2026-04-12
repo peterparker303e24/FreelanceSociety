@@ -6,7 +6,8 @@ import {
     formatBlockTimestamp,
     removeClass,
     prefixHexBytes,
-    addClass
+    addClass,
+    urlNoTrailingSlash
 } from "../../utils/commonFunctions.js";
 import {
     USERS_CONTRACT_ADDRESS,
@@ -436,7 +437,7 @@ async function loadUser() {
                     validUrl = false;
                 }
                 if (validUrl) {
-                    userLinks.push(link);
+                    userLinks.push(urlNoTrailingSlash(link));
                 }
             }
             updateUserLinks();

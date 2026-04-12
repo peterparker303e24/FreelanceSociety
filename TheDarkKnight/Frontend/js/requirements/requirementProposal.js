@@ -7,7 +7,8 @@ import {
     removeClass,
     formatRequirementJson,
     replaceClass,
-    parseUserData
+    parseUserData,
+    urlNoTrailingSlash
 } from "../../utils/commonFunctions.js";
 import { THE_LIST_CONTRACT_ADDRESS, USERS_CONTRACT_ADDRESS } from "../../utils/constants.js";
 
@@ -280,7 +281,7 @@ async function searchUser() {
         // Try to read the link as a URL and upon failure continue to next link
         let userUrl = null;
         try {
-            userUrl = new URL(userLinksArray[i]);
+            userUrl = urlNoTrailingSlash(new URL(userLinksArray[i]));
         } catch (_) {
             continue;
         }
@@ -726,7 +727,7 @@ function continueSearch(searchCriteria) {
         if (userLinks) {
             for (let i = 0; i < userLinks.length; i++) {
                 try {
-                    const url = new URL(userLinks[i]);
+                    const url = urlNoTrailingSlash(new URL(userLinks[i]));
                     autoUserLinks.push(url);
                 } catch (_) { }
             }

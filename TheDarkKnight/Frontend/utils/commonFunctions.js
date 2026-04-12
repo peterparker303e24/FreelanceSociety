@@ -885,7 +885,7 @@ export function continueSearch(
         if (userLinks) {
             for (let i = 0; i < userLinks.length; i++) {
                 try {
-                    const url = new URL(userLinks[i]);
+                    const url = urlNoTrailingSlash(new URL(userLinks[i]));
                     autoUserLinks.push(url);
                 } catch (_) { }
             }
@@ -991,11 +991,29 @@ async function autoDiscoverUser(
         .ActivateUserLinksLockout().getTopicFilter();
     const linksDataLockoutFilter = await usersContract.filters
         .ActivateUserLinksDataLockout().getTopicFilter();
+    const lockoutUserFilter = await usersContract.filters
+        .LockoutUser().getTopicFilter();
+    const updateDataFilter = await usersContract.filters
+        .UpdateData().getTopicFilter();
+    const updateLinksFilter = await usersContract.filters
+        .UpdateLinks().getTopicFilter();
+    const updateLinksDataFilter = await usersContract.filters
+        .UpdateLinksData().getTopicFilter();
     const activateUserFilters = [
         linksFilter
             .concat(linksDataFilter)
             .concat(linksLockoutFilter)
             .concat(linksDataLockoutFilter)
+    ];
+    const allUserEventsFilters = [
+        linksFilter
+            .concat(linksDataFilter)
+            .concat(linksLockoutFilter)
+            .concat(linksDataLockoutFilter)
+            .concat(lockoutUserFilter)
+            .concat(updateDataFilter)
+            .concat(updateLinksFilter)
+            .concat(updateLinksDataFilter)
     ];
     let events = await usersContract.queryFilter(
         activateUserFilters,
@@ -1020,16 +1038,18 @@ async function autoDiscoverUser(
         // block, and otherwise search next user event in block
         if (searchEventIndex + 1 === events.length) {
 
-            // Get the last interaction block from the earliest event in the
-            // block
+            // Get the last interaction block from the earliest user event in
+            // the block
             const allEvents = await usersContract.queryFilter(
-                "*",
+                allUserEventsFilters,
                 searchBlock,
                 searchBlock
             );
             const firstBlockEventArgs = allEvents[0].args;
             nextSearchCriteria = {
-                searchBlock: firstBlockEventArgs[firstBlockEventArgs.length - 1]
+                searchBlock: Number(
+                    firstBlockEventArgs[firstBlockEventArgs.length - 1]
+                )
             };
         } else {
             nextSearchCriteria = {
@@ -1070,16 +1090,18 @@ async function autoDiscoverUser(
 
         // If no user activation events in the block, then go to the last
         // interaction block of the earliest event
-        const allEvents = await usersContract.queryFilter(
-            "*",
+        const allUserEvents = await usersContract.queryFilter(
+            allUserEventsFilters,
             searchBlock,
             searchBlock
         );
-        if (allEvents.length > 0) {
-            const firstBlockEventArgs = allEvents[0].args;
+        if (allUserEvents.length > 0) {
+            const firstBlockEventArgs = allUserEvents[0].args;
             return {
                 searchCriteria: {
-                    searchBlock: firstBlockEventArgs[firstBlockEventArgs.length - 1]
+                    searchBlock: Number(
+                        firstBlockEventArgs[firstBlockEventArgs.length - 1]
+                    )
                 }
             };
         } else {
@@ -1093,8 +1115,6 @@ async function autoDiscoverUser(
                 }
             };
         }
-
-
     }
 }
 
@@ -1563,4 +1583,18 @@ export async function wait(ms) {
         return new Promise(resolve => setTimeout(resolve, waitTime))
     };
     await promiseTimeout(ms);
+}
+
+/**
+ * Standardizes URL to have no trailing /
+ * @param {URL} url URL to 
+ * @returns {String} URL with no trailing /
+ */
+export function urlNoTrailingSlash(url) {
+    const urlString = url.toString();
+    if (urlString[urlString.length - 1] === '/') {
+        return urlString.substring(0, urlString.length - 1);
+    } else {
+        return urlString;
+    }
 }

@@ -12,7 +12,8 @@ import {
     formatWei,
     getRequirementVersionData,
     formatBlockTimestamp,
-    parseUserData
+    parseUserData,
+    urlNoTrailingSlash
 } from "../../utils/commonFunctions.js";
 import {
     THE_LIST_CONTRACT_ADDRESS,
@@ -596,7 +597,7 @@ async function searchUser() {
         // Try to read the link as a URL and upon failure continue to next link
         let userUrl = null;
         try {
-            userUrl = new URL(userLinksArray[i]);
+            userUrl = urlNoTrailingSlash(new URL(userLinksArray[i]));
         } catch (_) {
             continue;
         }

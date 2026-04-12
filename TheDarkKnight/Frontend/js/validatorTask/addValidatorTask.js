@@ -7,7 +7,8 @@ import {
     searchByIndexVersion,
     formatTaskJson,
     getRequirementVersionData,
-    addClass
+    addClass,
+    urlNoTrailingSlash
 } from "../../utils/commonFunctions.js";
 import {
     THE_LIST_CONTRACT_ADDRESS,
@@ -292,7 +293,7 @@ async function tryMatchFile(zipHash) {
     let downloadUrls = [];
     for (let i = 0; i < linksSplit.length; i++) {
         try {
-            const nextUrl = new URL(linksSplit[i]);
+            const nextUrl = urlNoTrailingSlash(new URL(linksSplit[i]));
             downloadUrls.push(nextUrl);
         } catch (error) {
             continue;
