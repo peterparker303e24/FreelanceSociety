@@ -18,6 +18,7 @@
     <script src="./js/components/headerSection.js" type="module"></script>
     <script src="./js/components/walletMisconfigurationSection.js" type="module"></script>
     <script src="./js/users/viewUsers.js" type="module" defer></script>
+    <script src="./js/components/helpSection.js" type="module"></script>
 </head>
 
 <body>
@@ -36,7 +37,7 @@
         <!-- Redirect button and requirements data -->
         <div id="users-button-number-row" class="items-button-number-row">
             <div id="activate-user-button" class="border-button redirectable padding">
-                Activate User
+                Profile Page
             </div>
         </div>
 
@@ -62,6 +63,12 @@
 
         <!-- Users search results column -->
         <div id="users-rows-container"></div>
+
+
+        <!-- Help -->
+        <div id="help-container">
+            <help-section helpCollection="ViewUsers"></help-section>
+        </div>
 
         <!-- Footer space -->
         <div id="footer-space"></div>

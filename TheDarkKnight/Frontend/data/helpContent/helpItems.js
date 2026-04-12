@@ -706,5 +706,17 @@ export const helpItems = {
         "description": `A redirect button to the relevant event item.`,
         "examples": `View Hash Task\nView Requirement\nView Requirement Proposal\nView User`,
         "purpose": `To redirect the user to the relevant event item.`
+    },
+    "ProfilePageRedirect": {
+        "name": `Profile Page`,
+        "description": `A redirect button to the profile page.`,
+        "examples": `N/A`,
+        "purpose": `To redirect users to their user profile page.`
+    },
+    "ViewUser": {
+        "name": `View User`,
+        "description": `A redirect button to the selected user page.`,
+        "examples": `N/A`,
+        "purpose": `To redirect the user to the selected user page.`
     }
 };

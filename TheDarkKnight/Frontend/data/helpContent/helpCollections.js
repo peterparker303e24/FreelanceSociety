@@ -323,6 +323,20 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["EventData"],
                 helpItems["ViewEvent"]
             ];
+        case "ViewUsers":
+            return [
+                helpItems["ProfilePageRedirect"],
+                helpItems["Search"],
+                helpItems["Previous/Next"],
+                helpItems["Results"],
+                helpItems["SearchResult"],
+                helpItems["EthereumAddress"],
+                helpItems["Links"],
+                helpItems["Name"],
+                helpItems["ActivationStatus"],
+                helpItems["LockoutCode"],
+                helpItems["ViewUser"]
+            ];
         default:
             return [];
     }
