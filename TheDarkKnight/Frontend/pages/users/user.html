@@ -18,6 +18,7 @@
     <script src="./js/components/headerSection.js" type="module"></script>
     <script src="./js/components/walletMisconfigurationSection.js" type="module"></script>
     <script src="./js/users/user.js" type="module" defer></script>
+    <script src="./js/components/helpSection.js" type="module"></script>
 </head>
 
 <body>
@@ -87,6 +88,11 @@
 
         <!-- User interactions search results column -->
         <div id="user-interactions-rows-container"></div>
+
+        <!-- Help -->
+        <div id="help-container">
+            <help-section helpCollection="User"></help-section>
+        </div>
 
         <!-- Footer space -->
         <div id="footer-space"></div>

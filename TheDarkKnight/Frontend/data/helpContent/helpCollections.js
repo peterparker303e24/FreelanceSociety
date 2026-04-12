@@ -295,6 +295,34 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["AddRequirementProposal"],
                 helpItems["ZipContents"]
             ];
+        case "User":
+            return [
+                helpItems["EthereumAddress"],
+                helpItems["Name"],
+                helpItems["Links"],
+                helpItems["LockoutCode"],
+                helpItems["ActivationStatus"],
+                helpItems["UserDefinedData"],
+                helpItems["MinimumCommission"],
+                helpItems["EthicsRequirementsStandards"],
+                helpItems["WorkerTasks"],
+                helpItems["ManagerTasks"],
+                helpItems["ValidatorTasks"],
+                helpItems["ValidationRequirementsWhitelist"],
+                helpItems["AvailableValidationTime"],
+                helpItems["ShowOnlyUserInitiatedContractCalls"],
+                helpItems["Search"],
+                helpItems["Previous/Next"],
+                helpItems["Results"],
+                helpItems["SearchResult"],
+                helpItems["ContractInitiatorAddress"],
+                helpItems["BlockIndex"],
+                helpItems["BlockTimestamp"],
+                helpItems["EventContract"],
+                helpItems["EventName"],
+                helpItems["EventData"],
+                helpItems["ViewEvent"]
+            ];
         default:
             return [];
     }

@@ -604,5 +604,107 @@ export const helpItems = {
         "description": `A redirect button to the add requirement proposal page.`,
         "examples": `N/A`,
         "purpose": `To redirect users to a page where they can add their own requirement proposal to update an existing requirement.`
+    },
+    "ActivationStatus": {
+        "name": `Activation Status`,
+        "description": `The activation status of the Freelance Society user. If the Ethereum address has not been activated, then it is 'Unactivated'. If the address has been activated, then it is 'Activated'. If the address has been locked out, then it is 'Deactivated' permanently.`,
+        "examples": `Activation Status: Unactivated\nActivation Status: Activated\nActivation Status: Deactivated`,
+        "purpose": `To show the Freelance Society user status of an Ethereum address.`
+    },
+    "UserDefinedData": {
+        "name": `User Defined Data`,
+        "description": `Display data created by the user, which is not explicitly recorded on the blockchain, to communicate relevant data to other users.`,
+        "examples": `User Defined Data\nMinimum Commission: 100 000 000 000 Wei\nEthics Requirements Standards:\n\nTask or submission does not produce content of excessive harm of living beings.\n\nTask or submission does not produce content of weapons of which the prominent purpose is to harm.\n\nTask or submission does not produce content of any non-consentual nudity or sexual acts.\n\nTask or submission does not produce content of an individual's information for which there is a reasonable expectation of privacy.\n\nTask or sumbission does not produce content of illegal material that may harm the integrity of PeterParker303e24.\nWorker Tasks (Unverified):\n\nh-5\n\ndh-2\n\nv-1\n\nv-2\n\nv-3\nManager Tasks (Unverified):\n\nh-0\n\nh-1\n\nh-2\n\nh-3\n\nh-4\n\nh-5\n\nh-6\n\ndh-0\n\ndh-1\n\ndh-2\n\nv-0\n\nv-1\n\nv-2\n\nv-3\n\nv-4\nValidator Tasks (Unverified):\n\nv-1\n\nv-2\n\nv-3\nValidation Requirements Whitelist:\n\nAny requirement accepted\nAvailable Validation Time:\n\nMinimum 2 weeks validation window for validator tasks.`,
+        "purpose": `To show other users data such as tasks relevant to their user, validation preferences, and extended ethics requirements.`
+    },
+    "MinimumCommission": {
+        "name": `Minimum Commission`,
+        "description": `The minimum validator commission the validator would be willing to work for in validating a task.`,
+        "examples": `Minimum Commission: 100 000 000 000 Wei\nMinimum Commission: 0.005 ETH`,
+        "purpose": `To allow validators to show their configurations for how much commission is worth their time in evaluating task submissions.`
+    },
+    "EthicsRequirementsStandards": {
+        "name": `Ethics Requirements Standards`,
+        "description": `The ethics requirements extensions that must also be followed in order for the user to contribute to a task.`,
+        "examples": `Ethics Requirements Standards:\nTask or submission does not produce content of excessive harm of living beings.\nTask or submission does not produce content of weapons of which the prominent purpose is to harm.\nTask or submission does not produce content of any non-consentual nudity or sexual acts.\nTask or submission does not produce content of an individual's information for which there is a reasonable expectation of privacy.\nTask or sumbission does not produce content of illegal material that may harm the integrity of PeterParker303e24.`,
+        "purpose": `To allow users to extend the current ethics requirements status quo with their own ethics requirements that also must be satisfied in order for them to contribute to a task.`
+    },
+    "WorkerTasks": {
+        "name": `Worker Tasks`,
+        "description": `An unverified list of worker task IDs that the user wants to show they have completed. This list is not cross checked and there may be other tasks they have completed which are not shown.`,
+        "examples": `Worker Tasks (Unverified):\nh-5\ndh-2\nv-1\nv-2\nv-3`,
+        "purpose": `To allow workers to show other users which tasks they have completed.`
+    },
+    "ManagerTasks": {
+        "name": `Manager Tasks`,
+        "description": `An unverified list of manager task IDs that the user wants to show they have added. This list is not cross checked and there may be other tasks they have added which are not shown.`,
+        "examples": `Manager Tasks (Unverified):\nh-0\nh-1\nh-2\nh-3\nh-4\nh-5\nh-6\ndh-0\ndh-1\ndh-2\nv-0\nv-1\nv-2\nv-3\nv-4`,
+        "purpose": `To allow managers to show other users which tasks they have added.`
+    },
+    "ValidatorTasks": {
+        "name": `Validator Tasks`,
+        "description": `An unverified list of validator task IDs that the user wants to show they have validated. This list is not cross checked and there may be other tasks they have validated which are not shown.`,
+        "examples": `Validator Tasks (Unverified):\nv-1\nv-2\nv-3`,
+        "purpose": `To allow validators to show other users which tasks they have validated.`
+    },
+    "ValidationRequirementsWhitelist": {
+        "name": `Validation Requirements Whitelist`,
+        "description": `A list of requirement IDs which the validator is willing to evaluate within tasks.`,
+        "examples": `Validation Requirements Whitelist:\nAny requirement accepted\n\nValidation Requirements Whitelist:\n0-1\n1-1\n2-1`,
+        "purpose": `To allow validators to show other users which requirements they are willing to evaluate within tasks.`
+    },
+    "AvailableValidationTime": {
+        "name": `Available Validation Time`,
+        "description": `Time and scenarios when validators would be available to evaluate task submissions.`,
+        "examples": `Available Validation Time:\nMinimum 2 weeks validation window for validator tasks.\n\nAvailable Validation Time:\n9AM - 5PM EST Monday - Friday`,
+        "purpose": `To allow validators to communicate at what times and scenarios they are willing to validate task submissions.`
+    },
+    "ShowOnlyUserInitiatedContractCalls": {
+        "name": `Show only user initiated contract calls `,
+        "description": `Add a filter to only show events for contract calls that were initiated by the current user.`,
+        "examples": `'✓'\n' '`,
+        "purpose": `To allow the user to only search for transactions initiated by the current user.`
+    },
+    "ContractInitiatorAddress": {
+        "name": `Contract Initiator Address`,
+        "description": `The Ethereum address of the user that initiated the contract call that triggered the event.`,
+        "examples": `Contract Initiator Address: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266`,
+        "purpose": `To show the address of the user that initiated the contract call that triggered the event.`
+    },
+    "BlockIndex": {
+        "name": `Block Index`,
+        "description": `The Ethereum block index.`,
+        "examples": `Block Index: 10\nBlock Index: 123456\n`,
+        "purpose": `To show the Ethereum block index for the relevant context.`
+    },
+    "BlockTimestamp": {
+        "name": `Block Timestamp`,
+        "description": `The timestamp of the block in the blockchain.`,
+        "examples": `Block Timestamp (UTC): Mon, 01 Mar 2026 12:00:00 GMT\nBlock Timestamp (UTC): Thu, 03 Jan 2109 12:00:00 GMT`,
+        "purpose": `To show the Ethereum block timestamp for the relevant context.`
+    },
+    "EventContract": {
+        "name": `Event Contract`,
+        "description": `The contract name of the event.`,
+        "examples": `Users\nTheList\nHashTask\nDoubleHashTask\nValidatorTask`,
+        "purpose": `To show the contract name of the event.`
+    },
+    "EventName": {
+        "name": `EventName`,
+        "description": `The name of the event.`,
+        "examples": `TaskComplete\nNewRequirement\nActivateUserLinksDataLockout`,
+        "purpose": `To show the name of the event.`
+    },
+    "EventData": {
+        "name": `Event Data`,
+        "description": `The key value pair of a variable emitted by an event.`,
+        "examples": `hashValueKey: 0xad7c5bef027816a800da1736444fb58a807ef4c9603b7848673f7e3a68eb14a5\ntotalReward: 420000000000000000\nrequirementIndex: 0\nuserAddress: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266\nlastInteractionBlockIndex: 0`,
+        "purpose": `To show relevant event variable data.`
+    },
+    "ViewEvent": {
+        "name": `View Event`,
+        "description": `A redirect button to the relevant event item.`,
+        "examples": `View Hash Task\nView Requirement\nView Requirement Proposal\nView User`,
+        "purpose": `To redirect the user to the relevant event item.`
     }
 };
