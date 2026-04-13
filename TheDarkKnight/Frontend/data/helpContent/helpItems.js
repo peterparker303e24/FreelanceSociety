@@ -739,7 +739,7 @@ export const helpItems = {
     },
     "SubmissionStatus": {
         "name": `Submission Status`,
-        "description": `The . Completed means the submission has been evaluated and accepted. Completed Defaulted means the task was never evaluated, but the validation time window passed, so the task is defaulted to complete. Rejected means the task was not accepted by the validators. Incomplete Unevaluated means a previous submission was completed or completed by default, and the submission was never evaluated. Waiting Evaluation means it is time for the submission to be evaluated by the validators. Waiting For Evaluation Timespan means the submission must first wait for the validation time window, then can be evaluated. Waiting For Previous Submission Evaluation means there is a submission before the current submission that must be evaluated first before the current submission can be evaluated. Unexpected Data means there was a problem assessing the status of the submission.`,
+        "description": `The status of the submission. Completed means the submission has been evaluated and accepted. Completed Defaulted means the task was never evaluated, but the validation time window passed, so the task is defaulted to complete. Rejected means the task was not accepted by the validators. Incomplete Unevaluated means a previous submission was completed or completed by default, and the submission was never evaluated. Waiting Evaluation means it is time for the submission to be evaluated by the validators. Waiting For Evaluation Timespan means the submission must first wait for the validation time window, then can be evaluated. Waiting For Previous Submission Evaluation means there is a submission before the current submission that must be evaluated first before the current submission can be evaluated. Unexpected Data means there was a problem assessing the status of the submission.`,
         "examples": `Submission Status: Completed\nSubmission Status: Completed Defaulted\nSubmission Status: Rejected\nSubmission Status: Incomplete Unevaluated\nSubmission Status: Waiting Evaluation\nSubmission Status: Waiting For Evaluation Timespan\nSubmission Status: Waiting For Previous Submission Evaluation\nSubmission Status: Unexpected Data`,
         "purpose": `To show the state of the task submission.`
     },
@@ -868,5 +868,17 @@ export const helpItems = {
         "description": `A redirect button to the selected requirement page.`,
         "examples": `N/A`,
         "purpose": `To redirect the user to the selected requirement page.`
+    },
+    "AddValidatorTaskSubmissionRedirect": {
+        "name": `Add Validator Task Submission`,
+        "description": `A redirect button to the add validator task submission page.`,
+        "examples": `N/A`,
+        "purpose": `To redirect the user to the add validator task submission page.`
+    },
+    "ViewSubmission": {
+        "name": `View Submission`,
+        "description": `A redirect button to the selected submission page.`,
+        "examples": `N/A`,
+        "purpose": `To redirect the user to the selected submission page.`
     }
 };

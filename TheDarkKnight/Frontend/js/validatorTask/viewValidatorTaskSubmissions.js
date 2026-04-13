@@ -66,7 +66,7 @@ validatorTaskContract.getTaskComplete(validatorTaskIndex)
     .then((c) => {
         isTaskComplete = c;
         taskComplete.textContent
-            = `Task Complete: ${isTaskComplete ? "TRUE" : "FALSE"}`;
+            = `Task Completed: ${isTaskComplete ? "TRUE" : "FALSE"}`;
         updateSubmissionData();
     });
 validatorTaskContract.taskDefaulted(validatorTaskIndex)

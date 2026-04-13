@@ -459,6 +459,23 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["ManagerAddress"],
                 helpItems["ViewRequirement"]
             ];
+        case "ViewValidatorTaskSubmissions":
+            return [
+                helpItems["TaskId"],
+                helpItems["SubmissionsCount"],
+                helpItems["EvaluatedSubmissionsCount"],
+                helpItems["TaskCompleted"],
+                helpItems["TaskDefaulted"],
+                helpItems["ViewTask"],
+                helpItems["AddValidatorTaskSubmissionRedirect"],
+                helpItems["SubmissionId"],
+                helpItems["WorkerAddress"],
+                helpItems["SubmissionHash"],
+                helpItems["SubmitWindowStart"],
+                helpItems["SubmitWindowEnd"],
+                helpItems["SubmissionStatus"],
+                helpItems["ViewSubmission"]
+            ];
         default:
             return [];
     }
