@@ -19,6 +19,7 @@
     <script src="./js/components/walletMisconfigurationSection.js" type="module"></script>
     <script src="./js/components/userNotActivatedSection.js" type="module"></script>
     <script src="./js/requirements/addRequirement.js" type="module" defer></script>
+    <script src="./js/components/helpSection.js" type="module"></script>
 </head>
 
 <body>
@@ -68,6 +69,11 @@
             <div id="download-written-button" class="inactive-border-button margin">Download Requirement</div>
         </div>
         <a id="download-anchor"></a>
+
+        <!-- Help -->
+        <div id="help-container">
+            <help-section helpCollection="AddRequirement"></help-section>
+        </div>
         
         <!-- Footer space -->
         <div id="footer-space"></div>

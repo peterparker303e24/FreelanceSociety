@@ -587,7 +587,7 @@ export const helpItems = {
         "examples": `N/A`,
         "purpose": `To redirect users to a page where they can view all requirement versions for the current requirement.`
     },
-    "AddRequirement": {
+    "AddRequirementRedirect": {
         "name": `Add Requirement`,
         "description": `A redirect button to the add requirement page.`,
         "examples": `N/A`,
@@ -802,5 +802,23 @@ export const helpItems = {
         "description": `A redirect button to the ethics requirements proposal.`,
         "examples": `N/A`,
         "purpose": `To redirect the user to the selected ethics requirements proposal.`
+    },
+    "AddRequirement": {
+        "name": `Add Requirement`,
+        "description": `A transaction for the user to add their requirement.`,
+        "examples": `N/A`,
+        "purpose": `To enable managers to add their own requirement incentive structure.`
+    },
+    "WriteRequirement": {
+        "name": `Write requirement`,
+        "description": `An input box for the manager to input their own requirement JSON text and get feedback on its JSON format and fields.`,
+        "examples": `{\n\t"condition": [\n\t\t"Write your condition with the labeled variables ",\n\t\t"labeledVariable",\n\t\t" and with intermediate variables ",\n\t"_intermediateVariable",\n\t\t" alternating with text description here."\n\t],\n\t"labeledVariables": [\n\t\t"labeledVariable"\n\t],\n\t"intermediateVariables": [\n\t\t"_intermediateVariable"\n\t],\n\t"exampleSpecification": {\n\t\t"labeledVariable": "Only labeled variables are necessary for the task description while intermediate variables are for requirement descriptions."\n\t},\n\t"exampleAnswer": "Write an example answer to the exampleTask so that others can better understand the condition that needs to be met for the task."\n}`,
+        "purpose": `To enable managers to input their own requirement JSON text and get feedback on its JSON format and fields.`
+    },
+    "DownloadRequirement": {
+        "name": `Download Requirement`,
+        "description": `A button to download the requirement to the local computer.`,
+        "examples": `N/A`,
+        "purpose": `To enable the manager to download their requirement ZIP file in the standard Requirement.zip format.`
     }
 };

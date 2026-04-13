@@ -272,7 +272,7 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["UploadLocally"],
                 helpItems["ViewProposals"],
                 helpItems["ViewOtherVersions"],
-                helpItems["AddRequirement"],
+                helpItems["AddRequirementRedirect"],
                 helpItems["ZipContents"]
             ];
         case "RequirementProposal":
@@ -410,6 +410,13 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["EthereumAddress"],
                 helpItems["ProposalVotesFor"],
                 helpItems["ViewEthicsRequirementsProposal"]
+            ];
+        case "AddRequirement":
+            return [
+                helpItems["AddRequirement"],
+                helpItems["UploadZipFile"],
+                helpItems["WriteRequirement"],
+                helpItems["DownloadRequirement"]
             ];
         default:
             return [];
