@@ -321,10 +321,8 @@ async function searchNext(searchSettings) {
         if (events.length === 0) {
             const nextSearchIndices
                 = await getEventAndBlockIndices(eventIndex, blockIndex);
-            eventIndex
-                = nextSearchIndices.eventIndex;
-            blockIndex
-                = nextSearchIndices.blockIndex;
+            eventIndex = nextSearchIndices.eventIndex;
+            blockIndex = nextSearchIndices.blockIndex;
             continue;
         }
 
@@ -341,10 +339,8 @@ async function searchNext(searchSettings) {
         if (Number(emittedData[0]) !== doubleHashTaskIndex) {
             const nextSearchIndices
                 = getEventAndBlockIndices(eventIndex, blockIndex);
-            eventIndex
-                = nextSearchIndices.eventIndex;
-            blockIndex
-                = nextSearchIndices.blockIndex;
+            eventIndex = nextSearchIndices.eventIndex;
+            blockIndex = nextSearchIndices.blockIndex;
             continue;
         }
 
@@ -364,8 +360,7 @@ async function searchNext(searchSettings) {
         ) * 1000;
         const windowEndNumber = windowStartNumber + windowLengthNumber;
         const blockTimestampNumber = Number(
-            (await provider.getBlock(blockIndex))
-                .timestamp
+            (await provider.getBlock(blockIndex)).timestamp
         ) * 1000;
 
         // Get the data depending on the event type being either first hash

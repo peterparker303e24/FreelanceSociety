@@ -343,9 +343,9 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["SubmissionId"],
                 helpItems["WorkerAddress"],
                 helpItems["SubmissionHash"],
-                helpItems["ValidationStartTime"],
+                helpItems["SubmitWindowStart"],
                 helpItems["CurrentTime"],
-                helpItems["ValidationEndTime"],
+                helpItems["SubmitWindowEnd"],
                 helpItems["SubmissionStatus"],
                 helpItems["SubmissionWithdrawn"],
                 helpItems["SubmissionsCount"],
@@ -380,6 +380,21 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["DarkMode"],
                 helpItems["BlockchainData"],
                 helpItems["SaveBlockchainData"]
+            ];
+        case "ViewDoubleHashTaskSubmissions":
+            return [
+                helpItems["TaskId"],
+                helpItems["SubmissionsCount"],
+                helpItems["ViewTasks"],
+                helpItems["SubmitTask"],
+                helpItems["DoubleHashTaskSubmissionIndex"],
+                helpItems["HashKey"],
+                helpItems["FirstHashResult"],
+                helpItems["WorkerAddress"],
+                helpItems["SubmitWindowStart"],
+                helpItems["BlockTimestamp"],
+                helpItems["SubmitWindowEnd"],
+                helpItems["DoubleHashTaskSubmissionStatus"]
             ];
         default:
             return [];

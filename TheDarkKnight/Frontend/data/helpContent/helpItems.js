@@ -183,7 +183,7 @@ export const helpItems = {
         "name": `Submit Window Start`,
         "description": `Start time for the user to complete their transaction. This time is dependent on the internal timestamp system in the blockchain, and may be different than the exact time.`,
         "examples": `Submit Window Start: Mon, 01 Mar 2026 12:00:00 GMT\nSubmit Window Start: Thu, 03 Jan 2109 12:00:00 GMT`,
-        "purpose": `To show the worker the start time (in UTC) of the submission window.`
+        "purpose": `To show the user the start time (in UTC) of the submission window.`
     },
     "CurrentTime": {
         "name": `Current Time`,
@@ -195,7 +195,7 @@ export const helpItems = {
         "name": `Submit Window End`,
         "description": `End time for the user to complete their transaction. This time is dependent on the internal timestamp system in the blockchain, and may be different than the exact time.`,
         "examples": `Submit Window End: Mon, 01 Mar 2026 12:00:00 GMT\nSubmit Window End: Thu, 03 Jan 2109 12:00:00 GMT`,
-        "purpose": `To show the worker the end time (in UTC) of the submission window.`
+        "purpose": `To show the user the end time (in UTC) of the submission window.`
     },
     "SubmitFirstHash": {
         "name": `Submit First Hash`,
@@ -737,18 +737,6 @@ export const helpItems = {
         "examples": `Submission Hash:\n0xb835ed1f4a1db802830c5ce384d3879ea75a4fd5a0e05f40f462bd32c014bda0`,
         "purpose": `To enable users to verify a Submission.zip file that they have discovered exactly matches the task described on the blockchain.`
     },
-    "ValidationStartTime": {
-        "name": `Validation Start Time`,
-        "description": `The earliest time when a task submission can be evaluated by a validator.`,
-        "examples": `Validation Start Time (UTC): Mon, 01 Mar 2026 12:00:00 GMT`,
-        "purpose": `To show the earliest time when a task submission can be evaluated by a validator.`
-    },
-    "ValidationEndTime": {
-        "name": `Validation End Time`,
-        "description": `The latest time when a task submission can be evaluated by a validator.`,
-        "examples": `Validation Start Time (UTC): Mon, 01 Mar 2026 13:00:00 GMT`,
-        "purpose": `To show the latest time when a task submission can be evaluated by a validator.`
-    },
     "SubmissionStatus": {
         "name": `Submission Status`,
         "description": `The . Completed means the submission has been evaluated and accepted. Completed Defaulted means the task was never evaluated, but the validation time window passed, so the task is defaulted to complete. Rejected means the task was not accepted by the validators. Incomplete Unevaluated means a previous submission was completed or completed by default, and the submission was never evaluated. Waiting Evaluation means it is time for the submission to be evaluated by the validators. Waiting For Evaluation Timespan means the submission must first wait for the validation time window, then can be evaluated. Waiting For Previous Submission Evaluation means there is a submission before the current submission that must be evaluated first before the current submission can be evaluated. Unexpected Data means there was a problem assessing the status of the submission.`,
@@ -795,6 +783,18 @@ export const helpItems = {
         "name": `Save Blockchain Data`,
         "description": `Button to save the blockchain configurations to the local computer.`,
         "examples": `N/A`,
-        "purpose": `To allow the user to save blockchain configuration data to their local computer..`
+        "purpose": `To allow the user to save blockchain configuration data to their local computer.`
+    },
+    "DoubleHashTaskSubmissionIndex": {
+        "name": `Submission Index`,
+        "description": `Index of the double hash task submission. The index of the first and second response are shared.`,
+        "examples": `0\n1\n2`,
+        "purpose": `To show users the index of each individual first response submission and to show the index of the second response submission.`
+    },
+    "DoubleHashTaskSubmissionStatus": {
+        "name": `Submission Status`,
+        "description": `The state of the double hash task submission. Completed means the submission with the respective index has completed the task. Waiting For Response Window means the submission index must wait for the start of the second response time window. Waiting For Response means the submission index can make the second response but has not yet completed the task. Response Window Passed means the submission index time window has passed and that submission index cannot make the second response to complete the task. Task Already Complete means the task has been completed by a previous submission index.`,
+        "examples": `Submission Status: Completed\nSubmission Status: Waiting For Response Window\nSubmission Status: Waiting For Response\nSubmission Status: Response Window Passed\nSubmission Status: Task Already Complete`,
+        "purpose": `To show users which addresses have added response submissions for the double hash task, their response time windows, and their submission statuses.`
     }
 };
