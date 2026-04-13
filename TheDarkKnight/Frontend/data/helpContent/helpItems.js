@@ -850,5 +850,17 @@ export const helpItems = {
         "description": `A transaction to add a new requirement proposal for the current requirement.`,
         "examples": `N/A`,
         "purpose": `To enable managers to propose an update to a requirement.`
+    },
+    "AddProposal": {
+        "name": `Add Proposal`,
+        "description": `A redirect button to the add requirement proposal page.`,
+        "examples": `N/A`,
+        "purpose": `To redirect the user to the add requirement proposal page.`
+    },
+    "ViewRequirementProposal": {
+        "name": `View Requirement Proposal`,
+        "description": `A redirect button to the requirement proposal page.`,
+        "examples": `N/A`,
+        "purpose": `To redirect the user to the selected requirement proposal page.`
     }
 };

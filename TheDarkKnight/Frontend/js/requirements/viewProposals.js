@@ -64,7 +64,7 @@ if (fixedRequirement) {
     theListContract.getRequirementVersion(requirementIndexValue).then((v) => {
         requirementVersionsValue = v;
         requirementVersions.textContent
-            = `Requirement Versions: ${requirementVersionsValue}`;
+            = `Requirement Version: ${requirementVersionsValue}`;
     });
     theListContract.getRequirementProposals(requirementIndexValue).then((p) => {
         requirementProposalsValue = p;
@@ -347,7 +347,7 @@ function updatePageResults(results) {
         searchItem.querySelector('#item-hash').textContent
             = `Hash: ${searchResult.hash}`;
         searchItem.querySelector('#validator-hex').textContent
-            = `Validator: ${searchResult.validator}`;
+            = `Manager: ${searchResult.validator}`;
         searchItem.querySelector('#votes-for').textContent
             = `Votes For: ${searchResult.votesFor}`;
         searchItem.querySelector('#view-button').id = `view-button-${i}`;

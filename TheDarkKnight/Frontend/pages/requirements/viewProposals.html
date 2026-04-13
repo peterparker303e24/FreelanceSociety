@@ -18,6 +18,7 @@
     <script src="./js/components/headerSection.js" type="module"></script>
     <script src="./js/components/walletMisconfigurationSection.js" type="module"></script>
     <script src="./js/requirements/viewProposals.js" type="module" defer></script>
+    <script src="./js/components/helpSection.js" type="module"></script>
 </head>
 
 <body>
@@ -39,7 +40,7 @@
                 Add Proposal
             </div>
             <div id="requirement-index" class="hide">Requirement Index: -</div>
-            <div id="versions-number" class="hide">Requirement Versions: -</div>
+            <div id="versions-number" class="hide">Requirement Version: -</div>
             <div id="proposals-number" class="hide">Requirement Proposals: -</div>
         </div>
 
@@ -73,6 +74,11 @@
 
         <!-- Requirement proposals search results column -->
         <div id="proposals-rows-container"></div>
+
+        <!-- Help -->
+        <div id="help-container">
+            <help-section helpCollection="ViewProposals"></help-section>
+        </div>
 
         <!-- Footer space -->
         <div id="footer-space"></div>
