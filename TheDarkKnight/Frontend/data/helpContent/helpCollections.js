@@ -396,6 +396,21 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["SubmitWindowEnd"],
                 helpItems["DoubleHashTaskSubmissionStatus"]
             ];
+        case "ViewEthicsRequirementsProposals":
+            return [
+                helpItems["AddEthicsRequirementsProposal"],
+                helpItems["EthicsRequirementsVersion"],
+                helpItems["EthicsRequirementsProposals"],
+                helpItems["Search"],
+                helpItems["Previous/Next"],
+                helpItems["Results"],
+                helpItems["SearchResult"],
+                helpItems["EthicsRequirementsProposalId"],
+                helpItems["ProposalHash"],
+                helpItems["EthereumAddress"],
+                helpItems["ProposalVotesFor"],
+                helpItems["ViewEthicsRequirementsProposal"]
+            ];
         default:
             return [];
     }

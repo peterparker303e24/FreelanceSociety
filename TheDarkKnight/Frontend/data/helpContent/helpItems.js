@@ -796,5 +796,11 @@ export const helpItems = {
         "description": `The state of the double hash task submission. Completed means the submission with the respective index has completed the task. Waiting For Response Window means the submission index must wait for the start of the second response time window. Waiting For Response means the submission index can make the second response but has not yet completed the task. Response Window Passed means the submission index time window has passed and that submission index cannot make the second response to complete the task. Task Already Complete means the task has been completed by a previous submission index.`,
         "examples": `Submission Status: Completed\nSubmission Status: Waiting For Response Window\nSubmission Status: Waiting For Response\nSubmission Status: Response Window Passed\nSubmission Status: Task Already Complete`,
         "purpose": `To show users which addresses have added response submissions for the double hash task, their response time windows, and their submission statuses.`
+    },
+    "ViewEthicsRequirementsProposal": {
+        "name": `View Ethics Requirements Proposal`,
+        "description": `A redirect button to the ethics requirements proposal.`,
+        "examples": `N/A`,
+        "purpose": `To redirect the user to the selected ethics requirements proposal.`
     }
 };
