@@ -171,6 +171,10 @@ doubleHashTaskContract
     .then(h => {
         doubleHashTaskHash = h;
         taskHash.textContent = `Task Hash:\r\n${doubleHashTaskHash}`;
+
+        
+        // Discover task data if manual discover querystring provided
+        manuallyDiscoverQueryString();
     });
 doubleHashTaskContract
     .getDoubleHashTaskManagerAddress(doubleHashTaskIndexValue)
@@ -393,10 +397,7 @@ withdrawFundsButton.addEventListener("click", async () => {
 });
 
 // Toggles to the manual search data view
-manualDiscoverButton.addEventListener("click", () => {
-    removeClass(manualSection, "hide");
-    addClass(autoDiscoverSection, "hide");
-});
+manualDiscoverButton.addEventListener("click", showManualSection);
 
 // Toggles to the auto search data view
 autoDiscoverButton.addEventListener("click", () => {
@@ -405,10 +406,7 @@ autoDiscoverButton.addEventListener("click", () => {
     if (doubleHashTaskHash === undefined) {
         return;
     }
-
-    replaceClass(tryDownloadButton, "inactive-border-button", "border-button");
-    removeClass(autoDiscoverSection, "hide");
-    addClass(manualSection, "hide");
+    showAutoSection();
 
     // Automatically search for task data
     continueSearch(
@@ -564,6 +562,9 @@ async function searchUser() {
         return;
     }
 
+    // Reset manual search error text
+    manualSearchError.textContent = '';
+
     // Formats the hex bytes
     const userSearchValue = prefixHexBytes(userSearch.value);
 
@@ -588,10 +589,16 @@ async function searchUser() {
         }
 
         // Retrieve data from link
-        const response = await fetch(`${userUrl}/Tasks/DoubleHashTasks/`
-            + `${doubleHashTaskHash.substring(2)}/Task.zip`
-        );
-        if (!response.ok) {
+        let response;
+        const endpoint = `${userUrl}/Tasks/DoubleHashTasks/`
+            + `${doubleHashTaskHash.substring(2)}/Task.zip`;
+        try {
+            response = await fetch(endpoint);
+        } catch {
+            manualSearchError.textContent
+                += `(!) Failed download from endpoint ${endpoint}\n`;
+        }
+        if (response === undefined || !response.ok) {
             continue;
         }
         const arrayBuffer = await response.arrayBuffer();
@@ -935,4 +942,41 @@ function updateWithdrawFundsAndKeyRevealSection() {
             }
         }
     }
+}
+
+/**
+ * Shows the manually discover data section and hides the auto discover data
+ * section
+ */
+function showManualSection() {
+    addClass(autoDiscoverSection, "hide");
+    removeClass(manualSection, "hide");
+}
+
+/**
+ * Hides the manually discover data section and shows the auto discover data
+ * section
+ */
+function showAutoSection() {
+    replaceClass(tryDownloadButton, "inactive-border-button", "border-button");
+    removeClass(autoDiscoverSection, "hide");
+    addClass(manualSection, "hide");
+}
+
+/**
+ * If a valid Ethereum address is provided in the manuallyDiscover querystring
+ * parameter, then the manually discover data section shows, that user's data is
+ * set in the input, and the endpoints for that user are searched.
+ */
+function manuallyDiscoverQueryString() {
+    if (params.manuallyDiscover === undefined) {
+        return;
+    }
+    const valueHex = prefixHexBytes(params.manuallyDiscover);
+    if (valueHex === null || valueHex.length !== 42) {
+        return;
+    }
+    showManualSection();
+    userSearch.value = valueHex;
+    searchUser();
 }
