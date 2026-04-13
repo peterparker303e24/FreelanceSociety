@@ -92,7 +92,7 @@ if (fixedRequirement) {
     requirementIdText.textContent = `Requirement Index: ${requirementIndex}`;
     theListContract.getRequirementVersion(requirementIndex).then((versions) => {
         requirementVersionsTextFixed.textContent
-            = `Requirement Versions: ${versions}`;
+            = `Requirement Version: ${versions}`;
     });
     theListContract.getRequirementProposals(requirementIndex)
         .then((proposals) => {
@@ -434,7 +434,7 @@ async function updateRequirementInput() {
         theListContract.getRequirementVersion(requirementIndex)
             .then((versions) => {
                 requirementVersionsTextDynamic.textContent
-                    = `Requirement Versions: ${versions}`;
+                    = `Requirement Version: ${versions}`;
             });
         theListContract.getRequirementProposals(requirementIndex)
             .then((proposals) => {
@@ -451,7 +451,7 @@ async function updateRequirementInput() {
         }
         errorText.textContent = "";
     } else {
-        requirementVersionsTextDynamic.textContent = `Requirement Versions: -`;
+        requirementVersionsTextDynamic.textContent = `Requirement Version: -`;
         requirementProposalsTextDynamic.textContent = `Requirement Proposals: -`;
         replaceClass(
             addProposalButton,

@@ -292,7 +292,7 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["UploadLocally"],
                 helpItems["ViewProposals"],
                 helpItems["ViewOtherVersions"],
-                helpItems["AddRequirementProposal"],
+                helpItems["AddRequirementProposalRedirect"],
                 helpItems["ZipContents"]
             ];
         case "User":
@@ -414,6 +414,17 @@ export function getHelpCollectionData(helpCollectionName) {
         case "AddRequirement":
             return [
                 helpItems["AddRequirement"],
+                helpItems["UploadZipFile"],
+                helpItems["WriteRequirement"],
+                helpItems["DownloadRequirement"]
+            ];
+        case "AddRequirementProposal":
+            return [
+                helpItems["RequirementsCount"],
+                helpItems["RequirementIndex"],
+                helpItems["RequirementVersion"],
+                helpItems["RequirementProposals"],
+                helpItems["AddRequirementProposal"],
                 helpItems["UploadZipFile"],
                 helpItems["WriteRequirement"],
                 helpItems["DownloadRequirement"]

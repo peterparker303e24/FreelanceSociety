@@ -19,6 +19,7 @@
     <script src="./js/components/walletMisconfigurationSection.js" type="module"></script>
     <script src="./js/components/userNotActivatedSection.js" type="module"></script>
     <script src="./js/requirements/addRequirementProposal.js" type="module" defer></script>
+    <script src="./js/components/helpSection.js" type="module"></script>
 </head>
 
 <body>
@@ -42,7 +43,7 @@
         <!-- Data displayed when the requirement index is given in the URL -->
         <div class="row space-around margin">
             <div id="requirement-id" class="hide">Requirement Index: -</div>
-            <div id="requirement-versions-fixed" class="vertically-center-text hide">Requirement Versions: -</div>
+            <div id="requirement-versions-fixed" class="vertically-center-text hide">Requirement Version: -</div>
             <div id="requirement-proposals-fixed" class="vertically-center-text hide">Requirement Proposals: -</div>
         </div>
 
@@ -53,7 +54,7 @@
                 <div id="requirement-index-text" class="vertically-center-text hide">Requirement Index: </div>
                 <input id="requirement-index-input" class="vertically-center-text margin hide" />
             </div>
-            <div id="requirement-versions-dynamic" class="vertically-center-text hide">Requirement Versions: -</div>
+            <div id="requirement-versions-dynamic" class="vertically-center-text hide">Requirement Version: -</div>
             <div id="requirement-proposals-dynamic" class="vertically-center-text hide">Requirement Proposals: -</div>
         </div>
 
@@ -86,6 +87,12 @@
             <div id="download-written-button" class="inactive-border-button margin">Download Requirement</div>
         </div>
         <a id="download-anchor"></a>
+
+        <!-- Help -->
+        <div id="help-container">
+            <help-section helpCollection="AddRequirementProposal"></help-section>
+        </div>
+
         <!-- Footer space -->
         <div id="footer-space"></div>
     </div>

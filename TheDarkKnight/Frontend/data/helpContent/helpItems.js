@@ -599,7 +599,7 @@ export const helpItems = {
         "examples": `Requirement Id: 0_0\nRequirement Id: 1_2`,
         "purpose": `To uniquely identify a requirement proposal.`
     },
-    "AddRequirementProposal": {
+    "AddRequirementProposalRedirect": {
         "name": `Add Requirement Proposal`,
         "description": `A redirect button to the add requirement proposal page.`,
         "examples": `N/A`,
@@ -820,5 +820,35 @@ export const helpItems = {
         "description": `A button to download the requirement to the local computer.`,
         "examples": `N/A`,
         "purpose": `To enable the manager to download their requirement ZIP file in the standard Requirement.zip format.`
+    },
+    "RequirementsCount": {
+        "name": `Requirements Count`,
+        "description": `The number of requirements added to The List.`,
+        "examples": `Requirements Count: 3\nRequirements Count: 10`,
+        "purpose": `To show the number of requirements added to The List.`
+    },
+    "RequirementIndex": {
+        "name": `Requirement Index`,
+        "description": `Requirement index to make the update for the requirement proposal.`,
+        "examples": `Requirement Index: 0\nRequirement Index: 2`,
+        "purpose": `To show/edit the current requirement index.`
+    },
+    "RequirementVersion": {
+        "name": `Requirement Version`,
+        "description": `Version of the current requirement.`,
+        "examples": `Requirement Version: 1\nRequirement Version: 2`,
+        "purpose": `To show the current version of the requirement.`
+    },
+    "RequirementProposals": {
+        "name": `Requirement Proposals`,
+        "description": `Number of requirement proposals added for the current requirement.`,
+        "examples": `Requirement Proposals: 1\nRequirement Proposals: 10`,
+        "purpose": `To show how many requirement proposals have been made for the current requirement.`
+    },
+    "AddRequirementProposal": {
+        "name": `Add Requirement Proposal`,
+        "description": `A transaction to add a new requirement proposal for the current requirement.`,
+        "examples": `N/A`,
+        "purpose": `To enable managers to propose an update to a requirement.`
     }
 };
