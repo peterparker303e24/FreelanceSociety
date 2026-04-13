@@ -446,6 +446,19 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["ProposalVotesFor"],
                 helpItems["ViewRequirementProposal"]
             ];
+        case "ViewRequirements":
+            return [
+                helpItems["AddRequirementRedirect"],
+                helpItems["RequirementsCount"],
+                helpItems["Search"],
+                helpItems["Previous/Next"],
+                helpItems["Results"],
+                helpItems["SearchResult"],
+                helpItems["RequirementId"],
+                helpItems["RequirementHash"],
+                helpItems["ManagerAddress"],
+                helpItems["ViewRequirement"]
+            ];
         default:
             return [];
     }

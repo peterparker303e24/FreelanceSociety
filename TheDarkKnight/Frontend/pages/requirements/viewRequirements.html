@@ -18,6 +18,7 @@
     <script src="./js/components/headerSection.js" type="module"></script>
     <script src="./js/components/walletMisconfigurationSection.js" type="module"></script>
     <script src="./js/requirements/viewRequirements.js" type="module" defer></script>
+    <script src="./js/components/helpSection.js" type="module"></script>
 </head>
 
 <body>
@@ -63,6 +64,11 @@
 
         <!-- Requirements search results column -->
         <div id="requirements-rows-container"></div>
+
+        <!-- Help -->
+        <div id="help-container">
+            <help-section helpCollection="ViewRequirements"></help-section>
+        </div>
 
         <!-- Footer space -->
         <div id="footer-space"></div>

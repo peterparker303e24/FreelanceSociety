@@ -284,7 +284,7 @@ export const helpItems = {
     "Search": {
         "name": `Search`,
         "description": `The search button and input for discovering tasks, requirements, users, transactions, or submissions. `,
-        "examples": `v\ndh-2\n0x70997970C51812dc3A010C7d01b50e0d17dc79C8\n0xe8503ca1bacc9a2addc1ba6e13a7c22daee9b3956821a5609ba44c1e87752562\n0xe850`,
+        "examples": `v\ndh-2\n0x70997970C51812dc3A010C7d01b50e0d17dc79C8\n0xe8503ca1bacc9a2addc1ba6e13a7c22daee9b3956821a5609ba44c1e87752562\n0xe850\n#1\n2-1\n1_1`,
         "purpose": `To enable the user to narrow their search results, or search for the most recent results.`
     },
     "Previous/Next": {
@@ -859,8 +859,14 @@ export const helpItems = {
     },
     "ViewRequirementProposal": {
         "name": `View Requirement Proposal`,
-        "description": `A redirect button to the requirement proposal page.`,
+        "description": `A redirect button to the selected requirement proposal page.`,
         "examples": `N/A`,
         "purpose": `To redirect the user to the selected requirement proposal page.`
+    },
+    "ViewRequirement": {
+        "name": `View Requirement`,
+        "description": `A redirect button to the selected requirement page.`,
+        "examples": `N/A`,
+        "purpose": `To redirect the user to the selected requirement page.`
     }
 };
