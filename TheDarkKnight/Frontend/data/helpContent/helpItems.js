@@ -880,5 +880,35 @@ export const helpItems = {
         "description": `A redirect button to the selected submission page.`,
         "examples": `N/A`,
         "purpose": `To redirect the user to the selected submission page.`
+    },
+    "ByteDataInputType": {
+        "name": `Input Type`,
+        "description": `The input type for the textbox input below.`,
+        "examples": `Text (UTF-8)\nHex`,
+        "purpose": `To enable the user to choose the input type to be parsed into bytes for the input textbox.`
+    },
+    "ByteDataInput": {
+        "name": `Data Input`,
+        "description": `An input textbox for the user to input hex data or text content.`,
+        "examples": `2\n0x1234\nhello world`,
+        "purpose": `To enable the user to input any data that can be interpreted into bytes.`
+    },
+    "ThirdHashResult": {
+        "name": `Third Hash Result`,
+        "description": `Keccak256 hash of the keccak256 hash of the keccak256 hash of the byte data.`,
+        "examples": `Third Hash: 0x1c45d96fec31449eec463a618003378fb419a566a7c56ce7e6053c5aaa01e466`,
+        "purpose": `To show the user the consecutive hashes of the input byte data.`
+    },
+    "FileName": {
+        "name": `File Name`,
+        "description": `Name of the file uploaded.`,
+        "examples": `File Name: Submission.zip\nFile Name: Task.zip\nFile Name: Requirement.zip`,
+        "purpose": `To show the user the name of the file uploaded.`
+    },
+    "FileHash": {
+        "name": `File Hash`,
+        "description": `Keccak256 hash of the byte data of the file uploaded.`,
+        "examples": `File Hash: 0xb835ed1f4a1db802830c5ce384d3879ea75a4fd5a0e05f40f462bd32c014bda0\nFile Hash: 0x5347d46ee824f7d4c3d191cda72bcee55f05613c02ef4aeaf023d29f97894669\nFile Hash: 0x8e1e294d1ffc2e0eff8e327229247a6029e42dc76f5d12f543230d50625e43dc`,
+        "purpose": `To show the user the keccak256 hash of the byte data of the file uploaded.`
     }
 };

@@ -476,6 +476,17 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["SubmissionStatus"],
                 helpItems["ViewSubmission"]
             ];
+        case "Tools":
+            return [
+                helpItems["ByteDataInputType"],
+                helpItems["ByteDataInput"],
+                helpItems["FirstHashResult"],
+                helpItems["SecondHashResult"],
+                helpItems["ThirdHashResult"],
+                helpItems["UploadZipFile"],
+                helpItems["FileName"],
+                helpItems["FileHash"]
+            ];
         default:
             return [];
     }
