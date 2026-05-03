@@ -1646,7 +1646,7 @@ export function urlNoTrailingSlash(url) {
  * @returns {String} Camel case ETH display type key
  */
 export function getEthDisplayType() {
-    if (localStorage.getItem("ethDisplayType") in ETH_DISPLAY_TYPES) {
+    if (ETH_DISPLAY_TYPES.includes(localStorage.getItem("ethDisplayType"))) {
         return localStorage.getItem("ethDisplayType");
     } else {
         return "eth";

@@ -1,4 +1,4 @@
-import { ETH_DISPLAY_TYPES } from "../utils/constants";
+import { ETH_DISPLAY_TYPES } from "../utils/constants.js";
 
 // Page elements
 const toggleButton = document.getElementById("toggle-button");
@@ -39,7 +39,7 @@ if (blockchainDataString != null) {
 
 // Set the ETH display type from local storage
 const initialDisplayType = localStorage.getItem("ethDisplayType");
-if (initialDisplayType in ETH_DISPLAY_TYPES) {
+if (ETH_DISPLAY_TYPES.includes(initialDisplayType)) {
     ethDisplayTypeSelect.value = initialDisplayType;
 } else {
     localStorage.setItem("ethDisplayType", "eth");
@@ -127,8 +127,8 @@ function saveBlockchainData() {
  * Save the ETH value display type to local storage
  */
 function changeEthDisplay() {
-    if (ethDisplayTypeSelect.value in ETH_DISPLAY_TYPES) {
-        localStorage.setItem("ethDisplayType", ethDisplayTypeSelect.value)
+    if (ETH_DISPLAY_TYPES.includes(ethDisplayTypeSelect.value)) {
+        localStorage.setItem("ethDisplayType", ethDisplayTypeSelect.value);
     }
 }
 
