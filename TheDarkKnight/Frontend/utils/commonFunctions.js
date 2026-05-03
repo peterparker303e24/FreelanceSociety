@@ -1,5 +1,6 @@
-import { ethers, getBytes } from "../js/libs/ethers.min.js";
-import { TASK_SHORT_NAMES } from "./constants.js";
+import { DiscoverSection } from "../js/components/discoverSection.js";
+import { Contract, ethers, getBytes, keccak256 } from "../js/libs/ethers.min.js";
+import { ETH_DISPLAY_TYPES, TASK_SHORT_NAMES } from "./constants.js";
 
 /**
  * Standardizes given hex bytes data in string form, and returns null if given
@@ -236,8 +237,10 @@ export const requirementPlaceholder = ""
  * Converts the tab key of the given textarea element event to 4 spaces
  * @param {Element} textArea Textarea element
  * @param {Event} event Textarea element event
+ * @param {Boolean} useSpaces Whether to replace key with 4 spaces instead of
+ * tab character
  */
-export function convertTab(textArea, event) {
+export function convertTab(textArea, event, useSpaces=true) {
     if (event.key === 'Tab') {
         event.preventDefault();
 
@@ -245,12 +248,27 @@ export function convertTab(textArea, event) {
         const start = textArea.selectionStart;
         const end = textArea.selectionEnd;
 
-        // Insert 4 spaces in place of the selection
-        textArea.value = textArea.value.substring(0, start)
-            + '    ' + textArea.value.substring(end);
+        // Whether to insert 4 spaces or a tab character
+        if (useSpaces) {
+            
+            // Insert 4 spaces in place of the selection
+            textArea.value = textArea.value.substring(0, start)
+                + '    ' + textArea.value.substring(end);
+    
+            // Move the cursor to the right position after the tab character
+            textArea.selectionStart = textArea.selectionEnd = start + 4;
+        } else {
 
-        // Move the cursor to the right position after the tab character
-        textArea.selectionStart = textArea.selectionEnd = start + 4;
+            // Insert the tab character in place of the selection
+            textArea.value
+                = textArea.value.substring(0, start)
+                + '\t'
+                + textArea.value.substring(end);
+
+            // Move the cursor to the right position after the tab character
+            textArea.selectionStart
+                = textArea.selectionEnd = start + 1;
+        }
     }
 }
 
@@ -467,6 +485,7 @@ export function formatRequirementJson(requirementsJson, rootElement) {
 /**
  * Formats the display of the task specification fold using the given
  * specification and requirement data
+ * @param {Element} taskJsonContainer Container element to insert the task JSON
  * @param {JSON} specificationJson Single task specification. If the value is
  * null, then a warning for the specification condition is displayed.
  * @param {JSON} requirementJson Corresponding requirement to task
@@ -474,6 +493,7 @@ export function formatRequirementJson(requirementsJson, rootElement) {
  * displayed.
  */
 export function formatTaskJson(
+    taskJsonContainer,
     specificationJson,
     requirementJson
 ) {
@@ -489,7 +509,7 @@ export function formatTaskJson(
     const templateRequirement = document.createElement("div");
     templateRequirement.id = "requirement-fold";
     templateRequirement.classList.add(
-        "border", "left-align", "padding", "margin"
+        "border", "left-align", "medium-padding", "medium-margin-vertical"
     );
     const headerRow = document.createElement("div");
     headerRow.id = "requirement-header";
@@ -524,11 +544,11 @@ export function formatTaskJson(
     // return if null
     if (requirementJson === null) {
         requirementHeader.textContent = "(!) Task requirement is invalid";
-        container.appendChild(templateRequirement);
+        taskJsonContainer.appendChild(templateRequirement);
         return;
     } else if (specificationJson === null) {
         requirementHeader.textContent = "(!) Task specification invalid";
-        container.appendChild(templateRequirement);
+        taskJsonContainer.appendChild(templateRequirement);
         return;
     }
 
@@ -599,7 +619,7 @@ export function formatTaskJson(
     }
 
     // The fold is appended to the task requirements section
-    container.appendChild(templateRequirement);
+    taskJsonContainer.appendChild(templateRequirement);
 }
 
 /**
@@ -804,11 +824,7 @@ export async function getBlockchainUtcTime(provider) {
  * @param {SearchCriteria} searchCriteria Search data for getting users links
  * and data
  * @param {Contract} usersContract Users contract
- * @param {Element} skipAddressButton Button element that skips the link of the
- * current user
- * @param {Element} skipAddressButton Button element that skips the current user
- * @param {Element} tryDownloadButton Button element that tries to download data
- * from the user link
+ * @param {DiscoverSection} discoverSection Discover section element
  * @param {Element} link A function that given a list of links returns the link
  * to the desired resource
  * @returns {Boolean} return.canSkipLink Whether the current link can be skipped
@@ -824,9 +840,7 @@ export async function getBlockchainUtcTime(provider) {
 export function continueSearch(
     searchCriteria,
     usersContract,
-    skipLinkButton,
-    skipAddressButton,
-    tryDownloadButton,
+    discoverSection,
     link
 ) {
     let canSkipLink;
@@ -834,7 +848,7 @@ export function continueSearch(
     let autoUserLinksIndex;
     // Discovers the next user, then displays the user link information
     return autoDiscoverUser(
-        searchCriteria, usersContract, skipAddressButton
+        searchCriteria, usersContract, discoverSection
     ).then((user) => {
 
         // If a user was not found, but there are more blocks to search, then
@@ -845,31 +859,17 @@ export function continueSearch(
             return continueSearch(
                 user.searchCriteria,
                 usersContract,
-                skipLinkButton,
-                skipAddressButton,
-                tryDownloadButton,
+                discoverSection,
                 link
             );
         }
         
         // If user not found, then display end of user search
         if (!("userAddress" in user)) {
-            tryDownloadButton.textContent = `No more users`;
-            replaceClass(
-                skipLinkButton,
-                "border-button",
-                "inactive-border-button"
-            );
-            replaceClass(
-                skipAddressButton,
-                "border-button",
-                "inactive-border-button"
-            );
-            replaceClass(
-                tryDownloadButton,
-                "border-button",
-                "inactive-border-button"
-            );
+            discoverSection.setTryDownloadText(`No more users`);
+            discoverSection.setIsSkipLinkButtonEnabled(false);
+            discoverSection.setIsSkipAddressButtonEnabled(false);
+            discoverSection.setIsTryDownloadButtonEnabled(false);
             return {
                 canSkipLink: false,
                 canSkipAddress: false
@@ -897,9 +897,7 @@ export function continueSearch(
             return continueSearch(
                 autoSearchCriteria,
                 usersContract,
-                skipLinkButton,
-                skipAddressButton,
-                tryDownloadButton,
+                discoverSection,
                 link
             );
         }
@@ -911,35 +909,26 @@ export function continueSearch(
 
         // If the user has more than one valid link, show skip user link button
         if (autoUserLinks.length > 1) {
-            replaceClass(
-                skipLinkButton,
-                "inactive-border-button",
-                "border-button"
-            );
+            discoverSection.setIsSkipLinkButtonEnabled(true);
             canSkipLink = true;
         } else {
-            replaceClass(
-                skipLinkButton,
-                "border-button",
-                "inactive-border-button"
-            );
+            discoverSection.setIsSkipLinkButtonEnabled(false);
             canSkipLink = false;
         }
 
         // Show skip user if possibly more users to search
         if (autoSearchCriteria.searchBlock !== 0) {
-            replaceClass(
-                skipAddressButton,
-                "inactive-border-button",
-                "border-button"
-            );
+            discoverSection.setIsSkipAddressButtonEnabled(true);
             canSkipAddress = true;
         }
 
         // Display retrieved user link
-        tryDownloadButton.textContent = `Try download from: `
+        discoverSection.setIsTryDownloadButtonEnabled(true);
+        discoverSection.setTryDownloadText(
+            `Try download from: `
             + `${parseUserData(autoUserData).data}\r\nAddress: `
-            + `${autoUserAddress}\r\nLink: ${link(autoUserLinks)}`;
+            + `${autoUserAddress}\r\nLink: ${link(autoUserLinks)}`
+        );
 
         // Return updated skip and user data
         return {
@@ -960,7 +949,7 @@ export function continueSearch(
  * @param {SearchCriteria} searchCriteria Search data for getting users links
  * and data
  * @param {Contract} usersContract Users contract
- * @param {Element} skipAddressButton Button element that skips the current user
+ * @param {DiscoverSection} discoverSection Discover section element
  * @returns {Object} Next search criteria and possible user data
  * @returns {SearchCriteria} return.searchCriteria Search data for getting users
  * links and data for the next search iteration
@@ -971,7 +960,7 @@ export function continueSearch(
 async function autoDiscoverUser(
     searchCriteria,
     usersContract,
-    skipAddressButton
+    discoverSection
 ) {
 
     // Get search block using cache if available
@@ -1060,12 +1049,7 @@ async function autoDiscoverUser(
 
         // If no other users exist, end data search
         if (nextSearchCriteria.searchBlock === 0) {
-            canSkipAddress = false;
-            replaceClass(
-                skipAddressButton,
-                "border-button",
-                "inactive-border-button"
-            );
+            discoverSection.setIsSkipAddressButtonEnabled(false);
         }
 
         // Get most recent links and data of user
@@ -1125,6 +1109,64 @@ async function autoDiscoverUser(
  */
 export function formatWei(wei) {
     return wei.toLocaleString('en-US').replace(/,/g, ' ');
+}
+
+/**
+ * Formats the given Wei into the string amount for the given value type
+ * @param {BigInt} wei Integer amount in Wei
+ * @param {'ETH' | 'Wei'} valueType Value output type
+ * @return {String} The formatted amount for the value type
+ */
+export function formatInConfiguredValue(wei, valueType="eth") {
+
+    // Format from Wei amount into provided value amount
+    switch (valueType) {
+
+        // Return in Wei format
+        case "wei":
+            return formatWei(wei);
+
+        // Return in ETH format not losing any decimal accuracy
+        case "eth":
+
+            // Convert to string and split into ETH integer and decimal parts
+            let integerPart;
+            let decimalPart;
+            if (wei < 1_000_000_000_000_000_000n) {
+                integerPart = "0";
+                decimalPart = wei
+                    .toString()
+                    .padStart(18, "0")
+                    .replace(/0+$/, "");
+            } else {
+                integerPart = (wei / 1_000_000_000_000_000_000n).toString();
+                decimalPart = wei
+                    .toString()
+                    .substring(wei.toString().length - 18)
+                    .replace(/0+$/, "");
+            }
+            
+            // Format integer part with spaces every 3 significant digits
+            const formattedInteger
+                = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            
+            // If there's no decimal part, return just the integer
+            if (!decimalPart) {
+                return formattedInteger;
+            }
+            
+            // Format decimal part with spaces every 3 significant digits
+            const formattedDecimal
+                = decimalPart.replace(/(\d{3})(?=\d)/g, '$1 ');
+            
+            // Return the ETH integer and decimal parts together
+            return `${formattedInteger}.${formattedDecimal}`;
+        default:
+            break;
+    }
+
+    // Return the default Wei input for invalid valueType argument
+    return wei.toString();
 }
 
 /**
@@ -1596,5 +1638,140 @@ export function urlNoTrailingSlash(url) {
         return urlString.substring(0, urlString.length - 1);
     } else {
         return urlString;
+    }
+}
+
+/**
+ * Gets the ETH display type from local storage or default to ETH
+ * @returns {String} Camel case ETH display type key
+ */
+export function getEthDisplayType() {
+    if (localStorage.getItem("ethDisplayType") in ETH_DISPLAY_TYPES) {
+        return localStorage.getItem("ethDisplayType");
+    } else {
+        return "eth";
+    }
+}
+
+/**
+ * Downloads the data file with a name and optional file type
+ * @param {ArrayBuffer} data Data to download
+ * @param {String} fileName Name of the file to save as
+ * @param {String | null} fileType Data extension type
+ */
+export function downloadFile(data, fileName, fileType) {
+    let blob;
+    if (fileType === null) {
+        blob = new Blob([data]);
+    } else {
+        blob = new Blob([data], { type: fileType });
+    }
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = fileName;
+    anchor.click();
+};
+
+/**
+ * Gets the difficulty value string
+ * @param {Number} difficulty Hash task difficulty
+ * @returns {String} Difficulty value hex string with "0x" prefix
+ */
+export function getDifficultyValueFromDifficulty(difficulty) {
+    if (difficulty === 0) {
+        return "0x" + "f".repeat(64);
+    } else {
+        return "0x"
+            + (2n ** BigInt(256 - difficulty))
+                .toString(16)
+                .padStart(64, "0");
+    }
+}
+
+/**
+ * Gets the expected number of seconds to generate a correct nonce given the
+ * hash task expected difficulty value, nonce generation start time, and nonces
+ * generated so far
+ * @param {String} expectedDifficultyValue Hash task difficulty value in hex
+ * with "0x" prefix
+ * @param {Number} startTime Date.now() of nonce generation start time
+ * @param {Number} nonces Number of nonces generated
+ * @returns {Number} Expected number of seconds to generate a correct nonce
+ */
+export function getExpectedDifficultyValueGenerationTime(
+    expectedDifficultyValue,
+    startTime,
+    nonces
+) {
+    const secondsPerNonceGeneration
+        = (Date.now() - startTime) / nonces / 1000;
+    const expectedDifficultyBinaryNumber
+        = BigInt(expectedDifficultyValue).toString(2);
+    const expectedAverageNonceGenerations
+        = Math.pow(
+            2,
+            256 - expectedDifficultyBinaryNumber.length
+        );
+    return Math.floor(
+        secondsPerNonceGeneration * expectedAverageNonceGenerations
+    );
+}
+
+/**
+ * Gets the hours, minutes, and seconds based on the given number of seconds
+ * @param {Number} seconds Number of seconds to display
+ * @returns {String} Time duration in the form hours, minutes, seconds
+ */
+export function formatTimeHoursMinutesSeconds(totalSeconds) {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    return `${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+}
+
+/**
+ * Get the difficulty value of the given data using the hash task calculation 
+ * @param {String} hashKey Key of the hash task
+ * @param {String} workerAddress Address of the current user with the "0x"
+ * prefix
+ * @param {Number} nonceNumber Nonce number
+ * @returns {String} The calculated difficulty value, as hex data with "0x"
+ * prefix, of the resulting keccak256 hash using the given data
+ */
+export function getDifficultyValue(hashKey, workerAddress, nonceNumber) {
+    keccak256(hashKey);
+    const combinedBytes =
+        prefixHexBytes(hashKey)
+        + "0".repeat(24)
+        + workerAddress.substring(2);
+    const combinedHash = keccak256(combinedBytes);
+    const nonceBytes = nonceNumber.toString(16).padStart(64, "0");
+    return keccak256(combinedHash + nonceBytes);
+}
+
+/**
+ * Gets the previous interaction block that is before the current block
+ * @param {Contract} contract Ethereum contract that has variable
+ * lastInteractionBlockIndex and has all events with last argument
+ * lastInteractionBlockIndex
+ * @param {BigInt} blockIndex The current block index
+ * @returns {BigInt} Block index of when the contract was last used before the
+ * current block
+ */
+export async function getLastInteractionBlockFromBlock(contract, blockIndex) {
+    const allEvents = await contract.queryFilter(
+        "*",
+        blockIndex,
+        blockIndex
+    );
+    if (allEvents.length > 0) {
+        const firstBlockEventArgs = allEvents[0].args;
+        const lastArgIndex = firstBlockEventArgs.length - 1;
+        return firstBlockEventArgs[lastArgIndex];
+    } else {
+        return await contract.lastInteractionBlockIndex(
+            { blockTag: blockIndex }
+        );
     }
 }

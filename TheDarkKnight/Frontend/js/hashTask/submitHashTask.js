@@ -1,7 +1,10 @@
 import { ethers, keccak256 } from "../libs/ethers.min.js";
 import "../libs/jszip.min.js";
 import {
+    formatTimeHoursMinutesSeconds,
     formatWei,
+    getDifficultyValue,
+    getDifficultyValueFromDifficulty,
     prefixHexBytes,
     replaceClass,
     updateInputNumberToGroupedDigits
@@ -89,12 +92,10 @@ hashTaskContract.getHashTaskHash(hashTaskIndex).then((h) => {
 
 // Gets the task difficulty and updates the UI
 hashTaskContract.getHashTaskDifficulty(hashTaskIndex).then((d) => {
-    if (d === 0n) {
-        expectedDifficultyValue = "0x" + "f".repeat(64);
+    expectedDifficultyValue = getDifficultyValueFromDifficulty(Number(d));
+    if (expectedDifficultyValue === "0x" + "f".repeat(64)) {
         expectedDifficulty.textContent = "N/A";
     } else {
-        expectedDifficultyValue = "0x"
-            + (2n ** (256n - d)).toString(16).padStart(64, "0");
         expectedDifficulty.textContent = expectedDifficultyValue.substring(2);
     }
     updateIfLoaded();
@@ -387,35 +388,4 @@ function updateWorkerHash() {
     updateSubmitButton();
 }
 
-/**
- * Get the difficulty value of the given data using the hash task calculation 
- * @param {String} hashKey Key of the hash task
- * @param {String} workerAddress Address of the current user with the "0x"
- * prefix
- * @param {Number} nonceNumber Nonce number
- * @returns {String} The calculated difficulty value, as hex data with "0x"
- * prefix, of the resulting keccak256 hash using the given data
- */
-function getDifficultyValue(hashKey, workerAddress, nonceNumber) {
-    keccak256(hashKey);
-    hashResult.textContent = hashResultValue;
-    const combinedBytes =
-        prefixHexBytes(hashKey)
-        + "0".repeat(24)
-        + workerAddress.substring(2);
-    const combinedHash = keccak256(combinedBytes);
-    const nonceBytes = nonceNumber.toString(16).padStart(64, "0");
-    return keccak256(combinedHash + nonceBytes);
-}
 
-/**
- * Gets the hours, minutes, and seconds based on the given number of seconds
- * @param {Number} seconds Number of seconds to display
- * @returns {String} Time duration in the form hours, minutes, seconds
- */
-function formatTimeHoursMinutesSeconds(totalSeconds) {
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
-    return `${hours} hours, ${minutes} minutes, ${seconds} seconds`;
-}

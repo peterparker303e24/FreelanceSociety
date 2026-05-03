@@ -3,6 +3,16 @@ import { getCookie } from "./commonFunctions.js";
 // Task short names
 export const TASK_SHORT_NAMES = ["h", "dh", "v"];
 
+// ETH value display types
+export const ETH_DISPLAY_TYPES = [
+    "eth",
+    "wei"
+];
+export const ETH_DISPLAY_TYPES_TEXT = {
+    "eth": "ETH",
+    "wei": "Wei"
+};
+
 // Default blockchain network Sepolia data
 export const USERS_CONTRACT_ADDRESS_DEFAULT
     = "0x95317F9EE94C3F35554c2b89971eb7b9052Deb9f";

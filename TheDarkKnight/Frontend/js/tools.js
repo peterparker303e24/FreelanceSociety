@@ -1,5 +1,5 @@
 import { ethers } from "./libs/ethers.min.js";
-import { addClass, removeClass } from "../utils/commonFunctions.js";
+import { addClass, convertTab, removeClass } from "../utils/commonFunctions.js";
 import "./libs/jszip.min.js";
 
 // Page elements
@@ -19,7 +19,10 @@ const fileUploadError = document.getElementById('file-upload-error');
 textAreaInputElement.addEventListener("input", hashInput);
 
 // Convert tab key event to tab character
-textAreaInputElement.addEventListener("keydown", convertTab);
+textAreaInputElement.addEventListener("keydown", (event) => {
+    convertTab(textAreaInputElement, event, false);
+    hashInput();
+});
 
 // Update the keccak256 hash when the input type changes
 dropdownElement.addEventListener("change", hashInput);
@@ -35,36 +38,6 @@ zipInput.addEventListener('change', zipInputUpload);
 // On the inital page load, update the keccak256 hashes with the input in the
 // text area
 hashInput();
-
-/**
- * Converts tab key pressed event into a tab character in the text area instead
- * of tabbing through page elements
- * @param {Event} event User action event
- */
-function convertTab(event) {
-
-    // Only trigger for the tab key character event
-    if (event !== undefined && event.key === 'Tab') {
-        event.preventDefault();
-
-        // Get the cursor selection positions
-        const start = textAreaInputElement.selectionStart;
-        const end = textAreaInputElement.selectionEnd;
-
-        // Insert the tab character in place of the selection
-        textAreaInputElement.value
-            = textAreaInputElement.value.substring(0, start)
-            + '\t'
-            + textAreaInputElement.value.substring(end);
-
-        // Move the cursor to the right position after the tab character
-        textAreaInputElement.selectionStart
-            = textAreaInputElement.selectionEnd = start + 1;
-
-        // Update the keccak256 hashes
-        hashInput();
-    }
-}
 
 /**
  * Hashes the input bytes data and displays the first, second, and third hashes

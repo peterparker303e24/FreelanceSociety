@@ -13,6 +13,15 @@
     --background-color: #ffffff;
     --foreground-color: #000000;
     --invert-filter: 0;
+    --xxx-small: 2px;
+    --xx-small: 4px;
+    --x-small: 8px;
+    --small: 16px;
+    --medium: 32px;
+    --large: 64px;
+    --x-large: 128px;
+    --xx-large: 256px;
+    --xxx-large: 512px;
 }
 
 body,
@@ -64,6 +73,11 @@ img {
 .row-left {
     display: flex;
     justify-content: left;
+}
+
+.row-spaced {
+    display: flex;
+    justify-content: space-around;
 }
 
 .left {
@@ -201,6 +215,21 @@ img {
     padding: 32px;
 }
 
+.small-padding-vertical {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.medium-padding-vertical {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.large-padding-vertical {
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
 .small-margin {
     margin: 8px;
 }
@@ -211,6 +240,21 @@ img {
 
 .large-margin {
     margin: 32px;
+}
+
+.small-margin-vertical {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.medium-margin-vertical {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.large-margin-vertical {
+    margin-top: 32px;
+    margin-bottom: 32px;
 }
 
 .small-margin-bottom {
@@ -235,6 +279,18 @@ img {
 
 .large-margin-right {
     margin-right: 32px;
+}
+
+.small-margin-left {
+    margin-left: 8px;
+}
+
+.medium-margin-left {
+    margin-left: 16px;
+}
+
+.large-margin-left {
+    margin-left: 32px;
 }
 
 #footer-space {
@@ -301,6 +357,10 @@ img {
     width: 100%;
 }
 
+.fit-content-width {
+    width: fit-content;
+}
+
 .full-height {
     width: 100%;
 }
@@ -343,6 +403,10 @@ img {
 
 .left-align {
     text-align: left;
+}
+
+.left-justify {
+    justify-content: left;
 }
 
 .hash-input-width {
@@ -436,14 +500,14 @@ img {
     overflow: scroll;
 }
 
-.help-panel-tabs {
+.tabs-section {
     display: flex;
     justify-content: left;
     padding-left: 16px;
     padding-bottom: 16px;
 }
 
-.help-tab {
+.tab {
     margin-right: 32px;
     cursor: pointer;
 }
@@ -464,4 +528,9 @@ img {
 .help-content {
     margin: 16px;
     text-align: left;
+}
+
+.two-column-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }

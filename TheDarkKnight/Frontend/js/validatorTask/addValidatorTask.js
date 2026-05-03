@@ -36,6 +36,8 @@ const zipInput = document.getElementById('file-input');
 const fileName = document.getElementById('file-name');
 const fileError = document.getElementById('file-error');
 const taskJsonArea = document.getElementById("task-json");
+const taskSpecificationsContainer
+    = document.getElementById("task-specifications-container");
 const structureInstructions = document.getElementById("structure-instructions");
 
 // Hash task addition variables
@@ -553,6 +555,7 @@ async function validateTaskFile(arrayBuffer) {
 
             // Formats the specification contents with the requirement
             formatTaskJson(
+                taskSpecificationsContainer,
                 jsonObject[i],
                 requirementJson
             );
@@ -561,6 +564,7 @@ async function validateTaskFile(arrayBuffer) {
             // If the parsing results in an error, then display a warning for
             // the requirement
             formatTaskJson(
+                taskSpecificationsContainer,
                 null,
                 null
             );

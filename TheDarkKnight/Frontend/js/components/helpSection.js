@@ -33,10 +33,10 @@ class HelpSection extends HTMLElement {
                     <div id="help-item" class="wrap-text medium-text xx-large-width"></div>
                     <div id="help-move-right" class="border-button medium-margin large-text medium-width medium-height">▶</div>
                 </div>
-                <div id="help-tabs" class="help-panel-tabs">
-                    <div id="help-description-tab" class="help-tab tab-selected large-text">Description</div>
-                    <div id="help-examples-tab" class="help-tab large-text">Examples</div>
-                    <div id="help-purpose-tab" class="help-tab large-text">Purpose</div>
+                <div id="help-tabs" class="tabs-section">
+                    <div id="help-description-tab" class="tab tab-selected large-text">Description</div>
+                    <div id="help-examples-tab" class="tab large-text">Examples</div>
+                    <div id="help-purpose-tab" class="tab large-text">Purpose</div>
                 </div>
                 <div id="help-content" class="help-content text-content-return"></div>
             </div>

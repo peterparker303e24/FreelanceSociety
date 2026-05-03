@@ -39,85 +39,129 @@
             <!-- Left column area -->
             <div id="left-column">
 
-                <!-- Task data -->
-                <div id="task-id" class="left-align padding">Task ID: h-X</div>
-                <div id="hash-value" class="left-align padding text-content-return">Hash Value:<br>-</div>
-                <div id="task-hash" class="left-align padding text-content-return">Task Hash:<br>-</div>
-                <div id="manager-address" class="left-align padding text-content-return">Manager Address:<br>-</div>
-                <div id="reward" class="left-align padding">Reward (Wei): -</div>
-                <div id="deadline" class="left-align padding">Deadline (UTC): -</div>
-                <div id="completed" class="left-align padding">Task Completed: -</div>
-                <div id="key-reveal" class="left-align padding">Key Reveal: -</div>
-                <div id="difficulty" class="left-align padding">Difficulty: -</div>
-
-                <!-- Fund task section -->
-                <div class="row vertically-center-row margin">
-                    <div class="left-align label-space-right">Fund Task Amount (Wei): </div>
-                    <input type="text" id="fund-input" class="input-line medium-text xx-large-width left"
-                        placeholder="10 000 000 000 000 000">
-                </div>
-                <div id="manager-key-reveal-section" class="row vertically-center-row hide">
-                    <div class="left-align label-space-right">Manager Key Reveal: </div>
-                    <input type="text" id="key-reveal-input" class="input-line medium-text hash-input-width left"
-                        placeholder="0x1234567812345678123456781234567812345678123456781234567812345678">
-                </div>
-                <div class="row spaced-row medium-padding">
-                    <div id="fund-button" class="inactive-payable-button xx-large-width medium-padding">Fund Task</div>
-                    <div id="withdraw-funds-button" class="inactive-payable-button xx-large-width medium-padding">
-                        Withdraw Task
-                        Funds</div>
-                </div>
-                <div class="row">
-                    <div id="fund-error"></div>
+                <!-- Task section display type tabs -->
+                <div id="tabs-section" class="tabs-section">
+                    <div id="basic-display-tab" class="tab tab-selected large-text">Basic Display</div>
+                    <div id="direct-display-tab" class="tab large-text">Direct Display</div>
                 </div>
 
-                <div id="discover-section">
+                <!-- Basic display section -->
+                <div id="basic-display-section" class="medium-padding">
 
-                    <!-- Discover type section -->
-                    <div id="discover-row" class="row spaced-row padding">
-                        <div id="auto-discover-button" class="border-button xx-large-width medium-padding">Auto Discover
-                            Task</div>
-                        <div id="manual-discover-button" class="border-button xx-large-width medium-padding">Manually
-                            Discover Task
+                    <!-- Task data -->
+                    <div id="task-id" class="left-align medium-padding-vertical">Task ID: h-X</div>
+                    <div id="hash-value" class="left-align medium-padding-vertical text-content-return">Hash Value:<br>-</div>
+                    <div id="task-hash" class="left-align medium-padding-vertical text-content-return">Task Hash:<br>-</div>
+                    <div id="manager-address" class="left-align medium-padding-vertical text-content-return">Manager Address:<br>-</div>
+                    <div id="reward" class="left-align medium-padding-vertical text-content-return">Reward:<br>-</div>
+                    <div id="deadline" class="left-align medium-padding-vertical">Deadline (UTC): -</div>
+                    <div id="completed" class="left-align medium-padding-vertical">Task Completed: -</div>
+                    <div id="key-reveal" class="left-align medium-padding-vertical">Key Reveal: -</div>
+                    <div id="difficulty" class="left-align medium-padding-vertical">Difficulty: -</div>
+
+                    <!-- Fund task section -->
+                    <div class="row vertically-center-row medium-padding-vertical">
+                        <div class="left-align label-space-right">Fund Task Amount (Wei): </div>
+                        <input type="text" id="fund-input" class="input-line medium-text xx-large-width left"
+                            placeholder="10 000 000 000 000 000">
+                    </div>
+                    <div id="manager-key-reveal-section" class="row vertically-center-row hide">
+                        <div class="left-align label-space-right">Manager Key Reveal: </div>
+                        <input type="text" id="key-reveal-input" class="input-line medium-text hash-input-width left"
+                            placeholder="0x1234567812345678123456781234567812345678123456781234567812345678">
+                    </div>
+                    <div class="row spaced-row medium-padding-vertical">
+                        <div id="fund-button" class="inactive-payable-button xx-large-width medium-padding">Fund Task</div>
+                        <div id="withdraw-funds-button" class="inactive-payable-button xx-large-width medium-padding">
+                            Withdraw Task
+                            Funds</div>
+                    </div>
+                    <div class="row">
+                        <div id="fund-error"></div>
+                    </div>
+
+                    <!-- Discover task section -->
+                    <discover-section class="discover-section"></discover-section>
+
+                    <!-- Task -->
+                    <div class="task-json left-align medium-padding-vertical">(!) No Task Data - Discover Task Or
+                        Upload Locally</div>
+
+                    <!-- Task specifications -->
+                    <div class="task-specifications-container"></div>
+                </div>
+
+                <!-- Direct display section -->
+                <div class="direct-display hide medium-padding">
+
+                    <!-- Show message if task is already completed -->
+                    <div class="direct-display__task-completed hide">
+                        <div class="direct-display__task-completed-text large-text left-align"></div>
+                        <div class="row-spaced large-margin-vertical ">
+                            <div class="direct-display__show-solution border-button medium-padding xx-large-width">Show Solution</div>
+                            <div class="direct-display__try-solution border-button medium-padding xx-large-width">Try Solution Myself</div>
                         </div>
                     </div>
 
-                    <!-- Manual discover section -->
-                    <div id="manual-section" class="hide">
-                        <div class="row vertically-center-row">
+                    <!-- Discover task section -->
+                    <discover-section class="direct-display__discover-section"></discover-section>
+                    
+                    <!-- User enters task solution details -->
+                    <div class="direct-display__input-solution hide">
 
-                            <!-- User search input section -->
-                            <div id="search-text" class="medium-text padding">Download From User: </div>
-                            <input id="user-search-box" type="text"
-                                class="input-line address-input-width medium-text left-align margin"
-                                placeholder="Search User Address">
+                        <!-- Reward for completing the task -->
+                        <div class="direct-display__input-solution__reward large-text left-align text-content-return">Task Reward:<br>-</div>
+
+                        <div class="large-text medium-padding-vertical left-align">Task Instructions</div>
+                        <div class="direct-display__input-solution__instructions left-align text-content-return">(!) No Task Data - Discover Task Or Upload Locally</div>
+                        <div class="direct-display__input-solution__download-task-button inactive-border-button xx-large-width medium-padding medium-margin-vertical">Download Task</div>
+                        
+                        <!-- Input text area for text key solution -->
+                        <div class="left-align medium-padding-vertical">Enter Text Key Solution:</div>
+                        <div class="row-left">
+                            <textarea type="text" class="direct-display__input-solution__input text-area-input text-area full-width x-large-height" placeholder="Text key solution"></textarea>
                         </div>
-                        <div id="manual-search-error"></div>
+                        
+                        <!-- When solution is correct, show message to connect wallet if not connected -->
+                        <div class="direct-display__input-solution__is-correct left-align medium-padding-vertical large-text">Is Solution Correct: -</div>
+                        <div class="direct-display__input-solution__connect-wallet left-align hide">
+                            <div>Your solution is correct</div>
+                            <div>Connect wallet to submit solution and receive reward</div>
+                            <div class="direct-display__input-solution__connect-wallet-button border-button medium-padding fit-content-width medium-margin-vertical">Connect Wallet</div>
+                            <div class="direct-display__input-solution__connect-wallet-error"></div>
+                        </div>
+
+                        <!-- Generate nonce necessary for hash task submission -->
+                        <div class="direct-display__input-solution__nonce-generation left-align medium-margin-vertical hide">
+                            <div>Generating Nonce...</div>
+                            <div class="direct-display__input-solution__nonce-generation-time">Estimated Wait Time: -</div>
+                            <div class="direct-display__input-solution__nonce-wait-time text-content-return">Actual Wait Time:    -</div>
+                        </div>
+
+                        <!-- Submit hash task -->
+                        <div class="medium-margin-vertical left-align">
+                            <div class="direct-display__input-solution__submit-button inactive-payable-button medium-padding fit-content-width">Submit Hash Task</div>
+                            <div class="direct-display__input-solution__submit-error medium-padding-vertical text-content-return">(!) Solution must be found before task submission</div>
+                        </div>
                     </div>
 
-                    <!-- Auto discover section -->
-                    <div id="auto-section" class="hide">
+                    <!-- Show the task solution if already completed -->
+                    <div class="direct-display__solution left-align hide">
 
-                        <!-- Try download from user link button -->
-                        <div id="try-download-button" class="border-button padding margin text-content-return wrap-text">Try Download From: -
-                        </div>
-                        <div id="auto-download-error"></div>
+                        <!-- Hash task solution key and value from blockchain -->
+                        <div class="direct-display__solution__hash-key medium-padding-vertical text-content-return">Hash Key:<br>-</div>
+                        <div class="direct-display__solution__hash-value medium-padding-vertical text-content-return">Hash Value:<br>-</div>
 
-                        <!-- Skip user/link buttons -->
-                        <div id="skip-section" class="row">
-                            <div id="skip-address-button" class="inactive-border-button padding margin">Skip Address
-                            </div>
-                            <div id="skip-link-button" class="inactive-border-button padding margin">Skip Link</div>
-                        </div>
+                        <!-- Task instructions and solution -->
+                        <div class="large-text medium-padding-vertical">Task Instructions</div>
+                        <div class="direct-display__solution__instructions text-content-return">(!) No Task Data - Discover Task Or Upload Locally</div>
+                        <div class="direct-display__solution__download-task-button inactive-border-button xx-large-width medium-padding medium-margin-vertical">Download Task</div>
+                        <div class="large-text medium-padding-vertical">Task Solution</div>
+                        <div class="direct-display__solution__solution-text text-content-return">(!) No Task Data - Discover Task Or Upload Locally</div>
+                        <div class="direct-display__solution__download-solution-button inactive-border-button xx-large-width medium-padding medium-margin-vertical">Download Solution</div>
+                        <a class="direct-display__solution__download-solution-anchor"></a>
                     </div>
                 </div>
-
-                <!-- Task -->
-                <div id="task-json" class="left-align margin">No Task Data - Discover Task Or
-                    Upload Locally</div>
-
-                <!-- Task specifications -->
-                <div id="task-specifications-container"></div>
             </div>
 
             <!-- Right column area -->
@@ -138,9 +182,8 @@
 
                 <!-- Task zip file tree -->
                 <textarea disabled id="task-file-tree"
-                    class="file-tree">No Task Data - Discover Task Or Upload Locally</textarea>
+                    class="file-tree">(!) No Task Data - Discover Task Or Upload Locally</textarea>
             </div>
-
 
             <!-- Help -->
             <div id="help-container">

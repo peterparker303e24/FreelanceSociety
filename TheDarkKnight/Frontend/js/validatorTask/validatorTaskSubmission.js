@@ -51,6 +51,8 @@ const tryDownloadButton = document.getElementById("try-download-button");
 const skipAddressButton = document.getElementById("skip-address-button");
 const skipLinkButton = document.getElementById("skip-link-button");
 const taskJsonArea = document.getElementById("task-json");
+const taskSpecificationsContainer
+    = document.getElementById("task-specifications-container");
 const saveLocallyButton = document.getElementById("save-locally-button");
 const downloadTaskAnchor = document.getElementById("download-task-anchor");
 const uploadLocallyButton = document.getElementById("upload-locally-button");
@@ -1057,6 +1059,7 @@ async function dataHashMatchFound(zipFile) {
 
             // Formats the specification contents with the requirement
             formatTaskJson(
+                taskSpecificationsContainer,
                 jsonObject[i],
                 requirementJson
             );
@@ -1065,6 +1068,7 @@ async function dataHashMatchFound(zipFile) {
             // If the parsing results in an error, then display a warning for
             // the requirement
             formatTaskJson(
+                taskSpecificationsContainer,
                 null,
                 null
             );

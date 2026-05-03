@@ -9,19 +9,35 @@ import {
     formatTaskJson,
     updateInputNumberToGroupedDigits,
     continueSearch,
-    formatWei,
     getRequirementVersionData,
     parseUserData,
-    urlNoTrailingSlash
+    urlNoTrailingSlash,
+    formatInConfiguredValue,
+    getEthDisplayType,
+    convertTab,
+    downloadFile,
+    debounce,
+    formatTimeHoursMinutesSeconds,
+    getExpectedDifficultyValueGenerationTime,
+    getDifficultyValueFromDifficulty,
+    getDifficultyValue,
+    getLastInteractionBlockFromBlock
 } from "../../utils/commonFunctions.js";
 import {
     HASH_TASK_CONTRACT_ADDRESS,
     THE_LIST_CONTRACT_ADDRESS,
     USERS_CONTRACT_ADDRESS,
-    THE_LIST_CONTRACT_MINIMUM_BLOCK
+    THE_LIST_CONTRACT_MINIMUM_BLOCK,
+    ETH_DISPLAY_TYPES_TEXT,
+    HASH_TASK_CONTRACT_MINIMUM_BLOCK
 } from "../../utils/constants.js";
+import { DiscoverSection } from "../components/discoverSection.js";
 
 // Page elements
+const directDisplayTab = document.getElementById("direct-display-tab");
+const basicDisplayTab = document.getElementById("basic-display-tab");
+const basicDisplaySection = document.getElementById("basic-display-section");
+const directDisplaySection = document.querySelector(".direct-display");
 const taskId = document.getElementById("task-id");
 const hash = document.getElementById("hash-value");
 const taskHash = document.getElementById("task-hash");
@@ -37,28 +53,97 @@ const managerKeyRevealInput = document.getElementById("key-reveal-input");
 const fundButton = document.getElementById("fund-button");
 const withdrawFundsButton = document.getElementById("withdraw-funds-button");
 const fundError = document.getElementById("fund-error");
-const discoverSection = document.getElementById("discover-section");
-const autoDiscoverButton = document.getElementById("auto-discover-button");
-const autoDownloadError = document.getElementById("auto-download-error");
-const autoDiscoverSection = document.getElementById("auto-section");
-const manualDiscoverButton = document.getElementById("manual-discover-button");
-const manualSection = document.getElementById("manual-section");
-const userSearch = document.getElementById("user-search-box");
-const manualSearchError = document.getElementById("manual-search-error");
-const tryDownloadButton = document.getElementById("try-download-button");
-const skipAddressButton = document.getElementById("skip-address-button");
-const skipLinkButton = document.getElementById("skip-link-button");
-const taskJsonArea = document.getElementById("task-json");
+const discoverSection = document.querySelector(".discover-section");
+const taskJsonArea = document.querySelector(".task-json");
+const taskSpecificationsContainer = document.querySelector(
+    ".task-specifications-container"
+);
+const taskCompletedSection = document.querySelector(
+    ".direct-display__task-completed"
+);
+const taskCompletedText = document.querySelector(
+    ".direct-display__task-completed-text"
+);
+const showSolutionButton = document.querySelector(
+    ".direct-display__show-solution"
+);
+const trySolutionButton = document.querySelector(
+    ".direct-display__try-solution"
+);
+const directDiscoverSection = document.querySelector(
+    ".direct-display__discover-section"
+);
+const inputSolutionSection = document.querySelector(
+    ".direct-display__input-solution"
+);
+const solutionReward = document.querySelector(
+    ".direct-display__input-solution__reward"
+);
+const inputSolutionInstructions = document.querySelector(
+    ".direct-display__input-solution__instructions"
+);
+const inputSolutionDownloadTask = document.querySelector(
+    ".direct-display__input-solution__download-task-button"
+);
+const textKeySolutionInput = document.querySelector(
+    ".direct-display__input-solution__input"
+);
+const isCorrectText = document.querySelector(
+    ".direct-display__input-solution__is-correct"
+);
+const inputSolutionConnectWalletSection = document.querySelector(
+    ".direct-display__input-solution__connect-wallet"
+);
+const inputSolutionConnectWalletButton = document.querySelector(
+    ".direct-display__input-solution__connect-wallet-button"
+);
+const inputSolutionConnectWalletError = document.querySelector(
+    ".direct-display__input-solution__connect-wallet-error"
+);
+const nonceGenerationSection = document.querySelector(
+    ".direct-display__input-solution__nonce-generation"
+);
+const nonceGenerationTime = document.querySelector(
+    ".direct-display__input-solution__nonce-generation-time"
+);
+const actualGenerationTime = document.querySelector(
+    ".direct-display__input-solution__nonce-wait-time"
+);
+const inputSolutionSubmitTaskButton = document.querySelector(
+    ".direct-display__input-solution__submit-button"
+);
+const inputSolutionSubmitError = document.querySelector(
+    ".direct-display__input-solution__submit-error"
+);
+const solutionSection = document.querySelector(".direct-display__solution");
+const solutionHashKey = document.querySelector(
+    ".direct-display__solution__hash-key"
+);
+const solutionHashValue = document.querySelector(
+    ".direct-display__solution__hash-value"
+);
+const solutionInstructions = document.querySelector(
+    ".direct-display__solution__instructions"
+);
+const solutionDownloadTaskButton = document.querySelector(
+    ".direct-display__solution__download-task-button"
+);
+const solutionTaskSolution = document.querySelector(
+    ".direct-display__solution__solution-text"
+);
+const solutionDownloadSolutionButton = document.querySelector(
+    ".direct-display__solution__download-solution-button"
+);
 const saveLocallyButton = document.getElementById("save-locally-button");
-const downloadTaskAnchor = document.getElementById("download-task-anchor");
 const uploadLocallyButton = document.getElementById("upload-locally-button");
 const uploadErrorText = document.getElementById("upload-locally-error");
 const zipInput = document.getElementById("file-input");
 const submitTaskButton = document.getElementById("submit-task-button");
 const viewHashTasksButton = document.getElementById("view-hash-tasks-button");
 const addHashTaskButton = document.getElementById("add-hash-task-button");
-const taskFileTreeArea
-    = document.getElementById("task-file-tree");
+const taskFileTreeArea = document.getElementById(
+    "task-file-tree"
+);
 
 // Users, hash task, and The List contract addresses on the blockchain
 const usersContractAddress = USERS_CONTRACT_ADDRESS;
@@ -89,7 +174,7 @@ const theListContract = new ethers.Contract(
     provider
 );
 
-// Gets the URL parameters and defaults to 0.1
+// Gets the URL parameters and returns to task search page if invalid
 const url = new URL(window.location.href);
 const params = Object.fromEntries(url.searchParams.entries());
 
@@ -136,9 +221,33 @@ let isKeyReveal;
 let userAddress;
 let taskHashValue;
 let hashTaskHash;
+let tabSection;
 const emptyHash
     = "0x0000000000000000000000000000000000000000000000000000000000000000";
 const hashTaskIndexValue = Number(hashTaskIndex);
+let hashKey;
+let difficultyValue;
+let generatingNonce;
+let generatedNonce;
+
+// Configure the tab section
+if (typeof (params.display) === "string") {
+    const display = params.display;
+    if (display === "basic") {
+        tabSection === "basic";
+    } else if (display === "direct") {
+        tabSection = "direct";
+    }
+}
+if (tabSection === "direct") {
+    selectDirectDisplay();
+} else {
+    selectBasicDisplay();
+}
+
+// Switch tab section when tab clicked
+basicDisplayTab.addEventListener("click", selectBasicDisplay);
+directDisplayTab.addEventListener("click", selectDirectDisplay);
 
 // Updates the text of the task ID
 taskId.textContent = `Task ID: h-${hashTaskIndex}`;
@@ -146,7 +255,11 @@ taskId.textContent = `Task ID: h-${hashTaskIndex}`;
 // Update hash task variables with data retrieved from the blockchain
 hashTaskContract.getHashTaskHash(hashTaskIndexValue).then(h => {
     taskHashValue = h;
-    hash.textContent = `Hash Value:\r\n${taskHashValue}`;
+    hash.textContent = `Hash Value:\n${taskHashValue}`;
+    solutionHashValue.textContent = `Hash Value:\n${taskHashValue}`;;
+
+    // Test solution correctness with existing user input
+    evaluateSolutionCorrectness()
 
     // Allow the user to withdraw funds if available and diplay manager key
     // reveal section if necessary
@@ -154,22 +267,28 @@ hashTaskContract.getHashTaskHash(hashTaskIndexValue).then(h => {
 });
 hashTaskContract.getHashTaskTaskHash(hashTaskIndexValue).then(h => {
     hashTaskHash = h;
-    taskHash.textContent = `Task Hash:\r\n${hashTaskHash}`;
+    taskHash.textContent = `Task Hash:\n${hashTaskHash}`;
 
     // Discover task data if manual discover querystring provided
     manuallyDiscoverQueryString();
 });
 hashTaskContract.getHashTaskManagerAddress(hashTaskIndexValue).then(a => {
     taskManagerAddress = a;
-    managerAddress.textContent = `Manager Address:\r\n${taskManagerAddress}`;
+    managerAddress.textContent = `Manager Address:\n${taskManagerAddress}`;
 
     // Allow the user to withdraw funds if available and diplay manager key
     // reveal section if necessary
     updateWithdrawFundsAndKeyRevealSection();
 });
 hashTaskContract.getHashTaskTotalWei(hashTaskIndexValue).then(w => {
+    const ethDisplayType = getEthDisplayType();
     reward.textContent
-        = `Reward (Wei): ${formatWei(w)}`;
+        = `Reward:\n${formatInConfiguredValue(w, ethDisplayType)} `
+            + `${ETH_DISPLAY_TYPES_TEXT[ethDisplayType]}`;
+    solutionReward.textContent = `Task Reward:\n`
+        + `${formatInConfiguredValue(w, ethDisplayType)} `
+        + `${ETH_DISPLAY_TYPES_TEXT[ethDisplayType]}`;
+    
 });
 hashTaskContract.getHashTaskDeadline(hashTaskIndexValue).then(d => {
     deadline.textContent
@@ -182,16 +301,28 @@ hashTaskContract.getHashTaskDeadline(hashTaskIndexValue).then(d => {
         replaceClass(fundButton, "inactive-payable-button", "payable-button");
     }
 
+    // Update the direct task section with information
+    updateDirectTaskSection();
+
     // Allow the user to withdraw funds if available and diplay manager key
     // reveal section if necessary
     updateWithdrawFundsAndKeyRevealSection();
 });
 hashTaskContract.getHashTaskDifficulty(hashTaskIndexValue).then(d => {
-    difficulty.textContent = `Difficulty: ${d}`;
+    difficultyValue = getDifficultyValueFromDifficulty(Number(d));
+    difficulty.textContent = `Difficulty: ${Number(d)}`;
 });
 hashTaskContract.getHashTaskComplete(hashTaskIndexValue).then(c => {
     isTaskComplete = c;
-    completed.textContent = `Task Completed: ${isTaskComplete ? "TRUE" : "FALSE"}`;
+    completed.textContent
+        = `Task Completed: ${isTaskComplete ? "TRUE" : "FALSE"}`;
+    if (isTaskComplete) {
+        inputSolutionSubmitError.textContent = "(!) Task solution has already "
+            + "been found, reward cannot be collected";
+    }
+
+    // Update the direct task section with information
+    updateDirectTaskSection();
 
     // Allow the user to withdraw funds if available and diplay manager key
     // reveal section if necessary
@@ -331,34 +462,89 @@ withdrawFundsButton.addEventListener("click", async () => {
     }
 });
 
-// Toggles to the manual search data view
-manualDiscoverButton.addEventListener("click", showManualSection);
+// Initialize the discover section behavior
+discoverSection
+    .setAutoDiscoverOnClickAction(
+        () => startAutoDiscoverAction(discoverSection)
+    )
+    .setTryDownloadButtonOnClickAction(() => tryDownloadAction(discoverSection))
+    .setSkipAddressOnClickAction(() => skipAddressAction(discoverSection))
+    .setSkipLinkOnClickAction(() => skipLinkAction(discoverSection))
+    .setUserSearchOnChangeAction(() => searchUser(discoverSection))
 
-// Toggles to the auto search data view
-autoDiscoverButton.addEventListener("click", () => {
-    if (hashTaskHash === undefined) {
+// Initialize the direct discover section behavior
+directDiscoverSection
+    .setAutoDiscoverOnClickAction(
+        () => startAutoDiscoverAction(directDiscoverSection)
+    )
+    .setTryDownloadButtonOnClickAction(
+        () => tryDownloadAction(directDiscoverSection)
+    )
+    .setSkipAddressOnClickAction(() => skipAddressAction(directDiscoverSection))
+    .setSkipLinkOnClickAction(() => skipLinkAction(directDiscoverSection))
+    .setUserSearchOnChangeAction(() => searchUser(directDiscoverSection))
+
+// Show the task solution section when button clicked
+showSolutionButton.addEventListener("click", () => {
+    removeClass(solutionSection, "hide");
+    addClass(inputSolutionSection, "hide");
+});
+
+// Show the section to try to find the task solution
+trySolutionButton.addEventListener("click", () => {
+    removeClass(inputSolutionSection, "hide");
+    addClass(solutionSection, "hide");
+});
+
+// Convert user input tab characters into the textbox character instead of
+// tabbing out
+textKeySolutionInput.addEventListener("keydown", (event) => {
+    convertTab(textKeySolutionInput, event, false);
+    isCorrectText.textContent = "Is Solution Correct: -";
+});
+
+// Check if the user solution is correct as they type
+textKeySolutionInput.addEventListener("input", evaluateSolutionCorrectness);
+
+// Query user to connect account with their wallet for contract interaction
+inputSolutionConnectWalletButton.addEventListener(
+    "click",
+    () => {
+        getHashTaskSigner(inputSolutionConnectWalletError)
+            .then(checkAccountConnected);
+    }
+);
+
+// Submit the task with the correct generated nonce and hash key if valid
+inputSolutionSubmitTaskButton.addEventListener("click", async () => {
+    if (hashTaskSigner === undefined
+        || hashKey === undefined
+        || generatingNonce !== false
+        || isTaskComplete
+        || !isBeforeDeadline
+    ) {
         return;
     }
-    showAutoSection();
 
-    // Automatically search for task data
-    continueSearch(
-        {},
-        usersContract,
-        skipLinkButton,
-        skipAddressButton,
-        tryDownloadButton,
-        (userLinks) => `${userLinks[0]}/Tasks/HashTasks/`
-            + `${hashTaskHash.substring(2)}/Task.zip`
+    // Submit the transaction and display message on error
+    let transactionResponse;
+    try {
+        inputSolutionSubmitError.textContent = "Pending transaction...";
+        transactionResponse = await hashTaskSigner.submitHashTask(
+            hashTaskIndex,
+            hashKey,
+            BigInt(generatedNonce)
+        );
+    } catch (error) {
+        inputSolutionSubmitError.textContent
+            = `[X] ERROR: Transaction failed - ${error}`;
+        return;
+    }
 
-    ).then((linkSearchData) => {
-        autoUserAddress = linkSearchData.autoUserAddress;
-        autoUserData = linkSearchData.autoUserData;
-        autoUserLinks = linkSearchData.autoUserLinks;
-        autoUserLinksIndex = linkSearchData.autoUserLinksIndex;
-        canSkipAddress = linkSearchData.canSkipAddress;
-        canSkipLink = linkSearchData.canSkipLink;
-        autoSearchCriteria = linkSearchData.autoSearchCriteria;
+    // Refresh the page when the transaction goes through
+    transactionResponse.wait().then(async () => {
+        inputSolutionSubmitError.textContent
+            = "Task Complete!\nReward has transferred to your account address";
     });
 });
 
@@ -392,41 +578,30 @@ addHashTaskButton.addEventListener("click", () => {
 // Prompts user for upload of task zip, and displays task if valid
 zipInput.addEventListener("change", zipInputClicked);
 
-// After any change in the user search textbox, the user is searched for and if
-// the user exists, then the data is searched through their links
-userSearch.addEventListener("input", searchUser);
-
-// When the button is clicked, the data tries to download from the displayed
-// user/website
-tryDownloadButton.addEventListener("click", tryDownload);
-
-// Continue to search for the task data through other users if any users
-// are left
-skipAddressButton.addEventListener("click", () => {
-    if (canSkipAddress) {
-        continueSearch(
-            autoSearchCriteria,
-            usersContract,
-            skipLinkButton,
-            skipAddressButton,
-            tryDownloadButton,
-            (userLinks) => `${userLinks[0]}/Tasks/HashTasks/`
-                + `${hashTaskHash.substring(2)}/Task.zip`
-        ).then((linkSearchData) => {
-            autoUserAddress = linkSearchData.autoUserAddress;
-            autoUserData = linkSearchData.autoUserData;
-            autoUserLinks = linkSearchData.autoUserLinks;
-            autoUserLinksIndex = linkSearchData.autoUserLinksIndex;
-            canSkipAddress = linkSearchData.canSkipAddress;
-            canSkipLink = linkSearchData.canSkipLink;
-            autoSearchCriteria = linkSearchData.autoSearchCriteria;
-        });
+/**
+ * Continue to search for data through other users if any users are left
+ * @param {DiscoverSection} discoverSection Discover section element
+ */
+function skipAddressAction(discoverSection) {
+    if (!canSkipAddress) {
+        return;
     }
-});
-
-// Continue to search for the task data through other user links if the
-// user has any links left
-skipLinkButton.addEventListener("click", skipLink);
+    continueSearch(
+        autoSearchCriteria,
+        usersContract,
+        discoverSection,
+        (userLinks) => `${userLinks[0]}/Tasks/HashTasks/`
+            + `${hashTaskHash.substring(2)}/Task.zip`
+    ).then((linkSearchData) => {
+        autoUserAddress = linkSearchData.autoUserAddress;
+        autoUserData = linkSearchData.autoUserData;
+        autoUserLinks = linkSearchData.autoUserLinks;
+        autoUserLinksIndex = linkSearchData.autoUserLinksIndex;
+        canSkipAddress = linkSearchData.canSkipAddress;
+        canSkipLink = linkSearchData.canSkipLink;
+        autoSearchCriteria = linkSearchData.autoSearchCriteria;
+    });
+}
 
 /**
  * @typedef {Object} SearchCriteria Search data for getting users links and data
@@ -447,7 +622,8 @@ async function zipInputClicked(event) {
     // Validate the input is a .zip
     const inputFile = event.target.files[0];
     if (inputFile.type !== 'application/zip') {
-        uploadErrorText.textContent = "[X] ERROR: File uploaded is not a zip file";
+        uploadErrorText.textContent
+            = "[X] ERROR: File uploaded is not a zip file";
         return;
     }
 
@@ -481,8 +657,9 @@ async function zipInputClicked(event) {
 /**
  * Searches the user from the user address textbox for task data from
  * their links
+ * @param {DiscoverSection} discoverSection Discover section element
  */
-async function searchUser() {
+async function searchUser(discoverSection) {
 
     // Task can only be discovered if the task hash is known
     if (hashTaskHash === undefined) {
@@ -490,88 +667,159 @@ async function searchUser() {
     }
 
     // Reset manual search error text
-    manualSearchError.textContent = '';
+    discoverSection.setManualDiscoverError("");
 
     // Formats the hex bytes
-    const userSearchValue = prefixHexBytes(userSearch.value);
+    const userSearchValue = prefixHexBytes(discoverSection.getManualInput());
 
     // Validate user address
     if (userSearchValue === null || userSearchValue.length !== 42) {
         return;
     }
 
-    // Get each link from the comma separated list of user
+    // Get each valid URL link from the comma separated list of user links
     const userLinks = await usersContract.links(userSearchValue);
     const userLinksArray = userLinks.split(",");
+    let userUrls = userLinksArray
+        .map(urlString => {
+            try {
+                return urlNoTrailingSlash(new URL(urlString));
+            } catch { return null; }
+        })
+        .filter(urlObj => urlObj !== null);
 
-    // Search each link as URL to find data matching task hash
-    for (let i = 0; i < userLinksArray.length; i++) {
-
-        // Try to read the link as a URL and upon failure continue to next link
-        let userUrl = null;
-        try {
-            userUrl = urlNoTrailingSlash(new URL(userLinksArray[i]));
-        } catch (_) {
-            continue;
-        }
-
-        // Retrieve data from link
-        let response;
-        const endpoint = `${userUrl}/Tasks/HashTasks/`
-            + `${hashTaskHash.substring(2)}/Task.zip`;
-        try {
-            response = await fetch(endpoint);
-        } catch {
-            manualSearchError.textContent
-                += `(!) Failed download from endpoint ${endpoint}\n`;
-        }
-        if (response === undefined || !response.ok) {
-            continue;
-        }
-        const arrayBuffer = await response.arrayBuffer();
-        const uint8Array = new Uint8Array(arrayBuffer);
-
-        // Validate the data hash matches task hash
-        const downloadHash = keccak256(uint8Array).toString('hex');
-        if (downloadHash !== hashTaskHash) {
-            manualSearchError.textContent = `Incorrect data hash from,`
-                + `\r\nUser: ${userSearchValue}`
-                + `\r\nAt address: ${userUrl}/Tasks/HashTasks/`
-                + `${hashTaskHash.substring(2)}/Task.zip`;
-            continue;
-        }
-
+    // Try to download data from all user endpoints, and if any succeed with the
+    // matching data hash, then display the data
+    try {
+        const arrayBuffer = await tryDownloadDataFromUrlsParallel(
+            userUrls,
+            discoverSection
+        );
+        
         // Data found so reset manual search error and parse file
-        manualSearchError.textContent = "";
+        discoverSection.setManualDiscoverError("");
         dataHashMatchFound(arrayBuffer);
-        return;
-    }
+    } catch { }
+}
 
-    // Display error if data not found from user
-    manualSearchError.textContent = `[X] ERROR: Task data not found from `
-        + `user: ${userSearchValue}`;
+/**
+ * Try to download the data from each given base URL. If an endpoint response
+ * fails or does not have the correct data hash, then display a warning for that
+ * endpoint. If all endpoints fail, then display an error. If any one endpoints
+ * succeed with the correct data hash, then stop all other featches and return
+ * the data.
+ * @param {Array<String>} userUrls Array of valid base URLs of the user
+ * @param {DiscoverSection} discoverSection Discover section element
+ * @returns {Promise<ArrayBuffer>} The data buffer of the data that has been
+ * validated with the hash
+ */
+async function tryDownloadDataFromUrlsParallel(userUrls, discoverSection) {
+
+    // Initialize controllers and signals for parallel fetches, whether any hash
+    // validated data fetch succeeded, the cumulative fetch errors, and the
+    // number of fetch failures
+    const controllers = userUrls.map(() => new AbortController());
+    const signals = controllers.map(controller => controller.signal);
+    let settled = false;
+    let cumulativeError = "";
+    let failures = 0;
+
+    // Return the promise to return the hash validated data or reject
+    return new Promise((resolve, reject) => {
+        userUrls.forEach((url, i) => {
+
+            // Initialize fetch data and endpoint URL
+            const opt = { signal: signals[i] };
+            const endpoint = `${url}/Tasks/HashTasks/`
+                + `${hashTaskHash.substring(2)}/Task.zip`;
+
+            /**
+             * Mark the endpoint as a failure, add an error message, and reject
+             * the promise if all endpoints have failed
+             * @param {String} message Message to add to manual discover error
+             */
+            const endpointFailed = (message) => {
+                failures++;
+                cumulativeError += message;
+                discoverSection.setManualDiscoverError(cumulativeError);
+                if (failures === userUrls.length && !settled) {
+                    cumulativeError
+                        += `[X] ERROR: All endpoints failed for user`;
+                    discoverSection.setManualDiscoverError(cumulativeError);
+                    reject(new Error('All endpoints failed'));
+                }
+            };
+
+            // Make the actual fetch request
+            fetch(
+                endpoint,
+                opt
+            )
+                .then(async response => {
+
+                    // If the fetch gets a response back, then get the response
+                    // data
+                    if (settled) return;
+                    if (response === undefined || !response.ok) {
+                        endpointFailed(
+                            `(!) Failed download from endpoint ${endpoint}\n`
+                        );
+                        return;
+                    }
+                    const arrayBuffer = await response.arrayBuffer();
+                    const uint8Array = new Uint8Array(arrayBuffer);
+
+                    // Validate the data hash matches task hash
+                    const downloadHash = keccak256(uint8Array).toString('hex');
+                    if (downloadHash !== hashTaskHash) {
+                        endpointFailed(
+                            `(!) Incorrect data hash at endpoint ${endpoint}\n`
+                        );
+                        return;
+                    }
+                    if (settled) return;
+
+                    // If the endpoint finds the hash validated data first, then
+                    // cancel other fetch requests and return the data
+                    settled = true;
+                    controllers.forEach((c, idx) => {
+                        if (idx !== i) c.abort();
+                    });
+                    resolve(arrayBuffer);
+                })
+                .catch(err => {
+
+                    // Mark the error if the fetch request fails
+                    if (settled && err && err.name === 'AbortError') return;
+                    endpointFailed(
+                        `(!) Failure reaching endpoint ${endpoint}\n`
+                    );
+                });
+        });
+    });
 }
 
 /**
  * Tries to download task data from the current user link
+ * @param {DiscoverSection} discoverSection Discover section element
  */
-async function tryDownload() {
-
-    // If the end of available users reached, no user can be searched
-    if (!canSkipAddress && !canSkipLink) {
-        return;
-    }
+async function tryDownloadAction(discoverSection) {
 
     // Download data from current user link
     const userUrl = autoUserLinks[autoUserLinksIndex];
-    const response = await fetch(
-        `${userUrl}/Tasks/HashTasks/${hashTaskHash.substring(2)}/Task.zip`
-    );
+    let response;
+    try {
+        response = await fetch(
+            `${userUrl}/Tasks/HashTasks/${hashTaskHash.substring(2)}/Task.zip`
+        );
+    } catch {}
 
     // Validate correct link response
-    if (!response.ok) {
-        autoDownloadError.textContent = `Download failed from ${userUrl}`
-            + `/Tasks/HashTasks/${hashTaskHash.substring(2)}/Task.zip`;
+    if (response === undefined || !response.ok) {
+        discoverSection.setAutoDiscoverError(
+            `[X] ERROR: Download failed from ${userUrl}/Tasks/HashTasks/`
+            + `${hashTaskHash.substring(2)}/Task.zip`
+        );
         return;
     }
 
@@ -584,16 +832,19 @@ async function tryDownload() {
         // Parse file
         dataHashMatchFound(arrayBuffer);
     } else {
-        autoDownloadError.textContent = `Incorrect data hash from ${userUrl}`
-            + `/Tasks/HashTasks/${hashTaskHash.substring(2)}/Task.zip`;
+        discoverSection.setAutoDiscoverError(
+            `[X] ERROR: Incorrect data hash from ${userUrl}/Tasks/HashTasks/`
+            + `${hashTaskHash.substring(2)}/Task.zip`
+        );
     }
 }
 
 /**
  * Updates download from link button with next user link and inactivates next
  * link button if user has no more links
+ * @param {DiscoverSection} discoverSection Discover section element
  */
-function skipLink() {
+function skipLinkAction(discoverSection) {
 
     // Validate user has another link
     if (!canSkipLink) {
@@ -606,15 +857,18 @@ function skipLink() {
 
     // If at final link, update visuals and link skip variable
     if (autoUserLinks.length === autoUserLinksIndex + 1) {
-        replaceClass(skipLinkButton, "border-button", "inactive-border-button");
+        discoverSection.setIsSkipLinkButtonEnabled(false);
         canSkipLink = false;
     }
 
     // Update download from link button
-    tryDownloadButton.textContent = `Try download from: `
-        + `${parseUserData(autoUserData).data}\r\nAddress: `
-        + `${autoUserAddress}\r\nLink: ${autoUserLinks[autoUserLinksIndex]}`
-        + `/Tasks/HashTasks/${hashTaskHash.substring(2)}/Task.zip`;
+    discoverSection.setIsTryDownloadButtonEnabled(true);
+    discoverSection.setTryDownloadText(
+        `Try download from: `
+        + `${parseUserData(autoUserData).data}\nAddress: `
+        + `${autoUserAddress}\nLink: ${autoUserLinks[autoUserLinksIndex]}`
+        + `/Tasks/HashTasks/${hashTaskHash.substring(2)}/Task.zip`
+    );
 }
 
 /**
@@ -628,18 +882,28 @@ function unlockSaveTaskLocally() {
         return;
     }
 
-    // Update the save button visual to interactable
+    // Update the save/downlaod task button visual to interactable
     replaceClass(saveLocallyButton, "inactive-border-button", "border-button");
+    replaceClass(
+        solutionDownloadTaskButton,
+        "inactive-border-button",
+        "border-button"
+    );
+    replaceClass(
+        inputSolutionDownloadTask,
+        "inactive-border-button",
+        "border-button"
+    );
 
     // Downloads the task data on button click
-    saveLocallyButton.addEventListener("click", () => {
-        const blob = new Blob([localZipFile], { type: 'application/zip' });
-        const url = URL.createObjectURL(blob);
-        downloadTaskAnchor.href = url;
-        downloadTaskAnchor.download
-            = `Task-h-${hashTaskIndex}.zip`;
-        downloadTaskAnchor.click();
-    });
+    const downloadTask = () => downloadFile(
+        localZipFile,
+        `Task-h-${hashTaskIndex}.zip`,
+        "application/zip",
+    );
+    saveLocallyButton.addEventListener("click", downloadTask);
+    solutionDownloadTaskButton.addEventListener("click", downloadTask);
+    inputSolutionDownloadTask.addEventListener("click", downloadTask);
 
     // Save button is now unlocked
     saveLocallyButtonUnlocked = true;
@@ -664,6 +928,16 @@ async function dataHashMatchFound(zipFile) {
 
     // Remove discover data section
     addClass(discoverSection, "hide");
+    addClass(directDiscoverSection, "hide");
+
+    // Show the input solution section if the deadline has not passed and the
+    // task has not yet been completed
+    if (isBeforeDeadline !== undefined && isBeforeDeadline
+        && isTaskComplete !== undefined && !isTaskComplete
+    ) {
+        removeClass(inputSolutionSection, "hide");
+    }
+    tryGetSolution(localZipFile, hashKey);
 
     // Zip file data variables
     let zipFileContents = [];
@@ -780,6 +1054,7 @@ async function dataHashMatchFound(zipFile) {
 
             // Formats the specification contents with the requirement
             formatTaskJson(
+                taskSpecificationsContainer,
                 jsonObject[i],
                 requirementJson
             );
@@ -788,8 +1063,9 @@ async function dataHashMatchFound(zipFile) {
             // If the parsing results in an error, then display a warning for
             // the requirement
             formatTaskJson(
-                jsonObject[i],
-                requirementJson
+                taskSpecificationsContainer,
+                null,
+                null
             );
         }
     }
@@ -807,7 +1083,8 @@ async function getHashTaskSigner(errorElement) {
         try {
             signer = await provider.getSigner();
         } catch (error) {
-            errorElement.textContent = `[X] ERROR: Get signer failed - ${error}`;
+            errorElement.textContent
+                = `[X] ERROR: Get signer failed - ${error}`;
             return;
         }
     }
@@ -830,61 +1107,43 @@ async function getHashTaskSigner(errorElement) {
  * reveal row to the task manager before they can withdraw their funds
  */
 function updateWithdrawFundsAndKeyRevealSection() {
-    if (isBeforeDeadline !== undefined
-        && isKeyReveal !== undefined
-        && isTaskComplete !== undefined
-        && taskManagerAddress !== undefined
-    ) {
+    if (isBeforeDeadline === undefined
+        || isKeyReveal === undefined
+        || isTaskComplete === undefined
+        || taskManagerAddress === undefined) {
+            return;
+    }
 
-        // If the user is a manager, validate they can withdraw first, otherwise
-        // validate whether any funder can withdraw
-        if (!isBeforeDeadline && isKeyReveal && !isTaskComplete) {
-            provider.getSigner().then(s => {
-                userAddress = s.address;
-                if (userAddress === taskManagerAddress) {
-                    removeClass(managerSection, "hide");
-                    canWithdrawFunds = false;
-                } else {
-                    canWithdrawFunds = !isBeforeDeadline && !isTaskComplete;
-                    if (canWithdrawFunds) {
-                        replaceClass(
-                            withdrawFundsButton,
-                            "inactive-payable-button",
-                            "payable-button"
-                        );
-                    }
+    // If the user is a manager, validate they can withdraw first, otherwise
+    // validate whether any funder can withdraw
+    if (!isBeforeDeadline && isKeyReveal && !isTaskComplete) {
+        provider.getSigner().then(s => {
+            userAddress = s.address;
+            if (userAddress === taskManagerAddress) {
+                removeClass(managerSection, "hide");
+                canWithdrawFunds = false;
+            } else {
+                canWithdrawFunds = !isBeforeDeadline && !isTaskComplete;
+                if (canWithdrawFunds) {
+                    replaceClass(
+                        withdrawFundsButton,
+                        "inactive-payable-button",
+                        "payable-button"
+                    );
                 }
-            });
-        } else {
-            canWithdrawFunds = !isBeforeDeadline && !isTaskComplete;
-            if (canWithdrawFunds) {
-                replaceClass(
-                    withdrawFundsButton,
-                    "inactive-payable-button",
-                    "payable-button"
-                );
             }
+        });
+    } else {
+        canWithdrawFunds = !isBeforeDeadline && !isTaskComplete;
+        if (canWithdrawFunds) {
+            replaceClass(
+                withdrawFundsButton,
+                "inactive-payable-button",
+                "payable-button"
+            );
         }
     }
-}
-
-/**
- * Shows the manually discover data section and hides the auto discover data
- * section
- */
-function showManualSection() {
-    addClass(autoDiscoverSection, "hide");
-    removeClass(manualSection, "hide");
-}
-
-/**
- * Hides the manually discover data section and shows the auto discover data
- * section
- */
-function showAutoSection() {
-    replaceClass(tryDownloadButton, "inactive-border-button", "border-button");
-    removeClass(autoDiscoverSection, "hide");
-    addClass(manualSection, "hide");
+    
 }
 
 /**
@@ -900,7 +1159,563 @@ function manuallyDiscoverQueryString() {
     if (valueHex === null || valueHex.length !== 42) {
         return;
     }
-    showManualSection();
-    userSearch.value = valueHex;
-    searchUser();
+    if (tabSection === "basic") {
+        discoverSection.setManualDiscoverInput(valueHex);
+        searchUser(discoverSection);
+    } else {
+        directDiscoverSection.selectManuallyDiscoverSection();
+        directDiscoverSection.setManualDiscoverInput(valueHex);
+        searchUser(directDiscoverSection);
+    }
+}
+
+/**
+ * Select the basic display tab and hide the direct display section
+ */
+function selectBasicDisplay() {
+    addClass(basicDisplayTab, "tab-selected");
+    removeClass(basicDisplaySection, "hide");
+    removeClass(directDisplayTab, "tab-selected");
+    addClass(directDisplaySection, "hide");
+}
+/**
+ * Select the direct display tab and hide the basic display section
+ */
+function selectDirectDisplay() {
+    addClass(directDisplayTab, "tab-selected");
+    removeClass(directDisplaySection, "hide");
+    removeClass(basicDisplayTab, "tab-selected");
+    addClass(basicDisplaySection, "hide");
+}
+
+/**
+ * Begin search for data through users if any users are found
+ * @param {DiscoverSection} discoverSection Discover section element
+ */
+function startAutoDiscoverAction(discoverSection) {
+    if (hashTaskHash === undefined) {
+        return;
+    }
+
+    // Automatically search for data
+    continueSearch(
+        {},
+        usersContract,
+        discoverSection,
+        (userLinks) => `${userLinks[0]}/Tasks/HashTasks/`
+            + `${hashTaskHash.substring(2)}/Task.zip`
+
+    ).then((linkSearchData) => {
+        autoUserAddress = linkSearchData.autoUserAddress;
+        autoUserData = linkSearchData.autoUserData;
+        autoUserLinks = linkSearchData.autoUserLinks;
+        autoUserLinksIndex = linkSearchData.autoUserLinksIndex;
+        canSkipAddress = linkSearchData.canSkipAddress;
+        canSkipLink = linkSearchData.canSkipLink;
+        autoSearchCriteria = linkSearchData.autoSearchCriteria;
+    });
+}
+
+/**
+ * If the task completion and task deadline information has been retrieved, then
+ * the task input solution section, task completed section, or task deadline
+ * passed sections will show
+ */
+function updateDirectTaskSection() {
+
+    // Validate dependent blockchain data has already been retrieved
+    if (isTaskComplete === undefined || isBeforeDeadline === undefined) {
+        return;
+    }
+
+    // If the task can no longer be completed for the reward then display that
+    // information to the user and try to find the hash key for the solution
+    if (isTaskComplete || !isBeforeDeadline) {
+        if (isTaskComplete) {
+            taskCompletedText.textContent = "(!) Hash Task Already Completed";
+        } else if (!isBeforeDeadline) {
+            taskCompletedText.textContent
+                = "(!) Hash Task Deadline Already Passed";
+        }
+        removeClass(taskCompletedSection, "hide");
+
+        // Try to find the hash key from the blockchain event data
+        tryGetHashKey().then((k) => {
+            if (k === null) {
+                return;
+            }
+            hashKey = k;
+            solutionHashKey.textContent = `Hash Key:\n${hashKey}`;
+
+            // Try to parse the encrypted task solution using the hash key
+            tryGetSolution(localZipFile, hashKey);
+        });
+    
+    // Hide the discover task section if it has already been discovered
+    } else if (localZipFile !== undefined) {
+        removeClass(inputSolutionSection, "hide");
+    }
+}
+
+/**
+ * Binary searches through the blockchain for the block where the hash task is
+ * completed and gets the hash key from the emitted event argument values, and
+ * if instead the task deadline has passed search through all task funds
+ * withdrawn events to search for key reveal
+ * @returns {String | null} Hash key string or null if not found
+ */
+async function tryGetHashKey() {
+
+    // If the task is incomplete, key reveal is false, or manager has not yet
+    // revealed the key, then return null for no hash key found
+    if (!isTaskComplete) {
+
+        // Task funds withdrawn events can only happen after the deadline
+        const taskDeadlineTimestamp
+            = await hashTaskContract.getHashTaskDeadline(hashTaskIndex);
+            
+        // Only stop the search after backtracking to before the task deadline
+        let searchBlock = await provider.getBlockNumber();
+        let blockTimestamp;
+        do {
+
+            // Filter for task funds withdrawn events
+            const taskWithdrawnFilter = await hashTaskContract.filters
+                .TaskWithdrawn()
+                .getTopicFilter();
+            let events = await hashTaskContract.queryFilter(
+                taskWithdrawnFilter,
+                searchBlock,
+                searchBlock
+            );
+
+            // Search for the hash key in possibly multiple events
+            for (const event of events) {
+                if (keccak256(event.args[1]) === taskHashValue) {
+                    return event.args[1];
+                }
+            }
+
+            // Use the lastInteractionBlock blockchain variable to search next
+            // at that previous block index
+            blockTimestamp = BigInt(
+                (await provider.getBlock(searchBlock)).timestamp
+            );
+            searchBlock = await getLastInteractionBlockFromBlock(
+                hashTaskContract,
+                searchBlock
+            );
+        } while (blockTimestamp > taskDeadlineTimestamp);
+
+        // If no hash key has been found, finish search and return null
+        return null;
+    }
+
+    // Return null for hash key not found for unexpected error
+    try {
+
+        // Binary search start and end blocks
+        let startBlock = HASH_TASK_CONTRACT_MINIMUM_BLOCK;
+        let endBlock = await provider.getBlockNumber();
+
+        // Binary search process
+        while (startBlock <= endBlock) {
+
+            // Binary split block
+            let middleBlock = Math.floor((startBlock + endBlock) / 2);
+
+            // Filter for task submission blocks
+            const taskCompleteFilter = await hashTaskContract.filters
+                .TaskComplete()
+                .getTopicFilter();
+            let events = await hashTaskContract.queryFilter(
+                taskCompleteFilter,
+                middleBlock,
+                middleBlock
+            );
+
+            // Search through possibly multiple events in a block
+            for (const event of events) {
+                if (hashTaskIndex === Number(event.args[0])) {
+                    return event.args[1];
+                }
+            }
+
+            // Get whether the task has been completed yet at this split block
+            const isTaskCompletedAtMiddleBlock
+                = await hashTaskContract.getHashTaskComplete(
+                    hashTaskIndex,
+                    { blockTag: middleBlock }
+                );
+
+            // Split binary search to earlier if the task was completed before
+            // or after if the task has not yet been completed at the middle
+            // block
+            if (isTaskCompletedAtMiddleBlock) {
+                endBlock = middleBlock - 1;
+
+            } else {
+                startBlock = middleBlock + 1;
+            }
+        }
+    } catch {
+
+        // If an unexpected error is encountered, return null
+        return null;
+    }
+
+    // If no hash key has been found through the binary search, return null
+    return null;
+}
+
+/**
+ * Try to parse, decryt, decode, and display the task solution to the user with
+ * the hash key and setup the solution file download
+ * @param {ArrayBuffer} fileBytes Hash task Task.zip data bytes
+ * @param {String} hashKey Hash key hex data with "0x" prefix
+ */
+async function tryGetSolution(fileBytes, hashKey) {
+
+    // Validate task data has been retrieved
+    if (fileBytes === undefined) {
+        return;
+    }
+
+    // Initialize the task text displays with loading text
+    const loadingMessage = "Loading...";
+    solutionInstructions.textContent = loadingMessage;
+    inputSolutionInstructions.textContent = loadingMessage;
+    solutionTaskSolution.textContent = loadingMessage;
+
+    // Try to parse the task instructions from the Task.zip file specifications
+    let zipFile;
+    let firstSpecification;
+    let encryptedSolutionFile;
+    let decryptedSolutionFile;
+    let encryptedData;
+    let decryptedData;
+    try {
+
+        // Get the specifications JSON from the Task.zip
+        zipFile = await JSZip.loadAsync(fileBytes);
+        const file = zipFile.file(`Task/specifications.json`);
+        const content = await file.async('string');
+        const specificationsJson = JSON.parse(content);
+
+        // Assume the first and only task specification is the task instructions
+        // and parse the instructions for the displays
+        firstSpecification = specificationsJson[0]["specifications"];
+        const instructions = firstSpecification["instructions"];
+        solutionInstructions.textContent = instructions;
+        inputSolutionInstructions.textContent = instructions;
+    } catch {
+
+        // If task instructions could not be parsed from Task.zip, display a
+        // message to the user for instructions sections
+        const failureMessage = "(!) Failed to parse task instructions";
+        solutionInstructions.textContent = failureMessage;
+        inputSolutionInstructions.textContent = failureMessage;
+    }
+
+    // Try to get the encrypted solution file from the Task.zip
+    try {
+        encryptedSolutionFile = firstSpecification["encryptedSolution"];
+        decryptedSolutionFile = firstSpecification["decryptedSolution"];
+        const encryptedFile = zipFile.file(`Task/${encryptedSolutionFile}`);
+        encryptedData = await encryptedFile.async('arraybuffer')
+    } catch {
+        solutionTaskSolution.textContent = "(!) Failed to parse task solution";
+        return;
+    }
+
+    // Try to use the task hash key to decrypt the encrypted solution file
+    try {
+        decryptedData = await decryptData(encryptedData, hashKey.substring(2));
+    } catch {
+        solutionTaskSolution.textContent
+            = "(!) Failed to decrypt task with hash key";
+        return;
+    }
+
+    // Try to decode the decrypted task solution for the solution display
+    try {
+
+        // If the solution is a text file, then display the solution text to the
+        // page and setup the file download
+        if (decryptedSolutionFile.endsWith('.txt')) {
+            const textContent = new TextDecoder().decode(decryptedData);
+            solutionTaskSolution.textContent = textContent;
+            solutionDownloadSolutionButton.addEventListener(
+                "click",
+                () => downloadFile(
+                    decryptedData,
+                    decryptedSolutionFile,
+                    "application/txt"
+                )
+            );
+
+        // If the solution is a ZIP file, then display a message for the user to
+        // download the solution ZIP and setup the file download
+        } else if (decryptedSolutionFile.endsWith('.zip')) {
+            solutionTaskSolution.textContent
+                = `Download ${decryptedSolutionFile} to view solution`;
+            solutionDownloadSolutionButton.addEventListener(
+                "click",
+                () => downloadFile(
+                    decryptedData,
+                    decryptedSolutionFile,
+                    "application/zip",
+                )
+            );
+        
+        // If the solution file type is unknown, then display that file and
+        // setup the file download
+        } else {
+            solutionTaskSolution.textContent = `(!) Solution file not in known `
+                + `format: ${decryptedSolutionFile}`;
+            solutionDownloadSolutionButton.addEventListener(
+                "click",
+                () => downloadFile(
+                    decryptedData,
+                    decryptedSolutionFile,
+                    null
+                )
+            );
+        }
+
+        // Enable the decrypted solution file to be downloaded
+        replaceClass(
+            solutionDownloadSolutionButton,
+            "inactive-border-button",
+            "border-button"
+        )
+
+    // Display an error message to the user if parsing the solution resulted in
+    // an error
+    } catch {
+        solutionTaskSolution.textContent = "(!) Failed to decode task solution";
+    }
+}
+
+/**
+ * Tries to decrypt the given data with the given password using OpenSSL
+ * AES-256-cbc decryption
+ * @param {ArrayBuffer} data Data to try to decrypt
+ * @param {String} password Password string to try to decrypt the encryption
+ * @returns {ArrayBuffer} Decrypted data
+ */
+async function decryptData(data, password) {
+
+    // Configure the crypto decryption data
+    const view = new Uint8Array(data);    
+    const ciphertext = view.slice(16);
+    const salt = view.slice(8, 16);
+    const encoder = new TextEncoder();
+    const passwordBytes = encoder.encode(password);
+    const hash1Data = new Uint8Array(passwordBytes.length + salt.length);
+    hash1Data.set(passwordBytes);
+    hash1Data.set(salt, passwordBytes.length);
+    const hash1 = await crypto.subtle.digest('SHA-256', hash1Data);
+    const key = new Uint8Array(hash1).slice(0, 32);
+    const hash2Data = new Uint8Array(32 + passwordBytes.length + salt.length);
+    hash2Data.set(new Uint8Array(hash1));
+    hash2Data.set(passwordBytes, 32);
+    hash2Data.set(salt, 32 + passwordBytes.length);
+    const hash2 = await crypto.subtle.digest('SHA-256', hash2Data);
+    const iv = new Uint8Array(hash2).slice(0, 16);
+
+    // Set the decryption key
+    const cryptoKey = await crypto.subtle.importKey(
+        'raw',
+        key,
+        { name: 'AES-CBC' },
+        false,
+        ['decrypt']
+    );
+    
+    // Try the decryption process
+    const decrypted = await crypto.subtle.decrypt(
+        { name: 'AES-CBC', iv },
+        cryptoKey,
+        ciphertext
+    );
+
+    // Return the decrypted data
+    return decrypted;
+}
+
+/**
+ * Evaluate the text key input, test its correctness, display the result to the
+ * user, and possibly start the next step if correct
+ */
+function evaluateSolutionCorrectness() {
+
+    // Only test the correctness once the user has stopped typing
+    const debouncedFunction = debounce(async () => {
+
+        // Encode the text key into bytes
+        const utf8Bytes = new TextEncoder().encode(textKeySolutionInput.value);
+
+        // Test the text key correctness
+        if (keccak256(keccak256(utf8Bytes)) === taskHashValue) {
+
+            // Save the hash key solution and display the result to the user
+            hashKey = keccak256(utf8Bytes);
+            solutionHashKey.textContent = `Hash Key:\n${hashKey}`;
+            isCorrectText.textContent = "Is Solution Correct: TRUE";
+
+            // Start the next step to check the account connected
+            checkAccountConnected();
+
+        // If the text key is incorrect, display the result to the user
+        } else {
+            isCorrectText.textContent = "Is Solution Correct: FALSE";
+        }
+    }, 300);
+    debouncedFunction();
+}
+
+/**
+ * Check if the account is connected and prompt the user if not yet connected
+ */
+async function checkAccountConnected() {
+
+    // If the account is not connected at all, then display the message to
+    // connect the user
+    if (window.ethereum === undefined
+        || window.ethereum.selectedAddress === null
+    ) {
+        removeClass(inputSolutionConnectWalletSection, "hide");
+        return;
+    } 
+
+    // If the signer, used to make contract transactions, is not set then get it
+    // from the wallet
+    if (hashTaskSigner === undefined) {
+        removeClass(inputSolutionConnectWalletSection, "hide");
+        await getHashTaskSigner(inputSolutionConnectWalletError);
+    }
+
+    // Set the user address and hide the connect wallet display
+    userAddress = window.ethereum.selectedAddress;
+    addClass(inputSolutionConnectWalletSection, "hide");
+
+    // Start the next step to generate the nonce for the hash task difficulty,
+    // and if the nonce has already been found then skip regenerating the nonce
+    if (generatingNonce === false) {
+        return;
+    }
+    removeClass(nonceGenerationSection, "hide");
+    generateNonce();
+}
+
+/**
+ * Start the nonce generation process, continuously update the display for the
+ * actual and estimated wait time, and enable the submit task button once a
+ * nonce is found that satisfies the hash task difficulty value
+ */
+function generateNonce() {
+
+    // Validate the nonce is not already being generated
+    if (generatingNonce !== undefined) {
+        return;
+    }
+    generatingNonce = true;
+
+    // Update the nonce generation message
+    inputSolutionSubmitError.textContent = "(!) Must wait for nonce generation "
+        + "before submission";
+
+    /**
+     * Enable the task submission button
+     */
+    const enableSubmission = () => {
+
+        // Hide the nonce generation section now that it is complete
+        addClass(nonceGenerationSection, "hide");
+
+        // Set the error message text if the user cannot submit the task due to
+        // the task being complete or past the deadline
+        if (isTaskComplete) {
+            inputSolutionSubmitError.textContent = "(!) Task solution has "
+                + "already been found, reward cannot be collected";
+            return;
+        } else if (!isBeforeDeadline) {
+            inputSolutionSubmitError.textContent = "(!) Task deadline has "
+                + "already passed, reward cannot be collected";
+            return;
+        }
+
+        // Enable the button display and reset the error message text
+        replaceClass(
+            inputSolutionSubmitTaskButton,
+            "inactive-payable-button",
+            "payable-button"
+        );
+        inputSolutionSubmitError.textContent = "";
+    };
+
+    // If the difficulty value is set to default, then the nonce does not need
+    // to be generated
+    if (difficultyValue === "0x" + "f".repeat(64)) {
+        generatedNonce = 0;
+        enableSubmission();
+        return;
+    }
+    
+    // Initialize generation values and begin search generation
+    let generationIntervalId;
+    let generatedNoncesCount = 0;
+    let generationStartTime = Date.now();
+    generatedNonce = Math.floor(9000000000 * Math.random()) + 1000000000;
+
+    // Update the Estimated wait time and actual wait time every half second
+    generationIntervalId = setInterval(() => {
+
+        // Calculate the expected wait time using the hash task difficulty
+        // value, generation start time, and number of nonce generations so far
+        const expectedGenerationSeconds
+            = getExpectedDifficultyValueGenerationTime(
+                difficultyValue,
+                generationStartTime,
+                generatedNoncesCount
+            );
+
+        // Update the wait time displays in hour minute second format
+        nonceGenerationTime.textContent = `Estimated Wait Time: `
+        + `${formatTimeHoursMinutesSeconds(expectedGenerationSeconds)}`;
+        actualGenerationTime.textContent = `Actual Wait Time:    `
+            + `${formatTimeHoursMinutesSeconds(
+                Math.floor((Date.now() - generationStartTime) / 1000)
+            )}`;
+    }, 500);
+
+    // Continuously test nonce values until one is found that satisfies the hash
+    // task difficulty value
+    while (generatingNonce) {
+
+        // Get the expected difficulty value and current difficulty value based
+        // on the dependent data and nonce
+        const generatedDifficultyNumber = BigInt(getDifficultyValue(
+            hashKey,
+            userAddress,
+            generatedNonce
+        ));
+        const expectedDifficultyNumber = BigInt(difficultyValue);
+
+        // If the generated difficulty value meets the difficulty requirement,
+        // then stop the generation process and update the display
+        if (generatedDifficultyNumber < expectedDifficultyNumber) {
+            generatingNonce = false;
+            clearInterval(generationIntervalId);
+
+            // Enable the submit task button
+            enableSubmission();
+            return;
+        }
+
+        // Increment the nonce generation
+        generatedNoncesCount++;
+        generatedNonce++;
+    }
 }

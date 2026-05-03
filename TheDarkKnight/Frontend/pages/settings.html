@@ -21,35 +21,68 @@
 </head>
 
 <body>
-    <div id="settings-scroll-area">
+    <div class="vertical-scroll">
 
         <!-- Header section -->
         <div id="header-container">
             <header-section headerText="Settings"></header-section>
         </div>
 
-        <!-- Light/dark mode -->
-        <div class="row vertically-center-row">
-            <div id="mode-button" class="icon-button large-margin">
-                <img id="mode-button-svg" src="./assets/icons/LightMode.svg" class="icon" />
-                <div id="mode-icon-text" class="icon-text">Light Mode</div>
+        <!-- Group items into left and right columns -->
+        <div class="key-value-settings-grid">
+
+            <!-- Light/dark mode -->
+            <div class="left-column row vertically-center-row">
+                <div id="mode-button" class="left-column icon-button">
+                    <img id="mode-button-svg" src="./assets/icons/LightMode.svg" class="icon" />
+                    <div id="mode-icon-text" class="icon-text">Light Mode</div>
+                </div>
             </div>
-            <div id="toggle-button" class="border-button left medium-padding">Toggle: Light Mode</div>
+
+            <div id="toggle-button" class="border-button left medium-padding medium-height">Toggle: Light Mode</div>
+            
+            <!-- Blockchain data -->
+            <div class="left-column row vertically-center-row">
+                <div id="blockchain-data-icon" class="icon-button large-margin">
+                    <img id="blockchain-data-icon-svg" src="./assets/icons/EthereumLogo.svg" class="icon" />
+                    <div id="blockchain-data-icon-text" class="icon-text">Blockchain<br>Data</div>
+                </div>
+            </div>
+
+            <div>
+                <div class="row">
+                    <textarea id="blockchain-data-input" class="left xxx-large-width xx-large-height left"></textarea>
+                </div>
+                <div class="row-left">
+                    <div id="blockchain-data-error" class="medium-margin-vertical hide"></div>
+                </div>
+                <div class="row">
+                    <div id="blockchain-data-save-button" class="border-button medium-padding medium-margin-vertical medium-text xx-large-width left">Save Blockchain Data</div>
+                </div>
+            </div>
+    
+            <!-- Ethereum value display type -->
+            <div class="left-column row vertically-center-row">
+                <div id="blockchain-data-icon" class="icon-button large-margin">
+                    <img class="eth-display-type-image icon" id="blockchain-data-icon-svg" src="./assets/icons/EthereumLogo.svg" />
+                    <div class="eth-display-type-subtext icon-text">Ethereum Value<br>Display Type</div>
+                </div>
+            </div>
+
+            <select class="eth-display-type medium-padding x-large-width left medium-text large-height">
+                <option value="eth">ETH</option>
+                <option value="wei">Wei</option>
+            </select>
+    
+            <!-- Show help button toggle -->
+            <div>
+                <div class="large-text">?</div>
+                <div class="large-margin">Show Help Button</div>
+            </div>
+            
+            <div class="show-help-button-toggle border-button left medium-padding medium-height">Toggle: Show Help Button</div>
         </div>
         
-        <!-- Blockchain data -->
-        <div class="row vertically-center-row">
-            <div id="blockchain-data-icon" class="icon-button large-margin">
-                <img id="blockchain-data-icon-svg" src="./assets/icons/EthereumLogo.svg" class="icon" />
-                <div id="blockchain-data-icon-text" class="icon-text">Blockchain<br>Data</div>
-            </div>
-            <textarea id="blockchain-data-input" class="left xxx-large-width"></textarea>
-        </div>
-        <div id="blockchain-data-error" class="medium-margin hide"></div>
-        <div class="row">
-            <div id="blockchain-data-save-button" class="border-button medium-padding medium-text xx-large-width">Save Blockchain Data</div>
-        </div>
-
         <!-- Help -->
         <div id="help-container">
             <help-section helpCollection="Settings"></help-section>
