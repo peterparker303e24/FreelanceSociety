@@ -403,8 +403,8 @@ export const helpItems = {
     },
     "SaveLocally": {
         "name": `Save Locally`,
-        "description": `If the task data has already been discovered, then the button will download the data to the user's local computer.`,
-        "examples": `N/A`,
+        "description": `If the data has already been discovered, then the button will download the data to the user's local computer.`,
+        "examples": `Save Locally\nDownload Task\nDownload Solution`,
         "purpose": `To enable users to download data so they no longer have to rely on other users to view the data.`
     },
     "UploadLocally": {
@@ -910,5 +910,71 @@ export const helpItems = {
         "description": `Keccak256 hash of the byte data of the file uploaded.`,
         "examples": `File Hash: 0xb835ed1f4a1db802830c5ce384d3879ea75a4fd5a0e05f40f462bd32c014bda0\nFile Hash: 0x5347d46ee824f7d4c3d191cda72bcee55f05613c02ef4aeaf023d29f97894669\nFile Hash: 0x8e1e294d1ffc2e0eff8e327229247a6029e42dc76f5d12f543230d50625e43dc`,
         "purpose": `To show the user the keccak256 hash of the byte data of the file uploaded.`
+    },
+    "EthDisplayType": {
+        "name": `ETH Display Type`,
+        "description": `The ETH display type units to be used throughout the website.`,
+        "examples": `ETH\nWei`,
+        "purpose": `To enable the user to set the ETH display type throughout the website.`
+    },
+    "ShowHelpButton": {
+        "name": `Show Help Button`,
+        "description": `The question mark button "?" on the bottom right of pages that the user can click to show the help section to learn more about page elements.`,
+        "examples": `?\nShow Help Button\nHide Help Button`,
+        "purpose": `To enable the user to decide whether to show the help button throughout the website.`
+    },
+    "DisplayTab": {
+        "name": `Display Tab`,
+        "description": `The display tab to show different presentations of the task formatting.`,
+        "examples": `Basic Display\nDirect Display`,
+        "purpose": `To allow users to view the task with different formatting to focus on different aspects of the task.`
+    },
+    "TaskInstructions": {
+        "name": `Task Instructions`,
+        "description": `The plain text instructions presented in the task. Not all task information my be present in the instuctions, so the task can be downloaded to find more data related to the task.`,
+        "examples": `Task Instructions\n1 + 1 = ?`,
+        "purpose": `To easily show users the instructions for the task.`
+    },
+    "HashTaskTextKeySolution": {
+        "name": `Text Key Solution`,
+        "description": `The input for the hash task plain text solution. The text is encoded into UTF-8 bytes and hashed to obtain a hash key for the task, and if the hash key matches the task hash value, then the text key solution and the hash key solution are correct and the task may be able to be completed.`,
+        "examples": `2\nto get to the other side`,
+        "purpose": `To easliy allow users to try solutions and verify its correctness.`
+    },
+    "IsSolutionCorrect": {
+        "name": `Is Solution Correct`,
+        "description": `Whether the solution presented by the user is correct.`,
+        "examples": `TRUE\nFALSE\n-`,
+        "purpose": `To show the user if their solution is correct.`
+    },
+    "TaskAlreadyCompleted": {
+        "name": `Task Already Completed`,
+        "description": `A message that the task has already been completed.`,
+        "examples": `(!) Hash Task Already Completed`,
+        "purpose": `To easily show users the task can no longer be attempted since it has already been completed.`
+    },
+    "TaskDeadlineAlreadyPassed": {
+        "name": `Task Deadline Already Passed`,
+        "description": `A message that the task deadline has already passed.`,
+        "examples": `(!) Hash Task Deadline Already Passed`,
+        "purpose": `To easily show users the task can no longer be attempted since the task deadline has already passed.`
+    },
+    "ShowSolution": {
+        "name": `Show Solution`,
+        "description": `A button for the user to actively decide to try to show the solution. The solution being shown is dependent on the hash key being found in the blockchain and the task data being formatted correctly.`,
+        "examples": `N/A`,
+        "purpose": `To allow the user to actively decide whether to show the task solution.`
+    },
+    "TrySolutionMyself": {
+        "name": `Try Solution Myself`,
+        "description": `A button for the user to actively decide to try to show the solution. The user would just be able to test attempting the solution, the user would not be able to submit the task.`,
+        "examples": `N/A`,
+        "purpose": `To allow the user to actively decide whether to try to find the task solution by themselves.`
+    },
+    "TaskSolution": {
+        "name": `Task Solution`,
+        "description": `The solution to the task presented by the task manager. The solution being shown is dependent on the hash key being found in the blockchain and the task data being formatted correctly.`,
+        "examples": `Task Solution\n1 + 1 = 2. 2 encoded into UTF-8 bytes is 0x32.\n_bytes1: 0x32\n_bytes2: 0xad7c5bef027816a800da1736444fb58a807ef4c9603b7848673f7e3a68eb14a5\n_bytes3: 0x1204b3dcd975ba0a68eafbf4d2ca0d13cc7b5e3709749c1dc36e6e74934270b3`,
+        "purpose": `To allow the user to see the solution for the task.`
     }
 };

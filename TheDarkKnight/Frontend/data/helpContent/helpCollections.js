@@ -149,6 +149,26 @@ export function getHelpCollectionData(helpCollectionName) {
                 helpItems["TaskSpecifications"],
                 helpItems["TaskSpecificationHeader"],
                 helpItems["TaskSpecificationCondition"],
+
+                helpItems["DisplayTab"],
+                helpItems["Reward"],
+                helpItems["TaskInstructions"],
+                helpItems["SaveLocally"],
+                helpItems["HashTaskTextKeySolution"],
+                helpItems["IsSolutionCorrect"],
+                helpItems["GenerateNonce"],
+                helpItems["SubmitHashTask"],
+                helpItems["TaskAlreadyCompleted"],
+                helpItems["TaskDeadlineAlreadyPassed"],
+                helpItems["ShowSolution"],
+                helpItems["TrySolutionMyself"],
+                helpItems["HashKey"],
+                helpItems["HashValue"],
+                helpItems["TaskInstructions"],
+                helpItems["SaveLocally"],
+                helpItems["TaskSolution"],
+                helpItems["SaveLocally"],
+
                 helpItems["SaveLocally"],
                 helpItems["UploadLocally"],
                 helpItems["SubmitTask"],
@@ -379,7 +399,9 @@ export function getHelpCollectionData(helpCollectionName) {
             return [
                 helpItems["DarkMode"],
                 helpItems["BlockchainData"],
-                helpItems["SaveBlockchainData"]
+                helpItems["SaveBlockchainData"],
+                helpItems["EthDisplayType"],
+                helpItems["ShowHelpButton"]
             ];
         case "ViewDoubleHashTaskSubmissions":
             return [
