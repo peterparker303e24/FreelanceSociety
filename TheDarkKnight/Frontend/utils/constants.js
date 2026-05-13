@@ -7,7 +7,7 @@ export const ETH_DISPLAY_TYPES = [
     "eth",
     "wei"
 ];
-export const ETH_DISPLAY_TYPES_TEXT {
+export const ETH_DISPLAY_TYPES_TEXT = {
     "eth": "ETH",
     "wei": "Wei"
 };
