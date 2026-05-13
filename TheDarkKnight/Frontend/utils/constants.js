@@ -3,36 +3,35 @@ import { getCookie } from "./commonFunctions.js";
 // Task short names
 export const TASK_SHORT_NAMES = ["h", "dh", "v"];
 
-// ETH value display types
 export const ETH_DISPLAY_TYPES = [
     "eth",
     "wei"
 ];
-export const ETH_DISPLAY_TYPES_TEXT = {
+export const ETH_DISPLAY_TYPES_TEXT {
     "eth": "ETH",
     "wei": "Wei"
 };
 
-// Default blockchain network Sepolia data
+// Default blockchain network Ethereum data
 export const USERS_CONTRACT_ADDRESS_DEFAULT
-    = "0x95317F9EE94C3F35554c2b89971eb7b9052Deb9f";
+    = "0xc9D45163cEF5f6c9E97AbE57DcfdeF693585B056";
 export const THE_LIST_CONTRACT_ADDRESS_DEFAULT
-    = "0x7AA6FaB644B90b387a82269A6F3747b191aa29b0";
+    = "0xea11585C6B8961CDe38a8edEE432328E69689B42";
 export const HASH_TASK_CONTRACT_ADDRESS_DEFAULT
-    = "0xB4446ECC7D05a074ec5F8f3c17983787DDA5323D";
+    = "0xDFd1bE7B2F8628F89288EF7d65A1a28588315F8D";
 export const DOUBLE_HASH_TASK_CONTRACT_ADDRESS_DEFAULT
-    = "0x75d03c100dB5160B0876DB4480954b9eE985eB06";
+    = "0x96C397E47C672BAa7Ae13BAd34aDdfd18e895566";
 export const VALIDATOR_TASK_CONTRACT_ADDRESS_DEFAULT
-    = "0x3C54aB5b0be84f0bbf17F834810Cb8Aafcf2bcc5";
+    = "0x76bc136117567f967816Bb4B1A7d77c325Fd19d0";
 
-export const USERS_CONTRACT_MINIMUM_BLOCK_DEFAULT = 9192512;
-export const THE_LIST_CONTRACT_MINIMUM_BLOCK_DEFAULT = 9192513;
-export const HASH_TASK_CONTRACT_MINIMUM_BLOCK_DEFAULT = 9192514;
-export const DOUBLE_HASH_TASK_CONTRACT_MINIMUM_BLOCK_DEFAULT = 9192515;
-export const VALIDATOR_TASK_CONTRACT_MINIMUM_BLOCK_DEFAULT = 9192516;
+export const USERS_CONTRACT_MINIMUM_BLOCK_DEFAULT = 24438298;
+export const THE_LIST_CONTRACT_MINIMUM_BLOCK_DEFAULT = 24438483;
+export const HASH_TASK_CONTRACT_MINIMUM_BLOCK_DEFAULT = 24438558;
+export const DOUBLE_HASH_TASK_CONTRACT_MINIMUM_BLOCK_DEFAULT = 24438579;
+export const VALIDATOR_TASK_CONTRACT_MINIMUM_BLOCK_DEFAULT = 24438596;
 
-export const CONTRACT_DATA_CHAIN_ID_DEFAULT = 11155111;
-export const CHAIN_NAME_DEFAULT = "sepolia";
+export const CONTRACT_DATA_CHAIN_ID_DEFAULT = 1;
+export const CHAIN_NAME_DEFAULT = "mainnet";
 
 // Locahost blockchain network Hardhat data
 export const USERS_CONTRACT_ADDRESS_LOCALHOST
@@ -146,7 +145,7 @@ try {
         chainName = CHAIN_NAME_LOCALHOST;
     } else {
 
-        // Sepolia contract addresses
+        // Ethereum mainnet contract addresses
         usersContractAddress
             = USERS_CONTRACT_ADDRESS_DEFAULT;
         theListContractAddress
@@ -158,7 +157,7 @@ try {
         validatorTaskContractAddress
             = VALIDATOR_TASK_CONTRACT_ADDRESS_DEFAULT;
 
-        // Sepolia contract creation block indices
+        // Ethereum mainnet contract creation block indices
         usersContractMinimumBlock
             = USERS_CONTRACT_MINIMUM_BLOCK_DEFAULT;
         theListContractMinimumBlock
@@ -170,7 +169,7 @@ try {
         validatorTaskContractMinimumBlock
             = VALIDATOR_TASK_CONTRACT_MINIMUM_BLOCK_DEFAULT;
 
-        // Sepolia blockchain chain ID
+        // Ethereum mainnet blockchain chain ID
         contractDataChainId = CONTRACT_DATA_CHAIN_ID_DEFAULT;
         chainName = CHAIN_NAME_DEFAULT;
     }
