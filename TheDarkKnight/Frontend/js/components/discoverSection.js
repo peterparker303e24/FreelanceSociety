@@ -12,7 +12,7 @@ export class DiscoverSection extends HTMLElement {
         // Define the component html and css
         this.attachShadow({ mode: "open" });
         this.shadowRoot.innerHTML = `
-            <link rel="stylesheet" href="../global.css">
+            <link rel="stylesheet" href="./global.css">
             <div class="discover">
 
                 <!-- Discover type section -->

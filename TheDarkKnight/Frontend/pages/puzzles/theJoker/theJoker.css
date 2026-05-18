@@ -1,0 +1,129 @@
+/* Set static webpage configurations */
+html,
+body {
+    width: 2048px;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    position: relative;
+    font-family: 'SourceCodePro';
+}
+
+/* Default font */
+@font-face {
+    font-family: 'SourceCodePro';
+    src: url('./SourceCodePro-Regular.ttf') format('truetype');
+}
+
+/* Prevent default image selectable for dragging */
+.unselectable {
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
+
+/* Background image */
+.background-image {
+    width: 2048px;
+    z-index: -9999;
+}
+
+/* Webpage related images */
+.image-1 {
+    display: none;
+    position: absolute;
+    filter: saturate(70%);
+}
+.image-2 {
+    position: absolute;
+    width: 256px;
+    top: 1700px;
+    left: 1110px;
+    filter: saturate(60%);
+    transform: rotate(50deg);
+}
+.image-3 {
+    position: absolute;
+    width: 256px;
+    top: 615px;
+    left: 1308px;
+    filter: saturate(60%);
+}
+.image-4 {
+    display: none;
+    position: absolute;
+    filter: saturate(70%);
+}
+
+/* Webpage text styling */
+p {
+    position: absolute;
+}
+.textbox-style-1 {
+    text-align: center;
+    color: #222;
+    font-size: 50px;
+    line-height: 48px;
+    text-shadow: 2px 0 #222, -2px 0 #222, 0 2px #222, 0 -2px #222,
+             1px 1px #222, -1px -1px #222, 1px -1px #222, -1px 1px #222;
+}
+.textbox-style-2 {
+    text-align: left;
+    color: #222;
+    font-size: 28px;
+    line-height: 30px;
+}
+
+/* Textbox position configurations */
+.textbox-1 {
+    left: 1460px;
+    top: 2190px;
+    width: 500px;
+    height: 48px;
+}
+.textbox-2 {
+    left: 820px;
+    top: 2140px;
+    width: 400px;
+    height: 48px;
+}
+.textbox-3 {
+    left: 980px;
+    top: 2290px;
+    width: 500px;
+    height: 48px;
+}
+.textbox-4 {
+    left: 1160px;
+    top: 890px;
+    width: 750px;
+    height: 48px;
+}
+.textbox-5 {
+    left: 830px;
+    top: 2040px;
+    width: 560px;
+    height: 48px;
+}
+.textbox-6 {
+    left: 1450px;
+    top: 2040px;
+    width: 560px;
+    height: 128px;
+}
+
+/* Webpage element */
+.element-1 {
+    pointer-events: none;
+    display: none;
+    position: absolute;
+	width: 0;
+	height: 0;   
+}
+
+/* Make draggable images appear selectable to pointer */
+.draggable {
+    cursor: pointer;
+}
