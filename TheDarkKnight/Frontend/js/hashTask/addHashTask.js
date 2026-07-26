@@ -571,7 +571,7 @@ function updateAddTask() {
 async function downloadTaskZipAndSetTaskHash() {
 
     // Fetch single hash and add to Requirements folder
-    const requirementResponse = await fetch(`../../data/localData/TheList/`
+    const requirementResponse = await fetch(`./data/localData/TheList/`
         + `${SINGLE_HASH_REQUIREMENT_HASH.substring(2)}/Requirement.zip`);
     if (!requirementResponse.ok) {
         downloadError.textContent
