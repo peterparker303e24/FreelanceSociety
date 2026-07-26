@@ -215,6 +215,21 @@ img {
     padding: 32px;
 }
 
+.small-padding-horizontal {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.medium-padding-horizontal {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.large-padding-horizontal {
+    padding-left: 32px;
+    padding-right: 32px;
+}
+
 .small-padding-vertical {
     padding-top: 8px;
     padding-bottom: 8px;
@@ -240,6 +255,21 @@ img {
 
 .large-margin {
     margin: 32px;
+}
+
+.small-margin-horizontal {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.medium-margin-horizontal {
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.large-margin-horizontal {
+    margin-left: 32px;
+    margin-right: 32px;
 }
 
 .small-margin-vertical {
@@ -294,6 +324,10 @@ img {
 }
 
 #footer-space {
+    height: 256px;
+}
+
+.footer-space {
     height: 256px;
 }
 
@@ -403,6 +437,10 @@ img {
 
 .left-align {
     text-align: left;
+}
+
+.right-align {
+    text-align: right;
 }
 
 .left-justify {
@@ -533,4 +571,20 @@ img {
 .two-column-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+
+select {
+    background-color: var(--background-color);
+    color: var(--foreground-color);  
+    border: 2px solid var(--foreground-color);
+    border-radius: 8px;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.vertical-resize {
+    resize: vertical;
+    overflow-y: scroll;
 }

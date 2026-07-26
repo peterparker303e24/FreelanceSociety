@@ -221,3 +221,7 @@ export const CONTRACT_DATA_CHAIN_ID
     = contractDataChainId;
 export const CHAIN_NAME
     = chainName;
+
+// Single hash requirement zip keccak25 hash
+export const SINGLE_HASH_REQUIREMENT_HASH
+    = "0x584bc4c338df9c2bfd77a440ca0f152b9075eaaac10e7c2174ab6213b3e67b58";

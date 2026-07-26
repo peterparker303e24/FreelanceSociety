@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Set static webpage configurations */
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    position: relative;
+    font-family: 'SourceCodePro';
+}
+
+/* Default font */
+@font-face {
+    font-family: 'SourceCodePro';
+    src: url('./SourceCodePro-Regular.ttf') format('truetype');
+}
+
+/* Prevent default image selectable for dragging */
+.unselectable {
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
+
+/* Background image */
+.background-image {
+    width: 100vw;
+    z-index: -9999;
+}
+
+/* Webpage related image */
+.image-1 {
+    position: absolute;
+    top: 8.6vw;
+    left: 78.2vw;
+	width: 10vw;
+	height: 10vw;
+    z-index: 1;
+    filter:invert(0%);
+}
+.spotlight-container {
+    position: absolute;
+    width: 100vw;
+    height: 150vw;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+.spotlight {
+    padding: 200vw;
+    top: -180vw;
+    left: -180vw;
+    box-sizing: content-box;
+    background-image: radial-gradient(circle at 50%, transparent 20vw, black 1vw);
+}
+
+/* Webpage text styling */
+p {
+    position: absolute;
+}
+.textbox-style-1 {
+    text-align: left;
+    color: black;
+    font-size: 1.5vw;
+    line-height: 1.8vw;
+}
+
+/* Textbox position configurations */
+.textbox-1 {
+    left: 3vw;
+    top: 60vw;
+    width: 18vw;
+    color: black;
+    z-index: 2;
+}
+
+/* Webpage elements */
+.element {
+    pointer-events: none;
+    display: block;
+    position: absolute;
+}
+.element-1 {
+    border-bottom: 139vw solid black;
+    border-left: 50vw solid transparent;
+    top: 10vw;
+    left: 35vw;
+}
+.element-2 {
+    border-top: 70vw solid black;
+    border-right: 85vw solid transparent;
+    top: 10vw;
+    left: 0vw;
+}
+.element-3 {
+    top: 0vw;
+    left: 0vw;
+    width: 100vw;
+    height: 14vw;
+    background-color: black;
+}
+.element-4 {
+    top: 0vw;
+    left: 84vw;
+    width: 16vw;
+    height: 149vw;
+    background-color: black;
+}
+.element-5 {
+    border-right: 20vw solid black;
+    border-bottom: 20vw solid transparent;
+    top: 10vw;
+    left: 76vw;
+}
+
+/* Make draggable images appear selectable to pointer */
+.draggable {
+    cursor: pointer;
+}

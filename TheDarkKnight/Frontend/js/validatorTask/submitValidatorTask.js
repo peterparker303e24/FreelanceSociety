@@ -6,7 +6,6 @@ import {
     formatBlockTimestamp,
     removeClass,
     prefixHexBytes,
-    addClass,
     urlNoTrailingSlash
 } from "../../utils/commonFunctions.js";
 import {
@@ -34,16 +33,8 @@ const zipHashInput = document.getElementById("zip-hash-input");
 const zipHashError = document.getElementById("zip-hash-error");
 const zipInput = document.getElementById("file-input");
 const uploadErrorText = document.getElementById("file-error");
-const userUrlLinks = document.getElementById("user-url-links");
-const noUrlLinksText = document.getElementById("no-url-links-text");
-const editProfileLinksButton
-    = document.getElementById("edit-profile-links-button");
-const userUrlHostingLinks = document.getElementById("user-url-hosting-links");
-const hostUrlsText = document.getElementById("host-urls-text");
-const hostingStatusText = document.getElementById("hosting-status-text");
-const fetchZipHostingStatus
-    = document.getElementById("fetch-zip-hosting-status");
-const zipHostingError = document.getElementById("zip-hosting-error");
+const submissionHostSection
+    = document.querySelector('.submission-host-section');
 const ethicsRequirementsCheckbox = document.getElementById("checkbox");
 const addTaskSubmissionButton
     = document.getElementById("add-task-submission-button");
@@ -212,18 +203,6 @@ uploadLocallyButton.addEventListener("click", () => {
     zipInput.click();
 });
 
-// Retry match ZIP file hash with hosted ZIP file
-fetchZipHostingStatus.addEventListener("click", () => {
-    zipHostingError.textContent = "";
-    if (taskSubmissionHashValue !== undefined
-        && prefixHexBytes(taskSubmissionHashValue)?.length === 66
-    ) {
-        tryMatchFile(prefixHexBytes(taskSubmissionHashValue));
-    } else {
-        zipHostingError.textContent = "[X] ERROR: Invalid Submission.zip hash";
-    }
-});
-
 // Add the task submission if all validation checks pass
 addTaskSubmissionButton.addEventListener("click", async () => {
 
@@ -262,15 +241,15 @@ addTaskSubmissionButton.addEventListener("click", async () => {
 zipInput.addEventListener("change", zipInputClicked);
 
 // Update the task submission hash value to the user input override
-zipHashInput.addEventListener("change", () => {
+zipHashInput.addEventListener("input", () => {
     taskSubmissionHashValue = zipHashInput.value;
-    hostingStatusText.textContent = "Submission.zip Hosting Status: -";
+    fileCrossChecked = false;
     zipHashError.textContent = "";
     if (!(prefixHexBytes(taskSubmissionHashValue)?.length === 66)) {
         zipHashError.textContent
             = "[X] ERROR: Invalid ZIP hash hex - Must be 32 byte hex";
     }
-    updateUserLinks();
+    updateDataHostSection();
 });
 
 // When edit button clicked change links button from readonly to write
@@ -279,8 +258,20 @@ editZipHashButton.addEventListener("click", () => {
     removeClass(zipHashInput, "hide");
     zipHashText.textContent = "Submission.zip Hash:";
     zipHashInput.value = prefixHexBytes(taskSubmissionHashValue) ?? "";
-    updateUserLinks();
+    updateDataHostSection();
 });
+
+// Reusable file hosting component to retrieve and validate user submission data
+submissionHostSection
+    .setFilePath("Submissions/ValidatorSubmissions")
+    .setFileName("Submission.zip")
+    .setProvider(provider)
+    .subscribeToDataFound((data) => {
+        taskSubmissionHashValue = data.hash;
+        fileCrossChecked = true;
+        updateCanAddTaskButton();
+    })
+    .init();
 
 /**
  * Gets the ZIP file upload data and hash, then validates it matches the data
@@ -318,82 +309,13 @@ async function zipInputClicked(event) {
                 + `${prefixHexBytes(taskSubmissionHashValue)}`;
         }
         zipHashInput.value = prefixHexBytes(taskSubmissionHashValue);
-        updateUserLinks();
-
-        // Validate the file hash with the data matches the data hosted by the
-        // user at at least one of their links
-        await tryMatchFile(fileHash);
+        updateDataHostSection();
     };
 
     // Display error if problem reading zip file
     reader.onerror = function () {
         uploadErrorText.textContent = "[X] ERROR: Problem reading .zip file";
     };
-}
-
-/**
- * Validates the user hosts the file data at at least one of their links, then
- * enables the user to add the task submission
- * @param {String} zipHash Keccak256 hash of the ZIP file upload data
- */
-async function tryMatchFile(zipHash) {
-    hostingStatusText.textContent = "Submission.zip Hosting Status: -";
-
-    // Load user
-    await loadUser();
-    
-    // Search for data through all user URL links
-    if (userLinks === undefined) {
-        zipHostingError.textContent = "[X] ERROR: No user links detected";
-        hostingStatusText.textContent
-            = "Submission.zip Hosting Status: FAILURE";
-        return;
-    }
-    let dataEndpoints = [];
-    for (let i = 0; i < userLinks.length; i++) {
-
-        // Expected Submission.zip data endpoint
-        dataEndpoints.push(
-            `${userLinks[i]}/Submissions/ValidatorSubmissions/`
-            + `${prefixHexBytes(zipHash).substring(2)}/Submission.zip`
-        );
-
-        // Check whether requirement is correctly hosted at the endpoint
-        let response;
-        try {
-            response = await fetch(dataEndpoints[i]);
-        } catch {}
-        if (response === undefined || !response.ok) {
-            zipHostingError.textContent
-                += `(!) Failed to fetch file from ${dataEndpoints[i]}\n\n`;
-            continue;
-        }
-
-        // Download from the link and if the Requirement.zip file is found,
-        // then validate the add requirement button functionality
-        const arrayBuffer = await response.arrayBuffer();
-        const uint8Array = new Uint8Array(arrayBuffer);
-        const downloadHash = keccak256(uint8Array).toString('hex');
-
-        // Validate the task file hosting and format, then enable the user to
-        // add the task submission
-        if (downloadHash === zipHash) {
-            fileCrossChecked = true;
-            hostingStatusText.textContent
-                = "Submission.zip Hosting Status: SUCCESS";
-            updateCanAddTaskButton();
-            return;
-        } else {
-            zipHostingError.textContent
-                += `(!) Different file hash than expected at endpoint `
-                    + `${dataEndpoints[i]}`;
-        }
-    }
-
-    // If all user endpoints fail to provide the expected zip file, display an
-    // error
-    hostingStatusText.textContent = "Submission.zip Hosting Status: FAILURE";
-    zipHostingError.textContent += "[X] ERROR: Failed to validate ";
 }
 
 /**
@@ -421,7 +343,7 @@ async function loadUser() {
     // Validate the user is activated
     const userActivated = await usersContract.activeUsers(userAddress);
     if (!userActivated) {
-        updateUserLinks();
+        updateDataHostSection();
     } else {
 
         // Load user links data into page
@@ -440,7 +362,7 @@ async function loadUser() {
                     userLinks.push(urlNoTrailingSlash(link));
                 }
             }
-            updateUserLinks();
+            updateDataHostSection();
         });
     }
 }
@@ -505,38 +427,16 @@ function updateCanAddTaskButton() {
     }
 }
 
-function updateUserLinks() {
-    if (userLinks === undefined || userLinks.length === 0) {
-        removeClass(noUrlLinksText, "hide");
-        removeClass(editProfileLinksButton, "hide");
-        addClass(userUrlLinks, "hide");
-        addClass(userUrlHostingLinks, "hide");
-        addClass(hostUrlsText, "hide");
-    } else {
-        addClass(noUrlLinksText, "hide");
-        addClass(editProfileLinksButton, "hide");
-        removeClass(userUrlLinks, "hide");
-        removeClass(userUrlHostingLinks, "hide");
-        removeClass(hostUrlsText, "hide");         
-        let linksText = "";
-        let hostingLinks = "";
-        for (let link of userLinks) {
-            linksText += link + "\n\n";
-            if (taskSubmissionHashValue === undefined
-                || !(prefixHexBytes(taskSubmissionHashValue)?.length === 66)
-            ) {
-                hostingLinks += `${link}/Submissions/ValidatorSubmissions/-`
-                    + `/Submission.zip\n\n`;
-            } else {
-                const noPrefixHex = prefixHexBytes(taskSubmissionHashValue)
-                    .substring(2);
-                hostingLinks += `${link}/Submissions/ValidatorSubmissions/`
-                    + `${noPrefixHex}/Submission.zip\n\n`;
-            }
-        }
-        linksText = linksText.substring(0, linksText.length - 2);
-        hostingLinks = hostingLinks.substring(0, hostingLinks.length - 2);
-        userUrlLinks.textContent = linksText;
-        userUrlHostingLinks.textContent = hostingLinks;
+/**
+ * If the task submission hash value is valid then the submission host section
+ * is updated, and the add submission button is updated
+ */
+function updateDataHostSection() {
+    fileCrossChecked = false;
+    if (taskSubmissionHashValue !== undefined
+        && prefixHexBytes(taskSubmissionHashValue)?.length === 66
+    ) {
+        submissionHostSection.setFileHash(taskSubmissionHashValue);
     }
+    updateCanAddTaskButton();
 }
