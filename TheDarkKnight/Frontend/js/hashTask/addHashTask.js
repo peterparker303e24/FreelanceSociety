@@ -20,6 +20,8 @@ import {
 import {
     HASH_TASK_CONTRACT_ADDRESS,
     SINGLE_HASH_REQUIREMENT_HASH,
+    SINGLE_HASH_REQUIREMENT_INDEX,
+    SINGLE_HASH_REQUIREMENT_VERSION_INDEX,
     THE_LIST_CONTRACT_ADDRESS,
     USERS_CONTRACT_ADDRESS
 } from "../../utils/constants.js";
@@ -600,7 +602,8 @@ async function downloadTaskZipAndSetTaskHash() {
         `[`,
         `   {`,
         `       "taskIndex": 0,`,
-        `       "requirementIndex": 1,`,
+        `       "requirementIndex": ${SINGLE_HASH_REQUIREMENT_INDEX},`,
+        `       "requirementVersionIndex": ${SINGLE_HASH_REQUIREMENT_VERSION_INDEX},`,
         `       "specifications": {`,
         `           "instructions": "${instructionsInput.value}",`,
         `           "encryptedSolution": "solution.enc",`,
