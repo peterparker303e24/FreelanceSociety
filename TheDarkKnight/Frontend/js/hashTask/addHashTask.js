@@ -595,7 +595,14 @@ async function downloadTaskZipAndSetTaskHash() {
     const zip = new JSZip();
 
     // Adds the Hash Task requirement ZIP file
-    zip.file('Task/Requirements/Requirement1-1.zip', requirementZipBytes);
+    zip.file(
+        `Task/Requirements/Requirement${
+            SINGLE_HASH_REQUIREMENT_INDEX
+        }-${
+            SINGLE_HASH_REQUIREMENT_VERSION_INDEX
+        }.zip`,
+        requirementZipBytes
+    );
 
     // Create specifications.json
     zip.file("Task/specifications.json", [
