@@ -239,10 +239,10 @@ if (typeof (params.display) === "string") {
         tabSection = "direct";
     }
 }
-if (tabSection === "direct") {
-    selectDirectDisplay();
-} else {
+if (tabSection === "basic") {
     selectBasicDisplay();
+} else {
+    selectDirectDisplay();
 }
 
 // Switch tab section when tab clicked
@@ -1587,7 +1587,7 @@ async function checkAccountConnected() {
     ) {
         removeClass(inputSolutionConnectWalletSection, "hide");
         return;
-    } 
+    }
 
     // If the signer, used to make contract transactions, is not set then get it
     // from the wallet

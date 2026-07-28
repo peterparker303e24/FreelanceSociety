@@ -11,7 +11,7 @@ import { ETH_DISPLAY_TYPES, TASK_SHORT_NAMES } from "./constants.js";
 export function prefixHexBytes(bytes) {
 
     // Validate bytes variable
-    if (bytes === undefined) {
+    if (bytes === undefined || bytes === null) {
         return null;
     }
 
@@ -1112,9 +1112,13 @@ export function formatWei(wei) {
 }
 
 /**
+ * @typedef { "eth" | "wei" } EtherUnits Type of Ether units
+ * */
+
+/**
  * Formats the given Wei into the string amount for the given value type
  * @param {BigInt} wei Integer amount in Wei
- * @param {'ETH' | 'Wei'} valueType Value output type
+ * @param {EtherUnits} valueType Value output type
  * @return {String} The formatted amount for the value type
  */
 export function formatInConfiguredValue(wei, valueType="eth") {
@@ -1774,4 +1778,428 @@ export async function getLastInteractionBlockFromBlock(contract, blockIndex) {
             { blockTag: blockIndex }
         );
     }
+}
+
+/**
+ * Get the amount in Wei
+ * @param {String} valueString A valid Ether formatted value
+ * @param {EtherUnits} etherUnits Ether units of the given string
+ * @returns {BigInt} Value in Wei units
+ */
+export function convertToWei(valueString, etherUnits) {
+    switch (etherUnits) {
+        case "eth":
+            if (valueString.indexOf(".") === -1) {
+                return BigInt(valueString) * 1_000_000_000_000_000_000n;
+            } else {
+                const parts = valueString.split(".");
+                const ethPartWei
+                    = BigInt(parts[0]) * 1_000_000_000_000_000_000n;
+                const weiPart
+                    = BigInt(parts[1].substring(0, 18).padEnd(18, "0"));
+                return ethPartWei + weiPart;
+            }
+        case "wei":
+            return BigInt(valueString);
+    }
+}
+
+/**
+ * @typedef {Object} TextContentCursor
+ * @property {String} inputString String content
+ * @property {Number} cursorIndex Index of the cursor in the content
+ */
+
+/**
+ * Formats the input string and cursor to a valid Ether format with space
+ * grouping and maintains cursor positioning
+ * @param {String} inputString Any input string content
+ * @param {Number} cursorIndex Index of the cursor within the content
+ * @returns {TextContentCursor} Ether value formatted
+ */
+export function getDecimalEtherFormat(inputString, cursorIndex) {
+
+    // Keep only one decimal, the one closest to the cursor and if equal on both
+    // sides use the one to the left
+    const leftPartReversed = inputString
+        .slice(0, cursorIndex)
+        .split("")
+        .reverse()
+        .join("");
+    const rightPart = inputString.slice(cursorIndex);
+    let newLeftPart;
+    let newRightPart;
+
+    // 123|456 --> 123|456
+    if (leftPartReversed.indexOf(".") === -1 && rightPart.indexOf(".") === -1) {
+        newLeftPart = leftPartReversed
+            .split("")
+            .reverse()
+            .join("");
+        newRightPart = rightPart;
+    
+    // 123|.45.6 --> 123|.456
+    } else if (
+        leftPartReversed.indexOf(".") === -1 && rightPart.indexOf(".") >= 0
+    ) {
+        newLeftPart = leftPartReversed
+            .split("")
+            .reverse()
+            .join("");
+        newRightPart =
+            rightPart
+                .substring(0, rightPart.indexOf(".") + 1)
+            + rightPart
+                .substring(rightPart.indexOf(".") + 1)
+                .replace(/\./g, '');
+    
+    // 1.23.|456 --> 123.|456
+    } else if (
+        leftPartReversed.indexOf(".") >= 0 && rightPart.indexOf(".") === -1
+    ) {
+        newLeftPart = (
+            leftPartReversed
+                .substring(0, leftPartReversed.indexOf(".") + 1)
+            + leftPartReversed
+                .substring(leftPartReversed.indexOf(".") + 1)
+                .replace(/\./g, '')
+        )
+            .split("")
+            .reverse()
+            .join("");
+        newRightPart = rightPart;
+
+    // 12.3|4.56 --> 12.3|456
+    } else if (leftPartReversed.indexOf(".") === rightPart.indexOf(".")) {
+        newLeftPart = (
+            leftPartReversed
+                .substring(0, leftPartReversed.indexOf(".") + 1)
+            + leftPartReversed
+                .substring(leftPartReversed.indexOf(".") + 1)
+                .replace(/\./g, '')
+        )
+            .split("")
+            .reverse()
+            .join("");
+        newRightPart = rightPart
+            .replace(/\./g, '');
+
+    // 1.23|.456 --> 123|.456
+    } else if (leftPartReversed.indexOf(".") > rightPart.indexOf(".")) {
+        newLeftPart = leftPartReversed
+            .replace(/\./g, '')
+            .split("")
+            .reverse()
+            .join("");
+        newRightPart =
+            rightPart
+                .substring(0, rightPart.indexOf(".") + 1)
+            + rightPart
+                .substring(rightPart.indexOf(".") + 1)
+                .replace(/\./g, '');
+
+    // 123.|4.56 --> 123.|456
+    } else if (leftPartReversed.indexOf(".") < rightPart.indexOf(".")) {
+        newLeftPart = (
+            leftPartReversed
+                .substring(0, leftPartReversed.indexOf(".") + 1)
+            + leftPartReversed
+                .substring(leftPartReversed.indexOf(".") + 1)
+                .replace(/\./g, '')
+        )
+            .split("")
+            .reverse()
+            .join("");
+        newRightPart = rightPart
+            .replace(/\./g, '');
+    }
+    
+    // Put the number with the single or no decimal back together
+    let cleanedLeftPart = newLeftPart
+        .replace(/[^0-9.]/g, '');
+    const cleanedRightPart = newRightPart
+        .replace(/[^0-9.]/g, '');
+    let cleanedNumber = cleanedLeftPart + cleanedRightPart;
+  
+    // Special cases for basic string
+    if (cleanedNumber === "") {
+        return {
+            inputString: "",
+            cursorIndex: 0
+        };
+    } else if (cleanedNumber === ".") {
+        return {
+            inputString: "0.",
+            cursorIndex: 2
+        };
+    }
+
+    // Remove any unnecessary preceding 0s
+    let precedingZerosLength = cleanedNumber.length;
+    cleanedNumber = cleanedNumber
+        .replace(/^0+(?=\d)/, '')
+        .replace(/^0+(?=\.)/, '0')
+        .replace(/^0+$/, '0')
+        .replace(/^\./, '0.');
+    const zerosRemoved = precedingZerosLength - cleanedNumber.length;
+    
+    // Assume eth type since input is a number with possible decimal
+    const cleanedWeiNumber = convertToWei(cleanedNumber, "eth");
+    let spaceFormattedNumber = formatInConfiguredValue(
+        cleanedWeiNumber,
+        "eth"
+    );
+
+    // Special case when it is a whole number the formatted value deletes the
+    // decimal and zeros, so put them back
+    let spaceFormattingDifference =
+        cleanedNumber.length
+        - spaceFormattedNumber
+            .replace(/ /g, "")
+            .length;
+    if (spaceFormattingDifference !== 0) {
+
+        // How many digits after the decimal point
+        let decimalPlacesFromEnd = spaceFormattedNumber
+            .replace(/ /g, "")
+            .split("")
+            .reverse()
+            .join("")
+            .indexOf(".")
+
+        let differentDigitsCount = 0;
+        if (decimalPlacesFromEnd === -1) {
+            decimalPlacesFromEnd = 0;
+            spaceFormattedNumber += ".";
+            spaceFormattingDifference--;
+        }
+
+        // Append zeros into groupings of 3 from the decimal
+        let groupingStart = decimalPlacesFromEnd % 3;
+        for (let i = 0; i < spaceFormattingDifference; i++) {
+            if (decimalPlacesFromEnd + i === 18) {
+                break;
+            }
+            if (groupingStart === 0
+                && !(decimalPlacesFromEnd === 0 && i === 0)
+            ) {
+                spaceFormattedNumber += " ";
+            }
+            spaceFormattedNumber += "0";
+            differentDigitsCount++;
+            groupingStart = (groupingStart + 1) % 3;
+        }
+    }
+    
+    // The final cursor position is the number of non-space characters from the
+    // left of the originally formatted left part
+    const newCursorIndex = Math.max(cleanedLeftPart.length - zerosRemoved, 0);
+    let finalCursorIndex = spaceFormattedNumber.length;
+    let indexCount = 0;
+    if (newCursorIndex === 0) {
+        return {
+            inputString: spaceFormattedNumber,
+            cursorIndex: 0
+        };
+    }
+    for (let i = 0; i < spaceFormattedNumber.length; i++) {
+        if (spaceFormattedNumber[i] !== " ") {
+            indexCount++;
+        }
+        if (indexCount === newCursorIndex) {
+            finalCursorIndex = i + 1;
+            break;
+        }
+    }
+    return {
+        inputString: spaceFormattedNumber,
+        cursorIndex: finalCursorIndex
+    };
+}
+
+/**
+ * Try to download the data from each given base URL. If an endpoint response
+ * fails or does not have the correct data hash, then display a warning for that
+ * endpoint. If all endpoints fail, then display an error. If any one endpoints
+ * succeed with the correct data hash, then stop all other featches and return
+ * the data.
+ * @param {Array<String>} urls Array of valid URLs
+ * @param {String} hash File keccak256 hash to match from data endpoint
+ * @param {Element} errorElement Error message element
+ * @returns {Promise<ArrayBuffer>} The data buffer of the data that has been
+ * validated with the hash
+ */
+export async function tryDownloadDataFromUrlsParallel(
+    urls,
+    hash,
+    errorElement
+) {
+
+    // Initialize controllers and signals for parallel fetches, whether any hash
+    // validated data fetch succeeded, the cumulative fetch errors, and the
+    // number of fetch failures
+    const controllers = urls.map(() => new AbortController());
+    const signals = controllers.map(controller => controller.signal);
+    let settled = false;
+    let cumulativeError = "";
+    let failures = 0;
+
+    // Return the promise to return the hash validated data or reject
+    return new Promise((resolve, reject) => {
+        urls.forEach((url, i) => {
+
+            // Initialize fetch data and endpoint URL
+            const opt = { signal: signals[i] };
+            const endpoint = url;
+
+            /**
+             * Mark the endpoint as a failure, add an error message, and reject
+             * the promise if all endpoints have failed
+             * @param {String} message Message to add to manual discover error
+             */
+            const endpointFailed = (message) => {
+                failures++;
+                cumulativeError += message;
+                errorElement.textContent = cumulativeError;
+                if (failures === urls.length && !settled) {
+                    cumulativeError
+                        += `[X] ERROR: All endpoints failed for user`;
+                    errorElement.textContent = cumulativeError;
+                    reject(new Error('All endpoints failed'));
+                }
+            };
+
+            // Make the actual fetch request
+            fetch(
+                endpoint,
+                opt
+            )
+                .then(async response => {
+
+                    // If the fetch gets a response back, then get the response
+                    // data
+                    if (settled) return;
+                    if (response === undefined || !response.ok) {
+                        endpointFailed(
+                            `(!) Failed download from endpoint ${endpoint}\n`
+                        );
+                        return;
+                    }
+                    const arrayBuffer = await response.arrayBuffer();
+                    const uint8Array = new Uint8Array(arrayBuffer);
+
+                    // Validate the data hash matches task hash
+                    const downloadHash = keccak256(uint8Array).toString('hex');
+                    if (downloadHash !== hash) {
+                        endpointFailed(
+                            `(!) Incorrect data hash at endpoint ${endpoint}\n`
+                        );
+                        return;
+                    }
+                    if (settled) return;
+
+                    // If the endpoint finds the hash validated data first, then
+                    // cancel other fetch requests and return the data
+                    settled = true;
+                    controllers.forEach((c, idx) => {
+                        if (idx !== i) c.abort();
+                    });
+                    resolve(arrayBuffer);
+                })
+                .catch(err => {
+
+                    // Mark the error if the fetch request fails
+                    if (settled && err && err.name === 'AbortError') return;
+                    endpointFailed(
+                        `(!) Failure reaching endpoint ${endpoint}\n`
+                    );
+                });
+        });
+    });
+}
+
+/**
+ * Formats the input element value to the given integer range with optional
+ * two digit display with padded 0
+ * @param {HTMLInputElement} inputElement Input element to override content
+ * @param {Number} min Minimum integer for range inclusive
+ * @param {Number} max Maximum integer for range exclusive
+ * @param {Boolean?} is2Digits Whether to use a two digit display with
+ * padded 0
+ * @returns {Number | null} The input integer or null if empty or invalid
+ * parse
+ */
+export function overrideInputToIntegerRange(
+    inputElement,
+    min,
+    max,
+    is2Digits = false
+) {
+
+    // Initialize variables
+    const inputValue = inputElement.value;
+    let sanitized;
+
+    // Sanitize to only use digits and a single minus sign on the left if
+    // negative integers are allowed
+    if (min >= 0) {
+        if (inputValue === "") {
+            return null;
+        }
+        sanitized = inputValue.replace(/[^0-9]/g, '');
+    } else {
+        if (inputValue === "" || inputValue === "-") {
+            return null;
+        }
+        sanitized = inputValue
+            .replace(/[^0-9-]/g, '')
+            .replace(/(?!^)-/g, '')
+            .replace(/^(-?)0+(\d)/, '$1$2');
+    }
+
+    // Format the input if the parsed value is not an integer and return
+    // null
+    let integerValue = Number(sanitized);
+    if (Number.isNaN(integerValue)) {
+        if (is2Digits) {
+            inputElement.value = pad2Digits(sanitized);
+        } else {
+            inputElement.value = sanitized;
+        }
+        return null;
+    }
+
+    // Parse the integer and clamp the value to the range and return the new
+    // number
+    integerValue = Math.min(max, integerValue);
+    integerValue = Math.max(min, integerValue);
+    if (is2Digits) {
+        inputElement.value = pad2Digits(integerValue.toString());
+    } else {
+        inputElement.value = integerValue.toString();
+    }
+    return integerValue;
+}
+
+/**
+ * Formats the given number to a stringified number with left padded 0 for 2
+ * total digits
+ * @param {Number} number Input number
+ * @returns {String} Stringified number with left padded 0 for 2 total
+ * digits
+ */
+export function pad2Digits(number) {
+    return String(number).padStart(2, "0");
+}
+
+/**
+ * Encodes the string input into hex with "0x" prefix using UTF-8
+ * @param {String} str String to encode using UTF-8
+ * @returns {String} Hex string of the UTF-8 encoded data with "0x" prefix
+ */
+export function stringToHex(str) {
+    return '0x' + new TextEncoder().encode(str).reduce(
+        (acc, b) => acc + b.toString(16).padStart(2, '0'),
+        ''
+    );
 }

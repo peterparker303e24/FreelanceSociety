@@ -18,6 +18,7 @@
     width: 224px;
     height: 512px;
     resize: none;
+    overflow-y: scroll;
 }
 
 .spaced-row {

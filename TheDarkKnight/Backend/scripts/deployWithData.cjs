@@ -1,4 +1,5 @@
 const hre = require('hardhat');
+const USE_EXTERNAL_NETWORK_ENDPOINTS = false;
 async function main() {
     const ETHICS_REQUIREMENTS = [
         "Task or submission does not produce content of excessive harm of living beings.",
@@ -21,19 +22,26 @@ async function main() {
     const ValidatorTaskFactory = await hre.ethers.getContractFactory("ValidatorTask");
     const validatorTaskContract = await ValidatorTaskFactory.deploy(usersAddress);
 
+
     const [deployer, user1, user2] = await ethers.getSigners();
     await usersContract.connect(deployer)["activateUser(string, bytes, bytes32)"](
-        "https://raw.githubusercontent.com/SpiderMan303e24/Base/main",
+        USE_EXTERNAL_NETWORK_ENDPOINTS ?
+            "https://base.freelancesociety.app,https://raw.githubusercontent.com/peterparker303e24/Base/main"
+            : "http://localhost:3000/data/localData",
         "0x0050657465725061726b6572333033653234",
         "0x5bb1b92c745cb672998fe2b90af8e4dd64be2d51f97989e56b1e7598ad10d53c"
     );
     await usersContract.connect(user1)["activateUser(string, bytes, bytes32)"](
-        "https://raw.githubusercontent.com/SpiderMan303e24/Base/main",
+        USE_EXTERNAL_NETWORK_ENDPOINTS ?
+            "https://base.freelancesociety.app,https://raw.githubusercontent.com/peterparker303e24/Base/main"
+            : "http://localhost:3000/data/localData",
         "0x00416c696365",
         "0x5bb1b92c745cb672998fe2b90af8e4dd64be2d51f97989e56b1e7598ad10d53c"
     );
     await usersContract.connect(user2)["activateUser(string, bytes, bytes32)"](
-        "https://raw.githubusercontent.com/SpiderMan303e24/Base/main,bob@gmail.com",
+        USE_EXTERNAL_NETWORK_ENDPOINTS ?
+            "https://base.freelancesociety.app,https://raw.githubusercontent.com/peterparker303e24/Base/main,bob@gmail.com"
+            : "http://localhost:3000/data/localData",
         "0x00426f62",
         "0x5bb1b92c745cb672998fe2b90af8e4dd64be2d51f97989e56b1e7598ad10d53c"
     );
@@ -145,6 +153,25 @@ async function main() {
         1,
         "0xad7c5bef027816a800da1736444fb58a807ef4c9603b7848673f7e3a68eb14a5",
         9768163911
+    );
+
+    // Complete v-0
+    await validatorTaskContract.connect(user2).submitTask(
+        0,
+        "0xb835ed1f4a1db802830c5ce384d3879ea75a4fd5a0e05f40f462bd32c014bda0",
+        { value: 100_000_000_000n }
+    );
+    await hre.network.provider.send("evm_increaseTime", [20]);
+    await hre.network.provider.send("evm_mine", []);
+    await validatorTaskContract.connect(user1).evaluateTask(
+        0,
+        0,
+        0,
+        [0]
+    );
+    await validatorTaskContract.connect(user2).withdrawSubmissionCompletion(
+        0,
+        0
     );
 }
 main()

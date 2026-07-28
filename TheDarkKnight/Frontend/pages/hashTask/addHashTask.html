@@ -18,8 +18,10 @@
     <script src="./js/components/headerSection.js" type="module"></script>
     <script src="./js/components/walletMisconfigurationSection.js" type="module"></script>
     <script src="./js/components/userNotActivatedSection.js" type="module"></script>
-    <script src="./js/hashTask/addHashTask.js" type="module" defer></script>
+    <script src="./js/hashTask/addHashTask.js" type="module"></script>
     <script src="./js/components/helpSection.js" type="module"></script>
+    <script src="./js/components/dataHostSection.js" type="module"></script>
+    <script src="./js/components/setDeadlineSection.js" type="module"></script>
 </head>
 
 <body>
@@ -40,73 +42,221 @@
             <user-not-activated-section></user-not-activated-section>
         </div>
 
-        <!-- Hash task parameters -->
-        <div class="row">
-            <div id="hash-task-parameters">
-                <div id="hash-value" class="right-align">Hash Value: </div>
-                <input type="text" id="hash-value-input" class="input-line medium-text left-align parameters-input-size"
-                    placeholder="0x01234567890123456789012345678901234567890123456789012345678901">
-                <div id="task-hash" class="right-align">Task Hash: </div>
-                <input type="text" id="task-hash-input" class="input-line medium-text left-align parameters-input-size"
-                    placeholder="0x01234567890123456789012345678901234567890123456789012345678901">
-                <div id="seconds-to-deadline" class="right-align">Seconds Until Deadline: </div>
-                <input type="text" id="deadline-input" class="input-line medium-text left-align parameters-input-size"
-                    placeholder="86400">
-                <div id="key-reveal" class="right-align">Key Reveal: </div>
-                <div id="key-reveal-button" class="border-button medium-text toggle-button">ON</div>
-                <div id="delay" class="right-align">Difficulty: </div>
-                <input type="text" id="difficulty-input" class="input-line medium-text left-align parameters-input-size"
-                    placeholder="10">
-                <div id="reward" class="right-align">Reward (Wei): </div>
-                <input type="text" id="reward-input" class="input-line medium-text left-align parameters-input-size"
-                    placeholder="10 000 000 000 000 000">
-                <div id="checkbox" class="checkbox border-button large-text right small-padding"></div>
-                <div class="medium-text parameters-input-size left-align">I have have read the ethics
-                    requirements and
-                    my submission does not violate any of the ethics requirements.</div>
-            </div>
+        <!-- Task section display type tabs -->
+        <div id="tabs-section" class="tabs-section">
+            <div class="basic-display-tab tab tab-selected large-text">Basic Display</div>
+            <div class="direct-display-tab tab large-text">Direct Display</div>
         </div>
 
-        <!-- Payable add requirement button and error display -->
-        <div class="row padding">
-            <div id="add-task-button" class="inactive-payable-button medium-text padding">
-                Add Hash Task
-            </div>
-        </div>
-        <div id="error" class="row padding"></div>
+        <!-- Basic display section -->
+        <div class="basic-display">
 
-        <!-- Upload requirement section -->
-        <div class="row padding">
-            <input type="file" id="file-input" accept=".zip" class="hide" />
-            <div id="upload-file-button" class="border-button medium-text padding">
-                Upload Zip File
+            <!-- Hash task parameters -->
+            <div class="row">
+                <div id="hash-task-parameters">
+                    <div id="hash-value" class="right-align">Hash Value: </div>
+                    <input type="text" id="hash-value-input"
+                        class="input-line medium-text left-align parameters-input-size"
+                        placeholder="0x01234567890123456789012345678901234567890123456789012345678901">
+                    <div id="task-hash" class="right-align">Task Hash: </div>
+                    <input type="text" id="task-hash-input"
+                        class="input-line medium-text left-align parameters-input-size"
+                        placeholder="0x01234567890123456789012345678901234567890123456789012345678901">
+                    <div id="seconds-to-deadline" class="right-align">Seconds Until Deadline: </div>
+                    <input type="text" id="deadline-input"
+                        class="input-line medium-text left-align parameters-input-size" placeholder="86400">
+                    <div id="key-reveal" class="right-align">Key Reveal: </div>
+                    <div id="key-reveal-button" class="border-button medium-text toggle-button">ON</div>
+                    <div id="delay" class="right-align">Difficulty: </div>
+                    <input type="text" id="difficulty-input"
+                        class="input-line medium-text left-align parameters-input-size" placeholder="10">
+                    <div id="reward" class="right-align">Reward (Wei): </div>
+                    <input type="text" id="reward-input" class="input-line medium-text left-align parameters-input-size"
+                        placeholder="10 000 000 000 000 000">
+                    <div id="checkbox" class="checkbox border-button large-text right small-padding"></div>
+                    <div class="medium-text parameters-input-size left-align">I have have read the ethics
+                        requirements and
+                        my submission does not violate any of the ethics requirements.</div>
+                </div>
             </div>
-        </div>
-        <div id="file-error" class="row padding"></div>
 
-        <!-- File tree instructions -->
-        <div class="row">
-            <div class="left-align">
-                File tree should be of the form:<br><br>
-                Task<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;specifications.json<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Requirements<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Requirement1-1.zip<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;otherFiles.txt<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;...
+            <!-- Payable add requirement button and error display -->
+            <div class="row padding">
+                <div id="add-task-button" class="inactive-payable-button medium-text padding">
+                    Add Hash Task
+                </div>
             </div>
+            <div id="error" class="row padding"></div>
+
+            <!-- Upload requirement section -->
+            <div class="row padding">
+                <input type="file" id="file-input" accept=".zip" class="hide" />
+                <div id="upload-file-button" class="border-button medium-text padding">
+                    Upload Zip File
+                </div>
+            </div>
+            <div id="file-error" class="row padding"></div>
+
+            <!-- File tree instructions -->
+            <div class="row">
+                <div class="left-align">
+                    File tree should be of the form:<br><br>
+                    Task<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;specifications.json<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Requirements<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Requirement1-1.zip<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;otherFiles.txt<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;...
+                </div>
+            </div>
+
+            <!-- File name and hash retrieved -->
+            <div id="file-name" class="row padding"></div>
         </div>
 
-        <!-- File name and hash retrieved -->
-        <div id="file-name" class="row padding"></div>
+        <!-- Direct display section -->
+        <div class="direct-display hide medium-padding left-align">
+
+            <!-- Reward Inputs -->
+            <h1 class="direct-display__reward-header large-text small-margin-vertical">1 Set Reward</h1>
+            <div class="direct-display__reward-section row-left vertically-center-row">
+                <select class="direct-display__eth-type-select small-padding-vertical small-padding-horizontal x-large-width medium-text medium-margin-right">
+                    <option class="direct-display__type-eth" value="eth">ETH</option>
+                    <option class="direct-display__type-wei" value="wei">Wei</option>
+                </select>
+                <input class="direct-display__eth-number input-line medium-text xxx-large-width small-padding-horizontal"/>
+            </div>
+            <br>
+            <br>
+
+            <!-- Task instructions -->
+            <h1 class="direct-display__instructions-header large-text small-margin-vertical">2.1 Set Instructions</h1>
+            <textarea class="direct-display__instructions-input text-area xx-large-height medium-text vertical-resize" placeholder="What is 1 + 1?"></textarea>
+            <br>
+            <br>
+
+            <!-- Optional additional files to upload -->
+            <h1 class="direct-display__upload-header large-text">2.2 Upload Additional Files</h1>
+            <div class="direct-display__upload-buttons-container row-left">
+                <input class="direct-display__upload-files-input hide" type="file" multiple/>
+                <div class="direct-display__upload-files-button border-button padding x-large-width medium-margin-vertical">Upload Files</div>
+                <input class="direct-display__upload-folder-input hide" type="file" webkitdirectory directory multiple/>
+                <div class="direct-display__upload-folder-button border-button padding medium-margin-horizontal x-large-width medium-margin-vertical">Upload Folder</div>
+                <div class="direct-display__clear-uploads-button border-button padding x-large-width medium-margin-vertical">Clear Uploads</div>
+            </div>
+            <div class="direct-display__upload-file-tree-section hide">
+                <h3 class="direct-display__upload-file-subheader">Uploaded Files</h3>
+                <textarea class="direct-display__upload-file-tree-input xx-large-height medium-text vertical-resize" disabled></textarea>
+                <br>
+                <br>
+            </div>
+
+            <!-- File upload error message -->
+            <div class="direct-display__upload-file-error hide">[X] ERROR: Error message</div>
+            <br>
+            <br>
+
+            <!-- Text key solution for the task -->
+            <h1 class="direct-display__text-key-header large-text small-margin-vertical">3 Set Text Key Solution</h1>
+            <textarea class="direct-display__text-key text-area x-large-height medium-text vertical-resize" placeholder="2"></textarea>
+            <br>
+            <br>
+
+            <!-- Task solution explanation -->
+            <h1 class="direct-display__solution-header large-text small-margin-vertical">4 Set Solution Explanation</h1>
+            <textarea class="direct-display__solution-explanation text-area xx-large-height medium-text vertical-resize" placeholder="1 + 1 = 2"></textarea>
+            <br>
+            <br>
+            
+            <!-- Deadline section with timespan and date/time inputs -->
+            <h1 class="direct-display__deadline-header large-text">5 Set Deadline</h1>
+            <set-deadline-section class="set-deadline-section"></set-deadline-section>
+            <br>
+            <br>
+            
+            <!-- Optional settings fold -->
+            <div class="direct-display__optional-settings bordered-box">
+
+                <!-- Fold header -->
+                <div class="direct-display__optional-settings__fold-container row-left padding vertically-center-row">
+                    <div class="direct-display__optional-settings__fold-button border-button medium-width medium-height small-margin-right">
+                        ▶
+                    </div>
+                    <h1 class="direct-display__optional-settings__fold-subheader left-align medium-text">6 Set Optional Settings</h1>
+                </div>
+
+                <!-- Difficulty and key reveal options settings when fold opens -->
+                <div class="direct-display__optional-settings__content hide">
+                    <div class="direct-display__optional-settings__difficulty-container row-left vertically-center-row">
+                        <label class="direct-display__optional-settings__difficulty-label small-margin-right medium-margin-left">Difficulty</label>
+                        <input class="direct-display__optional-settings__difficulty-input input-line large-width medium-margin-vertical small-padding-horizontal" value="15">
+                    </div>
+                    <div class="direct-display__optional-settings__difficulty-container row-left vertically-center-row">
+                        <div class="direct-display__optional-settings__key-reveal-label small-margin-right medium-margin-left">Key Reveal</div>
+                        <div class="direct-display__optional-settings__key-reveal-input border-button medium-padding-horizontal small-padding-vertical medium-margin-vertical">TRUE</div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <!-- Download Task.zip file locally section -->
+            <h1 class="direct-display__download-header left-align large-text medium-margin-vertical">7 Download Task.zip Locally</h1>
+
+            <!-- Download Task.zip file button -->
+            <div class="direct-display__download-container row-left">
+                <div class="direct-display__download-button border-button medium-text padding">
+                    Download Task.zip
+                </div>
+            </div>
+            <br>
+            <div class="direct-display__task-hash-message">or manually set the hash from an existing Task.zip file</div>
+            <div class="direct-display__task-hash-container row-left vertically-center-row">
+                <div class="direct-display__edit-task-hash border-button small-padding medium-text medium-margin-vertical large-width">Edit</div>
+                <div class="direct-display__task-hash medium-text medium-margin-left label-space-right">Task.zip Hash: -</div>
+                <input type="text" class="direct-display__task-hash-input input-line hash-input-width medium-text hide" placeholder="0x1234567812345678123456781234567812345678123456781234567812345678">
+            </div>
+            <div class="direct-display__task-hash-value-container row-left vertically-center-row hide">
+                <div class="direct-display__task-hash medium-text label-space-right">Task Hash Value:</div>
+                <input type="text" class="direct-display__task-hash-value-input input-line hash-input-width medium-text" placeholder="0x1234567812345678123456781234567812345678123456781234567812345678">
+            </div>
+
+            <!-- Download Task.zip file error message -->
+            <div class="direct-display__download-error row-left medium-padding-vertical"></div>
+            
+            
+            <!-- Upload Task.zip file to user hosted endpoint -->
+            <h1 class="direct-display__hosting__header left-align large-text medium-margin-vertical">8 Upload Submission To Hosted Location</h1>
+            <data-host-section class="task-host-section"></data-host-section>
+            <br>
+
+            <!-- Upload hash task to blockchain section -->
+            <h1 class="direct-display__submit__header left-align large-text medium-margin-vertical">9 Submit Hash Task To Blockchain</h1>
+
+            <!-- Ethics requirements check -->
+            <div class="direct-display__submit__checkbox-container row-left vertically-center-row">
+                <div class="direct-display__submit__checkbox checkbox border-button large-text small-padding small-margin-right"></div>
+                <div class="direct-display__submit__ethics-requirements-text medium-text left-align small-margin-left">
+                    I have have read the
+                    <a class="direct-display__submit__ethics-requirements-link redirectable" href="./pages/ethicsRequirements/ethicsRequirements.html">ethics requirements</a>
+                    and my submission does not violate any of the ethics requirements.
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <!-- Upload hash task transaction button -->
+            <div class="direct-display__submit__add-task inactive-payable-button x-large-width padding">Add Task</div>
+            <div class="direct-display__submit__add-task-error medium-margin-vertical"></div>
+        </div>
 
         <!-- Help -->
-        <div id="help-container">
+        <div>
             <help-section helpCollection="AddHashTask"></help-section>
         </div>
 
         <!-- Footer space -->
-        <div id="footer-space"></div>
+        <div class="footer-space"></div>
     </div>
 </body>
 
