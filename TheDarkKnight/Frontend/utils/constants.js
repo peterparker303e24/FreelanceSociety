@@ -234,7 +234,7 @@ if (getCookie("isLocalBlockchain") === "true") {
     singleHashRequirementHash
         = "0x584bc4c338df9c2bfd77a440ca0f152b9075eaaac10e7c2174ab6213b3e67b58";
     singleHashRequirementIndex = 1;
-    singleHashRequirementVersionIndex = 2;
+    singleHashRequirementVersionIndex = 1;
 }
 export const SINGLE_HASH_REQUIREMENT_HASH = singleHashRequirementHash;
 export const SINGLE_HASH_REQUIREMENT_INDEX = singleHashRequirementIndex;
